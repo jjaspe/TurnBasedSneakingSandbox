@@ -12,6 +12,7 @@ using SneakingCommon.Data_Classes;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Observer_Pattern;
 using SneakingCommon.Interfaces.Model;
+using DummyOne.Goals;
 
 namespace SneakingCommon.Model_Stuff
 {

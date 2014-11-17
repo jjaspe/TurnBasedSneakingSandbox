@@ -51,6 +51,11 @@
   <ItemGroup>
     <Compile Include="Behavior Classes\NPCBehaviorNPC.cs" />
     <Compile Include="Behavior Classes\NPCBehaviorPC.cs" />
+    <Compile Include="Goals\GoalKillNumberOfGuards.cs" />
+    <Compile Include="Goals\GoalKillSpecialGuard.cs" />
+    <Compile Include="Goals\GoalReachTile.cs" />
+    <Compile Include="Goals\GoalReachTileAndAction.cs" />
+    <Compile Include="Goals\GoalReachTileAndActionAndTile.cs" />
     <Compile Include="Model Classes\Attack.cs" />
     <Compile Include="Model Classes\GameMaster.cs" />
     <Compile Include="Model Classes\Guard.cs" />
@@ -70,9 +75,7 @@
       <Name>SneakingCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Goals\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
