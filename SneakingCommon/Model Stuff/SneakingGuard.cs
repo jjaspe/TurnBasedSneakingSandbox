@@ -14,7 +14,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
 {
     public class SneakingGuard:DrawableGuard
     {
-        public enum View1Orientation { none, up, right, down, left };
+        
 
         static int guardIds=5;
 
