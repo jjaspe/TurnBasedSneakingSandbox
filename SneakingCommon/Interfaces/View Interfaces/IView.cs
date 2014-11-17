@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.View
 {
     public interface IView:IModelObserver
     {

@@ -9,8 +9,9 @@ using Canvas_Window_Template.Drawables;
 using SneakingCommon.Model_Stuff.Structure_Classes;
 using Canvas_Window_Template.Interfaces;             
 using Canvas_Window_Template.Drawables;
+using SneakingCommon.Interfaces.Behaviors;
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.Model
 {
     public interface IMap
     {        

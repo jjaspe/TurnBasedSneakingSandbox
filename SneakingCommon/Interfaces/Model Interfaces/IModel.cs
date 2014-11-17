@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SneakingCommon.Model_Stuff;
-using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
+using Canvas_Window_Template.Basic_Drawing_Functions;
+using Canvas_Window_Template.Interfaces;           
+using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
+using Canvas_Window_Template.Interfaces;
+using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
+using SneakingCommon.Interfaces.Model;
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.Model
 {
-    public interface IModel:IModelSubject
+    public interface IGameMaster:IModelSubject
     {
         NoiseMap getNoiseMap();
         void setNoiseMap(NoiseMap nm);

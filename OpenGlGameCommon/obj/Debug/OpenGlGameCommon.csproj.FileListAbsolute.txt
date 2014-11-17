@@ -9,3 +9,12 @@ C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\D
 C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
 C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
 C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\OpenGlGameCommon.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\ISE.FreeType.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Canvas Window Template.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\obj\Debug\OpenGlGameCommon.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\obj\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\obj\Debug\CreationClassesLibrary.pdb

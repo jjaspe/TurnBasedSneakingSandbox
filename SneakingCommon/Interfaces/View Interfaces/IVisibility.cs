@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
-using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
+using Canvas_Window_Template.Basic_Drawing_Functions;
+using Canvas_Window_Template.Interfaces;
+using Canvas_Window_Template.Drawables;
+using Canvas_Window_Template.Interfaces;
+using Canvas_Window_Template.Drawables;
+using SneakingCommon.Interfaces.Behaviors;
 
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.View
 {
     public interface IVisibilityBehavior
     {

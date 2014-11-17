@@ -13,6 +13,6 @@ namespace SneakingCommon.Interfaces.Controller
     {
         void updateGuard(IGuard g);
         void update(GuardMessage msg,List<ObjectArg> args);
-        IModel getModel();
+        IGameMaster getModel();
     }
 }

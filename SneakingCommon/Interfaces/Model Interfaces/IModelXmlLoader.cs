@@ -5,7 +5,7 @@ using System.Text;
 using SneakingCommon.Model_Stuff;
 using System.Xml;
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.Model
 {
     public interface IModelXmlLoader
     {
