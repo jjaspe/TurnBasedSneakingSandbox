@@ -14,15 +14,30 @@ namespace SneakingCommon.Interfaces.Model
 {
     public interface IGameMaster:IModelSubject
     {
-        NoiseMap getNoiseMap();
-        void setNoiseMap(NoiseMap nm);
-        void setGuards(List<IGuard> guards);
-        List<IGuard> getGuards();
-        void setPC(IGuard pc);
-        IGuard getPC();
-        void setMap(IMap map);
-        IMap getMap();
-        IGuard getActiveGuard();
+        NoiseMap MyNoiseMap
+        {
+            get;
+            set;
+        }
+        List<IGuard> Guards
+        {
+            get;
+            set;
+        }
+        IGuard MyPC
+        {
+            get;
+            set;
+        }
+        IMap MyMap
+        {
+            get;
+            set;
+        }
+        IGuard ActiveGuard
+        {
+            get;
+        }
         void sortGuards(string statName);
         List<IGuard> getSortedGuards();
         void commitChanges();

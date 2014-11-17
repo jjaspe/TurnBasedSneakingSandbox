@@ -33,11 +33,14 @@ namespace SneakingCommon.Model_Stuff
             return myInstance;
         }
 
-        List<Guard> myGuards;
-        PC myPC;
-        Map myMap;
+        List<IGuard> myGuards;
+        IGuard myPC;
+        IMap myMap;
         NoiseMap myNoiseMap;
-        List<Guard> mySortedGuards;
+        List<IGuard> mySortedGuards;
+
+        
+        
 
         private GameMasterOne()
         {
@@ -45,56 +48,46 @@ namespace SneakingCommon.Model_Stuff
         }
 
         #region IGameMaster
+        public List<IGuard> Guards
+        {
+            get { return myGuards; }
+            set { myGuards = value; }
+        }
+        public IGuard MyPC
+        {
+            get { return myPC; }
+            set { myPC = value; }
+        }
+        public IMap MyMap
+        {
+            get { return myMap; }
+            set { myMap = value; }
+        }
+        public NoiseMap MyNoiseMap
+        {
+            get { return myNoiseMap; }
+            set { myNoiseMap = value; }
+        }
         public bool GameStarted
         {
-            get { return myMap.getValue("Game Started") == 1; }
-            set { myMap.setValue("Game Started", value == false ? 0 : 1); }
+            get { return MyMap.getValue("Game Started") == 1; }
+            set { MyMap.setValue("Game Started", value == false ? 0 : 1); }
         }
         public void setNoiseMap(NoiseMap nM)
         {
-            myNoiseMap = nM;
-        }
-        public NoiseMap getNoiseMap()
+            MyNoiseMap = nM;
+        }       
+        public IGuard ActiveGuard
         {
-            return myNoiseMap;
-        }
-        public void setPC(PC pc)
-        {
-            myPC = pc;
-        }
-        public IGuard getPC()
-        {
-            return myPC;
-        }
-        public void setMap(Map map)
-        {
-            myMap=map;
-        }
-        public Map getMap()
-        {
-            return myMap;
-        }
-        public void setGuards(List<Guard> guards)
-        {
-            myGuards=guards;
-            foreach (Guard g in myGuards)
-                g.MyNPCBehavior = new NPCBehaviorNPC();
-        }
-        public List<IGuard> getGuards()
-        {
-            List<IGuard> guards=new List<IGuard>();
-            foreach (Guard g in myGuards)
-                guards.Add(g);
-            return guards;
-        }
-        public IGuard getActiveGuard()
-        {
-            foreach (Guard g in myGuards)
+            get
             {
-                if (g.getValue("Active") == 1)
-                    return g;
+                foreach (Guard g in Guards)
+                {
+                    if (g.getValue("Active") == 1)
+                        return g;
+                }
+                return null;
             }
-            return null;
         }
         public List<IGuard> getSortedGuards()
         {
@@ -109,7 +102,7 @@ namespace SneakingCommon.Model_Stuff
             List<KeyValuePair<int, int>> indeces = new List<KeyValuePair<int, int>>();
 
             //Fill indeces
-            for (int i = 0; i < myGuards.Count; i++)
+            for (int i = 0; i < Guards.Count; i++)
             {
                 indeces.Add(new KeyValuePair<int, int>(i, i));
             }
@@ -119,11 +112,11 @@ namespace SneakingCommon.Model_Stuff
             {
                 int j = 0;
                 int temp = 0;
-                for (int i = 1; i < myGuards.Count; i++)
+                for (int i = 1; i < Guards.Count; i++)
                 {
-                    temp = myGuards[i].getValue(statName);
+                    temp = Guards[i].getValue(statName);
                     j = i - 1;
-                    while (j >= 0 && temp > myGuards[j].getValue(statName))
+                    while (j >= 0 && temp > Guards[j].getValue(statName))
                     {
                         //Move up Value of lower dex guard                        
                         indeces[j] = new KeyValuePair<int, int>(indeces[j].Key, indeces[j].Value + 1);
@@ -142,7 +135,7 @@ namespace SneakingCommon.Model_Stuff
             //Create sorted guard array
             mySortedGuards = new List<Guard>();
             foreach (KeyValuePair<int, int> kv in indeces)
-                mySortedGuards.Add(myGuards[kv.Value]);
+                mySortedGuards.Add(Guards[kv.Value]);
         }
         public void commitChanges()
         {
@@ -152,7 +145,7 @@ namespace SneakingCommon.Model_Stuff
         #region HELPER METHODS
         public bool tileFreeFromGuards(IPoint tilePosition)
         {
-            foreach (Guard g in myGuards)
+            foreach (Guard g in Guards)
             {
                 if (g.MyPosition.equals(tilePosition))
                     return false;
@@ -190,7 +183,7 @@ namespace SneakingCommon.Model_Stuff
                patrolNode, wpXNode, wpYNode, orientationNode;
             XmlNodeList guardNodes = myDoc.GetElementsByTagName("Character"),
                 waypointNodes;
-            myGuards = new List<Guard>();
+            Guards = new List<Guard>();
             Guard _cGuard;
             PatrolPath _cPath;
             #region READ GUARDS TO LIST
@@ -237,19 +230,19 @@ namespace SneakingCommon.Model_Stuff
                     _cGuard.getNPCBehavior().setPatrol(_cPath);
 
                     //Add guard to list
-                    myGuards.Add(_cGuard);
+                    Guards.Add(_cGuard);
                 }
             }
             #endregion
             List<IGuard> iguards = new List<IGuard>();
-            foreach (Guard g in myGuards)
+            foreach (Guard g in Guards)
                 iguards.Add(g);
 
             return iguards;
         }
         void setNPCBehaviorOnGuards()
         {
-            foreach (Guard g in myGuards)
+            foreach (Guard g in Guards)
                 g.setNPCBehavior(new NPCBehaviorNPC());
         }
         public IGuard loadPC(XmlDocument myDoc)
@@ -268,16 +261,16 @@ namespace SneakingCommon.Model_Stuff
 
             if (pcNode != null)
             {
-                myPC = new PC();
-                myPC.fromXml(pcNode);
-                myPC.MyAttacks = loadAttacks(myAttackDoc);
-                return myPC;
+                MyPC = new PC();
+                MyPC.fromXml(pcNode);
+                MyPC.MyAttacks = loadAttacks(myAttackDoc);
+                return MyPC;
             }
             return null;            
         }
         public IMap loadMap(XmlDocument myDoc)
         {
-            myMap = new Map();
+            MyMap = new Map();
             
             #region READ DISTANCE MAPS
             XmlNodeList distanceMapNodes = myDoc.GetElementsByTagName("Distance_Map"), pointNodes;
@@ -329,10 +322,10 @@ namespace SneakingCommon.Model_Stuff
                 distanceMaps.Add(currentMap);
                 
             }
-            myMap.MyDistanceMaps = distanceMaps;
+            MyMap.MyDistanceMaps = distanceMaps;
             #endregion
             
-            return myMap;
+            return MyMap;
         }
         public Attack loadAttack(XmlNode attackNode)
         {
