@@ -126,7 +126,7 @@
     <Content Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CreationClassesLibrary\OpenGlGameCommon.csproj">
+    <ProjectReference Include="..\OpenGlGameCommon\OpenGlGameCommon.csproj">
       <Project>{42610CB5-8B1B-4860-86DF-55232334EADC}</Project>
       <Name>OpenGlGameCommon</Name>
     </ProjectReference>
