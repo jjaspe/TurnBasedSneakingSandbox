@@ -5,10 +5,12 @@ using System.Text;
 using SneakingCommon.System_Classes;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.MVC_Interfaces;
+
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
+using SneakingCommon.Interfaces.Model;
+using SneakingCommon.Interfaces.Behaviors;
 
 namespace SneakingCommon.Interfaces.Controller
 {

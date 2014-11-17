@@ -6,16 +6,13 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-using SneakingCommon.System_Classes;
-using Canvas_Window_Template.Interfaces;
-using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.Behaviors;
 using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.View
 {
-    public interface ILandscape
+    public interface ILandscapeBehavior
     {
         bool isTile(IPoint source);
         void lighten(IPoint tileOrigin, int level);

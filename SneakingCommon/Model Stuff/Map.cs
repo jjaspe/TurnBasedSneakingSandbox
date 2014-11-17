@@ -6,17 +6,20 @@ using CharacterSystemLibrary.Classes;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.MVC_Interfaces;
+
 using SneakingCommon.Model_Stuff.Structure_Classes;
 using OpenGlGameCommon.Classes;
+using SneakingCommon.Interfaces.View;
+using SneakingCommon.Interfaces.Behaviors;
+using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Model_Stuff
 {
     public class Map:Character,IMap
     {
         #region ATTRIBUTES
-        ILandscape myLandscapeBehavior;
-        public ILandscape MyLandscapeBehavior
+        ILandscapeBehavior myLandscapeBehavior;
+        public ILandscapeBehavior MyLandscapeBehavior
         {
             get { return myLandscapeBehavior; }
             set { myLandscapeBehavior = value; }
@@ -103,11 +106,11 @@ namespace SneakingCommon.Model_Stuff
                     return dm.MyOrigin.equals(src);
                 });
         }
-        public void setLandscapeBehavior(ILandscape lB)
+        public void setLandscapeBehavior(ILandscapeBehavior lB)
         {
             MyLandscapeBehavior = lB;
         }
-        public ILandscape getLandscapeBehavior()
+        public ILandscapeBehavior getLandscapeBehavior()
         {
             return MyLandscapeBehavior;
         }

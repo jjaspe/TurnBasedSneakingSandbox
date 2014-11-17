@@ -6,10 +6,10 @@ using CharacterSystemLibrary.Classes;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.MVC_Interfaces;
-using SneakingCommon.Game_Components.Interfaces.Behaviors;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.System_Classes;
+using SneakingCommon.Interfaces.Behaviors;
+using SneakingCommon.Interfaces.Model;
 
 
 
@@ -89,7 +89,7 @@ namespace SneakingCommon.Model_Stuff
         protected void initialize()
         {
             Id = guardIds;
-            guardIds += ModelOne.dataTypes;
+            guardIds += GameMasterOne.dataTypes;
 
             //myOrientationBehavior = new TileBehaviorSquare();
             MyNPCBehavior = new NPCBehaviorNPC();

@@ -10,9 +10,10 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.Model_Stuff;
 using SneakingCommon.System_Classes;
-using SneakingCommon.MVC_Interfaces;
+
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Data_Classes;
+using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Model_Stuff.Structure_Classes
 {

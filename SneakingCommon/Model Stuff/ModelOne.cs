@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SneakingCommon.MVC_Interfaces;
+
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;     
 using Canvas_Window_Template.Drawables;
@@ -14,23 +14,25 @@ using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
 using OpenGlGameCommon.Classes;
+using SneakingCommon.Interfaces.Observer_Pattern;
+using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Model_Stuff
 {
-    public class ModelOne:IModel,IModelXmlLoader
+    public class GameMasterOne:IGameMaster,IModelXmlLoader
     {
         public static int dataTypes=3;
 
-        static ModelOne myInstance;
-        public static ModelOne createInstance()
+        static GameMasterOne myInstance;
+        public static GameMasterOne createInstance()
         {
             if (myInstance == null)
             {
-                myInstance = new ModelOne();
+                myInstance = new GameMasterOne();
             }
             return myInstance;
         }
-        public static ModelOne getInstance()
+        public static GameMasterOne getInstance()
         {
             return myInstance;
         }
@@ -41,12 +43,12 @@ namespace SneakingCommon.Model_Stuff
         NoiseMap myNoiseMap;
         List<Guard> mySortedGuards;
 
-        private ModelOne()
+        private GameMasterOne()
         {
             myObservers = new List<IModelObserver>();
         }
 
-        #region IModel
+        #region IGameMaster
         public bool GameStarted
         {
             get { return myMap.getValue("Game Started") == 1; }
@@ -138,7 +140,7 @@ namespace SneakingCommon.Model_Stuff
             }
             catch (Exception e)
             {
-                MessageBox.Show("Stat:" + statName + " doesn't exist \n"+e.Message);
+                Console.WriteLine("Stat:" + statName + " doesn't exist \n"+e.Message);
             }
 
             //Create sorted guard array

@@ -7,12 +7,9 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;    
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-using SneakingCommon.MVC_Interfaces;
-
-using SneakingCommon.Game_Components.Interfaces.Behaviors;
-using Canvas_Window_Template.Interfaces; 
-using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
+using SneakingCommon.Interfaces.Behaviors;
+using SneakingCommon.Interfaces.Model;
 
 
 namespace SneakingCommon.Model_Stuff
@@ -101,9 +98,10 @@ namespace SneakingCommon.Model_Stuff
         protected void initialize()
         {
             Id = pcIds;
-            pcIds += ModelOne.dataTypes;
+            pcIds += GameMasterOne.dataTypes;
 
-            myOrientationBehavior = new TileBehaviorSquare();
+            //myOrientationBehavior = new TileBehaviorSquare();
+            throw new Exception("Tile behavior not set on PC. Method:Initialize()");
             MyNPCBehavior = new NPCBehaviorPC();
             MyFoH = new NoiseMap();
             myFOV = new List<IPoint>();
@@ -202,7 +200,7 @@ namespace SneakingCommon.Model_Stuff
             }
             catch (Exception)
             {
-                MessageBox.Show("PC Entry Point was null");
+                Console.WriteLine("PC Entry Point was null");
             }
         }
 

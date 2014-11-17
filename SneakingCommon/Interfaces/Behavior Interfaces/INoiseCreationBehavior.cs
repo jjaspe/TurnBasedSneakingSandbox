@@ -9,6 +9,8 @@ using SneakingCommon.Model_Stuff;
 using SneakingCommon.Model_Stuff.Structure_Classes;
 using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
+using SneakingCommon.Interfaces.View;
+using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {

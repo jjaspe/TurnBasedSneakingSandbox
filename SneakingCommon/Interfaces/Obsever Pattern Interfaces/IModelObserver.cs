@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SneakingCommon.Interfaces.Model;
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.Observer_Pattern
 {
     public interface IModelObserver
     {
-        void update(string msg, IModel model);
+        void update(string msg, IGameMaster gameMaster);
     }
 }

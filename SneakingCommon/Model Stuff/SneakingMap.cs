@@ -9,9 +9,11 @@ using SneakingCommon.Drawables;
 using System.Drawing;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-using SneakingCommon.MVC_Interfaces;
+
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Model_Stuff.Structure_Classes;
+using SneakingCommon.Interfaces.View;
+using SneakingCommon.Interfaces.Model;
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
@@ -50,7 +52,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             myWall = new wallObj();  
             initializeWall();
             MyMap = map;
-            MyMap.setNoiseCreationBehavior(new NoiseCreationBehaviorView1(dw));
+            //MyMap.setNoiseCreationBehavior(new NoiseCreationBehaviorView1(dw));
+            throw new Exception("Noise creation behavior in Sneaking map not set, Sneaking map constructor");
         }
         private void initializeWall()
         {

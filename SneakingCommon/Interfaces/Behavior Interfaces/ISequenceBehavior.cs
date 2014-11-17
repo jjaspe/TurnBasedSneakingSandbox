@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {
@@ -14,7 +15,7 @@ namespace SneakingCommon.Interfaces.Behaviors
         /// <param name="active"></param>
         /// <param name="agents"></param>
         /// <returns></returns>
-        GuardAgent determineTurn(List<GuardAgent> agents);
+        IGuardAgent determineTurn(List<IGuardAgent> agents);
         void guardsTurnOver();
     }
 }

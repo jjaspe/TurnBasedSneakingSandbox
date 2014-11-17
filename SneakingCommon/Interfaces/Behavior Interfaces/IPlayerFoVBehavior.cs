@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SneakingCommon.System_Classes;
+using SneakingCommon.Interfaces.Model;
 
-using SneakingCommon.MVC_Interfaces;
+
 
 namespace SneakingCommon.Interfaces.Behaviors
 {

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Sneaking_Gameplay.MVC_Interfaces;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.Drawables;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using OpenGlGameCommon.Classes;
-using SneakingCommon.MVC_Interfaces;
+using SneakingCommon.Interfaces.Model;
+
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {

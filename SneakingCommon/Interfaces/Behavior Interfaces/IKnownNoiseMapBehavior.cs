@@ -6,9 +6,10 @@ using SneakingCommon.System_Classes;
 using SneakingCommon.System_Classes;
 using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
 
-using SneakingCommon.MVC_Interfaces;
+
 using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
+using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {

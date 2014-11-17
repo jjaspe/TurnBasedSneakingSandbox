@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SneakingCommon.System_Classes;
 using Canvas_Window_Template.Interfaces;  
-using SneakingCommon.MVC_Interfaces;
+
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
