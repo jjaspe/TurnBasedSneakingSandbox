@@ -1,0 +1,11 @@
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\SneakingCommon.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\ISE.FreeType.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.pdb

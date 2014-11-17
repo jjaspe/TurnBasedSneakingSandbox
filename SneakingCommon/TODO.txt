@@ -1,0 +1,20 @@
+﻿
+-- Make an IInterceptor interface, with one method bool Intercepts(pointObj src,pointObj dest)
+-- Make every object that can intercept lines implement IIntercepts
+
+PC CLASS
+-- Implement turning
+	-- TurnCW method, 
+		TurnCCW method, 
+		Turn(direction dir) method -- DONE
+
+GUARD CLASS
+
+
+
+MAP OBJECT
+
+-- Create another raycasting function that takes a List of interceptors and a list of tiles,
+	returns all tiles with no collisions from these interceptors.
+-- Add a getReachable(pointObj src) function that returns all points that are reachable from src --DONE
+	-- Create map, return all points with value>-1

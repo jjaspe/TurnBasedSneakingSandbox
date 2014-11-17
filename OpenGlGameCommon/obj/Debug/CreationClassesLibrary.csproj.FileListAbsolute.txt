@@ -1,0 +1,59 @@
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\working projects\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.dll
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.dll
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.OpenGl.dll
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.pdb
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.dll
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.pdb
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.dll
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.dll
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.Platform.Windows.dll
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.OpenGl.dll
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.pdb
+E:\OpenGl projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.pdb
+E:\OpenGl projects\CreationClassesLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+E:\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+C:\Documents and Settings\Juan\My Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Juan\My Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+C:\Documents and Settings\Juan\My Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\SneakingClasses.dll
+C:\Users\admin1.AP3VIGO\Documents\Visual Studio 2010\Projects\OpenGl projects\CreationClassesLibrary\bin\Debug\SneakingClasses.pdb
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.dll
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.pdb
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Programming\OpenGl projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\ISE.FreeType.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\Canvas Window Template.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\CreationClassesLibrary\obj\Debug\CreationClassesLibrary.csprojResolveAssemblyReference.cache

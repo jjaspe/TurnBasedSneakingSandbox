@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1524DD8E-F1DB-47C0-9ED5-3335433578F9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SneakingCommon</RootNamespace>
+    <AssemblyName>SneakingClasses</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Canvas Window Template, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Canvas Window Template.dll</HintPath>
+    </Reference>
+    <Reference Include="CharacterSystemLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\CharacterSystemLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data Classes\Patrol Path.cs" />
+    <Compile Include="Drawables\DrawableGuard.cs" />
+    <Compile Include="Drawables\DrawablePC.cs" />
+    <Compile Include="Drawables\DrawableMap.cs" />
+    <Compile Include="Drawables\SneakingTile.cs" />
+    <Compile Include="Messages.cs" />
+    <Compile Include="Model Stuff\Attack.cs" />
+    <Compile Include="Model Stuff\Guard.cs" />
+    <Compile Include="Model Stuff\Map.cs" />
+    <Compile Include="Model Stuff\ModelOne.cs" />
+    <Compile Include="Model Stuff\NPCBehaviorNPC.cs" />
+    <Compile Include="Model Stuff\NPCBehaviorPC.cs" />
+    <Compile Include="Model Stuff\PC.cs" />
+    <Compile Include="Model Stuff\SneakingGuard.cs" />
+    <Compile Include="Model Stuff\SneakingMap.cs" />
+    <Compile Include="Model Stuff\SneakingPC.cs" />
+    <Compile Include="Model Stuff\Structure Classes\DistanceMap.cs" />
+    <Compile Include="Model Stuff\Structure Classes\ModelNoiseMap.cs" />
+    <Compile Include="Model Stuff\Structure Classes\ValueMap.cs" />
+    <Compile Include="Model Stuff\XmlLoader.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IAttack.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IAttackBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IDataStore.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardFoHBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardFoVBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardMovementBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardNoiseGraphicBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardNoiseMapGraphicBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardObserver.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IKnownNoiseMapBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\INoiseCreationBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\INoiseDecayBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IPlayerFoHBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IPlayerFoVBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IPlayerMovementBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IPlayerObserver.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IPlayerVisibleBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IVisibleGuardsBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IWorldObservable.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IWorldObserver.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IController.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IGoal.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IGuardActionBehavior.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IGuardAI.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IGuardAIMaster.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\INoiseReactionBehavior.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\IPlayerActionBehavior.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IPlayerAI.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IPlayerAIMaster.cs" />
+    <Compile Include="Interfaces\Behavior Interfaces\ISequenceBehavior.cs" />
+    <Compile Include="Interfaces\Controller Interfaces\IWorldAI.cs" />
+    <Compile Include="Interfaces\IFormListener.cs" />
+    <Compile Include="Interfaces\IFormObservable.cs" />
+    <Compile Include="Interfaces\IModelObserver.cs" />
+    <Compile Include="Interfaces\IModelSubject.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IGuard.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IGuardAgent.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IMap.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IModel.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IModelXmlLoader.cs" />
+    <Compile Include="Interfaces\Model Interfaces\INPCBehavior.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IOrientationBehavior.cs" />
+    <Compile Include="Interfaces\Model Interfaces\ITileBehavior.cs" />
+    <Compile Include="Interfaces\View Interfaces\IDrawableOwner.cs" />
+    <Compile Include="Interfaces\View Interfaces\ILandscape.cs" />
+    <Compile Include="Interfaces\View Interfaces\ITBSneakingForm.cs" />
+    <Compile Include="Interfaces\View Interfaces\IView.cs" />
+    <Compile Include="Interfaces\View Interfaces\IVisibility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System Classes\GameSystem.cs" />
+    <Compile Include="Data Classes\NoiseMap.cs" />
+    <Compile Include="Data Classes\SneakingWorld.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CreationClassesLibrary\OpenGlGameCommon.csproj">
+      <Project>{42610CB5-8B1B-4860-86DF-55232334EADC}</Project>
+      <Name>OpenGlGameCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
