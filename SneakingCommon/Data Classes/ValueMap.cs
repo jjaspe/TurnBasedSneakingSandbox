@@ -5,12 +5,12 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.Model_Stuff;
+
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.Interfaces.View;
 
-namespace SneakingCommon.Model_Stuff.Structure_Classes
+namespace SneakingCommon.Data_Classes
 {
     public class ValueMap
     {

@@ -58,10 +58,9 @@
     <Compile Include="Model Stuff\SneakingGuard.cs" />
     <Compile Include="Model Stuff\SneakingMap.cs" />
     <Compile Include="Model Stuff\SneakingPC.cs" />
-    <Compile Include="Model Stuff\Structure Classes\DistanceMap.cs" />
-    <Compile Include="Model Stuff\Structure Classes\ModelNoiseMap.cs" />
-    <Compile Include="Model Stuff\Structure Classes\ValueMap.cs" />
-    <Compile Include="Model Stuff\XmlLoader.cs" />
+    <Compile Include="Data Classes\DistanceMap.cs" />
+    <Compile Include="Data Classes\ModelNoiseMap.cs" />
+    <Compile Include="Data Classes\ValueMap.cs" />
     <Compile Include="Interfaces\Model Interfaces\IAttack.cs" />
     <Compile Include="Interfaces\Behavior Interfaces\IAttackBehavior.cs" />
     <Compile Include="Interfaces\Behavior Interfaces\IDataStore.cs" />

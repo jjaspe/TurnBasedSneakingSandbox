@@ -8,14 +8,12 @@ using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.Model_Stuff;
 using SneakingCommon.System_Classes;
-
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.Model;
 
-namespace SneakingCommon.Model_Stuff.Structure_Classes
+namespace SneakingCommon.Data_Classes
 {
     public class ModelNoiseMap
     {
@@ -35,25 +33,6 @@ namespace SneakingCommon.Model_Stuff.Structure_Classes
                 delegate(valuePoint dp) { return dp.p.equals(nP.p); });
             return point == null ? -1 : point.value;
         }
-
-        #region LIKELY TO GO INTO Behaviors LATER ON
-        /// <summary>
-        /// Reduces noise depending on distance (value in distMap) a constant and the guard's 
-        /// perception.
-        /// </summary>
-        /// <param name="guardPerception"></param>
-        /// <param name="distMap"></param>
-        public void modify(int guardPerception, List<valuePoint> distMap)
-        {
-            foreach (valuePoint dp in MyNoisePoints)
-            {
-                dp.value = Math.Max(0,
-                    dp.value - Math.Max(0, getValueFromList(dp, distMap)) * 
-                    SneakingWorld.getValueByName("noiseDistanceFromSourceDropoff") / guardPerception);
-            }
-        }
-        #endregion
-
        
         /// <summary>
         /// Only sets noise if it didn't have one or if the previous level was lower

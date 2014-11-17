@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;                
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.Model_Stuff.Structure_Classes;
 using SneakingCommon.Interfaces.Behaviors;
 using SneakingCommon.Interfaces.View;
+using SneakingCommon.Data_Classes;
 
 namespace SneakingCommon.Interfaces.Model
 {

@@ -9,9 +9,7 @@ using SneakingCommon.Drawables;
 using System.Drawing;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-
 using SneakingCommon.Data_Classes;
-using SneakingCommon.Model_Stuff.Structure_Classes;
 using SneakingCommon.Interfaces.View;
 using SneakingCommon.Interfaces.Model;
 

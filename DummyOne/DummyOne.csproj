@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Canvas Window Template">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
+    </Reference>
+    <Reference Include="CharacterSystemLibrary">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,8 +56,19 @@
     <Compile Include="Model Classes\Guard.cs" />
     <Compile Include="Model Classes\Map.cs" />
     <Compile Include="Model Classes\PC.cs" />
+    <Compile Include="Model Classes\XmlLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGlGameCommon\OpenGlGameCommon.csproj">
+      <Project>{42610CB5-8B1B-4860-86DF-55232334EADC}</Project>
+      <Name>OpenGlGameCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SneakingCommon\SneakingCommon.csproj">
+      <Project>{1524DD8E-F1DB-47C0-9ED5-3335433578F9}</Project>
+      <Name>SneakingCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,7 +4,7 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;         
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-using SneakingCommon.Model_Stuff;
+
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.View;
 using SneakingCommon.Interfaces.Behaviors;

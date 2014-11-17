@@ -3,62 +3,83 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
+using Canvas_Window_Template.Interfaces;
+using Canvas_Window_Template.Drawables;
+using OpenGlGameCommon.Classes;
+using SneakingCommon.Interfaces.Model;
+using SneakingCommon.Interfaces.View;
 
-namespace SneakingClasses.Data_Classes
+namespace SneakingCommon.Data_Classes
 {
     public class DistanceMap
     {
-        public List<valuePoint> MyPoints;
-        public DistanceMap() 
+        IPoint myOrigin;
+        public IPoint MyOrigin
+        {
+            get { return myOrigin; }
+            set { myOrigin = value; }
+        }
+        List<valuePoint> myPoints;
+        public List<valuePoint> MyPoints
+        {
+            get { return myPoints; }
+            set { myPoints = value; }
+        }
+
+        public DistanceMap()
         {
             MyPoints = new List<valuePoint>();
         }
 
-        public void setDistancePointInMap(pointObj p, int distance, List<valuePoint> distMap)
+        
+        public void Add(valuePoint p)
         {
-            valuePoint currentDP;
-            currentDP = distMap.Find(
-                        delegate(valuePoint _dp)
-                        {
-                            return _dp.p.equals(p);
-                        });
-            //If it is -1, assign distance, if it already has a distance, see if the new one is smaller
-            currentDP.value = currentDP.value == -1 ? distance : Math.Min(currentDP.value, distance);
+            MyPoints.Add(p);
         }
+
+        void initialize(IMap map)
+        {
+            foreach (IPoint point in map.getTileOrigins())
+            {
+                MyPoints.Add(new valuePoint(point, -1));
+            }
+        }
+
         /// <summary>
         /// Creates a map (a List of valuePoints) where each point has as its value the distance to
         /// src.
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
-        public List<valuePoint> calculateDistanceMap(pointObj src)
+        public List<valuePoint> calculateDistanceMap(IPoint src, IMap map, IDrawableOwner dw)
         {
             List<valuePoint> distMap = new List<valuePoint>();
-            initializeValueMap(distMap, -1);
-            List<pointObj> currentPoints = new List<pointObj>(), adjacents = new List<pointObj>(), tempAdjacents;
+            myOrigin = src;
+            initialize(map);
+            List<IPoint> currentPoints = new List<IPoint>(), adjacents = new List<IPoint>(), tempAdjacents;
             currentPoints.Add(src);
             //Put origin point in distance map, with distance 0
-            setDistancePointInMap(src, 0, distMap);
+            setDistanceForPoint(src, 0);
             bool keepGoing = true;
             int distance = 1;
 
             do
             {
                 adjacents.Clear();
-                foreach (pointObj p in currentPoints)//Get all points adjacent to current edge points
+                foreach (IPoint p in currentPoints)//Get all points adjacent to current edge points
                 {
-                    tempAdjacents = getReachableAdjacents(p);
-                    foreach (pointObj _ap in tempAdjacents)
+                    tempAdjacents = dw.getReachableAdjacents(p);
+                    foreach (IPoint _ap in tempAdjacents)
                     {
                         //Only add if it wasn't already in the map
-                        if (!isPointInList(adjacents, _ap))
+                        if (!isPointInList( _ap))
                             adjacents.Add(_ap);
                     }
                 }
 
                 //Remove from adjacents all the elements that have distance!=-1 in distMap (already assigned)              
                 adjacents.RemoveAll(
-                    delegate(pointObj _p)
+                    delegate(IPoint _p)
                     {
                         return distMap.Find(
                             delegate(valuePoint _dp)
@@ -68,9 +89,9 @@ namespace SneakingClasses.Data_Classes
                     });
 
                 //To the points left in adjacents, set distance in distMap
-                foreach (pointObj p in adjacents)
+                foreach (IPoint p in adjacents)
                 {
-                    setDistancePointInMap(p, distance, distMap);
+                    setDistanceForPoint(p, distance);
                 }
 
                 //increase distance
@@ -89,6 +110,21 @@ namespace SneakingClasses.Data_Classes
             return distMap;
         }
 
+        public bool isPointInList(IPoint p)
+        {
+            return MyPoints.Find(delegate(valuePoint _p) { return _p.p.equals(p); }) != null;
+        }
 
+        public void setDistanceForPoint(IPoint p, int distance)
+        {
+            valuePoint currentDP;
+            currentDP = MyPoints.Find(
+                        delegate(valuePoint _dp)
+                        {
+                            return _dp.p.equals(p);
+                        });
+            //If it is -1, assign distance, if it already has a distance, see if the new one is smaller
+            currentDP.value = currentDP.value == -1 ? distance : Math.Min(currentDP.value, distance);
+        }
     }
 }

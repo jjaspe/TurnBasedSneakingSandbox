@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SneakingCommon.Model_Stuff;
+
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;           
 using Canvas_Window_Template.Drawables;
@@ -17,12 +17,12 @@ namespace SneakingCommon.Interfaces.Model
     {
         NoiseMap getNoiseMap();
         void setNoiseMap(NoiseMap nm);
-        void setGuards(List<Guard> guards);
+        void setGuards(List<IGuard> guards);
         List<IGuard> getGuards();
-        void setPC(PC pc);
+        void setPC(IGuard pc);
         IGuard getPC();
-        void setMap(Map map);
-        Map getMap();
+        void setMap(IMap map);
+        IMap getMap();
         IGuard getActiveGuard();
         void sortGuards(string statName);
         List<IGuard> getSortedGuards();
