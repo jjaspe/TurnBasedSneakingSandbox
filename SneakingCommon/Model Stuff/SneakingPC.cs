@@ -44,15 +44,30 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
            
         }
 
-        #region Guard Stuff
+        #region Stat Stuff
+        /// <summary>
+        /// Gets value of a stat called statName
+        /// </summary>
+        /// <param name="statName"></param>
+        /// <returns></returns>
         public int getValue(string statName)
         {
             return myPC.getValue(statName);
         }
+        /// <summary>
+        /// Decreases value of stat given by statName
+        /// </summary>
+        /// <param name="statName"></param>
+        /// <param name="value"></param>
         public void decreaseValue(string statName, int value)
         {
             MyPC.decreaseValue(statName, value);
         }
+        /// <summary>
+        /// Changes the value of a stat called statName
+        /// </summary>
+        /// <param name="statName"></param>
+        /// <param name="value"></param>
         public void setValue(string statName, int value)
         {
             MyPC.setValue(statName, value);
@@ -60,6 +75,11 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         #endregion
 
         #region IDRAWABLE
+        /// <summary>
+        /// Hides draw from DrawableGuard because it could draw small pc
+        /// or big pc depending on "Is Sneaking" stat, and it only draws if 
+        /// it has an image
+        /// </summary>
         new public void draw()
         {
             if (this.getValue("Is Sneaking") == 1)

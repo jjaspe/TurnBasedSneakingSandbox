@@ -12,17 +12,19 @@ using SneakingCommon.Interfaces.Model;
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
+    /// <summary>
+    /// Models a guard. It holds both data for the guard character (MyGuard) and an
+    /// image that to draw in the map
+    /// </summary>
     public class SneakingGuard:DrawableGuard
     {
-        
-
         static int guardIds=5;
 
-        public const int idType = 5;
-        public bool Visible = false;
-
         //OpenGLStuff
-        public int MySize
+        /// <summary>
+        /// When changed, redraws image
+        /// </summary>
+        public new int MySize
         {
             get { return size; }
             set { size = value; setImage(); }
@@ -34,7 +36,11 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             get { return myGuard; }
             set { myGuard = value; }
         }
-        public IPoint MyPosition
+
+        /// <summary>
+        /// Return the position of the guard, not of the drawable
+        /// </summary>
+        public new IPoint MyPosition
         {
             get { return MyGuard==null?null:MyGuard.getPosition(); }
         }
@@ -53,7 +59,10 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             initialize();
         }
         
-        private void initialize()
+        /// <summary>
+        /// Creates id and size for image
+        /// </summary>
+        new private void  initialize()
         {
             myId = guardIds;
             size = 10;
@@ -63,7 +72,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// <summary>
         /// Creates guard image, using IGuard's position and orientation
         /// </summary>
-        public void setImage()
+        public new void setImage()
         {
             int tileSize = MySize * 2;
             //Create a blue rectangle, that extends to edge of tile only on orientation direction
@@ -122,6 +131,11 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             }
             
         }        
+        /// <summary>
+        /// Get value of guard's stat
+        /// </summary>
+        /// <param name="statName"></param>
+        /// <returns></returns>
         public int getValue(string statName)
         {
             return myGuard.getValue(statName);

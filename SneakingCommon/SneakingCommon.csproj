@@ -54,6 +54,7 @@
     <Compile Include="Drawables\DrawablePC.cs" />
     <Compile Include="Drawables\DrawableMap.cs" />
     <Compile Include="Drawables\SneakingTile.cs" />
+    <Compile Include="Interfaces\Model Interfaces\IGameMaster.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Model Stuff\SneakingGuard.cs" />
     <Compile Include="Model Stuff\SneakingMap.cs" />
@@ -99,7 +100,6 @@
     <Compile Include="Interfaces\Model Interfaces\IGuard.cs" />
     <Compile Include="Interfaces\Model Interfaces\IGuardAgent.cs" />
     <Compile Include="Interfaces\Model Interfaces\IMap.cs" />
-    <Compile Include="Interfaces\Model Interfaces\IModel.cs" />
     <Compile Include="Interfaces\Model Interfaces\IModelXmlLoader.cs" />
     <Compile Include="Interfaces\Behavior Interfaces\INPCBehavior.cs" />
     <Compile Include="Interfaces\Behavior Interfaces\IOrientationBehavior.cs" />
