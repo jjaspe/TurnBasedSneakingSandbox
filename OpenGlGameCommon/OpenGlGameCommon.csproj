@@ -69,6 +69,9 @@
     <Compile Include="Classes\World.cs" />
     <Compile Include="Entities\DrawableGuard.cs" />
     <Compile Include="Entities\PC.cs" />
+    <Compile Include="Implementations\FoVBehaviorAll.cs" />
+    <Compile Include="Implementations\FoVBehaviorCone.cs" />
+    <Compile Include="Implementations\FoVBehaviorNone.cs" />
     <Compile Include="Interfaces\Behaviors\IAttackBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IGuardFoVBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IGuardMovementBehavior.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Interfaces\Patterns\IWorldObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

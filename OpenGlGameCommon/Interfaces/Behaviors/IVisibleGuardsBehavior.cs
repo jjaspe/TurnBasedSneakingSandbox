@@ -10,7 +10,7 @@ namespace OpenGlGameCommon.Interfaces.Behaviors
 {
     public interface IVisibleGuardsBehavior
     {
-        void setVisibleGuards(List<IGuardAgent> guards,IDrawableGuard pc,IMap map);
+        void setVisibleGuards(List<IDrawableGuardAgent> guards,IDrawableGuard pc,IMap map);
     }
 
 

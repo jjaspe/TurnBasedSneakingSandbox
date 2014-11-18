@@ -15,7 +15,7 @@ namespace OpenGlGameCommon.Interfaces.Behaviors
         /// <param name="active"></param>
         /// <param name="agents"></param>
         /// <returns></returns>
-        IGuardAgent determineTurn(List<IGuardAgent> agents);
+        IDrawableGuardAgent determineTurn(List<IDrawableGuardAgent> agents);
         void guardsTurnOver();
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OpenGlGameCommon.Interfaces.Model
 {
-    public interface IGuardAgent
+    public interface IDrawableGuardAgent
     {
         void go(int message, List<ObjectArg> args);
         void start(int message, List<object> args);

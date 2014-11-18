@@ -8,17 +8,17 @@ using OpenGlGameCommon.Interfaces.Model;
 
 namespace OpenGlGameCommon.Interfaces.Behaviors
 {
-    public interface IGuardMovementBehavior
+    public interface IDrawableGuardMovementBehavior
     {
         /// <summary>
-        /// Returns true if IGuard moved, false otherwise
+        /// Returns true if IDrawableGuard moved, false otherwise
         /// </summary>
         /// <param name="g"></param>
         /// <param name="dest"></param>
         /// <returns></returns>
         bool move(IDrawableGuard g,IPoint dest,IMap map);
         /// <summary>
-        /// Returns true if IGuard turned, false otherwise
+        /// Returns true if IDrawableGuard turned, false otherwise
         /// </summary>
         /// <param name="g"></param>
         /// <param name="dest"></param>

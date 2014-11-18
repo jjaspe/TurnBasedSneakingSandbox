@@ -9,7 +9,7 @@ using OpenGlGameCommon.Classes;
 
 namespace OpenGlGameCommon.Interfaces.Behaviors
 {
-    public interface IGuardObserver
+    public interface IDrawableGuardObserver
     {
         void update(int message, List<ObjectArg> args);
     }

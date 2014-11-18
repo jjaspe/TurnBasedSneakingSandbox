@@ -38,8 +38,8 @@ namespace OpenGlGameCommon.Drawables
         IVisibilityBehavior myVisibilityBehavior;
         ITileBehavior myOrientationBehavior;
         IFoVBehavior myFoVBehavior;
-        IGuardMovementBehavior myMovementBehavior;
-        public IGuardMovementBehavior MovementBehavior
+        IDrawableGuardMovementBehavior myMovementBehavior;
+        public IDrawableGuardMovementBehavior MovementBehavior
         {
             get { return myMovementBehavior; }
             set { myMovementBehavior = value; }

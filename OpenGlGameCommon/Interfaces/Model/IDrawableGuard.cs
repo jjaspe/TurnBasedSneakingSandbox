@@ -28,7 +28,7 @@ namespace OpenGlGameCommon.Interfaces.Model
             get;
             set;
         }
-        IGuardMovementBehavior MovementBehavior
+        IDrawableGuardMovementBehavior MovementBehavior
         {
             get;
             set;
@@ -56,5 +56,7 @@ namespace OpenGlGameCommon.Interfaces.Model
         void reset();   
         #endregion
 
+
+        
     }
 }
