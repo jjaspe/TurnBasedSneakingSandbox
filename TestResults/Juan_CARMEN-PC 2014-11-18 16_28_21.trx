@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="ce60212c-5ad7-483b-b605-a3ae5c625ff3" name="Juan@CARMEN-PC 2014-11-18 16:28:21" runUser="Carmen-PC\Juan" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Juan_CARMEN-PC 2014-11-18 16_28_21">
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Canvas Window Template.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Tao.Platform.Windows.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\CreationClassesLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-11-18T16:28:21.9664267-05:00" queuing="2014-11-18T16:28:30.4065513-05:00" start="2014-11-18T16:28:30.6305563-05:00" finish="2014-11-18T16:28:34.4116459-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="3" executed="3" passed="3" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="ConstructorTest" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="b6e02e22-2be4-a889-a89c-52f31f8451f9">
+      <Execution id="a38f5efb-9aeb-42f4-ac31-71d6805b5649" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ConstructorTest" />
+    </UnitTest>
+    <UnitTest name="MyTilesRightSizeTestOne" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="bc0830c6-69b3-412e-add7-868f1c5339d2">
+      <Execution id="54349941-0a74-4549-9973-63676819d65e" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MyTilesRightSizeTestOne" />
+    </UnitTest>
+    <UnitTest name="MyTilesNotNullTest" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="3ff41078-1d68-18d2-c63b-c9fe18a74982">
+      <Execution id="17c0f03e-518c-4538-9e8f-5f044288c2aa" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MyTilesNotNullTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="3ff41078-1d68-18d2-c63b-c9fe18a74982" executionId="17c0f03e-518c-4538-9e8f-5f044288c2aa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6e02e22-2be4-a889-a89c-52f31f8451f9" executionId="a38f5efb-9aeb-42f4-ac31-71d6805b5649" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bc0830c6-69b3-412e-add7-868f1c5339d2" executionId="54349941-0a74-4549-9973-63676819d65e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="17c0f03e-518c-4538-9e8f-5f044288c2aa" testId="3ff41078-1d68-18d2-c63b-c9fe18a74982" testName="MyTilesNotNullTest" computerName="CARMEN-PC" duration="00:00:00.1792856" startTime="2014-11-18T16:28:31.0325742-05:00" endTime="2014-11-18T16:28:33.9396345-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="17c0f03e-518c-4538-9e8f-5f044288c2aa">
+    </UnitTestResult>
+    <UnitTestResult executionId="a38f5efb-9aeb-42f4-ac31-71d6805b5649" testId="b6e02e22-2be4-a889-a89c-52f31f8451f9" testName="ConstructorTest" computerName="CARMEN-PC" duration="00:00:00.0005497" startTime="2014-11-18T16:28:34.0176362-05:00" endTime="2014-11-18T16:28:34.0476362-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a38f5efb-9aeb-42f4-ac31-71d6805b5649">
+    </UnitTestResult>
+    <UnitTestResult executionId="54349941-0a74-4549-9973-63676819d65e" testId="bc0830c6-69b3-412e-add7-868f1c5339d2" testName="MyTilesRightSizeTestOne" computerName="CARMEN-PC" duration="00:00:00.0139004" startTime="2014-11-18T16:28:34.0776363-05:00" endTime="2014-11-18T16:28:34.1196375-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54349941-0a74-4549-9973-63676819d65e">
+    </UnitTestResult>
+  </Results>
+</TestRun>

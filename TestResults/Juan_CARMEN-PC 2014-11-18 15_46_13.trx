@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="7fc348ec-a569-4481-b4e0-760ca911e45d" name="Juan@CARMEN-PC 2014-11-18 15:46:13" runUser="Carmen-PC\Juan" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Juan_CARMEN-PC 2014-11-18 15_46_13">
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Canvas Window Template.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Tao.Platform.Windows.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\CreationClassesLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-11-18T15:46:13.2446334-05:00" queuing="2014-11-18T15:46:13.2586337-05:00" start="2014-11-18T15:46:13.2886337-05:00" finish="2014-11-18T15:46:14.5397002-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="OpenGlMapConstructorTest" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="fa8b45db-700e-e817-7b68-898ca1d8a937">
+      <Execution id="ce8f26d0-0b23-431d-8fb2-90631761b207" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="OpenGlMapConstructorTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="fa8b45db-700e-e817-7b68-898ca1d8a937" executionId="ce8f26d0-0b23-431d-8fb2-90631761b207" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ce8f26d0-0b23-431d-8fb2-90631761b207" testId="fa8b45db-700e-e817-7b68-898ca1d8a937" testName="OpenGlMapConstructorTest" computerName="CARMEN-PC" duration="00:00:00.0620610" startTime="2014-11-18T15:46:13.3256353-05:00" endTime="2014-11-18T15:46:14.1186806-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce8f26d0-0b23-431d-8fb2-90631761b207">
+    </UnitTestResult>
+  </Results>
+</TestRun>
