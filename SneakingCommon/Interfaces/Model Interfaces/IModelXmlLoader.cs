@@ -9,8 +9,8 @@ namespace SneakingCommon.Interfaces.Model
 {
     public interface IModelXmlLoader
     {
-        List<IGuard> loadGuards(XmlDocument Xml);
-        IGuard loadPC(XmlDocument Xml);
+        List<IDrawableGuard> loadGuards(XmlDocument Xml);
+        IDrawableGuard loadPC(XmlDocument Xml);
         ISneakingMap loadMap(XmlDocument Xml);
         void loadSystem(string filename);
         List<IGoal> loadGoals(XmlDocument Xml);

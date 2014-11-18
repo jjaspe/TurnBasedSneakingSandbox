@@ -10,8 +10,8 @@ using SneakingCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {
-    public interface IGuardNoiseMapGraphicBehavior
+    public interface IDrawableGuardNoiseMapGraphicBehavior
     {
-        void visualizeGuardNoiseMap(IGuard g,ISneakingMap map,NoiseMap noiseMap);
+        void visualizeGuardNoiseMap(IDrawableGuard g,ISneakingMap map,NoiseMap noiseMap);
     }
 }

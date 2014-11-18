@@ -15,8 +15,8 @@ namespace SneakingCommon.Interfaces.Controller
 {
     public interface IPlayerAI
     {
-        void aiStart(IGuard pc, WorldMessage message, List<object> args);
-        void aiGo(IGuard pc, WorldMessage message, List<ObjectArg> args);
+        void aiStart(IDrawableGuard pc, WorldMessage message, List<object> args);
+        void aiGo(IDrawableGuard pc, WorldMessage message, List<ObjectArg> args);
         void setPlayerFoHBehavior(IPlayerFoHBehavior pB);
         void registerObserver(IPlayerObserver obs);
         void removeObserver(IPlayerObserver obs);

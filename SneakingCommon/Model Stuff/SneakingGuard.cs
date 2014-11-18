@@ -118,7 +118,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             this.addStat(new Stat("Knows Map", 0));
         }        
         /// <summary>
-        /// Creates guard image, using IGuard's position and orientation
+        /// Creates guard image, using IDrawableGuard's position and orientation
         /// </summary>
         public new void setImage()
         {

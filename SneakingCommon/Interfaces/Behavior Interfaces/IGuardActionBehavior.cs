@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using OpenGlGameCommon.Classes;
-using OpenGlGameCommon.Interfaces.Controller;
 using OpenGlGameCommon.Interfaces.Model;
+using OpenGlGameCommon.Classes;
+using SneakingCommon.Interfaces.Controller;
 
-namespace OpenGlCommonGame.Interfaces.Behaviors
+namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface IGuardActionBehavior
     {

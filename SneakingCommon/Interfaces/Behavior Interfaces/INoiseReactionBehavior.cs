@@ -9,6 +9,6 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface INoiseReactionBehavior
     {
-        void reactToNoise(IGuard g, ISneakingMap map);
+        void reactToNoise(IDrawableGuard g, ISneakingMap map);
     }
 }

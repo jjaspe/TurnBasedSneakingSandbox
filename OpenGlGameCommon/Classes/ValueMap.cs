@@ -16,22 +16,22 @@ namespace OpenGlGameCommon.Data_Classes
     {
         public List<valuePoint> MyPoints;
 
-        public ValueMap(ISneakingMap map)  
+        public ValueMap(IMap map)  
         {
             MyPoints = new List<valuePoint>();
             initialize(map);
         }
 
-        public ValueMap(ISneakingMap map, IPoint src, IDrawableOwner dw)
+        public ValueMap(IMap map, IPoint src, IDrawableOwner dw)
         {
             MyPoints = new List<valuePoint>();
         }
 
         
-        void initialize(ISneakingMap map)
+        void initialize(IMap map)
         {
             
-            foreach (IPoint point in map.getTileOrigins())
+            foreach (IPoint point in map.TileOrigins)
             {
                 MyPoints.Add(new valuePoint(point, -1));
             }

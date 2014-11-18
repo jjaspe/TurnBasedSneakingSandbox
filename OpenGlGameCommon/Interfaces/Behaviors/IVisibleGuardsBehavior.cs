@@ -6,7 +6,7 @@ using System.Text;
 using OpenGlGameCommon.Interfaces.Model;
 
 
-namespace OpenGlCommonGame.Interfaces.Behaviors
+namespace OpenGlGameCommon.Interfaces.Behaviors
 {
     public interface IVisibleGuardsBehavior
     {

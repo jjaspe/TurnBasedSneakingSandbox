@@ -5,7 +5,7 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Data_Classes;
 using OpenGlGameCommon.Interfaces.View;
-using OpenGlCommonGame.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.Behaviors;
 using CharacterSystemLibrary.Classes;
 
 

@@ -8,6 +8,6 @@ namespace SneakingCommon.Interfaces.Observer_Pattern
 {
     public interface IModelObserver
     {
-        void update(string msg, IGameMaster gameMaster);
+        void update(string msg, ISneakingGameMaster gameMaster);
     }
 }

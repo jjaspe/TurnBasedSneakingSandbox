@@ -7,7 +7,7 @@ using SneakingCommon.Data_Classes;
 
 namespace SneakingCommon.Drawables
 {
-    public class DrawablePC:OpenGlPC
+    public class DrawablePC:DrawablePC
     {
         NoiseMap foh;
 

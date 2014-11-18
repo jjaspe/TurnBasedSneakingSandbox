@@ -14,16 +14,16 @@ using SneakingCommon.Interfaces.Behaviors;
 
 namespace SneakingCommon.Interfaces.Controller
 {
-    public interface IGuardAI
+    public interface IDrawableGuardAI
     {
-        void aiStart(IGuard g, WorldMessage message, List<object> args);
-        void aiGo(IGuard g,WorldMessage message,List<ObjectArg> args);
-        void updateGuard(IGuard g);
+        void aiStart(IDrawableGuard g, WorldMessage message, List<object> args);
+        void aiGo(IDrawableGuard g,WorldMessage message,List<ObjectArg> args);
+        void updateGuard(IDrawableGuard g);
         //NoiseMap getModifiedNoiseMap(Guard g, NoiseMap noiseMap, Map map);
         string getName();
 
-        void registerObserver(IGuardObserver obs);
-        void removeObserver(IGuardObserver obs);
+        void registerObserver(IDrawableGuardObserver obs);
+        void removeObserver(IDrawableGuardObserver obs);
         void notifyObservers(GuardMessage message, List<ObjectArg> args);
     }
 }

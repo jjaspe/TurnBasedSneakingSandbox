@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using OpenGlGameCommon.Interfaces.Model;
 
-namespace OpenGlCommonGame.Interfaces.Behaviors
+namespace OpenGlGameCommon.Interfaces.Behaviors
 {
     public interface ITileBehavior
     {
@@ -12,7 +13,7 @@ namespace OpenGlCommonGame.Interfaces.Behaviors
         /// </summary>
         /// <param name="or"></param>
         void changeOrientation(string or);
-        void turnQ(IGuard g);
+        void turnQ(IDrawableGuard g);
         object getOrientation();
         string getStringOrientation();
         bool hasOrientation();

@@ -7,10 +7,11 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Entities;
+using OpenGlGameCommon.Drawables;
 
 namespace OpenGlGameCommon.Classes
 {
-    public class OpenGlPC:PC,IDrawable
+    public class DrawablePC:DrawableGuard
     {
         public static int pcIds = 7;
         public static int idType=7;        
@@ -20,7 +21,7 @@ namespace OpenGlGameCommon.Classes
         int eyeLevel;
         int mySize;        
         int imageSize = 10;        
-        public OpenGlGuard.OpenGlGuardOrientation MyOrientation;
+        public GuardOrientation MyOrientation;
 
         public int ImageSize
         {
@@ -43,21 +44,21 @@ namespace OpenGlGameCommon.Classes
             get { return eyeLevel; }
         }
 
-        public OpenGlPC()
+        public DrawablePC()
         {
-            MyOrientation = OpenGlGuard.OpenGlGuardOrientation.none;
+            MyOrientation = GuardOrientation.none;
             createHighImage();
         }
 
         public void createHighImage()
         {
-            if (MyPosition != null)
+            if (Position != null)
             {
                 int sizeDif=MySize-imageSize;
-                IPoint blockCenter = new PointObj(MyPosition.X + sizeDif / 2, MyPosition.Y + sizeDif / 2, 0);
+                IPoint blockCenter = new PointObj(Position.X + sizeDif / 2, Position.Y + sizeDif / 2, 0);
                 HighBlock imageBlock = new HighBlock(blockCenter, 
                     imageSize, Common.colorWhite, Common.colorBlack);
-                IPoint center = new PointObj(OpenGlMap.getInstance().getTile(MyPosition).getCenter());
+                IPoint center = new PointObj(OpenGlMap.getInstance().getTile(Position).getCenter());
                 imageBlock.turn45(center);
                 myImage = imageBlock;
                 EyeLevel = (int)imageBlock.Height;
@@ -65,11 +66,11 @@ namespace OpenGlGameCommon.Classes
         }
         public void createLowImage()
         {
-            IPoint center = new PointObj(OpenGlMap.getInstance().getTile(MyPosition).getCenter());
-            if (MyPosition != null)
+            IPoint center = new PointObj(OpenGlMap.getInstance().getTile(Position).getCenter());
+            if (Position != null)
             {
                 int sizeDif = MySize - imageSize;
-                IPoint blockCenter = new PointObj(MyPosition.X + sizeDif / 2, MyPosition.Y + sizeDif / 2, 0);
+                IPoint blockCenter = new PointObj(Position.X + sizeDif / 2, Position.Y + sizeDif / 2, 0);
                 LowBlock imageBlock = new LowBlock(blockCenter,
                     imageSize, Common.colorWhite, Common.colorBlack);
                 imageBlock.turn45(new PointObj(center.X,center.Y, 0));
@@ -83,7 +84,7 @@ namespace OpenGlGameCommon.Classes
             if (newPosition != null)
             {
                 setOrientation(newPosition);
-                MyPosition = newPosition;
+                Position = newPosition;
             }
         }        
         public void turnToAdjacent(IPoint towardsOrigin)
@@ -91,68 +92,42 @@ namespace OpenGlGameCommon.Classes
             MyOrientation = getDirection(towardsOrigin);
         }
 
-        public OpenGlGuard.OpenGlGuardOrientation getDirection(IPoint nextOrigin)
+        public GuardOrientation getDirection(IPoint nextOrigin)
         {
-            OpenGlGuard.OpenGlGuardOrientation or = OpenGlGuard.OpenGlGuardOrientation.none;
-            if (nextOrigin.X == MyPosition.X)//Vertical Movement
+            GuardOrientation or = GuardOrientation.none;
+            if (nextOrigin.X == Position.X)//Vertical Movement
             {
-                if (nextOrigin.Y == MyPosition.Y + MySize)//up
-                    or = OpenGlGuard.OpenGlGuardOrientation.up;
-                else if (nextOrigin.Y == MyPosition.Y - MySize)//down
-                    or = OpenGlGuard.OpenGlGuardOrientation.down;
+                if (nextOrigin.Y == Position.Y + MySize)//up
+                    or = GuardOrientation.up;
+                else if (nextOrigin.Y == Position.Y - MySize)//down
+                    or = GuardOrientation.down;
                 else
-                    or = OpenGlGuard.OpenGlGuardOrientation.none;
+                    or = GuardOrientation.none;
             }
-            else if (nextOrigin.Y == MyPosition.Y)//Horizontal Movement
+            else if (nextOrigin.Y == Position.Y)//Horizontal Movement
             {
-                if (nextOrigin.X == MyPosition.X + MySize)//right
-                    or = OpenGlGuard.OpenGlGuardOrientation.right;
-                else if (nextOrigin.X == MyPosition.X - MySize)//left
-                    or = OpenGlGuard.OpenGlGuardOrientation.left;
+                if (nextOrigin.X == Position.X + MySize)//right
+                    or = GuardOrientation.right;
+                else if (nextOrigin.X == Position.X - MySize)//left
+                    or = GuardOrientation.left;
                 else
-                    or = OpenGlGuard.OpenGlGuardOrientation.none;
+                    or = GuardOrientation.none;
             }
             else
-                or = OpenGlGuard.OpenGlGuardOrientation.none;
+                or = GuardOrientation.none;
 
             return or;
         }
-        public IPoint getEyeLevel()
-        {
-            IPoint center = new PointObj(OpenGlMap.getInstance().getTile(MyPosition).getCenter());
-            return new PointObj(center.X,center.Y, EyeLevel);
-        }
-        private void setOrientation(IPoint nextOrigin)
-        {
-            MyOrientation = getDirection(nextOrigin);
-        }
 
         #region IDRAWABLE
-        public void draw()
+        public new void draw()
         {
-            if (this.getValue("isSneaking") == 1)
+            if (this.MyGuard.getProperty("isSneaking").Value == 1)
                 createLowImage();
             else
                 createHighImage();
             myImage.draw();
         }
-        public int getId()
-        {
-            return myId;
-        }
-        public double[] getPosition()
-        {
-            return MyPosition.toArray();
-        }
-        public void setPosition(IPoint newPosition)
-        {
-            MyPosition = newPosition;
-        }
-        #endregion
-
-        public bool Visible
-        {
-            set { return; }
-        }
+        #endregion IDRAWABLE
     }
 }

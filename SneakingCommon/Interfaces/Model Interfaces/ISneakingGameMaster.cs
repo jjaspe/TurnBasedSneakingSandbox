@@ -12,19 +12,9 @@ using SneakingCommon.Interfaces.Observer_Pattern;
 
 namespace SneakingCommon.Interfaces.Model
 {
-    public interface IGameMaster:IModelSubject
+    public interface ISneakingGameMaster:IModelSubject
     {
         NoiseMap MyNoiseMap
-        {
-            get;
-            set;
-        }
-        List<IGuard> Guards
-        {
-            get;
-            set;
-        }
-        IGuard MyPC
         {
             get;
             set;
@@ -34,14 +24,6 @@ namespace SneakingCommon.Interfaces.Model
             get;
             set;
         }
-        IGuard ActiveGuard
-        {
-            get;
-        }
-        void sortGuards(string statName);
-        List<IGuard> getSortedGuards();
-        void commitChanges();
-        bool tileFreeFromGuards(IPoint tileOrigin);
-        bool GameStarted { get; set; }
+       
     }
 }

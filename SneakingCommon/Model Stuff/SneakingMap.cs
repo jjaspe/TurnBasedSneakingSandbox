@@ -172,9 +172,9 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         #endregion
 
         #region PATHFINDING STUFF
-        public bool tileFreeFromGuards(List<IGuard> _guards, IPoint tilePosition)
+        public bool tileFreeFromGuards(List<IDrawableGuard> _guards, IPoint tilePosition)
         {
-            foreach (IGuard g in _guards)
+            foreach (IDrawableGuard g in _guards)
             {
                 if (g.getPosition().equals(tilePosition))
                     return false;

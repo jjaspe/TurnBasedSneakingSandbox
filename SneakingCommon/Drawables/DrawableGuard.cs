@@ -10,7 +10,7 @@ using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
 using OpenGlGameCommon.Interfaces.Model;
 using OpenGlGameCommon.Data_Classes;
-using OpenGlCommonGame.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.Behaviors;
 
 namespace SneakingCommon.Drawables
 {
@@ -20,7 +20,7 @@ namespace SneakingCommon.Drawables
         IVisibilityBehavior myVisibilityBehavior;
         ITileBehavior myOrientationBehavior;
         IFoVBehavior myFoVBehavior;
-        IGuardMovementBehavior myMovementBehavior;
+        IDrawableGuardMovementBehavior myMovementBehavior;
         public IPoint MyPosition
         {
             get { return myPosition; }
@@ -32,7 +32,7 @@ namespace SneakingCommon.Drawables
             set { name = value; }
         }
 
-        public IGuardMovementBehavior MovementBehavior
+        public IDrawableGuardMovementBehavior MovementBehavior
         {
             get { return myMovementBehavior; }
             set { myMovementBehavior = value; }

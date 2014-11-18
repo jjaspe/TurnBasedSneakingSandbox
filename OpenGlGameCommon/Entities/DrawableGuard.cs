@@ -8,7 +8,7 @@ using Canvas_Window_Template.Interfaces;
 using OpenGlGameCommon.Interfaces.Model;
 using OpenGlGameCommon.Data_Classes;
 using Canvas_Window_Template.Basic_Drawing_Functions;
-using OpenGlCommonGame.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.Behaviors;
 using CharacterSystemLibrary.Classes;
 
 namespace OpenGlGameCommon.Drawables
@@ -62,6 +62,10 @@ namespace OpenGlGameCommon.Drawables
         #endregion
 
         Character myGuard;
+        public string getName()
+        {
+            return MyGuard.Name;
+        }
 
         public Character MyGuard
         {
@@ -80,12 +84,6 @@ namespace OpenGlGameCommon.Drawables
         PatrolPath patrol;
         IPoint target;
         PatrolPath targetPath;
-
-
-        public DrawableGuard()
-            : base()
-        {
-        }
 
 
         public int CurrentPatrolWaypoint
@@ -108,20 +106,18 @@ namespace OpenGlGameCommon.Drawables
             get { return patrol; }
             set { patrol = value; }
         }
+
+
         public List<IPoint> FOV
         {
             get { return fov; }
             set { fov = value; }
         }
-        
 
-
-        new protected void initialize()
+        protected void initialize()
         {            
             FOV = new List<IPoint>();
             myId = guardIds;
-            
-            base.initialize();
         }
 
         /// <summary>
@@ -266,9 +262,11 @@ namespace OpenGlGameCommon.Drawables
         {
             set { return; }
         }
-        new public void draw()
+        /// <summary>
+        /// Draws patrol lines and guard image
+        /// </summary>
+        public void draw()
         {
-
             int tileSize = MySize * 2;
             if (Visible)
             {
@@ -285,8 +283,10 @@ namespace OpenGlGameCommon.Drawables
                     foreach (DirectionLine d in MyPatrol.DirectionLines)
                         d.draw();
                 }
+
+                setImage();
+                myImage.draw();
             }
-            base.draw();
         }
         #endregion
 
@@ -298,8 +298,8 @@ namespace OpenGlGameCommon.Drawables
             FOV.Clear();
             switch (MyOrientation)
             {
-                case OpenGlGuard.GuardOrientation.left:
-                    while (distance < getStat("Field of View").Value)
+                case GuardOrientation.left:
+                    while (distance < MyGuard.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -310,8 +310,8 @@ namespace OpenGlGameCommon.Drawables
                         distance++;
                     }
                     break;
-                case OpenGlGuard.GuardOrientation.right:
-                    while (distance < getStat("Field of View").Value)
+                case GuardOrientation.right:
+                    while (distance < MyGuard.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -322,8 +322,8 @@ namespace OpenGlGameCommon.Drawables
                         distance++;
                     }
                     break;
-                case OpenGlGuard.GuardOrientation.up:
-                    while (distance < getStat("Field of View").Value)
+                case GuardOrientation.up:
+                    while (distance < MyGuard.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -334,8 +334,8 @@ namespace OpenGlGameCommon.Drawables
                         distance++;
                     }
                     break;
-                case OpenGlGuard.GuardOrientation.down:
-                    while (distance < getStat("Field of View").Value)
+                case GuardOrientation.down:
+                    while (distance < MyGuard.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -400,5 +400,8 @@ namespace OpenGlGameCommon.Drawables
         {
             
         }
+
+
+        
     }
 }

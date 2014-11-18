@@ -8,7 +8,7 @@ using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Interfaces.Model;
 
 
-namespace OpenGlCommonGame.Interfaces.Behaviors
+namespace OpenGlGameCommon.Interfaces.Behaviors
 {
     public interface IFoVBehavior
     {

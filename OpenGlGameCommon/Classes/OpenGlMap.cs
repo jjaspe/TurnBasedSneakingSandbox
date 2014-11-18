@@ -7,6 +7,7 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGLGameCommon.Classes;
+using OpenGlGameCommon.Interfaces.Model;
 
 
 namespace OpenGlGameCommon.Classes
@@ -169,12 +170,12 @@ namespace OpenGlGameCommon.Classes
             }
             return null;
         }
-        public OpenGlGuard getGuard(int gId)
+        public IDrawableGuard getGuard(int gId)
         {
             foreach (IDrawable guard in Drawables)
             {
                 if (guard.getId() == gId)
-                    return (OpenGlGuard)guard;
+                    return (IDrawableGuard)guard;
             }
             return null;
         }
@@ -215,13 +216,17 @@ namespace OpenGlGameCommon.Classes
             ocluders.AddRange(getHighBlocks());
             return ocluders;
         }
-        public List<OpenGlGuard> getGuards()
+        /// <summary>
+        /// Out of all the drawables, return the guards
+        /// </summary>
+        /// <returns></returns>
+        public List<IDrawableGuard> getGuards()
         {
-            List<OpenGlGuard> guards = new List<OpenGlGuard>();
+            List<IDrawableGuard> guards = new List<IDrawableGuard>();
             foreach (IDrawable drw in tiles)
             {
-                if (drw.getId() % GameObjects.objectTypes == OpenGlGuard.idType)
-                    guards.Add((OpenGlGuard)drw);
+                if(drw.GetType().Equals(typeof(IDrawableGuard)))
+                    guards.Add((IDrawableGuard)drw);
             }
             return guards;
         }
@@ -251,22 +256,22 @@ namespace OpenGlGameCommon.Classes
         #region DISTANCE MAP STUFF
         public void setDistanceMaps(List<DistanceMap> distanceMaps)
         {
-            MyMap.setDistanceMaps(distanceMaps);
+            MyDistanceMaps = distanceMaps;
         }
         public DistanceMap getDistanceMap(IPoint src)
         {
-            return .getDistanceMap(src);
+            return MyDistanceMaps.Find(n => n.MyOrigin.equals(src));
         }
         #endregion
 
         #region GUARDS STUFF
-        public bool moveGuard(OpenGlGuard g, IPoint p)
+        public bool moveGuard(IDrawableGuard g, IPoint p)
         {
             Tile newP = getTile(p);
             if (newP != null)
             {
                 //g.MyCurrentTile = newP;
-                g.MyPosition = p;
+                g.Position = p;
                 return true;
             }
             return false;
@@ -2539,15 +2544,15 @@ namespace OpenGlGameCommon.Classes
         #endregion
 
         #region SIMPLE OCLUSION (Not used anymore)
-        public void ocludeTiles(OpenGlGuard g)
+        public void ocludeTiles(IDrawableGuard g)
         {
             List<IOcluding> ocluders = getOcluders();
             foreach (IOcluding oc in ocluders)
                 ocludeTiles(g, oc);
         }
-        public void ocludeTiles(OpenGlGuard g, IOcluding oc)
+        public void ocludeTiles(IDrawableGuard g, IOcluding oc)
         {
-            double gX = g.MyPosition.X, gY = g.MyPosition.Y, oX = oc.getLocation().X, oY = oc.getLocation().Y;
+            double gX = g.Position.X, gY = g.Position.Y, oX = oc.getLocation().X, oY = oc.getLocation().Y;
             double newX, newY;
             int size = this.TileSize;
             bool stop = false;
@@ -2787,7 +2792,7 @@ namespace OpenGlGameCommon.Classes
                     currentTile.Shaded = 0;
             }
         }
-        public List<IPoint> getCone(IPoint src,OpenGlGuard.OpenGlGuardOrientation direction,int distance)
+        public List<IPoint> getCone(IPoint src,GuardOrientation direction,int distance)
         {
             List<IPoint> conePoints=new List<IPoint>();
             int startX = (int)src.X / TileSize + MyWidth / 2, startY = (int)src.Y / TileSize + MyHeight / 2;
@@ -2795,7 +2800,7 @@ namespace OpenGlGameCommon.Classes
             #region FILL BY CASE
             switch (direction)
             {
-                case OpenGlGuard.OpenGlGuardOrientation.up:
+                case GuardOrientation.up:
                     for(int i=0;i<distance && i+startY<MyHeight;i++)
                     {
                         for(int j=-i;j<=i&&j<MyWidth;j++)
@@ -2807,7 +2812,7 @@ namespace OpenGlGameCommon.Classes
                         }
                     }
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.right:
+                case GuardOrientation.right:
                     for(int j=0;j<distance && j+startX<MyWidth;j++)
                     {
                         for(int i=-j;i<=j;i++)
@@ -2819,7 +2824,7 @@ namespace OpenGlGameCommon.Classes
                         }
                     }
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.down:
+                case GuardOrientation.down:
                     for(int i=0;i<distance && startY-i>=0;i++)
                     {
                         for(int j=-i;j<=i&&j<MyWidth;j++)
@@ -2831,7 +2836,7 @@ namespace OpenGlGameCommon.Classes
                         }
                     }
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.left:
+                case GuardOrientation.left:
                     for(int j=0;j<distance && startX-j<MyWidth;j++)
                     {
                         for(int i=-j;i<=j;i++)
@@ -2853,7 +2858,7 @@ namespace OpenGlGameCommon.Classes
         #endregion
 
         #region PATHFINDING STUFF
-        public void initializeValueMap(List<valuePoint> distMap,int defaultValue)
+        public void initializeValueMap(DistanceMap distMap,int defaultValue)
         {
             foreach (Tile t in myTiles)
             {
@@ -2874,11 +2879,11 @@ namespace OpenGlGameCommon.Classes
             }
             return true;
         }
-        public bool tileFreeFromGuards(List<OpenGlGuard> _guards, IPoint tilePosition)
+        public bool tileFreeFromGuards(List<IDrawableGuard> _guards, IPoint tilePosition)
         {
-            foreach (OpenGlGuard g in _guards)
+            foreach (IDrawableGuard g in _guards)
             {
-                if (g.MyPosition.equals(tilePosition))
+                if (g.Position.equals(tilePosition))
                     return false;
             }
             return true;
@@ -3089,14 +3094,14 @@ namespace OpenGlGameCommon.Classes
             currentDP.value = currentDP.value == -1 ? distance : Math.Min(currentDP.value, distance);
         }                            
         /// <summary>
-        /// Creates a map (a List of valuePoints) where each point has as its value the distance to
+        /// Creates a map where each point has as its value the distance to
         /// src.
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
-        public List<valuePoint> calculateDistanceMap(IPoint src)
+        public DistanceMap calculateDistanceMap(IPoint src)
         {
-            List<valuePoint> distMap=new List<valuePoint>();
+            DistanceMap distMap=new DistanceMap();
             initializeValueMap(distMap,-1);
             List<IPoint> currentPoints=new List<IPoint>(),adjacents=new List<IPoint>(),tempAdjacents;
             currentPoints.Add(src);
@@ -3123,7 +3128,7 @@ namespace OpenGlGameCommon.Classes
                 adjacents.RemoveAll(
                     delegate (IPoint _p)
                     {
-                        return distMap.Find(
+                        return distMap.MyPoints.Find(
                             delegate (valuePoint _dp)
                             {
                                 return _dp.p.equals(_p);
@@ -3156,22 +3161,13 @@ namespace OpenGlGameCommon.Classes
             myDistanceMaps = new List<DistanceMap>();
             foreach (IPoint src in this.getAllTileOrigins())
             {
-                List<valuePoint> points=calculateDistanceMap(src);
-                myDistanceMaps.Add(new DistanceMap() { MyOrigin = src, MyPoints = points });
+                myDistanceMaps.Add(calculateDistanceMap(src));
             }
-        }
-        public DistanceMap getDistanceMap(IPoint src)
-        {
-            return myDistanceMaps.Find(
-                 delegate(DistanceMap distMap)
-                 {
-                     return distMap.MyOrigin.equals(src);
-                 });
         }
 
         public OpenGlPath getShortestPath(IPoint src, IPoint dest, List<IPoint> availableTiles)
         {
-            List<valuePoint> distMap = getDistanceMap(src);
+            DistanceMap distMap = getDistanceMap(src);
             OpenGlPath reverse=new OpenGlPath();
             valuePoint vPrevious = new valuePoint();
             List<IPoint> availableTilesCopy = availableTiles.GetRange(0,availableTiles.Count);
@@ -3198,7 +3194,7 @@ namespace OpenGlGameCommon.Classes
         }
         public IPoint getClosestInAvailable(IPoint dest,List<IPoint> availableTiles)
         {
-            List<valuePoint> distMap=getDistanceMap(dest);
+            DistanceMap distMap=getDistanceMap(dest);
             IPoint closest=null;
             double closestDistance=5000,currentDistance;
             foreach (IPoint p in availableTiles)
@@ -3245,9 +3241,9 @@ namespace OpenGlGameCommon.Classes
         }
         public List<IPoint> getReachables(IPoint src)
         {
-            List<valuePoint> wholeMap = getDistanceMap(src);
+            DistanceMap wholeMap = getDistanceMap(src);
             List<IPoint> reachableMap = new List<IPoint>();
-            foreach (valuePoint vp in wholeMap)
+            foreach (valuePoint vp in wholeMap.MyPoints)
             {
                 if (vp.value > -1)
                     reachableMap.Add(vp.p);
@@ -3291,7 +3287,7 @@ namespace OpenGlGameCommon.Classes
 
             return false;
         }
-        public List<IPoint> getRaytracedFOV(IPoint gSrc, OpenGlGuard.OpenGlGuardOrientation orientation)
+        public List<IPoint> getRaytracedFOV(IPoint gSrc, GuardOrientation orientation)
         {
             List<IPoint> RTFoV = new List<IPoint>();
             List<Tile> freeTiles = new List<Tile>();
@@ -3314,7 +3310,7 @@ namespace OpenGlGameCommon.Classes
             }
             return RTFoV;            
         }
-        public List<IPoint> getRaytracedFOV(IPoint gSrc, OpenGlGuard.OpenGlGuardOrientation orientation,
+        public List<IPoint> getRaytracedFOV(IPoint gSrc, GuardOrientation orientation,
             List<IPoint> FOV)
         {
             List<IPoint> RTFoV = new List<IPoint>();

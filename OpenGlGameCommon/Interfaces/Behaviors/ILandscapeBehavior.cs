@@ -9,7 +9,7 @@ using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Data_Classes;
 using OpenGlGameCommon.Interfaces.Behaviors;
 using OpenGlGameCommon.Interfaces.Model;
-using OpenGlCommonGame.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.Behaviors;
 
 namespace OpenGlGameCommon.Interfaces.View
 {
@@ -26,9 +26,9 @@ namespace OpenGlGameCommon.Interfaces.View
         List<IPoint> getFoV(IPoint src, List<IPoint> availablePoints);
         bool isVisibleBy(IPoint observer, IPoint observed);
         List<IPoint> getAdjacents(IPoint src);
-        List<IPoint> getReachables(ISneakingMap map, IPoint src);
-        PatrolPath getShortestPath(ISneakingMap map, IPoint src, IPoint dest, List<IPoint> availableTiles);
-        IPoint getClosestInAvailable(ISneakingMap map, IPoint dest, List<IPoint> availableTiles);
+        List<IPoint> getReachables(IMap map, IPoint src);
+        PatrolPath getShortestPath(IMap map, IPoint src, IPoint dest, List<IPoint> availableTiles);
+        IPoint getClosestInAvailable(IMap map, IPoint dest, List<IPoint> availableTiles);
         List<IPoint> getReachableAdjacents(IPoint src);
         /// <summary>
         /// Returns orientation of dest with respect to source

@@ -12,6 +12,6 @@ namespace SneakingCommon.Interfaces.Controller
     public interface IPlayerAIMaster
     {
         void update(PlayerMessage msg, List<ObjectArg> args);
-        IGameMaster getModel();
+        ISneakingGameMaster getModel();
     }
 }

@@ -6,7 +6,7 @@ using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Templat
 using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Interfaces.Model;
 
-namespace OpenGlCommonGame.Interfaces.Behaviors
+namespace OpenGlGameCommon.Interfaces.Behaviors
 {
     public interface IGuardMovementBehavior
     {

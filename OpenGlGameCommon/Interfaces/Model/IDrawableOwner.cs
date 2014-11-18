@@ -9,7 +9,7 @@ using Canvas_Window_Template.Drawables;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 
-namespace OpenGlGameCommon.Interfaces.View
+namespace OpenGlGameCommon.Interfaces.Model
 {
     public interface IDrawableOwner
     {

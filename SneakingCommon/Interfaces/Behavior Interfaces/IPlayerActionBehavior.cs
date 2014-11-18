@@ -12,8 +12,8 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface IPlayerActionBehavior
     {
-        void playerAttacks(IGuard pc, IGuard target, IAttack attack,ISneakingMap map, IPlayerAIMaster ai);
-        void movePC(IGuard g, IPoint dest, ISneakingMap map, IPlayerAIMaster ai);
-        void turnPC(IGuard g, IPoint dest,ISneakingMap map, IPlayerAIMaster ai);
+        void playerAttacks(IDrawableGuard pc, IDrawableGuard target, IAttack attack,ISneakingMap map, IPlayerAIMaster ai);
+        void movePC(IDrawableGuard g, IPoint dest, ISneakingMap map, IPlayerAIMaster ai);
+        void turnPC(IDrawableGuard g, IPoint dest,ISneakingMap map, IPlayerAIMaster ai);
     }
 }

@@ -7,7 +7,7 @@ using Canvas_Window_Template.Drawables;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 
-namespace OpenGlCommonGame.Interfaces.Behaviors
+namespace OpenGlGameCommon.Interfaces.Behaviors
 {
     public interface IGuardObserver
     {

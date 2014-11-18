@@ -16,7 +16,7 @@ using DummyOne.Goals;
 
 namespace SneakingCommon.Model_Stuff
 {
-    public class GameMasterOne:IGameMaster,IModelXmlLoader
+    public class GameMasterOne:ISneakingGameMaster,IModelXmlLoader
     {
         public static int dataTypes=3;
 

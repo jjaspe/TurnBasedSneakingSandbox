@@ -14,7 +14,7 @@ namespace SneakingCommon.Interfaces.Controller
     {
         void messageSent(WorldMessage msg, List<ObjectArg> args);
         void initialize();
-        IGuard getActiveGuard();
+        IDrawableGuard getActiveGuard();
 
         void setNoiseCreationBehavior(INoiseCreationBehavior nB);
 

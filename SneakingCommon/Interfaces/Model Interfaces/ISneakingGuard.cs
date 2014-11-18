@@ -9,7 +9,7 @@ using SneakingCommon.Data_Classes;
 namespace SneakingCommon.Interfaces.Model
 {
     /// <summary>
-    /// Extends IGuard to include noise stuff
+    /// Extends IDrawableGuard to include noise stuff
     /// </summary>
     public interface ISneakingGuard:IDrawableGuard
     {

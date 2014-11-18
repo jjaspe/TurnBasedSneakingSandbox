@@ -18,3 +18,4 @@ C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Deb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\obj\Debug\OpenGlGameCommon.csprojResolveAssemblyReference.cache
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\obj\Debug\CreationClassesLibrary.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\obj\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\CharacterSystemLibrary.dll

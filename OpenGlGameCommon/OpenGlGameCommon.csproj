@@ -57,7 +57,6 @@
     <Compile Include="Classes\DistanceMap.cs" />
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ObjectArg.cs" />
-    <Compile Include="Classes\OpenGlGuard.cs" />
     <Compile Include="Classes\OpenGlMap.cs" />
     <Compile Include="Classes\OpenGlPC.cs" />
     <Compile Include="Classes\OpenGlWorld.cs" />
@@ -69,16 +68,13 @@
     <Compile Include="Classes\valuePoint.cs" />
     <Compile Include="Classes\World.cs" />
     <Compile Include="Entities\DrawableGuard.cs" />
-    <Compile Include="Entities\Guard.cs" />
     <Compile Include="Entities\PC.cs" />
     <Compile Include="Interfaces\Behaviors\IAttackBehavior.cs" />
-    <Compile Include="Interfaces\Behaviors\IGuardActionBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IGuardFoVBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IGuardMovementBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\ILandscapeBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IOrientationBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IPlayerFoVBehavior.cs" />
-    <Compile Include="Interfaces\Behaviors\IPlayerMovementBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\ISequenceBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\ITileBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IVisibilityBehavior.cs" />
@@ -88,6 +84,7 @@
     <Compile Include="Interfaces\ITemplateForm.cs" />
     <Compile Include="Interfaces\Model\IAttack.cs" />
     <Compile Include="Interfaces\Model\IDrawableOwner.cs" />
+    <Compile Include="Interfaces\Model\IGameMaster.cs" />
     <Compile Include="Interfaces\Model\IGoal.cs" />
     <Compile Include="Interfaces\Model\IDrawableGuard.cs" />
     <Compile Include="Interfaces\Model\IGuardAgent.cs" />

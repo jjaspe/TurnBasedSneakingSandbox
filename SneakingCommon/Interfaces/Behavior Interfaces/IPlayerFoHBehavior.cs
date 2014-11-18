@@ -12,6 +12,6 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface IPlayerFoHBehavior
     {
-        void setPlayerFoH(IGuard myPc, NoiseMap myNoiseMap);
+        void setPlayerFoH(IDrawableGuard myPc, NoiseMap myNoiseMap);
     }
 }

@@ -13,7 +13,7 @@ namespace SneakingCommon.Interfaces.Controller
 {
     public interface IWorldAI
     {
-        List<ObjectArg> getArgs(IGuardAgent ag);
+        List<ObjectArg> getArgs(IDrawableGuardAgent ag);
         WorldMessage aiGo(WorldMessage message,List<ObjectArg> args);
         void aiStart();
     }

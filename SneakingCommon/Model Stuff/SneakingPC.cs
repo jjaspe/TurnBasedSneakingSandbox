@@ -11,10 +11,10 @@ using SneakingCommon.Interfaces.Model;
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
-    public class SneakingPC:OpenGlPC
+    public class SneakingPC:DrawablePC
     {
-        IGuard myPC;
-        public IGuard MyPC
+        IDrawableGuard myPC;
+        public IDrawableGuard MyPC
         {
             get { return myPC; }
             set { myPC = value; }
