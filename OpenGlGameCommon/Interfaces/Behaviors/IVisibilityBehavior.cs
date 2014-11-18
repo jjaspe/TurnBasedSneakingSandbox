@@ -5,16 +5,19 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.Interfaces.Behaviors;
-using SneakingCommon.Interfaces.View;
+using OpenGlGameCommon.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.View;
 
 
-namespace SneakingCommon.Interfaces.Behaviors
+namespace OpenGlCommonGame.Interfaces.Behaviors
 {
     public interface IVisibilityBehavior
     {
-        void setTileSize(int size);
-        int getTileSize();
+        int TileSize
+        {
+            get;
+            set;
+        }
         void setDrawableOwner(IDrawableOwner dw);
         void setTileBehavior(ITileBehavior tb);
         List<IPoint> getFoV(IPoint src,List<IPoint> availablePoints,int height);

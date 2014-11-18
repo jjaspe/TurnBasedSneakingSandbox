@@ -36,7 +36,7 @@ namespace SneakingCommon.Model_Stuff
 
         List<IGuard> myGuards;
         IGuard myPC;
-        IMap myMap;
+        ISneakingMap myMap;
         NoiseMap myNoiseMap;
         List<IGuard> mySortedGuards;
 
@@ -59,7 +59,7 @@ namespace SneakingCommon.Model_Stuff
             get { return myPC; }
             set { myPC = value; }
         }
-        public IMap MyMap
+        public ISneakingMap MyMap
         {
             get { return myMap; }
             set { myMap = value; }
@@ -269,7 +269,7 @@ namespace SneakingCommon.Model_Stuff
             }
             return null;            
         }
-        public IMap loadMap(XmlDocument myDoc)
+        public ISneakingMap loadMap(XmlDocument myDoc)
         {
             MyMap = new Map();
             

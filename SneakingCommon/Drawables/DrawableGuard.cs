@@ -8,11 +8,65 @@ using Canvas_Window_Template.Drawables;
 using Canvas_Window_Template.Interfaces;
 using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
+using OpenGlGameCommon.Interfaces.Model;
+using OpenGlGameCommon.Data_Classes;
+using OpenGlCommonGame.Interfaces.Behaviors;
 
 namespace SneakingCommon.Drawables
 {
-    public class DrawableGuard:OpenGlGuard
+    public class DrawableGuard:IDrawableGuard
     {
+        List<IPoint> fov;
+        IVisibilityBehavior myVisibilityBehavior;
+        ITileBehavior myOrientationBehavior;
+        IFoVBehavior myFoVBehavior;
+        IGuardMovementBehavior myMovementBehavior;
+        public IPoint MyPosition
+        {
+            get { return myPosition; }
+            set { myPosition = value; }
+        }
+        public string MyName
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public IGuardMovementBehavior MovementBehavior
+        {
+            get { return myMovementBehavior; }
+            set { myMovementBehavior = value; }
+        }
+
+        public ITileBehavior OrientationBehavior
+        {
+            get { return myOrientationBehavior; }
+            set { myOrientationBehavior = value; }
+        }
+        public IVisibilityBehavior VisibilityBehavior
+        {
+            get { return myVisibilityBehavior; }
+            set { myVisibilityBehavior = value; }
+        }
+        public IFoVBehavior FoVBehavior
+        {
+            get { return myFoVBehavior; }
+            set { myFoVBehavior = value; }
+        }
+
+        public List<IPoint> FOV
+        {
+            get { return fov; }
+            set { fov = value; }
+        }
+
+        public IPoint Position
+        {
+            get { return myPosition; }
+            set { myPosition = value; }
+        }
+
+
         //View independent stuff
 
         int currentPatrolWaypoint = 0;
@@ -20,8 +74,6 @@ namespace SneakingCommon.Drawables
         PatrolPath patrol;
         IPoint target;
         PatrolPath targetPath;
-        NoiseMap myNoiseMap;
-        NoiseMap myKnownNoiseMap;
 
         public DrawableGuard()
             : base()
@@ -54,28 +106,20 @@ namespace SneakingCommon.Drawables
             get { return fov; }
             set { fov = value; }
         }
-        public List<IPoint> rememberedPoints = new List<IPoint>();
-        public NoiseMap MyNoiseMap
-        {
-            get { return myNoiseMap; }
-            set { myNoiseMap = value; }
-        }
-        public NoiseMap MyKnownNoiseMap
-        {
-            get { return myKnownNoiseMap; }
-            set { myKnownNoiseMap = value; }
-        }
+        
         new protected void initialize()
-        {
-            MyNoiseMap = new NoiseMap();
+        {            
             FOV = new List<IPoint>();
             base.initialize();
         }
 
-        public void reset(OpenGlMap map)
+        /// <summary>
+        /// Puts guard back in his first waypoint in map
+        /// </summary>
+        /// <param name="map"></param>
+        public new void reset(OpenGlMap map)
         {
             MyPosition = MyPatrol.MyWaypoints[0];
-            rememberedPoints = new List<IPoint>();
             Target = null;
             CurrentPatrolWaypoint = 0;
             base.reset(map);
@@ -106,17 +150,6 @@ namespace SneakingCommon.Drawables
         }
         #endregion
 
-
-        #region REMEMBERED POINTS STUFF
-        public void addRememberedPoints(List<IPoint> newPoints)
-        {
-            foreach (IPoint p in newPoints)
-            {
-                if (rememberedPoints.Find(delegate(IPoint _p) { return p.equals(_p); }) == null)
-                    rememberedPoints.Add(p);
-            }
-        }
-        #endregion
         #region FOV STUFF
         public void setFoV(OpenGlMap myMap)
         {
@@ -179,13 +212,6 @@ namespace SneakingCommon.Drawables
         }
         #endregion
 
-        public NoiseMap getModifiedNoiseMap(NoiseMap noiseMap, OpenGlMap map)
-        {
-            NoiseMap newNoiseMap = noiseMap;
-            newNoiseMap.modify((int)this.getStat("Perception").Value,
-                                map.getDistanceMap(this.MyPosition));//Modify noise map
-            return newNoiseMap;
-        }
         #region PATROL STUFF
         public bool hasWaypoints()
         {

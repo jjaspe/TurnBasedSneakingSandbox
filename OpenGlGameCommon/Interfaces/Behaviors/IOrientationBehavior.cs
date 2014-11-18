@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
-namespace SneakingCommon.Interfaces.Behaviors
+namespace OpenGlCommonGame.Interfaces.Behaviors
 {
     public interface IOrientationBehavior
     {
         void changeOrientation(string or);
-        void turnQ(IGuard g);
+        void turnQ(IDrawableGuard g);
     }
 }

@@ -8,13 +8,16 @@ using SneakingCommon.Drawables;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
+using SneakingCommon.Data_Classes;
+using OpenGlGameCommon.Interfaces.Model;
+using SneakingCommon.Interfaces.Behaviors;
 
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
     /// <summary>
     /// Models a guard. It holds both data for the guard character (MyGuard) and an
-    /// image that to draw in the map
+    /// image that to draw in the map, and noise maps for noise calculation
     /// </summary>
     public class SneakingGuard:DrawableGuard
     {
@@ -30,35 +33,65 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             set { size = value; setImage(); }
         }        
         int myId, size;
-        IGuard myGuard;
-        public IGuard MyGuard
+        public List<IPoint> rememberedPoints = new List<IPoint>();
+        NoiseMap myNoiseMap;
+        NoiseMap myKnownNoiseMap;
+        ISneakingNPCBehavior NPCBehavior
         {
-            get { return myGuard; }
-            set { myGuard = value; }
+            get;
+            set;
         }
+        IKnownNoiseMapBehavior KnownNoiseMapBehavior
+        {
+            get;
+            set;
+        }
+        NoiseMap UnknownNoiseMap
+        {
+            get;
+            set;
+        }
+        NoiseMap NoiseMap
+        {
+            get;
+            set;
+        }
+        
 
         /// <summary>
         /// Return the position of the guard, not of the drawable
         /// </summary>
         public new IPoint MyPosition
         {
-            get { return MyGuard==null?null:MyGuard.getPosition(); }
+            get { return MyGuard==null?null:MyGuard.Position; }
         }
         public string MyName
         {
             get { return MyGuard.getName(); }
         }
+        public NoiseMap MyNoiseMap
+        {
+            get { return myNoiseMap; }
+            set { myNoiseMap = value; }
+        }
+        public NoiseMap MyKnownNoiseMap
+        {
+            get { return myKnownNoiseMap; }
+            set { myKnownNoiseMap = value; }
+        }        
+
         public SneakingGuard()
         {
             initialize();
         }
-        public SneakingGuard(IPoint position,int size)
+        public SneakingGuard(IPoint position, int size)
         {
             MyGuard.setPosition(position);
             MySize = size;
             initialize();
         }
-        
+
+
         /// <summary>
         /// Creates id and size for image
         /// </summary>
@@ -68,6 +101,21 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             size = 10;
             //setImage();
             guardIds += GameObjects.objectTypes;
+            MyNoiseMap = new NoiseMap();
+            rememberedPoints = new List<IPoint>();
+
+            this.MyGuard.addStat(new Stat("Strength", 0));
+            this.addStat(new Stat("Armor", 0));
+            this.addStat(new Stat("Weapon Skill", 0));
+            this.addStat(new Stat("Perception", 0));
+            this.addStat(new Stat("Intelligence", 0));
+            this.addStat(new Stat("Dexterity", 0));
+            this.addStat(new Stat("Suspicion", 0));
+            this.addStat(new Stat("Alert Status", 0));
+            this.addStat(new Stat("Field of View", 0));
+            this.addStat(new Stat("Suspicion Propensity", 0));
+            this.addStat(new Stat("AP", 0));
+            this.addStat(new Stat("Knows Map", 0));
         }        
         /// <summary>
         /// Creates guard image, using IGuard's position and orientation
@@ -121,7 +169,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             #endregion
 
             //If orientation is none, create a square else create rectangle
-            if (MyOrientation == OpenGlGuardOrientation.none)
+            if (MyOrientation == GuardOrientation.none)
                 myImage=((IDrawable)new Tile(_bLeft.toArray(), size));
             else
             {
@@ -153,7 +201,15 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
                 (int)tile.getCenter()[1],
                 2 * tile.TileSize);
         }
-        
+
+        public void reset()
+        {
+            Position = NPCBehavior.getPatrol().MyWaypoints[0];
+            MyNoiseMap.initialize(0);
+            NPCBehavior.reset();
+        }
+      
+
         #region FOV STUFF
         /*
         public void setFoV(OpenGlMap myMap)
@@ -216,6 +272,35 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             }
         }
          * */
+        #endregion
+
+        #region NOISE STUFF
+        /// <summary>
+        /// Returns a new noise map built from noiseMap and modified by the guards perception 
+        /// value
+        /// </summary>
+        /// <param name="noiseMap"></param>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public NoiseMap getModifiedNoiseMap(NoiseMap noiseMap, OpenGlMap map)
+        {
+            NoiseMap newNoiseMap = noiseMap;
+            newNoiseMap.modify((int)this.getStat("Perception").Value,
+                                map.getDistanceMap(this.MyPosition));//Modify noise map
+            return newNoiseMap;
+        }
+        /// <summary>
+        /// Adds points to the list of remembered points, needed for noise calculations
+        /// </summary>
+        /// <param name="newPoints"></param>
+        public void addRememberedPoints(List<IPoint> newPoints)
+        {
+            foreach (IPoint p in newPoints)
+            {
+                if (rememberedPoints.Find(delegate(IPoint _p) { return p.equals(_p); }) == null)
+                    rememberedPoints.Add(p);
+            }
+        }
         #endregion
     }
 }

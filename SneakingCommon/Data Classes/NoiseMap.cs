@@ -33,42 +33,32 @@ namespace SneakingCommon.Data_Classes
 
         #region LIKELY TO GO INTO Behaviors LATER ON
         /// <summary>
-        /// Reduces noise depending on distance (value in distMap) a constant and the guard's 
-        /// perception.
+        /// Reduces noise depending on distance (value in distMap), a constant, and the a stat
+        /// 
         /// </summary>
-        /// <param name="guardPerception"></param>
+        /// <param name="stat"></param>
         /// <param name="distMap"></param>
-        public void modify(int guardPerception, List<valuePoint> distMap)
+        public void modify(int stat, List<valuePoint> distMap)
         {
             foreach (valuePoint dp in MyNoisePoints)
             {
                 dp.value = Math.Max(0,
                     dp.value - Math.Max(0, getValueFromList(dp, distMap)) * 
-                    SneakingWorld.getValueByName("noiseDistanceFromSourceDropoff") / guardPerception);
+                    SneakingWorld.getValueByName("noiseDistanceFromSourceDropoff") / stat);
             }
         }
         #endregion
 
-       
+
+
+
         /// <summary>
+        /// Updates noise map at grid point p with level:level
         /// Only sets noise if it didn't have one or if the previous level was lower
         /// </summary>
         /// <param name="p"></param>
         /// <param name="level"></param>
         /// <param name="noiseMap"></param>
-        public void setNoiseInNoiseMap(IPoint p, int level, List<valuePoint> noiseMap)
-        {
-            valuePoint currentNoisePoint;
-            currentNoisePoint = noiseMap.Find(
-                        delegate(valuePoint _dp)
-                        {
-                            return _dp.p.equals(p);
-                        });
-            //If it is -1, assign noise, if it already has a noise, see if the new one is higher
-            if (currentNoisePoint != null)
-                currentNoisePoint.value = currentNoisePoint.value == -1 ? 
-                level : Math.Max(currentNoisePoint.value, level);
-        }
         public static void sSetNoiseInNoiseMap(IPoint p, int level, List<valuePoint> noiseMap)
         {
             valuePoint currentNoisePoint;
@@ -82,19 +72,23 @@ namespace SneakingCommon.Data_Classes
                 currentNoisePoint.value = currentNoisePoint.value == -1 ?
                 level : Math.Max(currentNoisePoint.value, level);
         }
+
+        /// <summary>
+        /// Updates myNoiseMap at grid point p with level:level
+        /// Only sets noise if it didn't have one or if the previous level was lower
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="level"></param>
+        /// <param name="noiseMap"></param>
         public void setNoise(IPoint p,int level)
         {
-            valuePoint currentNoisePoint;
-            currentNoisePoint = MyNoisePoints.Find(
-                        delegate(valuePoint _dp)
-                        {
-                            return _dp.p.equals(p);
-                        });
-            //If it is -1, assign noise, if it already has a noise, see if the new one is higher
-            if(currentNoisePoint!=null)
-                currentNoisePoint.value = currentNoisePoint.value == -1 ? 
-                level : Math.Max(currentNoisePoint.value, level);
+            NoiseMap.sSetNoiseInNoiseMap(p, level, MyNoisePoints);
         }
+
+        /// <summary>
+        /// Returns point from all myNoisePoints with highest noise level
+        /// </summary>
+        /// <returns></returns>
         public valuePoint getHighest()
         {
             double highest = 0;
@@ -109,8 +103,9 @@ namespace SneakingCommon.Data_Classes
             }
             return cHighest;
         }
+
         /// <summary>
-        /// Gets highest from available
+        /// Returns point with highest noise level from available points
         /// </summary>
         /// <param name="available"></param>
         /// <returns></returns>

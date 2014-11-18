@@ -14,7 +14,7 @@ using SneakingCommon.Data_Classes;
 
 namespace SneakingCommon.Model_Stuff
 {
-    public class Map:Character,IMap
+    public class Map:Character,ISneakingMap
     {
         #region ATTRIBUTES
         ILandscapeBehavior myLandscapeBehavior;

@@ -1,0 +1,1 @@
+﻿public enum GuardOrientation { none, up, right, down, left };

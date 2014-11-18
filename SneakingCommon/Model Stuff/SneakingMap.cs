@@ -12,13 +12,14 @@ using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.View;
 using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.View;
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
     public class SneakingMap:OpenGlMap
     {
         static SneakingMap myInstance;
-        public static SneakingMap createInstance(IMap map,int width,int length, int _tileSize,IDrawableOwner dw)
+        public static SneakingMap createInstance(ISneakingMap map,int width,int length, int _tileSize,IDrawableOwner dw)
         {
             if(myInstance==null)
                 myInstance=new SneakingMap(map,width,length,_tileSize,dw);
@@ -33,8 +34,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             get { return myWall; }
             set { myWall = value; }
         }
-        IMap myMap;
-        public IMap MyMap
+        ISneakingMap myMap;
+        public ISneakingMap MyMap
         {
             get { return myMap; }
             set 
@@ -45,7 +46,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
         #endregion
 
-        private SneakingMap(IMap map,int width, int length,int _tileSize,IDrawableOwner dw):base(width,length,_tileSize)
+        private SneakingMap(ISneakingMap map,int width, int length,int _tileSize,IDrawableOwner dw):base(width,length,_tileSize)
         {
             myWall = new wallObj();  
             initializeWall();
@@ -70,6 +71,9 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
 
         #region WALL STUFF
+        /// <summary>
+        /// Override to create sneaking tiles instead of regular tiles
+        /// </summary>
         public override void fillWall()
         {
             tileObj[,] tiles = this.createTiles();
@@ -88,16 +92,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
         #endregion
 
-        #region DISTANCE MAP STUFF
-        public void setDistanceMaps(List<DistanceMap> distanceMaps)
-        {
-            MyMap.setDistanceMaps(distanceMaps);
-        }
-        public DistanceMap getDistanceMap(IPoint src)
-        {
-            return MyMap.getDistanceMap(src);
-        }
-        #endregion
+       
 
         #region NOISE STUFF ACCESSORS
         public ModelNoiseMap createNoiseMap(IPoint src, int level)

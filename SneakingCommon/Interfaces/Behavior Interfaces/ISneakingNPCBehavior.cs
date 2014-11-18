@@ -13,7 +13,7 @@ using SneakingCommon.Data_Classes;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {
-    public interface INPCBehavior
+    public interface ISneakingNPCBehavior
     {
         IPoint getTarget();
         void setTarget(IPoint t);

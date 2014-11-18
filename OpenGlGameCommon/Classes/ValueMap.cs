@@ -7,28 +7,28 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 
 using OpenGlGameCommon.Classes;
-using SneakingCommon.Interfaces.Model;
-using SneakingCommon.Interfaces.View;
+using OpenGlGameCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.View;
 
-namespace SneakingCommon.Data_Classes
+namespace OpenGlGameCommon.Data_Classes
 {
     public class ValueMap
     {
         public List<valuePoint> MyPoints;
 
-        public ValueMap(IMap map)  
+        public ValueMap(ISneakingMap map)  
         {
             MyPoints = new List<valuePoint>();
             initialize(map);
         }
 
-        public ValueMap(IMap map, IPoint src, IDrawableOwner dw)
+        public ValueMap(ISneakingMap map, IPoint src, IDrawableOwner dw)
         {
             MyPoints = new List<valuePoint>();
         }
 
         
-        void initialize(IMap map)
+        void initialize(ISneakingMap map)
         {
             
             foreach (IPoint point in map.getTileOrigins())

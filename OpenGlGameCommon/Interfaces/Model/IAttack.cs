@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SneakingCommon.Interfaces.Model
+namespace OpenGlGameCommon.Interfaces.Model
 {
     public interface IAttack
     {

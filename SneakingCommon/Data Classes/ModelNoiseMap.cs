@@ -40,7 +40,7 @@ namespace SneakingCommon.Data_Classes
         /// <param name="p"></param>
         /// <param name="level"></param>
         /// <param name="noiseMap"></param>
-        public void initialize(int defaultValue, IMap map)
+        public void initialize(int defaultValue, ISneakingMap map)
         {
             foreach (IPoint point in map.getTileOrigins())
             {

@@ -6,6 +6,7 @@ using System.Drawing;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
+using OpenGLGameCommon.Classes;
 
 
 namespace OpenGlGameCommon.Classes
@@ -35,9 +36,9 @@ namespace OpenGlGameCommon.Classes
         /// <summary>
         /// This list contains all distance maps, with the key being their origins, and value the actual map.
         /// </summary>
-        List<KeyValuePair<IPoint, List<valuePoint>>> myDistanceMaps;
+        List<DistanceMap> myDistanceMaps;
 
-        public List<KeyValuePair<IPoint, List<valuePoint>>> MyDistanceMaps
+        public List<DistanceMap> MyDistanceMaps
         {
             get
             {
@@ -246,6 +247,17 @@ namespace OpenGlGameCommon.Classes
             foreach (IDrawable d in toAdd)
                 tiles.Add(d);
         }
+
+        #region DISTANCE MAP STUFF
+        public void setDistanceMaps(List<DistanceMap> distanceMaps)
+        {
+            MyMap.setDistanceMaps(distanceMaps);
+        }
+        public DistanceMap getDistanceMap(IPoint src)
+        {
+            return .getDistanceMap(src);
+        }
+        #endregion
 
         #region GUARDS STUFF
         public bool moveGuard(OpenGlGuard g, IPoint p)
@@ -3057,18 +3069,18 @@ namespace OpenGlGameCommon.Classes
         {
             return list.Find(delegate (IPoint _p){return _p.equals(p);})!=null;
         }
-        public double getValueFromPoint(List<valuePoint> list,IPoint p)
+        public double getValueFromPoint(DistanceMap map,IPoint p)
         {
-            return list.Find( delegate (valuePoint vp){return vp.p.equals(p);}).value;
+            return map.MyPoints.Find( delegate (valuePoint vp){return vp.p.equals(p);}).value;
         }
-        public valuePoint getValuePoint(List<valuePoint> list,IPoint p)
+        public valuePoint getValuePoint(DistanceMap map,IPoint p)
         {
-            return list.Find( delegate (valuePoint vp){return vp.p.equals(p);});
+            return map.MyPoints.Find( delegate (valuePoint vp){return vp.p.equals(p);});
         }
-        public void setDistancePointInMap(IPoint p, int distance,List<valuePoint> distMap)
+        public void setDistancePointInMap(IPoint p, int distance,DistanceMap distMap)
         {
             valuePoint currentDP;
-            currentDP = distMap.Find(
+            currentDP = distMap.MyPoints.Find(
                         delegate(valuePoint _dp)
                         {
                             return _dp.p.equals(p);
@@ -3141,19 +3153,20 @@ namespace OpenGlGameCommon.Classes
         }
         public void generateDistanceMaps()
         {
-            myDistanceMaps = new List<KeyValuePair<IPoint, List<valuePoint>>>();
+            myDistanceMaps = new List<DistanceMap>();
             foreach (IPoint src in this.getAllTileOrigins())
             {
-                myDistanceMaps.Add(new KeyValuePair<IPoint, List<valuePoint>>(src, calculateDistanceMap(src)));
+                List<valuePoint> points=calculateDistanceMap(src);
+                myDistanceMaps.Add(new DistanceMap() { MyOrigin = src, MyPoints = points });
             }
         }
-        public List<valuePoint> getDistanceMap(IPoint src)
+        public DistanceMap getDistanceMap(IPoint src)
         {
             return myDistanceMaps.Find(
-                 delegate(KeyValuePair<IPoint, List<valuePoint>> distMap)
+                 delegate(DistanceMap distMap)
                  {
-                     return distMap.Key.equals(src);
-                 }).Value;
+                     return distMap.MyOrigin.equals(src);
+                 });
         }
 
         public OpenGlPath getShortestPath(IPoint src, IPoint dest, List<IPoint> availableTiles)
@@ -3199,7 +3212,7 @@ namespace OpenGlGameCommon.Classes
             }
             return closest;
         }
-        public valuePoint getPreviousInPath(valuePoint src, List<IPoint> availableTiles, List<valuePoint> distMap)
+        public valuePoint getPreviousInPath(valuePoint src, List<IPoint> availableTiles, DistanceMap distMap)
         {
             List<IPoint> adjacents = getAdjacents(src.p);
             double lowest = -1, current;
@@ -3330,9 +3343,6 @@ namespace OpenGlGameCommon.Classes
             return !getCollision(observer, observed);
         }
         #endregion
-
-
-       
 
         List<IDrawable> IWorld.getEntities()
         {

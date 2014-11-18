@@ -14,6 +14,6 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface IGuardFoHBehavior
     {
-        void setGuardNoiseMap(IGuard g, NoiseMap noiseMap, IMap map);
+        void setGuardNoiseMap(IGuard g, NoiseMap noiseMap, ISneakingMap map);
     }
 }

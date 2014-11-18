@@ -29,7 +29,7 @@ namespace SneakingCommon.Interfaces.Model
             get;
             set;
         }
-        IMap MyMap
+        ISneakingMap MyMap
         {
             get;
             set;

@@ -6,10 +6,10 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 
-namespace SneakingCommon.Interfaces.Behaviors
+namespace OpenGlCommonGame.Interfaces.Behaviors
 {
     public interface IPlayerObserver
     {
-        void update(PlayerMessage message, List<ObjectArg> args);
+        void update(int message, List<ObjectArg> args);
     }
 }

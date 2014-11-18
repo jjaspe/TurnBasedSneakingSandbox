@@ -12,6 +12,6 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface IGuardNoiseGraphicBehavior
     {
-        void setNoiseVisual(NoiseMap noiseMap,IMap map,IGuard pc,List<IGuard> guards);
+        void setNoiseVisual(NoiseMap noiseMap,ISneakingMap map,IGuard pc,List<IGuard> guards);
     }
 }

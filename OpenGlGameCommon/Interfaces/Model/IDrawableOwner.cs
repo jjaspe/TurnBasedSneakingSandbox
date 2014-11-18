@@ -5,11 +5,11 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.System_Classes;
+
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 
-namespace SneakingCommon.Interfaces.View
+namespace OpenGlGameCommon.Interfaces.View
 {
     public interface IDrawableOwner
     {

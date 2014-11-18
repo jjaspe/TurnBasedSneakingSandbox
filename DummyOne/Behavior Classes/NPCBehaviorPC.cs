@@ -10,7 +10,7 @@ using SneakingCommon.Interfaces.Behaviors;
 
 namespace SneakingCommon.Model_Stuff
 {
-    public class NPCBehaviorPC:INPCBehavior
+    public class NPCBehaviorPC:ISneakingNPCBehavior
     {
         NoiseMap unknownNoiseMap;
         public NoiseMap MyUnknownNoiseMap

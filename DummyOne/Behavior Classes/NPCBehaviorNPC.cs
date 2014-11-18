@@ -12,7 +12,7 @@ using SneakingCommon.Interfaces.Behaviors;
 
 namespace SneakingCommon.Model_Stuff
 {
-    public class NPCBehaviorNPC:INPCBehavior
+    public class NPCBehaviorNPC:ISneakingNPCBehavior
     {
         #region ATTRIBUTES
         int currentPatrolWaypoint = 0;

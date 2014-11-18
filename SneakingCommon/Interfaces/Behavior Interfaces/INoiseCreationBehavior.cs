@@ -14,7 +14,7 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface INoiseCreationBehavior
     {
-        NoiseMap createNoiseMap(IPoint src, int level, IMap map);
+        NoiseMap createNoiseMap(IPoint src, int level, ISneakingMap map);
         void setDrawableOwner(IDrawableOwner _dw);
     }
 }

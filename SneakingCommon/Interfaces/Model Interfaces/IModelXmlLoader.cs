@@ -11,7 +11,7 @@ namespace SneakingCommon.Interfaces.Model
     {
         List<IGuard> loadGuards(XmlDocument Xml);
         IGuard loadPC(XmlDocument Xml);
-        IMap loadMap(XmlDocument Xml);
+        ISneakingMap loadMap(XmlDocument Xml);
         void loadSystem(string filename);
         List<IGoal> loadGoals(XmlDocument Xml);
         void test();

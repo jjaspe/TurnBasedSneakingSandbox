@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SneakingCommon.Interfaces.Model;
 
-namespace SneakingCommon.Interfaces.Behaviors
+namespace OpenGlCommonGame.Interfaces.Behaviors
 {
     public interface ITileBehavior
     {

@@ -61,7 +61,7 @@ namespace SneakingCommon.Model_Stuff
         IVisibilityBehavior myVisibilityBehavior;
         ITileBehavior myOrientationBehavior;
         IFoVBehavior myFoVBehavior;
-        INPCBehavior myNPCBehavior;
+        ISneakingNPCBehavior myNPCBehavior;
         IGuardMovementBehavior myMovementBehavior;
 
         public IGuardMovementBehavior MyMovementBehavior
@@ -69,7 +69,7 @@ namespace SneakingCommon.Model_Stuff
             get { return myMovementBehavior; }
             set { myMovementBehavior = value; }
         }
-        public INPCBehavior MyNPCBehavior
+        public ISneakingNPCBehavior MyNPCBehavior
         {
             get { return myNPCBehavior; }
             set { myNPCBehavior = value; }
@@ -220,7 +220,7 @@ namespace SneakingCommon.Model_Stuff
         {
             return MyFoVBehavior;
         }
-        public INPCBehavior getNPCBehavior()
+        public ISneakingNPCBehavior getNPCBehavior()
         {
             return myNPCBehavior;
         }
@@ -258,7 +258,7 @@ namespace SneakingCommon.Model_Stuff
         {
             MyFoVBehavior = fB;
         }
-        public void setNPCBehavior(INPCBehavior nB)
+        public void setNPCBehavior(ISneakingNPCBehavior nB)
         {
             MyNPCBehavior = nB;
         }

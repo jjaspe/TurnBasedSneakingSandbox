@@ -7,7 +7,7 @@ using Canvas_Window_Template.Drawables;
 using System.Xml;
 using OpenGlGameCommon.Classes;
 
-namespace SneakingCommon.Interfaces.Model
+namespace OpenGlGameCommon.Interfaces.Model
 {
     public interface IGoal
     {

@@ -10,7 +10,7 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 
-namespace SneakingCommon.Data_Classes
+namespace OpenGlGameCommon.Data_Classes
 {
     public class PatrolPath:OpenGlPath
     {

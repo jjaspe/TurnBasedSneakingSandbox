@@ -6,10 +6,9 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
-using SneakingCommon.Interfaces.Model;
-using SneakingCommon.Interfaces.View;
+using OpenGlGameCommon.Interfaces.Model;
 
-namespace SneakingCommon.Data_Classes
+namespace OpenGLGameCommon.Classes
 {
     public class DistanceMap
     {
@@ -39,7 +38,7 @@ namespace SneakingCommon.Data_Classes
 
         void initialize(IMap map)
         {
-            foreach (IPoint point in map.getTileOrigins())
+            foreach (IPoint point in map.TileOrigins)
             {
                 MyPoints.Add(new valuePoint(point, -1));
             }
@@ -56,7 +55,7 @@ namespace SneakingCommon.Data_Classes
             List<valuePoint> distMap = new List<valuePoint>();
             myOrigin = src;
             initialize(map);
-            List<IPoint> currentPoints = new List<IPoint>(), adjacents = new List<IPoint>(), tempAdjacents;
+            List<IPoint> currentPoints = new List<IPoint>(), adjacents = new List<IPoint>(), tempAdjacents=new List<IPoint>();
             currentPoints.Add(src);
             //Put origin point in distance map, with distance 0
             setDistanceForPoint(src, 0);

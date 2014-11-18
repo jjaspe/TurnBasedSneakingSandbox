@@ -1,10 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Template.Interfaces;
-using CharacterSystemLibrary.Classes;
+using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
+using CharacterSystemLibrary.Classes;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Entities;
 
@@ -45,7 +46,11 @@ namespace OpenGlGameCommon.Classes
             MySize = size;
             initialize();
         }
-        new protected void initialize()
+
+        /// <summary>
+        /// Initializes id, imageSize, orientation and stats for guards. Also creates image.
+        /// </summary>
+        protected void initialize()
         {
             myId = guardIds;
             size = 10;
@@ -70,6 +75,10 @@ namespace OpenGlGameCommon.Classes
         {
             
         }
+
+        /// <summary>
+        /// Creates an image for the guard using a blue rombus
+        /// </summary>
         public void setImage()
         {
             int tileSize = MySize * 2;
@@ -129,6 +138,12 @@ namespace OpenGlGameCommon.Classes
             }
             
         }
+
+        /// <summary>
+        /// Calculates guardOrientation based on difference between the guards' current 
+        /// origin and nextOrigin (i.e. if current is due west of nextOrigin, orientation is right)
+        /// </summary>
+        /// <param name="nextOrigin"></param>
         protected void setOrientation(IPoint nextOrigin)
         {
             int tileSize = MySize * 2;
@@ -153,6 +168,12 @@ namespace OpenGlGameCommon.Classes
             else
                 myOrientation = OpenGlGuardOrientation.none;
         }
+
+        /// <summary>
+        /// Returns a point at the same position as guard but at 2*tileSize height (z-dir)
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public IPoint getEyeLevel(OpenGlMap map)
         {
             Tile tile = map.getTile(MyPosition);
@@ -160,6 +181,10 @@ namespace OpenGlGameCommon.Classes
                 (int)tile.getCenter()[1],
                 2 * tile.TileSize);
         }
+
+        /// <summary>
+        /// Turns the guard 90 counterclockwise
+        /// </summary>
         public void turnQ()
         {
             MyOrientation++;
@@ -186,12 +211,13 @@ namespace OpenGlGameCommon.Classes
         {
             MyPosition = newPosition;
         }
-        #endregion
-
-        bool Canvas_Window_Template.Interfaces.IDrawable.Visible
+        bool IDrawable.Visible
         {
             set { return; }
         }
+        #endregion
+
+       
     }
 
 }

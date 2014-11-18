@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SneakingCommon.System_Classes;
@@ -13,7 +12,7 @@ namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface IPlayerMovementBehavior
     {
-        bool isMovePossible(IGuard pc, IPoint dest, IGameMaster gameMaster, IMap map, IPlayerAI pAI);
-        bool isTurnPossible(IGuard pc, IPoint dest, IGameMaster gameMaster, IMap map, IPlayerAI pAI);
+        bool isMovePossible(IGuard pc, IPoint dest, IGameMaster gameMaster, ISneakingMap map, IPlayerAI pAI);
+        bool isTurnPossible(IGuard pc, IPoint dest, IGameMaster gameMaster, ISneakingMap map, IPlayerAI pAI);
     }
 }

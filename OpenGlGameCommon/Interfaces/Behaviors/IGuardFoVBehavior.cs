@@ -5,14 +5,14 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;    
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 
-namespace SneakingCommon.Interfaces.Behaviors
+namespace OpenGlCommonGame.Interfaces.Behaviors
 {
     public interface IFoVBehavior
     {
-        List<IPoint> getFOVPoints(IGuard g,List<IPoint> availablePoints);
+        List<IPoint> getFOVPoints(IDrawableGuard g,List<IPoint> availablePoints);
         void setDistance(int d);
     }
 }
