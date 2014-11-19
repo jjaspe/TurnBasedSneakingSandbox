@@ -7,6 +7,7 @@ using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Behaviors;
 using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Controller
 {

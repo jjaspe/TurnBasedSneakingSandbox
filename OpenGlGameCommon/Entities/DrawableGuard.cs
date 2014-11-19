@@ -61,16 +61,16 @@ namespace OpenGlGameCommon.Drawables
         }
         #endregion
 
-        Character myGuard;
+        Character myCharacter;
         public string getName()
         {
-            return MyGuard.Name;
+            return MyCharacter.Name;
         }
 
-        public Character MyGuard
+        public Character MyCharacter
         {
-            get { return myGuard; }
-            set { myGuard = value; }
+            get { return myCharacter; }
+            set { myCharacter = value; }
         }
 
         protected GuardOrientation myOrientation;
@@ -299,7 +299,7 @@ namespace OpenGlGameCommon.Drawables
             switch (MyOrientation)
             {
                 case GuardOrientation.left:
-                    while (distance < MyGuard.getStat("Field of View").Value)
+                    while (distance < MyCharacter.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -311,7 +311,7 @@ namespace OpenGlGameCommon.Drawables
                     }
                     break;
                 case GuardOrientation.right:
-                    while (distance < MyGuard.getStat("Field of View").Value)
+                    while (distance < MyCharacter.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -323,7 +323,7 @@ namespace OpenGlGameCommon.Drawables
                     }
                     break;
                 case GuardOrientation.up:
-                    while (distance < MyGuard.getStat("Field of View").Value)
+                    while (distance < MyCharacter.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {
@@ -335,7 +335,7 @@ namespace OpenGlGameCommon.Drawables
                     }
                     break;
                 case GuardOrientation.down:
-                    while (distance < MyGuard.getStat("Field of View").Value)
+                    while (distance < MyCharacter.getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
                         {

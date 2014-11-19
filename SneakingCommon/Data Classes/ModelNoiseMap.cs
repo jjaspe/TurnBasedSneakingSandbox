@@ -42,7 +42,7 @@ namespace SneakingCommon.Data_Classes
         /// <param name="noiseMap"></param>
         public void initialize(int defaultValue, ISneakingMap map)
         {
-            foreach (IPoint point in map.getTileOrigins())
+            foreach (IPoint point in map.TileOrigins)
             {
                 MyNoisePoints.Add(new valuePoint(point, -1));
             }

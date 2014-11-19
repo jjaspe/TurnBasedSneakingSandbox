@@ -13,8 +13,11 @@ using OpenGlGameCommon.Interfaces.Model;
 namespace SneakingCommon.Interfaces.Model
 {
     public interface ISneakingMap:IMap
-    {       
-        void setNoiseCreationBehavior(INoiseCreationBehavior noiseCreationBehavior);
-        INoiseCreationBehavior getCreationBehavior();
+    {
+        INoiseCreationBehavior NoiseCreationBehavior
+        {
+            get;
+            set;
+        }
     }
 }

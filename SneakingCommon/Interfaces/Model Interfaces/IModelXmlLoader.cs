@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using System.Xml;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Model
 {

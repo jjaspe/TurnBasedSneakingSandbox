@@ -11,6 +11,8 @@ using SneakingCommon.Interfaces.Model;
 using SneakingCommon.Data_Classes;
 using OpenGlGameCommon.Interfaces.Model;
 using SneakingCommon.Interfaces.Behaviors;
+using CharacterSystemLibrary.Classes;
+using OpenGlGameCommon.Drawables;
 
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
@@ -57,17 +59,13 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             set;
         }
         
-
-        /// <summary>
-        /// Return the position of the guard, not of the drawable
-        /// </summary>
         public new IPoint MyPosition
         {
-            get { return MyGuard==null?null:MyGuard.Position; }
+            get { return Position; }
         }
         public string MyName
         {
-            get { return MyGuard.getName(); }
+            get { return MyCharacter.Name; }
         }
         public NoiseMap MyNoiseMap
         {
@@ -86,7 +84,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
         public SneakingGuard(IPoint position, int size)
         {
-            MyGuard.setPosition(position);
+            Position =position;
             MySize = size;
             initialize();
         }
@@ -104,18 +102,18 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             MyNoiseMap = new NoiseMap();
             rememberedPoints = new List<IPoint>();
 
-            this.MyGuard.addStat(new Stat("Strength", 0));
-            this.addStat(new Stat("Armor", 0));
-            this.addStat(new Stat("Weapon Skill", 0));
-            this.addStat(new Stat("Perception", 0));
-            this.addStat(new Stat("Intelligence", 0));
-            this.addStat(new Stat("Dexterity", 0));
-            this.addStat(new Stat("Suspicion", 0));
-            this.addStat(new Stat("Alert Status", 0));
-            this.addStat(new Stat("Field of View", 0));
-            this.addStat(new Stat("Suspicion Propensity", 0));
-            this.addStat(new Stat("AP", 0));
-            this.addStat(new Stat("Knows Map", 0));
+            this.MyCharacter.addStat(new Stat("Strength", 0));
+            this.MyCharacter.addStat(new Stat("Armor", 0));
+            this.MyCharacter.addStat(new Stat("Weapon Skill", 0));
+            this.MyCharacter.addStat(new Stat("Perception", 0));
+            this.MyCharacter.addStat(new Stat("Intelligence", 0));
+            this.MyCharacter.addStat(new Stat("Dexterity", 0));
+            this.MyCharacter.addStat(new Stat("Suspicion", 0));
+            this.MyCharacter.addStat(new Stat("Alert Status", 0));
+            this.MyCharacter.addStat(new Stat("Field of View", 0));
+            this.MyCharacter.addStat(new Stat("Suspicion Propensity", 0));
+            this.MyCharacter.addStat(new Stat("AP", 0));
+            this.MyCharacter.addStat(new Stat("Knows Map", 0));
         }        
         /// <summary>
         /// Creates guard image, using IDrawableGuard's position and orientation
@@ -136,31 +134,31 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             //Determine long side
             switch (MyOrientation)
             {
-                case OpenGlGuard.OpenGlGuardOrientation.left://Make distances from {_bLeft,_bRight}{_tLeft,_tRight} Long
+                case GuardOrientation.left://Make distances from {_bLeft,_bRight}{_tLeft,_tRight} Long
                     _bLeft = new PointObj(_tO.X, _tO.Y + sizeDiff / 2, _tO.Z + 1);
                     _tLeft = new PointObj(_tO.X, _tO.Y + size + sizeDiff / 2, _tO.Z + 1);
                     _bRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
                     _tRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2 + size, _tO.Z + 1);
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.right://Make distances from {_bLeft,_bRight}{_tLeft,_tRight} Long
+                case GuardOrientation.right://Make distances from {_bLeft,_bRight}{_tLeft,_tRight} Long
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
                     _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + size + sizeDiff / 2, _tO.Z + 1);
                     _bRight = new PointObj(_tO.X + size + sizeDiff, _tO.Y + sizeDiff / 2, _tO.Z + 1);
                     _tRight = new PointObj(_tO.X + size + sizeDiff, _tO.Y + sizeDiff / 2 + size, _tO.Z + 1);
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.up://Make distances from {_bLeft,_tLeft}{_tRight,_bRight} Long
+                case GuardOrientation.up://Make distances from {_bLeft,_tLeft}{_tRight,_bRight} Long
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
                     _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + size + sizeDiff, _tO.Z + 1);
                     _bRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
                     _tRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff + size, _tO.Z + 1);
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.down://Make distances from {_bLeft,_tLeft}{_tRight,_bRight} Long                   
+                case GuardOrientation.down://Make distances from {_bLeft,_tLeft}{_tRight,_bRight} Long                   
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y, _tO.Z + 1);
                     _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + size + sizeDiff / 2, _tO.Z + 1);
                     _bRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y, _tO.Z + 1);
                     _tRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2 + size, _tO.Z + 1);
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.none://Make tile
+                case GuardOrientation.none://Make tile
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y+sizeDiff/2, _tO.Z + 1);
                     break;
                 default:
@@ -186,7 +184,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// <returns></returns>
         public int getValue(string statName)
         {
-            return myGuard.getValue(statName);
+            return (int)MyCharacter.getProperty(statName).Value;
         }
         /// <summary>
         /// Returns a point at the center of the guard's tile, but raised 2 tile sizes in
@@ -219,7 +217,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             myGuard.getFOV().Clear();
             switch (MyOrientation)
             {
-                case OpenGlGuard.OpenGlGuardOrientation.left:
+                case GuardOrientation.left:
                     while (distance < getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
@@ -231,7 +229,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
                         distance++;
                     }
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.right:
+                case GuardOrientation.right:
                     while (distance < getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
@@ -243,7 +241,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
                         distance++;
                     }
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.up:
+                case GuardOrientation.up:
                     while (distance < getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
@@ -255,7 +253,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
                         distance++;
                     }
                     break;
-                case OpenGlGuard.OpenGlGuardOrientation.down:
+                case GuardOrientation.down:
                     while (distance < getStat("Field of View").Value)
                     {
                         for (int j = -distance; j <= distance; j++)
@@ -285,8 +283,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         public NoiseMap getModifiedNoiseMap(NoiseMap noiseMap, OpenGlMap map)
         {
             NoiseMap newNoiseMap = noiseMap;
-            newNoiseMap.modify((int)this.getStat("Perception").Value,
-                                map.getDistanceMap(this.MyPosition));//Modify noise map
+            newNoiseMap.modify((int)this.MyCharacter.getStat("Perception").Value,
+                                map.getDistanceMap(this.MyPosition).MyPoints);//Modify noise map
             return newNoiseMap;
         }
         /// <summary>

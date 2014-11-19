@@ -16,28 +16,12 @@ namespace OpenGlGameCommon.Classes
     /// Models a map containint geometry objects (wall,blocks,guards). Contains methods for pathfinding,
     /// raytracing, and moving guards. Since it implements IWorld it keeps the geometry elements
     /// as a list of IDrawables that can be accessed to get them drawn
-    /// Uses Singleton pattern so we never have two maps in the same game
+    /// The class variable myInstance is not for singleton pattern, is to give access to map stuff to OpenGlPC (this might change in the future)
     /// </summary>
     public class OpenGlMap : wallObj,IWorld
-    {       
-        static OpenGlMap myInstance;
-        public static OpenGlMap createInstance(int width,int height, int _tileSize,IPoint origin,Common.planeOrientation orientation=Common.planeOrientation.Z)
-        {
-            if(myInstance==null)
-            {
-                myInstance=new OpenGlMap(width,height,_tileSize,orientation);
-                if (origin == null)
-                    myInstance.MyOrigin = new PointObj(-width * _tileSize / 2, -height * _tileSize / 2, 0);
-                else
-                    myInstance.MyOrigin = origin;
-                myInstance.fillWall();
-            }
-            return myInstance;
-        }
-        public static OpenGlMap getInstance()
-        {
-            return myInstance;
-        }
+    {
+        public static OpenGlMap myInstance;
+        public static OpenGlMap getInstance() { return myInstance; }
 
         protected List<IDrawable> tiles;
         /// <summary>
@@ -63,35 +47,39 @@ namespace OpenGlGameCommon.Classes
         {
             get { return tiles; }
             set { tiles = value; }
-        }     
+        }
 
         /// <summary>
-        /// Creates a map with the given dimensions and tilesize. Calls initialize, which sets orientation, colors and
-        /// creates drawable list
+        /// Creates a map with the given dimensions and tilesize. Calls initialize, and calls fillWall
         /// </summary>
         /// <param name="width"></param>
         /// <param name="length"></param>
         /// <param name="_tileSize"></param>
-        private OpenGlMap(int width, int length,int _tileSize)
+        public OpenGlMap(int width, int length, int tileSize,IPoint origin, Common.planeOrientation orientation = Common.planeOrientation.Z)
         {
-            MyWidth = width;
-            MyHeight = length;
-            TileSize = _tileSize;
-            initialize();
+            initialize(width, length, tileSize, orientation);
+            if (origin == null)
+                this.MyOrigin = new PointObj(-width * tileSize / 2, -length * tileSize / 2, 0);
+            else
+                this.MyOrigin = origin;
+            fillWall();
+            myInstance = this;
         }
-        private OpenGlMap(int width, int length, int tileSize, Common.planeOrientation orientation)
+
+        protected void initialize(int width, int length, int tileSize, Common.planeOrientation orientation)
         {
             MyWidth = width;
             MyHeight = length;
             TileSize = tileSize;
-            initialize();
             this.Orientation = orientation;
+            initialize();
         }
         /// <summary>
         /// Set default colors and orientation (perpendicular to Z)
         /// </summary>
         private void initialize()
         {
+            
             Orientation = Common.planeOrientation.Z;
             defaultColor = new float[] { Color.Green.R / 256.0f, Color.GreenYellow.G / 256.0f, Color.Green.B / 256.0f };
             defaultOutlineColor = new float[] { Color.Black.R / 256, Color.Black.G / 256, Color.Black.B / 256 };
@@ -375,11 +363,11 @@ namespace OpenGlGameCommon.Classes
         #endregion
 
         #region PATHFINDING STUFF
-        public void initializeValueMap(DistanceMap distMap,int defaultValue)
+        public void initializeValueMap(List<valuePoint> map,int defaultValue)
         {
             foreach (Tile t in myTiles)
             {
-                distMap.Add(new valuePoint(t.MyOrigin, defaultValue));
+                map.Add(new valuePoint(t.MyOrigin, defaultValue));
             }
         }
                
@@ -599,10 +587,17 @@ namespace OpenGlGameCommon.Classes
         {
             return map.MyPoints.Find( delegate (valuePoint vp){return vp.p.equals(p);});
         }
-        public void setDistancePointInMap(IPoint p, int distance,DistanceMap distMap)
+        /// <summary>
+        /// Puts p in map if map doesn't have a point there or if the one
+        /// there has a smaller value
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="distance"></param>
+        /// <param name="distMap"></param>
+        public void setPointInMap(IPoint p, int distance,List<valuePoint> distMap)
         {
             valuePoint currentDP;
-            currentDP = distMap.MyPoints.Find(
+            currentDP = distMap.Find(
                         delegate(valuePoint _dp)
                         {
                             return _dp.p.equals(p);
@@ -619,11 +614,11 @@ namespace OpenGlGameCommon.Classes
         public DistanceMap calculateDistanceMap(IPoint src)
         {
             DistanceMap distMap=new DistanceMap();
-            initializeValueMap(distMap,-1);
+            initializeValueMap(distMap.MyPoints,-1);
             List<IPoint> currentPoints=new List<IPoint>(),adjacents=new List<IPoint>(),tempAdjacents;
             currentPoints.Add(src);
             //Put origin point in distance map, with distance 0
-            setDistancePointInMap(src, 0,distMap);
+            setPointInMap(src, 0,distMap.MyPoints);
             bool keepGoing=true;
             int distance=1;
 
@@ -655,7 +650,7 @@ namespace OpenGlGameCommon.Classes
                 //To the points left in adjacents, set distance in distMap
                 foreach (IPoint p in adjacents)
                 {
-                    setDistancePointInMap(p, distance, distMap);
+                    setPointInMap(p, distance, distMap.MyPoints);
                 }
 
                 //increase distance

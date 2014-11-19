@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="CharacterSystemLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\CharacterSystemLibrary.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,8 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drawables\DrawableGuard.cs" />
-    <Compile Include="Drawables\DrawablePC.cs" />
     <Compile Include="Drawables\DrawableMap.cs" />
     <Compile Include="Drawables\SneakingTile.cs" />
     <Compile Include="Interfaces\Behavior Interfaces\IGuardActionBehavior.cs" />

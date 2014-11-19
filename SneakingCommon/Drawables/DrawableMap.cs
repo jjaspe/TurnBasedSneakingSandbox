@@ -6,15 +6,14 @@ using OpenGlGameCommon.Classes;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
-using SneakingCommon.System_Classes;
-using SneakingCommon.Data_Classes;
+using SneakingCommon.System_Classes
 
 namespace SneakingCommon.Drawables
 {
     public class DrawableMap:OpenGlMap
     {
 
-        public DrawableMap(int width, int length, int _tileSize):base(width,length,_tileSize)
+        public DrawableMap(int width, int length, int _tileSize):base(width,length,_tileSize,null)
         {
             
         }
@@ -46,7 +45,7 @@ namespace SneakingCommon.Drawables
             List<IPoint> currentPoints = new List<IPoint>(), adjacents = new List<IPoint>(), tempAdjacents;
             currentPoints.Add(src);
             //Put origin point in distance map, with distance 0
-            this.setDistancePointInMap(src, level, noisePoints);
+            this.setPointInMap(src, level, noisePoints);
             bool keepGoing = true;
             level--;
 

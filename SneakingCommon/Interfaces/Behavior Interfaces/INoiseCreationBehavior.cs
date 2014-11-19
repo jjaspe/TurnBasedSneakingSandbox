@@ -9,6 +9,7 @@ using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.View;
 using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {

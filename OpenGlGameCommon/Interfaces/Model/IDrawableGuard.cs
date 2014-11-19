@@ -38,7 +38,7 @@ namespace OpenGlGameCommon.Interfaces.Model
             get;
             set;
         }
-        Character MyGuard
+        Character MyCharacter
         {
             get;
             set;

@@ -6,6 +6,7 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using SneakingCommon.Interfaces.Controller;
 using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 
 namespace SneakingCommon.Interfaces.Behaviors

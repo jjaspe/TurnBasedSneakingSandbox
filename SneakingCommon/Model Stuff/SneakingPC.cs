@@ -7,36 +7,16 @@ using OpenGlGameCommon.Classes;
 using Canvas_Window_Template.Interfaces;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
     public class SneakingPC:DrawablePC
     {
-        IDrawableGuard myPC;
-        public IDrawableGuard MyPC
-        {
-            get { return myPC; }
-            set { myPC = value; }
-        }
-
-        public IPoint MyPosition
-        {
-            get { return MyPC.getPosition(); }
-        }
-        public NoiseMap FoH
-        {
-            get { return MyPC.getNoiseMap(); }
-            set { MyPC.setNoiseMap(value); }
-        }
-        public List<IPoint> FOV
-        {
-            get { return MyPC.getFOV(); }
-            //set { MyPC.setFOV(value); }
-        }
         public string Name 
         { 
-            get{return MyPC.getName();} 
+            get{return MyCharacter.Name;} 
         }
 
         public SneakingPC():base()
@@ -44,16 +24,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
            
         }
 
-        #region Stat Stuff
-        /// <summary>
-        /// Gets value of a stat called statName
-        /// </summary>
-        /// <param name="statName"></param>
-        /// <returns></returns>
-        public int getValue(string statName)
-        {
-            return myPC.getValue(statName);
-        }
+        #region Stat Stuff        
         /// <summary>
         /// Decreases value of stat given by statName
         /// </summary>
@@ -61,7 +32,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// <param name="value"></param>
         public void decreaseValue(string statName, int value)
         {
-            MyPC.decreaseValue(statName, value);
+            MyCharacter.decreaseValue(statName, value);
         }
         /// <summary>
         /// Changes the value of a stat called statName
@@ -70,7 +41,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// <param name="value"></param>
         public void setValue(string statName, int value)
         {
-            MyPC.setValue(statName, value);
+            MyCharacter.setValue(statName, value);
         }
         #endregion
 
@@ -82,7 +53,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// </summary>
         new public void draw()
         {
-            if (this.getValue("Is Sneaking") == 1)
+            if (this.MyCharacter.getValue("Is Sneaking") == 1)
                 createLowImage();
             else
                 createHighImage();

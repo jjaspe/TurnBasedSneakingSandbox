@@ -58,7 +58,7 @@
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ObjectArg.cs" />
     <Compile Include="Classes\OpenGlMap.cs" />
-    <Compile Include="Classes\OpenGlPC.cs" />
+    <Compile Include="Entities\DrawablePC.cs" />
     <Compile Include="Classes\OpenGlWorld.cs" />
     <Compile Include="Classes\ArgNames.cs" />
     <Compile Include="Classes\ArgOwner.cs" />

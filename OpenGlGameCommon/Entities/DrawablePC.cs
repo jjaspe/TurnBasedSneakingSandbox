@@ -122,7 +122,7 @@ namespace OpenGlGameCommon.Classes
         #region IDRAWABLE
         public new void draw()
         {
-            if (this.MyGuard.getProperty("isSneaking").Value == 1)
+            if (this.MyCharacter.getProperty("isSneaking").Value == 1)
                 createLowImage();
             else
                 createHighImage();

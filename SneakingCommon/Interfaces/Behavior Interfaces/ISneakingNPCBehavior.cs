@@ -10,6 +10,7 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
+using OpenGlGameCommon.Data_Classes;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {
