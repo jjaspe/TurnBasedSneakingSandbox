@@ -1,0 +1,27 @@
+﻿This library will serve as a starting point for OpenGl prototype projects. 
+
+Base classes
+ - OpenGlMap: this is your basic grid map, you might want to inherit from it and give it some more 
+	specific functions, but as of now it can perform pathfinding and raytracing, and simple field of 
+	view calculations.
+	 It also implements IWorld so this will be the object that owns all things that can be drawn, 
+	 using its Drawables property. The tiles in the grid will by in property MyTiles. 
+
+	 Use: To build one just give it a width,length,size for the tiles, point of origin(bottom-left corner),
+	 and orientation (defaults to perpendicular to Z axis). To add things to draw just create IDrawables and
+	 add them to Drawables property, then call draw on the whole list.
+
+ - DrawableGuard: Basic character unit, but it can also be drawn. Its Character property holds character data
+ and it's behavior properties are used to tell it how to do things.
+
+ - DrawablePC: Similar to DrawableGuard, but in the future it might see some changes. As of now PC can crouch
+ but guards cant.
+
+ -valuePoint: Class with an IPoint with a value attached to it. Used in DistanceMap,NoiseMaps, etc.
+ 
+ -PatrolPath: Class used to hold a list of points that a DrawableGuard will follow. Extends OpenGlPath
+
+
+
+
+
