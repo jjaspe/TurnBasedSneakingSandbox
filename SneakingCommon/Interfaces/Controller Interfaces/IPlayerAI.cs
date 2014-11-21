@@ -4,19 +4,21 @@ using System.Linq;
 using System.Text;
 using SneakingCommon.System_Classes;
 using Canvas_Window_Template.Interfaces;  
-using SneakingCommon.MVC_Interfaces;
+
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.Behaviors;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Controller
 {
     public interface IPlayerAI
     {
-        void aiStart(IGuard pc, WorldMessage message, List<object> args);
-        void aiGo(IGuard pc, WorldMessage message, List<ObjectArg> args);
+        void aiStart(IDrawableGuard pc, WorldMessage message, List<object> args);
+        void aiGo(IDrawableGuard pc, WorldMessage message, List<ObjectArg> args);
         void setPlayerFoHBehavior(IPlayerFoHBehavior pB);
         void registerObserver(IPlayerObserver obs);
         void removeObserver(IPlayerObserver obs);

@@ -7,6 +7,7 @@ using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Behaviors;
 using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Controller
 {
@@ -14,7 +15,7 @@ namespace SneakingCommon.Interfaces.Controller
     {
         void messageSent(WorldMessage msg, List<ObjectArg> args);
         void initialize();
-        IGuard getActiveGuard();
+        IDrawableGuard getActiveGuard();
 
         void setNoiseCreationBehavior(INoiseCreationBehavior nB);
 

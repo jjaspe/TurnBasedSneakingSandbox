@@ -9,54 +9,56 @@ using SneakingCommon.Drawables;
 using System.Drawing;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
-using SneakingCommon.MVC_Interfaces;
 using SneakingCommon.Data_Classes;
-using SneakingCommon.Model_Stuff.Structure_Classes;
+using SneakingCommon.Interfaces.View;
+using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.View;
+using OpenGlGameCommon.Data_Classes;
+using OpenGlGameCommon.Interfaces.Model;
+using OpenGLGameCommon.Classes;
+using SneakingCommon.Interfaces.Behaviors;
+using OpenGlGameCommon.Exceptions;
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
-    public class SneakingMap:OpenGlMap
+    public class SneakingMap:OpenGlMap,ISneakingMap
     {
         static SneakingMap myInstance;
-        public static SneakingMap createInstance(IMap map,int width,int length, int _tileSize,IDrawableOwner dw)
+        public static SneakingMap createInstance(int width,int height, int _tileSize,IPoint origin)
         {
-            if(myInstance==null)
-                myInstance=new SneakingMap(map,width,length,_tileSize,dw);
-
+            myInstance = new SneakingMap(width, height, _tileSize, origin,Common.planeOrientation.Z);
+            if (origin == null)
+                myInstance.MyOrigin = new PointObj(-width * _tileSize / 2, -height * _tileSize / 2, 0);
+            else
+                myInstance.MyOrigin = origin;
+            myInstance.fillWall();
             return myInstance;
         }
 
-        #region ATTRIBUTES
-        wallObj myWall;
-        public wallObj MyWall
-        {
-            get { return myWall; }
-            set { myWall = value; }
-        }
-        IMap myMap;
-        public IMap MyMap
-        {
-            get { return myMap; }
-            set 
-            { 
-                myMap = value;
-                MyMap.setTileOrigins(this.getAllTileOrigins());
-            }
-        }
-        #endregion
+        INoiseCreationBehavior myNoiseCreationBehavior;
+        ILandscapeBehavior myLandscapeBehavior;
 
-        private SneakingMap(IMap map,int width, int length,int _tileSize,IDrawableOwner dw):base(width,length,_tileSize)
+        public ILandscapeBehavior LandscapeBehavior
         {
-            myWall = new wallObj();  
+            get { return myLandscapeBehavior; }
+            set { myLandscapeBehavior = value; }
+        }
+        public INoiseCreationBehavior NoiseCreationBehavior
+        {
+            get { return myNoiseCreationBehavior; }
+            set { myNoiseCreationBehavior = value; }
+        }
+
+        private SneakingMap(int width, int length,int tileSize,IPoint origin,Common.planeOrientation orientation=Common.planeOrientation.Z)
+            :base(width,length,tileSize,origin,orientation)
+        {
             initializeWall();
-            MyMap = map;
-            MyMap.setNoiseCreationBehavior(new NoiseCreationBehaviorView1(dw));
         }
         private void initializeWall()
         {
-            myWall.Orientation = 3;
-            myWall.defaultColor = new float[] { Color.Green.R / 256.0f, Color.GreenYellow.G / 256.0f, Color.Green.B / 256.0f };
-            myWall.defaultOutlineColor = new float[] { Color.Black.R / 256, Color.Black.G / 256, Color.Black.B / 256 };
+            Orientation = Common.planeOrientation.Z;
+            defaultColor = new float[] { Color.Green.R / 256.0f, Color.GreenYellow.G / 256.0f, Color.Green.B / 256.0f };
+            defaultOutlineColor = new float[] { Color.Black.R / 256, Color.Black.G / 256, Color.Black.B / 256 };
            
         }
 
@@ -69,6 +71,9 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
 
         #region WALL STUFF
+        /// <summary>
+        /// Override to create sneaking tiles instead of regular tiles
+        /// </summary>
         public override void fillWall()
         {
             tileObj[,] tiles = this.createTiles();
@@ -87,100 +92,23 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
         #endregion
 
-        #region DISTANCE MAP STUFF
-        public void setDistanceMaps(List<DistanceMap> distanceMaps)
-        {
-            MyMap.setDistanceMaps(distanceMaps);
-        }
-        public DistanceMap getDistanceMap(IPoint src)
-        {
-            return MyMap.getDistanceMap(src);
-        }
-        #endregion
-
         #region NOISE STUFF ACCESSORS
         public ModelNoiseMap createNoiseMap(IPoint src, int level)
         {
+            if (NoiseCreationBehavior == null)
+                throw new BehaviorNotSetException(NoiseCreationBehavior.GetType().ToString(), "SneakingMap:createNoiseMap");
             return new ModelNoiseMap(
-            MyMap.getCreationBehavior().createNoiseMap(src, level, MyMap));
+            NoiseCreationBehavior.createNoiseMap(src, level, this));
         }
         #endregion 
 
-        #region FIELD OF VIEW STUFF
-
-       
-        /*
-        public List<IPoint> getCone(IPoint src,OpenGlGuard.OpenGlGuardOrientation direction,int distance)
-        {
-            List<IPoint> conePoints=new List<IPoint>();
-            int startX=src.X/TileSize+MyWidth/2,startY=src.Y/TileSize+MyHeight/2;
-            Tile current;
-            #region FILL BY CASE
-            switch (direction)
-            {
-                case OpenGlGuard.OpenGlGuardOrientation.up:
-                    for(int i=0;i<distance && i+startY<MyHeight;i++)
-                    {
-                        for(int j=-i;j<=i&&j<MyWidth;j++)
-                        {
-                            current=getTile(new PointObj((startX+j-MyWidth/2)*TileSize,
-                                (startY+i-MyHeight/2)*TileSize,0));
-                            if(current!=null&&!hasBlockOnTop(current.MyOrigin))
-                                conePoints.Add(current.MyOrigin);
-                        }
-                    }
-                    break;
-                case OpenGlGuard.OpenGlGuardOrientation.right:
-                    for(int j=0;j<distance && j+startX<MyWidth;j++)
-                    {
-                        for(int i=-j;i<=j;i++)
-                        {                       
-                            current=getTile(new PointObj((startX+j-MyWidth/2)*TileSize,
-                                (startY+i-MyHeight/2)*TileSize,0));
-                            if(current!=null&&!hasBlockOnTop(current.MyOrigin))
-                                conePoints.Add(current.MyOrigin);
-                        }
-                    }
-                    break;
-                case OpenGlGuard.OpenGlGuardOrientation.down:
-                    for(int i=0;i<distance && startY-i>=0;i++)
-                    {
-                        for(int j=-i;j<=i&&j<MyWidth;j++)
-                        {
-                            current=getTile(new PointObj((startX+j-MyWidth/2)*TileSize,
-                                (startY-i-MyHeight/2)*TileSize,0));
-                            if(current!=null&&!hasBlockOnTop(current.MyOrigin))
-                                conePoints.Add(current.MyOrigin);
-                        }
-                    }
-                    break;
-                case OpenGlGuard.OpenGlGuardOrientation.left:
-                    for(int j=0;j<distance && startX-j<MyWidth;j++)
-                    {
-                        for(int i=-j;i<=j;i++)
-                        {                       
-                            current=getTile(new PointObj((startX-j-MyWidth/2)*TileSize,
-                                (startY+i-MyHeight/2)*TileSize,0));
-                            if(current!=null&&!hasBlockOnTop(current.MyOrigin))
-                                conePoints.Add(current.MyOrigin);
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-            #endregion
-            return conePoints;
-        }
-        */
-        #endregion
 
         #region PATHFINDING STUFF
-        public bool tileFreeFromGuards(List<IGuard> _guards, IPoint tilePosition)
+        public bool tileFreeFromGuards(List<IDrawableGuard> _guards, IPoint tilePosition)
         {
-            foreach (IGuard g in _guards)
+            foreach (IDrawableGuard g in _guards)
             {
-                if (g.getPosition().equals(tilePosition))
+                if (g.Position.equals(tilePosition))
                     return false;
             }
             return true;
@@ -199,8 +127,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
                 vPrevious.p=dest;
                 while (!vPrevious.p.equals(src))
                 {
-                    vPrevious = getPreviousInPath(getValuePoint(distMap.MyPoints, vPrevious.p), 
-                        availableTilesCopy, distMap.MyPoints);
+                    vPrevious = getPreviousInPath(getValuePoint(distMap, vPrevious.p), 
+                        availableTilesCopy, distMap);
                     if (vPrevious != null && vPrevious.p != null)
                     {
                         reverse.MyWaypoints.Add(vPrevious.p);
@@ -215,5 +143,56 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             return reverse;
         }
         #endregion
+
+        public List<IPoint> TileOrigins
+        {
+            get
+            {
+                return getAllTileOrigins();
+            }
+            set
+            {
+                return;
+            }
+        }
+
+        public List<DistanceMap> DistanceMaps
+        {
+            get
+            {
+                return MyDistanceMaps;
+            }
+            set
+            {
+                MyDistanceMaps=value;
+            }
+        }
+
+        
+
+        public List<IPoint> getReachablePoints(IPoint source)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool isTile(IPoint source)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void lightPoints(List<IPoint> points)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int getValue(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setValue(string name, int value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

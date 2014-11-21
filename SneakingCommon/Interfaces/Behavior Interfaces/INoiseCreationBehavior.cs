@@ -5,16 +5,17 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using SneakingCommon.Model_Stuff;
-using SneakingCommon.Model_Stuff.Structure_Classes;
 using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
+using SneakingCommon.Interfaces.View;
+using SneakingCommon.Interfaces.Model;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Interfaces.Behaviors
 {
     public interface INoiseCreationBehavior
     {
-        NoiseMap createNoiseMap(IPoint src, int level, IMap map);
+        NoiseMap createNoiseMap(IPoint src, int level, ISneakingMap map);
         void setDrawableOwner(IDrawableOwner _dw);
     }
 }

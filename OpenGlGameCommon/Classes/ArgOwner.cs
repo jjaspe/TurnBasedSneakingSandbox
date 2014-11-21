@@ -110,15 +110,15 @@ namespace OpenGlGameCommon.Classes
                 ObjectArg current;
                 current = args.Find(
                     delegate(ObjectArg _arg) { return _arg.myName.Equals(ArgNames.guards); });
-                guards = current == null ? guards : (List<IGuard>)current.myData;
+                guards = current == null ? guards : (List<IDrawableGuard>)current.myData;
 
                 current = args.Find(
                     delegate(ObjectArg _arg) { return _arg.myName.Equals(ArgNames.PC); });
-                pcArg = current == null ? pcArg : (IGuard)current.myData;
+                pcArg = current == null ? pcArg : (IDrawableGuard)current.myData;
 
                 current = args.Find(
                     delegate(ObjectArg _arg) { return _arg.myName.Equals(ArgNames.selectedGuard); });
-                selectedGuardArg = current == null ? selectedGuardArg : (IGuard)current.myData;
+                selectedGuardArg = current == null ? selectedGuardArg : (IDrawableGuard)current.myData;
 
                 current = args.Find(
                     delegate(ObjectArg _arg) { return _arg.myName.Equals(ArgNames.PlayerMaster); });
@@ -134,7 +134,7 @@ namespace OpenGlGameCommon.Classes
 
                 current = args.Find(
                     delegate(ObjectArg _arg) { return _arg.myName.Equals(ArgNames.Guard); });
-                guardArg = current == null ? guardArg : (IGuard)current.myData;
+                guardArg = current == null ? guardArg : (IDrawableGuard)current.myData;
 
                 current = args.Find(
                     delegate(ObjectArg _arg) { return _arg.myName.Equals(ArgNames.tileOrigin); });

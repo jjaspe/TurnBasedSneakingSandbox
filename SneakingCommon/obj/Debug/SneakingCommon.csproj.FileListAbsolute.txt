@@ -12,3 +12,17 @@ C:\Users\Juan\Documents\Visual Studio 2010\Projects\OpenGl projects\SneakingClas
 C:\Users\Juan\Documents\Visual Studio 2010\Projects\OpenGl projects\SneakingClasses\obj\Debug\SneakingCommon.MVC_Interfaces.Map_Visualizer.resources
 C:\Users\Juan\Documents\Visual Studio 2010\Projects\OpenGl projects\SneakingClasses\obj\Debug\SneakingCommon.MVC_Interfaces.PathVisualizer.resources
 C:\Users\Juan\Documents\Visual Studio 2010\Projects\OpenGl projects\SneakingClasses\obj\Debug\SneakingCommon.csproj.GenerateResource.Cache
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingClasses.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingClasses.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingCommon.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingClasses.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingClasses.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Canvas Window Template.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\ISE.FreeType.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Canvas Window Template.pdb

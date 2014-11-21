@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SneakingCommon.Interfaces.Controller;
+using SneakingCommon.Interfaces.Observer_Pattern;
+using SneakingCommon.Interfaces.Model;
 
-namespace SneakingCommon.MVC_Interfaces
+namespace SneakingCommon.Interfaces.View
 {
     public interface IView:IModelObserver
     {

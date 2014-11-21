@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="CharacterSystemLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,23 +54,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DistanceMap.cs" />
+    <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ObjectArg.cs" />
-    <Compile Include="Classes\OpenGlGuard.cs" />
     <Compile Include="Classes\OpenGlMap.cs" />
-    <Compile Include="Classes\OpenGlPC.cs" />
+    <Compile Include="Drawables\DrawablePC.cs" />
     <Compile Include="Classes\OpenGlWorld.cs" />
-    <Compile Include="Classes\ArgNames.cs" />
     <Compile Include="Classes\ArgOwner.cs" />
     <Compile Include="Classes\OpenGlPath.cs" />
+    <Compile Include="Classes\Patrol Path.cs" />
+    <Compile Include="Classes\ValueMap.cs" />
     <Compile Include="Classes\valuePoint.cs" />
-    <Compile Include="Classes\World.cs" />
-    <Compile Include="Entities\Guard.cs" />
-    <Compile Include="Entities\PC.cs" />
+    <Compile Include="Drawables\DrawableGuard.cs" />
+    <Compile Include="Exceptions\BehaviorNotSetException.cs" />
+    <Compile Include="Exceptions\GeneralException.cs" />
+    <Compile Include="Implementations\FoVBehaviorAll.cs" />
+    <Compile Include="Implementations\FoVBehaviorCone.cs" />
+    <Compile Include="Implementations\FoVBehaviorNone.cs" />
+    <Compile Include="Interfaces\Behaviors\IAttackBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\IGuardFoVBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\IGuardMovementBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\ILandscapeBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\IOrientationBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\IPlayerFoVBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\ISequenceBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\ITileBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\IVisibilityBehavior.cs" />
+    <Compile Include="Interfaces\Behaviors\IVisibleGuardsBehavior.cs" />
     <Compile Include="Interfaces\IFormObservable.cs" />
     <Compile Include="Interfaces\IFormObserver.cs" />
     <Compile Include="Interfaces\ITemplateForm.cs" />
+    <Compile Include="Interfaces\Model\IAttack.cs" />
+    <Compile Include="Interfaces\Model\IDrawableOwner.cs" />
+    <Compile Include="Interfaces\Model\IGameMaster.cs" />
+    <Compile Include="Interfaces\Model\IGoal.cs" />
+    <Compile Include="Interfaces\Model\IDrawableGuard.cs" />
+    <Compile Include="Interfaces\Model\IGuardAgent.cs" />
+    <Compile Include="Interfaces\Model\IMap.cs" />
+    <Compile Include="Interfaces\Patterns\IGuardObserver.cs" />
+    <Compile Include="Interfaces\Patterns\IPlayerObserver.cs" />
+    <Compile Include="Interfaces\Patterns\IWorldObservable.cs" />
+    <Compile Include="Interfaces\Patterns\IWorldObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
