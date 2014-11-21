@@ -1,14 +1,11 @@
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.csprojResolveAssemblyReference.cache
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlMapTester.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlMapTester.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Canvas Window Template.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\CharacterSystemLibrary.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\CreationClassesLibrary.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.Platform.Windows.dll
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\ISE.FreeType.dll
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.OpenGl.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\CreationClassesLibrary.pdb
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Canvas Window Template.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.csprojResolveAssemblyReference.cache
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.pdb

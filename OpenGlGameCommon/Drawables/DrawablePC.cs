@@ -6,10 +6,9 @@ using CharacterSystemLibrary.Classes;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
-using OpenGlGameCommon.Entities;
-using OpenGlGameCommon.Drawables;
+using OpenGlGameCommon.Classes;
 
-namespace OpenGlGameCommon.Classes
+namespace OpenGlGameCommon.Drawables
 {
     public class DrawablePC:DrawableGuard
     {

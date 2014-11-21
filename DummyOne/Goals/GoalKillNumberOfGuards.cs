@@ -8,6 +8,7 @@ using System.Xml;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.System_Classes;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace DummyOne.Goals
 {
@@ -21,11 +22,11 @@ namespace DummyOne.Goals
         }
         public bool goalReached(ArgOwner argOwner)
         {
-            List<IGuard> guards = (List<IGuard>)argOwner.getArg(ArgNames.guards);
+            List<IDrawableGuard> guards = (List<IDrawableGuard>)argOwner.getArg(ArgNames.guards);
             int n = 0;
-            foreach (IGuard g in guards)
+            foreach (IDrawableGuard g in guards)
             {
-                if (g.getValue("Dead") == 1)
+                if (g.MyCharacter.getValue("Dead") == 1)
                     n++;
             }
             return (n >= NumberOfGuards);

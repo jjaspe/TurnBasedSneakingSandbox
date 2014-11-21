@@ -5,14 +5,11 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;                                     
 using Canvas_Window_Template.Drawables;
-using Canvas_Window_Template.Interfaces;                               
-using Canvas_Window_Template.Drawables;
-using Canvas_Window_Template.Interfaces;
-using Canvas_Window_Template.Drawables;
 using System.Xml;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.System_Classes;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace DummyOne.Goals
 {
@@ -28,11 +25,11 @@ namespace DummyOne.Goals
         }
         public bool goalReached(ArgOwner argOwner)
         {
-            IGuard pc=(IGuard)argOwner.getArg(ArgNames.PC);
+            IDrawableGuard pc=(IDrawableGuard)argOwner.getArg(ArgNames.PC);
             if(pc==null)
                 return false;
-            IPoint pcPosition = pc.getPosition();
-            int ap=pc.getValue("Remaining AP");
+            IPoint pcPosition = pc.Position;
+            int ap=(int)pc.MyCharacter.getValue("Remaining AP");
             return (TilePosition.equals(pcPosition) && ap>=APLeft);
         }
 

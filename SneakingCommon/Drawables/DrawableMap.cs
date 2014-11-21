@@ -6,7 +6,7 @@ using OpenGlGameCommon.Classes;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
-using SneakingCommon.System_Classes
+using SneakingCommon.System_Classes;
 
 namespace SneakingCommon.Drawables
 {

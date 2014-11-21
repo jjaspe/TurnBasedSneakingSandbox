@@ -8,6 +8,7 @@ using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.Behaviors;
+using OpenGlGameCommon.Data_Classes;
 
 
 namespace SneakingCommon.Model_Stuff

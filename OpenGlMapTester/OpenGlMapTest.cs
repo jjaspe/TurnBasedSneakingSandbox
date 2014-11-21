@@ -76,7 +76,7 @@ namespace OpenGlMapTester
             int width = 0; // TODO: Initialize to an appropriate value
             int length = 0; // TODO: Initialize to an appropriate value
             int _tileSize = 0; // TODO: Initialize to an appropriate value
-            OpenGlMap target = OpenGlMap.createInstance(width, length, _tileSize,null);
+            OpenGlMap target = new OpenGlMap(width, length, _tileSize,null);
             Assert.IsNotNull(target);
         }
 
@@ -89,7 +89,7 @@ namespace OpenGlMapTester
             int width = 0; // TODO: Initialize to an appropriate value
             int length = 0; // TODO: Initialize to an appropriate value
             int _tileSize = 0; // TODO: Initialize to an appropriate value
-            OpenGlMap map = OpenGlMap.createInstance(width, length, _tileSize,null);
+            OpenGlMap map = new OpenGlMap(width, length, _tileSize,null);
             object target = map.MyTiles;
             Assert.IsNotNull(target);
         }
@@ -105,7 +105,7 @@ namespace OpenGlMapTester
             int _tileSize = 0; // TODO: Initialize to an appropriate value
             IPoint origin = new pointObj(0, 0, 0);
             int expected = 0;
-            OpenGlMap map = OpenGlMap.createInstance(width, length, _tileSize,origin);
+            OpenGlMap map = new OpenGlMap(width, length, _tileSize,origin);
             List<IDrawable> target = map.Drawables;
             int actual = target.Count;
             Assert.AreEqual(expected,actual);
@@ -142,7 +142,7 @@ namespace OpenGlMapTester
             int width = 0; // TODO: Initialize to an appropriate value
             int length = 0; // TODO: Initialize to an appropriate value
             int _tileSize = 0; // TODO: Initialize to an appropriate value
-            OpenGlMap map = OpenGlMap.createInstance(width, length, _tileSize, null);
+            OpenGlMap map = new OpenGlMap(width, length, _tileSize, null);
             object target = map.Drawables;
             Assert.IsNotNull(target);
         }
@@ -158,7 +158,7 @@ namespace OpenGlMapTester
             int _tileSize = 0; // TODO: Initialize to an appropriate value
             IPoint origin = new pointObj(0, 0, 0);
             int expected = width * length;
-            OpenGlMap map = OpenGlMap.createInstance(width, length, _tileSize,origin);
+            OpenGlMap map = new OpenGlMap(width, length, _tileSize, origin);
             tileObj[,] target = map.MyTiles;
             int actual = target.Length;
             Assert.AreEqual(expected,actual);

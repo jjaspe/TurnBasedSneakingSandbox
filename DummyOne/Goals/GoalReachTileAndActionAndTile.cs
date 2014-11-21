@@ -8,6 +8,7 @@ using System.Xml;
 using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.System_Classes;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace DummyOne.Goals
 {

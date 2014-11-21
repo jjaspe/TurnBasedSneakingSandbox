@@ -38,12 +38,15 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         public List<IPoint> rememberedPoints = new List<IPoint>();
         NoiseMap myNoiseMap;
         NoiseMap myKnownNoiseMap;
-        ISneakingNPCBehavior NPCBehavior
+
+
+
+        public ISneakingNPCBehavior SneakingNPCBehavior
         {
             get;
             set;
         }
-        IKnownNoiseMapBehavior KnownNoiseMapBehavior
+        public IKnownNoiseMapBehavior KnownNoiseMapBehavior
         {
             get;
             set;
@@ -59,10 +62,6 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             set;
         }
         
-        public new IPoint MyPosition
-        {
-            get { return Position; }
-        }
         public string MyName
         {
             get { return MyCharacter.Name; }
@@ -123,11 +122,11 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             int tileSize = MySize * 2;
             //Create a blue rectangle, that extends to edge of tile only on orientation direction
             // The other sides will be shortened by tileSize/4
-            if(MyPosition==null)
+            if(Position==null)
                 return;
             int sizeDiff=tileSize-size;
             IPoint _bLeft=new PointObj(),_bRight=new PointObj(),
-                _tLeft=new PointObj(),_tRight=new PointObj(),_tO=MyPosition;
+                _tLeft=new PointObj(),_tRight=new PointObj(),_tO=Position;
             GuardRectangle rect = new GuardRectangle();
 
             #region Determine orientation
@@ -194,7 +193,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// <returns></returns>
         public IPoint getEyeLevel(SneakingMap map)
         {
-            SneakingTile tile = (SneakingTile)map.getTile(MyPosition);
+            SneakingTile tile = (SneakingTile)map.getTile(Position);
             return new PointObj((int)tile.getCenter()[0],
                 (int)tile.getCenter()[1],
                 2 * tile.TileSize);
@@ -202,9 +201,9 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
 
         public void reset()
         {
-            Position = NPCBehavior.getPatrol().MyWaypoints[0];
+            Position = SneakingNPCBehavior.getPatrol().MyWaypoints[0];
             MyNoiseMap.initialize(0);
-            NPCBehavior.reset();
+            SneakingNPCBehavior.reset();
         }
       
 
@@ -284,7 +283,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         {
             NoiseMap newNoiseMap = noiseMap;
             newNoiseMap.modify((int)this.MyCharacter.getStat("Perception").Value,
-                                map.getDistanceMap(this.MyPosition).MyPoints);//Modify noise map
+                                map.getDistanceMap(this.Position).MyPoints);//Modify noise map
             return newNoiseMap;
         }
         /// <summary>

@@ -56,12 +56,6 @@
     <Compile Include="Goals\GoalReachTile.cs" />
     <Compile Include="Goals\GoalReachTileAndAction.cs" />
     <Compile Include="Goals\GoalReachTileAndActionAndTile.cs" />
-    <Compile Include="Model Classes\Attack.cs" />
-    <Compile Include="Model Classes\GameMaster.cs" />
-    <Compile Include="Model Classes\Guard.cs" />
-    <Compile Include="Model Classes\Map.cs" />
-    <Compile Include="Model Classes\PC.cs" />
-    <Compile Include="Model Classes\XmlLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,7 +69,6 @@
       <Name>SneakingCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

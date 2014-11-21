@@ -17,13 +17,14 @@ using OpenGlGameCommon.Data_Classes;
 using OpenGlGameCommon.Interfaces.Model;
 using OpenGLGameCommon.Classes;
 using SneakingCommon.Interfaces.Behaviors;
+using OpenGlGameCommon.Exceptions;
 
 namespace Sneaking_Gameplay.Sneaking_Drawables
 {
     public class SneakingMap:OpenGlMap,ISneakingMap
     {
         static SneakingMap myInstance;
-        public static SneakingMap createInstance(ISneakingMap map,int width,int height, int _tileSize,IPoint origin)
+        public static SneakingMap createInstance(int width,int height, int _tileSize,IPoint origin)
         {
             myInstance = new SneakingMap(width, height, _tileSize, origin,Common.planeOrientation.Z);
             if (origin == null)
@@ -52,12 +53,10 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             :base(width,length,tileSize,origin,orientation)
         {
             initializeWall();
-            //MyMap.setNoiseCreationBehavior(new NoiseCreationBehaviorView1(dw));
-            throw new Exception("Noise creation behavior in Sneaking map not set, Sneaking map constructor");
         }
         private void initializeWall()
         {
-            Orientation = 3;
+            Orientation = Common.planeOrientation.Z;
             defaultColor = new float[] { Color.Green.R / 256.0f, Color.GreenYellow.G / 256.0f, Color.Green.B / 256.0f };
             defaultOutlineColor = new float[] { Color.Black.R / 256, Color.Black.G / 256, Color.Black.B / 256 };
            
@@ -96,6 +95,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         #region NOISE STUFF ACCESSORS
         public ModelNoiseMap createNoiseMap(IPoint src, int level)
         {
+            if (NoiseCreationBehavior == null)
+                throw new BehaviorNotSetException(NoiseCreationBehavior.GetType().ToString(), "SneakingMap:createNoiseMap");
             return new ModelNoiseMap(
             NoiseCreationBehavior.createNoiseMap(src, level, this));
         }

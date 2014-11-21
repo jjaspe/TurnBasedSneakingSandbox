@@ -9,6 +9,9 @@ using SneakingCommon.Data_Classes;
 
 namespace SneakingCommon.Data_Classes
 {
+    /// <summary>
+    /// Models a grid(MyNoisePoints) where each point has a value corresponding to the noise there 
+    /// </summary>
     public class NoiseMap
     {
         public List<valuePoint> MyNoisePoints;
@@ -160,6 +163,11 @@ namespace SneakingCommon.Data_Classes
             else
                 return 0;
         }
+
+        /// <summary>
+        /// Sets all points in points to noise=0
+        /// </summary>
+        /// <param name="points"></param>
         public void silencePoints(List<IPoint> points)
         {
             foreach (IPoint p in points)
@@ -167,6 +175,9 @@ namespace SneakingCommon.Data_Classes
                 setNoise(p, 0);
             }
         }
+        /// <summary>
+        /// Sets all points to noise=0
+        /// </summary>
         public void silenceAllPoints()
         {
             foreach (valuePoint vp in MyNoisePoints)
@@ -174,6 +185,10 @@ namespace SneakingCommon.Data_Classes
                 setNoise(vp.p, 0);
             }
         }
+        /// <summary>
+        /// Starts all points with noise=value
+        /// </summary>
+        /// <param name="value"></param>
         public void initialize(int value = 0)
         {
             foreach (valuePoint vp in MyNoisePoints)
