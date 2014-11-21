@@ -20,25 +20,29 @@ namespace SneakingCommonTests
     {
         XmlDocument fullMapDoc;
         XmlDocument bareMapDoc;
-        String saveFileName = Path.GetDirectoryName("//") + "saveTestMap.mgg";
+        String saveFileName = Path.GetDirectoryName("//..//..//") + "saveTestMap.mgg";
 
-        void openMapFile(String title, ref XmlDocument doc)
+        void openMapFileWithDialog(String title, ref XmlDocument doc)
         {
             OpenFileDialog mapDialog = new OpenFileDialog() { Title = title };
             mapDialog.Filter = "map Files (*.mgg)|*.mgg";
             mapDialog.DefaultExt = ".mgg";
             mapDialog.InitialDirectory = "//";
-            String fileName = mapDialog.ShowDialog() == DialogResult.OK ? mapDialog.FileName : null;
-            FileStream mapFileReader;
-            if (fileName == null)
+            String filename = mapDialog.ShowDialog() == DialogResult.OK ? mapDialog.FileName : null;            
+            if (filename == null)
             {
                 MessageBox.Show("Couldn't find file");
                 return;
             }
-
+            openMapFileWithFilename(filename, ref doc);
+            
+        }
+        void openMapFileWithFilename(String filename, ref XmlDocument doc)
+        {
+            FileStream mapFileReader;
             try
             {
-                mapFileReader = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             }
             catch (Exception ex)
             {
@@ -61,8 +65,8 @@ namespace SneakingCommonTests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            openMapFile("Open Full Map", ref fullMapDoc);
-            openMapFile("Open Bare Map", ref bareMapDoc);
+            openMapFileWithDialog("Open Full Map", ref fullMapDoc);
+            openMapFileWithDialog("Open Bare Map", ref bareMapDoc);
         }
 
         /// <summary>
@@ -166,13 +170,22 @@ namespace SneakingCommonTests
 
 
         /// <summary>
-        /// Tests whether bare maps are saved correctly
+        /// Tests whether bare maps are saved correctly, and it has all the nodes
         /// </summary>
         [TestMethod]
         public void saveBareTest()
         {
+            //Load map from a tested map file
             SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);
+            //Save it to a new map file
             XmlLoader.saveBareMap(saveFileName, map);
+            //Load the new map file
+            XmlDocument target= null;
+            openMapFileWithFilename(saveFileName, ref target);
+            SneakingMap actual = XmlLoader.loadBareMap(target);
+            //Compare
+            //Assert.AreEqual(map, actual);
+
         }
 
         /// <summary>

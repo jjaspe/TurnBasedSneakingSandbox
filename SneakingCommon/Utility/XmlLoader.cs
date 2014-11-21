@@ -345,11 +345,22 @@ namespace SneakingCommon.Utility
             creator.Load(filename); 
             
             XmlNode root = creator.DocumentElement;
+            XmlNode mapNode = creator.CreateElement("Map"),widthNode=creator.CreateElement("Width"),lengthNode=
+                creator.CreateElement("Length"),tileSizeNode=creator.CreateElement("Tile_Size");
+
+            widthNode.InnerText = map.MyWidth.ToString();
+            lengthNode.InnerText = map.MyLength.ToString();
+            tileSizeNode.InnerText = map.TileSize.ToString();
+
+            mapNode.AppendChild(widthNode.Clone());
+            mapNode.AppendChild(lengthNode.Clone());
+            mapNode.AppendChild(tileSizeNode.Clone());
 
             List<XmlNode> geometryNodes = getGeometryNodes(map, creator);
-
             foreach (XmlNode node in geometryNodes)
-                root.AppendChild(node.Clone());
+                mapNode.AppendChild(node.Clone());
+
+            root.AppendChild(mapNode);
 
             creator.Save(filename);
         }
