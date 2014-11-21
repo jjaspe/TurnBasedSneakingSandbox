@@ -7,30 +7,23 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
+using OpenGlGameCommon.Enums;
 
 namespace OpenGlGameCommon.Drawables
 {
     public class DrawablePC:DrawableGuard
     {
         public static int pcIds = 7;
-        public static int idType=7;        
+        public new static int idType=7;        
         int myId;
 
-        public IDrawable myImage;
-        int eyeLevel;
-        int mySize;        
-        int imageSize = 10;        
-        public GuardOrientation MyOrientation;
+        int eyeLevel;     
+        int imageSize = 10;   
 
         public int ImageSize
         {
           get { return imageSize; }
           set { imageSize = value; }
-        }
-        public int MySize
-        {
-            get { return mySize; }
-            set { mySize = value; }
         }
         public void assignId()
         {

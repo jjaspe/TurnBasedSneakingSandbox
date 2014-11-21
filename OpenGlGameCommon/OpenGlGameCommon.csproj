@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenGlGameCommon</RootNamespace>
-    <AssemblyName>CreationClassesLibrary</AssemblyName>
+    <AssemblyName>OpenGlGameCommon</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

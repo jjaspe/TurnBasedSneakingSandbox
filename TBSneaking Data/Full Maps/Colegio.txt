@@ -1,0 +1,17 @@
+Base de datos Colegio
+Tabla Profesor
+	id
+	nombre
+Tabla grupo
+	id
+	nombre
+	idCurso
+Tabla curso
+	id
+	nombre
+	
+Cada profe con un conjunto de grupos
+
+Cada grupo un unico profe
+
+cada grupo un curso, cada curso varios grupos

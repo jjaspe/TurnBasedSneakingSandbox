@@ -8,6 +8,7 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGLGameCommon.Classes;
 using OpenGlGameCommon.Interfaces.Model;
+using OpenGlGameCommon.Enums;
 
 
 namespace OpenGlGameCommon.Classes
@@ -32,7 +33,7 @@ namespace OpenGlGameCommon.Classes
         /// <summary>
         /// List of A* generated maps.
         /// </summary>
-        public List<DistanceMap> MyDistanceMaps
+        public List<DistanceMap> DistanceMaps
         {
             get
             {
@@ -256,11 +257,11 @@ namespace OpenGlGameCommon.Classes
         #region DISTANCE MAP STUFF
         public void setDistanceMaps(List<DistanceMap> distanceMaps)
         {
-            MyDistanceMaps = distanceMaps;
+            DistanceMaps = distanceMaps;
         }
         public DistanceMap getDistanceMap(IPoint src)
         {
-            return MyDistanceMaps.Find(n => n.MyOrigin.equals(src));
+            return DistanceMaps.Find(n => n.MyOrigin.equals(src));
         }
         #endregion
 

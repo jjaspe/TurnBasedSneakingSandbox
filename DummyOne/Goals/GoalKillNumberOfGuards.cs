@@ -9,6 +9,7 @@ using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.System_Classes;
 using OpenGlGameCommon.Interfaces.Model;
+using SneakingCommon.Enums;
 
 namespace DummyOne.Goals
 {
@@ -22,7 +23,7 @@ namespace DummyOne.Goals
         }
         public bool goalReached(ArgOwner argOwner)
         {
-            List<IDrawableGuard> guards = (List<IDrawableGuard>)argOwner.getArg(ArgNames.guards);
+            List<IDrawableGuard> guards = (List<IDrawableGuard>)argOwner.getArg((int)ArgNames.guards);
             int n = 0;
             foreach (IDrawableGuard g in guards)
             {

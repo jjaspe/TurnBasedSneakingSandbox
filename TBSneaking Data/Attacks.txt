@@ -1,0 +1,20 @@
+<Root>
+	<Attack>
+		<Name>Fast</Name>
+		<APCost>2</APCost>
+		<Noise>5</Noise>
+		<Damage>4</Damage>
+	</Attack>
+	<Attack>
+		<Name>Normal</Name>
+		<APCost>2</APCost>
+		<Noise>6</Noise>
+		<Damage>6</Damage>
+	</Attack>
+	<Attack>
+		<Name>Strong</Name>
+		<APCost>6</APCost>
+		<Noise>8</Noise>
+		<Damage>8</Damage>
+	</Attack>
+</Root>

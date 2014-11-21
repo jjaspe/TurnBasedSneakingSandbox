@@ -28,7 +28,7 @@ namespace OpenGlGameCommon.Data_Classes
             get { return guardOwners; }
             set { guardOwners = Math.Max(0, value); }
         }
-        public XmlElement toXml(XmlDocument doc)
+        public new XmlElement toXml(XmlDocument doc)
         {
             XmlElement top = doc.CreateElement("Patrol"), current;
             XmlNode positionXNode, positionYNode;
@@ -46,7 +46,7 @@ namespace OpenGlGameCommon.Data_Classes
             return top;
         }
 
-        public void createDirectionLines(int tileSize)
+        public new void createDirectionLines(int tileSize)
         {
             directionLines = new List<DirectionLine>();
             int offset = tileSize / 2;

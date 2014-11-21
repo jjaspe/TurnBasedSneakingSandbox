@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="1281095e-38ef-45ed-b0f3-58cb21a98cbd" name="Juan@CARMEN-PC 2014-11-21 15:56:41" runUser="Carmen-PC\Juan" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Juan_CARMEN-PC 2014-11-21 15_56_41">
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingClasses.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-11-21T15:56:41.6513575-05:00" queuing="2014-11-21T15:56:41.9793762-05:00" start="2014-11-21T15:56:42.1913883-05:00" finish="2014-11-21T15:56:46.6436430-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="loadBareMapFail" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="35ce7586-f9e4-0fdb-e840-4cb2e9f46527">
+      <Execution id="81607015-201c-4f42-84bc-c6360ffa7ec5" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadBareMapFail" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="35ce7586-f9e4-0fdb-e840-4cb2e9f46527" executionId="81607015-201c-4f42-84bc-c6360ffa7ec5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="81607015-201c-4f42-84bc-c6360ffa7ec5" testId="35ce7586-f9e4-0fdb-e840-4cb2e9f46527" testName="loadBareMapFail" computerName="CARMEN-PC" duration="00:00:03.4842310" startTime="2014-11-21T15:56:42.3163955-05:00" endTime="2014-11-21T15:56:46.4846339-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="81607015-201c-4f42-84bc-c6360ffa7ec5">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables; 
-using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Classes;
 
 namespace OpenGlGameCommon.Interfaces.Behaviors

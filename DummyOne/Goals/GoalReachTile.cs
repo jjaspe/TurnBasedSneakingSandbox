@@ -10,6 +10,7 @@ using OpenGlGameCommon.Classes;
 using SneakingCommon.Interfaces.Model;
 using SneakingCommon.System_Classes;
 using OpenGlGameCommon.Interfaces.Model;
+using SneakingCommon.Enums;
 
 namespace DummyOne.Goals
 {
@@ -22,7 +23,7 @@ namespace DummyOne.Goals
         }
         public bool goalReached(ArgOwner argOwner)
         {
-            IPoint pcPosition = ((IDrawableGuard)argOwner.getArg(ArgNames.PC)).Position;
+            IPoint pcPosition = ((IDrawableGuard)argOwner.getArg((int)ArgNames.PC)).Position;
             return (TilePosition.equals(pcPosition));
         }
 

@@ -7,6 +7,7 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Interfaces.Behaviors;
 using OpenGlGameCommon.Interfaces.Model;
+using OpenGlGameCommon.Enums;
 
 namespace Sneaking_Gameplay.Game_Components.Implementations.Behaviors
 {

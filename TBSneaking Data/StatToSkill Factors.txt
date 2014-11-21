@@ -1,0 +1,12 @@
+<Root>
+	<APConstant>2</APConstant>
+	<APFactor>1</APFactor>
+	<FoVConstant>0</FoVConstant>
+	<FoVFactor>1</FoVFactor>
+	<FoHConstant>0</FoHConstant>
+	<FoHFactor>1</FoHFactor>
+	<SPConstant>0</SPConstant>
+	<SPFactor>1</SPFactor>
+	<HealthConstant>0</HealthConstant>
+	<HealthFactor>2</HealthFactor>
+</Root>

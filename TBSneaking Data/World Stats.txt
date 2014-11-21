@@ -1,0 +1,144 @@
+<Root>
+  <Character>
+    <Is_Empty>False</Is_Empty>
+    <Name>World</Name>
+    <Attributes />
+    <Skills />
+    <Stats>
+      <Stat>
+        <Name>movementCost</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  <Stat>
+        <Name>guardMovementCost</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  <Stat>
+        <Name>guardTurningCost</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat>
+	  <Stat>
+        <Name>guardSneakingMovementCost</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  <Stat>
+        <Name>guardSneakingTurningCost</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 	  
+		<Stat>
+        <Name>playerMovementCost</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 	  
+	  <Stat>
+        <Name>playerSneakingMovementCost</Name>
+        <BaseValue>4</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+        <Name>playerSneakingTurningCost</Name>
+        <BaseValue>0</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+        <Name>turningCost</Name>
+        <BaseValue>0</BaseValue>		
+      </Stat> 
+	  
+      <Stat>
+        <Name>turnOver</Name>
+        <BaseValue>0</BaseValue>		
+      </Stat> 	 
+	<Stat>
+        <Name>noiseDistanceFromSourceDropoff</Name>
+        <BaseValue>1</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>noiseLowWallFactor</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>noiseHighWallFactor</Name>
+        <BaseValue>4</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>noiseDistanceFromListenerDropoff</Name>
+        <BaseValue>1</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>detectionByNoiseThreshhold</Name>
+        <BaseValue>3</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>movementNoise</Name>
+        <BaseValue>8</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>playerMovementNoise</Name>
+        <BaseValue>6</BaseValue>		
+	</Stat> 
+	
+	<Stat>
+        <Name>guardMovementNoise</Name>
+        <BaseValue>6</BaseValue>		
+	</Stat> 
+	
+	<Stat>
+        <Name>playerSneakingMovementNoise</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+        <Name>guardSneakingMovementNoise</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  
+	 <Stat>
+		<Name>turningNoise</Name>
+		<BaseValue>0</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+		<Name>playerSneakingTurningNoise</Name>
+		<BaseValue>0</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+		<Name>guardSneakingTurningNoise</Name>
+		<BaseValue>0</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>noiseDecreaseByTurn</Name>
+        <BaseValue>8</BaseValue>		
+      </Stat> 
+	  
+	<Stat>
+        <Name>noiseDecreaseByMove</Name>
+        <BaseValue>2</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+        <Name>Status Alert</Name>
+        <BaseValue>20</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+        <Name>Status Suspicious</Name>
+        <BaseValue>18</BaseValue>		
+      </Stat> 
+	  
+	  <Stat>
+        <Name>Status Normal</Name>
+        <BaseValue>12</BaseValue>		
+      </Stat> 
+	  
+
+    </Stats>
+  </Character>
+</Root>

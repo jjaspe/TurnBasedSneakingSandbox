@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="89b7b14a-e9e9-4636-89f0-475dd9bcafa5" name="Juan@CARMEN-PC 2014-11-21 15:33:51" runUser="Carmen-PC\Juan" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Juan_CARMEN-PC 2014-11-21 15_33_51">
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingClasses.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-11-21T15:33:51.7250021-05:00" queuing="2014-11-21T15:33:51.7760051-05:00" start="2014-11-21T15:33:51.8490092-05:00" finish="2014-11-21T15:33:58.6603988-05:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="loadMapWithGuardsTest" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="5e6e334d-2cca-c346-a25d-291eef8683ac">
+      <Execution id="544c4776-e10f-422d-9700-b25066bdbe6c" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadMapWithGuardsTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="5e6e334d-2cca-c346-a25d-291eef8683ac" executionId="544c4776-e10f-422d-9700-b25066bdbe6c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="544c4776-e10f-422d-9700-b25066bdbe6c" testId="5e6e334d-2cca-c346-a25d-291eef8683ac" testName="loadMapWithGuardsTest" computerName="CARMEN-PC" duration="00:00:05.6464789" startTime="2014-11-21T15:33:52.1600270-05:00" endTime="2014-11-21T15:33:58.4853888-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="544c4776-e10f-422d-9700-b25066bdbe6c">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method SneakingCommonTests.UnitTest1.loadMapWithGuardsTest threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at Sneaking_Gameplay.Sneaking_Drawables.SneakingGuard.initialize() in C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Drawables\SneakingGuard.cs:line 105
+   at Sneaking_Gameplay.Sneaking_Drawables.SneakingGuard..ctor() in C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Drawables\SneakingGuard.cs:line 83
+   at SneakingCommon.Utility.XmlLoader.loadGuardFromNode(XmlNode guardNode) in C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 280
+   at SneakingCommon.Utility.XmlLoader.getGuards(XmlNode myDoc) in C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 33
+   at SneakingCommon.Utility.XmlLoader.loadMapWithGuards(XmlDocument myDoc) in C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 213
+   at SneakingCommonTests.UnitTest1.loadMapWithGuardsTest() in C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\UnitTest1.cs:line 106
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -1,16 +1,16 @@
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\obj\x86\Debug\DummyOne.csprojResolveAssemblyReference.cache
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\DummyOne.exe
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\DummyOne.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\Canvas Window Template.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\CharacterSystemLibrary.dll
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\CreationClassesLibrary.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\OpenGlGameCommon.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\SneakingClasses.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\Tao.Platform.Windows.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\ISE.FreeType.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\Tao.OpenGl.dll
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\CreationClassesLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\OpenGlGameCommon.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\SneakingClasses.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\Canvas Window Template.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\bin\Debug\CharacterSystemLibrary.pdb
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\obj\x86\Debug\DummyOne.csprojResolveAssemblyReference.cache
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\obj\x86\Debug\DummyOne.exe
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\DummyOne\obj\x86\Debug\DummyOne.pdb

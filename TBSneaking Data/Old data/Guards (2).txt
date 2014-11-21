@@ -1,0 +1,118 @@
+<Root>
+  <Guard_List>
+    <Character>
+      <Is_Empty>False</Is_Empty>
+      <Name>Guard</Name>
+      <Attributes />
+      <Skills />
+      <Stats>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Perception</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Intelligence</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Dexterity</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Suspicion</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Alert Status</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Field of View</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>Suspicion Propensity</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+        <Stat>
+          <Is_Empty>False</Is_Empty>
+          <Name>AP</Name>
+          <BaseValue>20</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Is_Game_Ending>False</Is_Game_Ending>
+          <Is_Movement_Stopping>False</Is_Movement_Stopping>
+          <Is_Turn_Ending>False</Is_Turn_Ending>
+          <Is_Turn_Refilling>False</Is_Turn_Refilling>
+          <Refill_Value>0</Refill_Value>
+        </Stat>
+      </Stats>
+      <Id>5</Id>
+      <Position>-20,20</Position>
+    </Character>
+  </Guard_List>
+</Root>

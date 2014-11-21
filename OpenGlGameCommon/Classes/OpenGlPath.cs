@@ -5,7 +5,6 @@ using System.Text;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using System.Xml;
 using Canvas_Window_Template.Interfaces;
-using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 
 namespace OpenGlGameCommon.Classes

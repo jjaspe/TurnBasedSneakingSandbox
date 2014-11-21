@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using OpenGlGameCommon.Classes;
+using OpenGlGameCommon.Enums;
 
 namespace OpenGlGameCommon.Classes
 {
     public class ObjectArg
     {
-        ArgNames name;
-        public ArgNames myName
+        int name;
+        public int myName
         {
             get { return name; }
             set { name = value; }
@@ -23,10 +24,10 @@ namespace OpenGlGameCommon.Classes
 
         public ObjectArg()
         {
-            name = ArgNames.None;
+            name = 0;
             myData = null;
         }
-        public ObjectArg(ArgNames _name, object _data)
+        public ObjectArg(int _name, object _data)
         {
             myName = _name; myData = _data;
         }

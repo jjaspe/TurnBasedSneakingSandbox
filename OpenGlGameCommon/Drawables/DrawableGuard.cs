@@ -10,6 +10,7 @@ using OpenGlGameCommon.Data_Classes;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using OpenGlGameCommon.Interfaces.Behaviors;
 using CharacterSystemLibrary.Classes;
+using OpenGlGameCommon.Enums;
 
 namespace OpenGlGameCommon.Drawables
 {
@@ -62,30 +63,18 @@ namespace OpenGlGameCommon.Drawables
         #endregion
 
         Character myCharacter;
-        public string getName()
-        {
-            return MyCharacter.Name;
-        }
-
-        public Character MyCharacter
-        {
-            get { return myCharacter; }
-            set { myCharacter = value; }
-        }
-
-        protected GuardOrientation myOrientation;
-        public GuardOrientation MyOrientation
-        {
-            get { return myOrientation; }
-            set { myOrientation = value; }
-        }
+        GuardOrientation myOrientation;
         int currentPatrolWaypoint = 0;
         List<IPoint> fov;
         PatrolPath patrol;
         IPoint target;
         PatrolPath targetPath;
 
-
+        public GuardOrientation MyOrientation
+        {
+            get { return myOrientation; }
+            set { myOrientation = value; }
+        }
         public int CurrentPatrolWaypoint
         {
             get { return currentPatrolWaypoint; }
@@ -106,14 +95,24 @@ namespace OpenGlGameCommon.Drawables
             get { return patrol; }
             set { patrol = value; }
         }
-
-
         public List<IPoint> FOV
         {
             get { return fov; }
             set { fov = value; }
         }
-
+        public string getName()
+        {
+            return MyCharacter.Name;
+        }
+        public Character MyCharacter
+        {
+            get { return myCharacter; }
+            set { myCharacter = value; }
+        }
+        public DrawableGuard()
+        {
+            MyCharacter = new Character();
+        }
         protected void initialize()
         {            
             FOV = new List<IPoint>();
@@ -124,7 +123,7 @@ namespace OpenGlGameCommon.Drawables
         /// Puts guard back in his first waypoint in map
         /// </summary>
         /// <param name="map"></param>
-        public new void reset(OpenGlMap map)
+        public void reset(OpenGlMap map)
         {
             Position = MyPatrol.MyWaypoints[0];
             Target = null;
@@ -396,7 +395,7 @@ namespace OpenGlGameCommon.Drawables
         {
             this.FOV = VisibilityBehavior.getFoV(Position, FoVBehavior.getFOVPoints(this, availablePoints), height);
         }
-        public void reset()
+        public virtual void reset()
         {
             
         }

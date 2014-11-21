@@ -9,7 +9,6 @@ using Canvas_Window_Template.Drawables;
 using OpenGlGameCommon.Data_Classes;
 using OpenGlGameCommon.Interfaces.Behaviors;
 using OpenGlGameCommon.Interfaces.Model;
-using OpenGlGameCommon.Interfaces.Behaviors;
 
 namespace OpenGlGameCommon.Interfaces.View
 {

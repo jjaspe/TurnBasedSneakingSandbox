@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SneakingCommon.System_Classes;
-using SneakingCommon.System_Classes;
-using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
-
-
-using Canvas_Window_Template.Interfaces;                                                                                                                                                                                                                                                   using Canvas_Window_Template.Drawables;
+using Canvas_Window_Template.Basic_Drawing_Functions;
+using Canvas_Window_Template.Interfaces;  
+using Canvas_Window_Template.Drawables;
 using SneakingCommon.Data_Classes;
 using SneakingCommon.Interfaces.Model;
 using OpenGlGameCommon.Interfaces.Model;
