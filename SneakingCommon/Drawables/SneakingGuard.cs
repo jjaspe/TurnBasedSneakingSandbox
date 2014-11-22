@@ -83,6 +83,13 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         {
             initialize();
         }
+        /// <summary>
+        /// Creates a SneakingGuard and initializes it. Base constructor creates MyCharacter member.
+        /// Initialization creates the NoiseMap and rememberedPoints members, and
+        /// adds stats to MyCharacter (this might change in the future)
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="size"></param>
         public SneakingGuard(IPoint position, int size)
         {
             Position =position;

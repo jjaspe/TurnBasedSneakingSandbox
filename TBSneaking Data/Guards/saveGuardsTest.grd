@@ -2,11 +2,115 @@
   <Guard_List>
     <Character>
       <Name> </Name>
-      <Attributes />
-      <Skills />
+      <Attributes>
+        <Attribute>
+          <Name>Att</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Governed_Skills />
+        </Attribute>
+      </Attributes>
+      <Skills>
+        <Skill>
+          <Name>Skill</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+          <Governing_Attributes />
+          <Coefficients />
+          <Governing_Stats />
+        </Skill>
+      </Skills>
       <Stats>
         <Stat>
           <Name>Strength</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Armor</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Weapon Skill</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Perception</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Intelligence</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Dexterity</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Suspicion</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Alert Status</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Field of View</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Suspicion Propensity</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>AP</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Knows Map</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Blah</Name>
           <BaseValue>20</BaseValue>
           <Bonuses />
           <Max>1000</Max>
@@ -14,7 +118,10 @@
         </Stat>
       </Stats>
       <Id>0</Id>
-      <Position>30,-20</Position>
+      <Position>
+        <X>30</X>
+        <Y>-20</Y>
+      </Position>
     </Character>
   </Guard_List>
 </Root>

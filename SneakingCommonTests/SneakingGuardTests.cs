@@ -126,5 +126,30 @@ namespace SneakingCommonTests
             XmlLoader.saveGuards(saveFilename, new List<SneakingGuard>() { g });
         }
 
+        /// <summary>
+        /// We create a character, save it, load it then compare the original and loaded
+        /// </summary>
+        [TestMethod()]
+        public void saveLoadGuardsIntegrityTest()
+        {
+            //Create and save
+            SneakingGuard expected = new SneakingGuard(new pointObj(30, -20, 0), 10);
+            //expected.MyCharacter = new Character();
+            expected.MyCharacter.addStat(new Stat("Blah", 20));
+            expected.MyCharacter.addSkill(new Skill("Skill", 10));
+            expected.MyCharacter.addAttribute(new CharacterSystemLibrary.Classes.Attribute("Att"));
+            XmlLoader.saveGuards(saveFilename, new List<SneakingGuard>() { expected });
+
+            //Load
+            XmlDocument doc = new XmlDocument();
+            loadGuardsFileWithFilename(saveFilename, ref doc);
+            SneakingGuard actual = XmlLoader.loadGuards(doc)[0];
+
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected.MyCharacter.Stats.Count, actual.MyCharacter.Stats.Count);
+            Assert.AreEqual(expected.MyCharacter.Skills.Count, actual.MyCharacter.Skills.Count);
+            Assert.AreEqual(expected.MyCharacter.Attributes.Count, actual.MyCharacter.Attributes.Count);
+        }
+
     }
 }
