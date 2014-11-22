@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SneakingCreationWithForms.Properties
+namespace SneakingCreationWithFormsCreationWithForms.Properties
 {
 
 

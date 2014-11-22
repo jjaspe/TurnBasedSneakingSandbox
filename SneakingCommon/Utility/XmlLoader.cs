@@ -421,5 +421,104 @@ namespace SneakingCommon.Utility
 
             return list;
         }
+
+        /// <summary>
+        /// Obsolote method that turns SneakingMap into a character array
+        /// with different characters for each geometry object. Abandoned for xml methods.
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public char[] mapToCharArray(SneakingMap map)
+        {
+            //e:empty tile
+            //b:low block
+            //h:high block
+            //f:no wall
+            //l:low wall
+            //L:high wall
+            int w = map.MyWidth, h = map.MyHeight;
+            char[] cA = new char[(2 * w + 1) * 2 * h];
+            char[,] tileA = new char[w, h], wallA = new char[2 * w + 1, h];
+            int size = map.TileSize;
+
+            tileObj temp;
+
+            //Create temp arrays for tiles and walls
+            #region FILL temp arrays
+            foreach (IDrawable obj in (map as IWorld).getEntities())
+            {
+                switch (obj.getId() % GameObjects.objectTypes)
+                {
+                    case 0: // Tile, for origin=(x,y), put in (2*width+1)*2*y+2*x
+                        temp = ((tileObj)obj);
+                        tileA[((int)temp.MyOrigin.X / size + w / 2), ((int)temp.MyOrigin.Y / size + h / 2)] = 'e';
+                        break;
+                    case 1: // lowBlock, same place as tile
+                        tileA[(int)(((LowBlock)obj).MyOrigin.X / size + w / 2),
+                            ((int)((LowBlock)obj).MyOrigin.Y / size + h / 2)] = 'b';
+                        break;
+                    case 2: // highBlock, same place as tile
+                        tileA[((int)((HighBlock)obj).MyOrigin.X / size + w / 2),
+                            ((int)((HighBlock)obj).MyOrigin.Y / size + h / 2)] = 'h';
+                        break;
+                    case 3: // lowWall, 
+                        //Check orientation
+                        temp = ((LowWall)obj).MyTiles[0, 0];
+                        if (temp.MyEnd.X == temp.MyOrigin.X) // Vertical, 
+                            wallA[2 * ((int)temp.MyOrigin.X / size + w / 2), ((int)temp.MyOrigin.Y / size + h / 2)] = 'l';
+                        else if (temp.MyEnd.X == temp.MyOrigin.X + size) // Horizontal,
+                            wallA[2 * ((int)temp.MyOrigin.X / size + w / 2) + 1, ((int)temp.MyOrigin.Y / size + h / 2)] = 'l';
+                        break;
+                    case 4: // highWall
+                        temp = ((HighWall)obj).MyTiles[0, 0];
+                        if (temp.MyEnd.X == temp.MyOrigin.X) // Vertical, 
+                            wallA[2 * ((int)temp.MyOrigin.X / size + w / 2), ((int)temp.MyOrigin.Y / size + h / 2)] = 'L';
+                        else if (temp.MyEnd.X == temp.MyOrigin.X + size) // Horizontal,
+                            wallA[2 * ((int)(int)temp.MyOrigin.X / size + w / 2) + 1, (int)(temp.MyOrigin.Y / size + h / 2)] = 'L';
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //Fill in empty walls
+            for (int i = 0; i < 2 * w + 1; i++)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    if (wallA[i, j] == '\0')
+                        wallA[i, j] = 'f';
+                }
+            }
+            #endregion
+
+            //Fill character array using temp arrays
+            #region FILL
+            for (int j = 0; j < 2 * h; j++)
+            {
+                for (int i = 0; i < 2 * w + 1; i++)
+                {
+                    if (j % 2 == 0)//wall row
+                    {
+                        if (i % 2 == 0)//empty
+                            cA[j * (2 * w + 1) + i] = ' ';
+                        else if (i % 2 == 1)// horizontal wall, get value from wallA
+                            cA[j * (2 * w + 1) + i] = wallA[i, j / 2];
+                    }
+                    else if (j % 2 == 1)//Tile row
+                    {
+                        if (i % 2 == 0)//vertical wall, get value from wallA at previous row
+                            cA[j * (2 * w + 1) + i] = wallA[i, (j - 1) / 2];
+                        if (i % 2 == 1)//tile or block, get value from tileA
+                            cA[j * (2 * w + 1) + i] = tileA[(i - 1) / 2, (j - 1) / 2];
+                    }
+                }
+                //Put endline char at the end of each row
+                cA[(j + 1) * (2 * w + 1) - 1] = '\r';
+            }
+            #endregion
+
+
+            return cA;
+        }
     }
 }

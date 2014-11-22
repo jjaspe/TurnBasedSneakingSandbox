@@ -7,7 +7,7 @@ namespace OpenGlGameCommon.Exceptions
 {
     public class GeneralException:Exception
     {
-        protected string message;
+        public string message;
         public GeneralException(String message, String place)
         {
             message = "Location:" + place + "\n";

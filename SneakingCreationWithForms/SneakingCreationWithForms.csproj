@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Canvas Window Template">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
+    </Reference>
+    <Reference Include="ISE.FreeType">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\ISE.FreeType.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,16 +50,37 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tao.FreeGlut">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.FreeGlut.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.OpenGl">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.OpenGl.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Platform.Windows">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.Platform.Windows.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Map Creation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Map Creation.designer.cs">
+      <DependentUpon>Map Creation.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Map Creation.resx">
+      <DependentUpon>Map Creation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -72,6 +99,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGlGameCommon\OpenGlGameCommon.csproj">
+      <Project>{42610CB5-8B1B-4860-86DF-55232334EADC}</Project>
+      <Name>OpenGlGameCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SneakingCommon\SneakingCommon.csproj">
+      <Project>{1524DD8E-F1DB-47C0-9ED5-3335433578F9}</Project>
+      <Name>SneakingCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

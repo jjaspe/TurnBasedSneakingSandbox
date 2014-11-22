@@ -88,8 +88,11 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// </summary>
         public override void fillWall()
         {
+            //Use createTiles to get origins
             tileObj[,] tiles = this.createTiles();
             MyTiles = new SneakingTile[MyWidth, MyHeight];
+            this.Drawables.Clear();
+            //Using origins, create MyTiles
             for (int i = 0; i < MyWidth; i++)
             {
                 for (int j = 0; j < MyHeight; j++)

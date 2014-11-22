@@ -1,0 +1,21 @@
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\Sneaking.MainForm.resources
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\Sneaking.MapCreation.resources
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.Properties.Resources.resources
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csproj.GenerateResource.Cache
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCreationWithForms.exe
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCreationWithForms.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Canvas Window Template.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\ISE.FreeType.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\OpenGlGameCommon.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingClasses.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Tao.FreeGlut.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\OpenGlGameCommon.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingClasses.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Canvas Window Template.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.exe
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.pdb

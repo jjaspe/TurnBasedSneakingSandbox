@@ -13,6 +13,7 @@ using SneakingCommon.Utility;
 using SneakingCommon.Exceptions;
 using Canvas_Window_Template.Drawables;
 using EnvDTE;
+using SneakingCommon.Drawables;
 
 namespace SneakingCommonTests
 {
@@ -40,6 +41,7 @@ namespace SneakingCommonTests
             openMapFileWithFilename(filename, ref doc);
             
         }
+
         void openMapFileWithFilename(String filename, ref XmlDocument doc)
         {
             FileStream mapFileReader;
@@ -68,8 +70,11 @@ namespace SneakingCommonTests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            openMapFileWithDialog("Open Full Map", ref fullMapDoc);
-            openMapFileWithDialog("Open Bare Map", ref bareMapDoc);
+            openMapFileWithFilename(saveFileName.Replace("saveTestMap","Map"),ref fullMapDoc);
+            openMapFileWithFilename(saveFileName.Replace("saveTestMap", "MazeMap"),ref bareMapDoc);
+
+            //openMapFileWithDialog("Open Full Map", ref fullMapDoc);
+            //openMapFileWithDialog("Open Bare Map", ref bareMapDoc);
         }
 
         /// <summary>
@@ -123,6 +128,46 @@ namespace SneakingCommonTests
                 Assert.IsNotNull(p);
             }
             Assert.IsNotNull(map.Drawables);
+        }
+
+        /// <summary>
+        /// Tests the ides of the map's tiles
+        /// </summary>
+        [TestMethod]
+        public void bareMapTileIdsTest()
+        {
+            SneakingMap map = XmlLoader.loadBareMap(fullMapDoc);
+            int lastId = (map.MyWidth * map.MyLength-1) * GameObjects.objectTypes;
+            Tile lastTile=(Tile)map.MyTiles[map.MyLength - 1, map.MyWidth - 1],firstTile=(Tile)map.MyTiles[0,0];
+            Assert.AreEqual(lastId, lastTile.getId()-firstTile.getId());
+        }
+
+        /// <summary>
+        /// Test if tiles in MyTiles are also in drawables
+        /// </summary>
+        [TestMethod]
+        public void bareMapTileIdsTest2()
+        {
+            SneakingMap map = XmlLoader.loadBareMap(fullMapDoc);
+
+            //Get the id of some random tile and see if it exists in drawables
+            int target = ((Tile)map.MyTiles[0,0]).getId()+(new Random()).Next(map.MyWidth * map.MyLength - 1)*10;
+            var drawable = (Tile)map.Drawables.First(n => n.GetType() == typeof(SneakingTile) 
+                && ((Tile)n).getId()==target);
+            Assert.IsNotNull(drawable);
+        }
+
+        [TestMethod]
+        public void createdMapIdTest()
+        {
+            SneakingMap map = SneakingMap.createInstance(20, 20, 10, new pointObj(0, 0, 0));
+            //Get the id of some random tile and see if it exists in drawables
+            int target = ((Tile)map.MyTiles[0, 0]).getId() + (new Random()).Next(map.MyWidth * map.MyLength - 1) * 10;
+            var drawable = (Tile)map.Drawables.First(n => n.GetType() == typeof(SneakingTile)
+                && ((Tile)n).getId() == target);
+            Assert.IsNotNull(drawable);
+            Assert.AreEqual(20 * 20,map.Drawables.Count);
+
         }
 
 
