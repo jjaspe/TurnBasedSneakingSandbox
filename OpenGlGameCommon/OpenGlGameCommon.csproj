@@ -81,8 +81,8 @@
     <Compile Include="Interfaces\Behaviors\ITileBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IVisibilityBehavior.cs" />
     <Compile Include="Interfaces\Behaviors\IVisibleGuardsBehavior.cs" />
-    <Compile Include="Interfaces\IFormObservable.cs" />
-    <Compile Include="Interfaces\IFormObserver.cs" />
+    <Compile Include="Interfaces\Patterns\IFormObservable.cs" />
+    <Compile Include="Interfaces\Patterns\IFormObserver.cs" />
     <Compile Include="Interfaces\ITemplateForm.cs" />
     <Compile Include="Interfaces\Model\IAttack.cs" />
     <Compile Include="Interfaces\Model\IDrawableOwner.cs" />
@@ -97,7 +97,9 @@
     <Compile Include="Interfaces\Patterns\IWorldObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Documentation.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -398,12 +398,12 @@ namespace SneakingCommon.Utility
                         break;
                     case HighWall.idType:
                         current = creator.CreateElement("HighWall");
-                        cOrientationNode.InnerText = ((HighWall)drw).Orientation.ToString();
+                        cOrientationNode.InnerText = ((int)((HighWall)drw).Orientation).ToString();
                         current.AppendChild(cOrientationNode.Clone());
                         break;
                     case LowWall.idType:
                         current = creator.CreateElement("LowWall");
-                        cOrientationNode.InnerText = ((LowWall)drw).Orientation.ToString();
+                        cOrientationNode.InnerText = ((int)((LowWall)drw).Orientation).ToString();
                         current.AppendChild(cOrientationNode.Clone());
                         break;
                     default:

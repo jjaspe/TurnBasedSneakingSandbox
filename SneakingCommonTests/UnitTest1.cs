@@ -12,6 +12,7 @@ using System.IO;
 using SneakingCommon.Utility;
 using SneakingCommon.Exceptions;
 using Canvas_Window_Template.Drawables;
+using EnvDTE;
 
 namespace SneakingCommonTests
 {
@@ -20,7 +21,9 @@ namespace SneakingCommonTests
     {
         XmlDocument fullMapDoc;
         XmlDocument bareMapDoc;
-        String saveFileName = Path.GetDirectoryName("//..//..//") + "saveTestMap.mgg";
+        
+        String saveFileName = (System.Reflection.Assembly.GetExecutingAssembly().Location).
+            Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll","TBSneaking Data\\Maps\\") + "saveTestMap.mgg";
 
         void openMapFileWithDialog(String title, ref XmlDocument doc)
         {
@@ -183,9 +186,6 @@ namespace SneakingCommonTests
             XmlDocument target= null;
             openMapFileWithFilename(saveFileName, ref target);
             SneakingMap actual = XmlLoader.loadBareMap(target);
-            //Compare
-            //Assert.AreEqual(map, actual);
-
         }
 
         /// <summary>
@@ -198,6 +198,8 @@ namespace SneakingCommonTests
             SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);
             XmlLoader.saveBareMap("", map);
         }
+
+
 
     }
 }
