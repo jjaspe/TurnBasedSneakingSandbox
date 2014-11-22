@@ -20,12 +20,67 @@ namespace SneakingCommon.Utility
     /// </summary>
     public class XmlLoader
     {
+        static public void saveGuards(String filename, List<SneakingGuard> guards )
+        {
+            XmlDocument creator = new XmlDocument();
+            
+            XmlWriter xWriter;
+            try
+            {
+                xWriter = new XmlTextWriter(filename, null);
+            }
+            catch (Exception e)
+            {
+                throw new GuardsInvalidException("Couldn't open save file", "XmlLoader:saveGuards");
+            }
+            xWriter.WriteStartElement("Root");
+            xWriter.Close();
+            creator.Load(filename);
+
+            //get root
+            XmlNode root = creator.DocumentElement;
+
+            //Get nodes
+            XmlElement idNode = creator.CreateElement("Id"),
+                positionNode = creator.CreateElement("Position"),
+                positionXNode=creator.CreateElement("X"),
+                positionYNode=creator.CreateElement("Y");
+            XmlNode currentGuardNode, guardListNode = creator.CreateElement("Guard_List");
+            //Get guard data, add it to guard node, add guard node to list node
+            foreach (SneakingGuard g in guards)
+            {
+                currentGuardNode = g.MyCharacter.toXml(creator);
+                idNode.InnerText = g.getId().ToString();
+                positionXNode.InnerText = g.getPosition()[0].ToString();
+                positionYNode.InnerText = g.getPosition()[1].ToString();
+                positionNode.AppendChild(positionXNode.Clone());
+                positionNode.AppendChild(positionYNode.Clone());
+                currentGuardNode.AppendChild(idNode);
+                currentGuardNode.AppendChild(positionNode);
+                guardListNode.AppendChild(currentGuardNode.Clone());
+            }
+
+            //Save
+            root.AppendChild(guardListNode);
+            creator.Save(filename);
+        }
+
+        /// <summary>
+        /// Loads guards from xml and puts them in list
+        /// </summary>
+        /// <param name="myDoc"></param>
+        /// <returns></returns>
+        static public List<SneakingGuard> loadGuards(XmlDocument myDoc)
+        {
+            XmlNode guardListNode = myDoc.DocumentElement.GetElementsByTagName("Guard_List")[0];
+            return getGuards(guardListNode);
+        }
         /// <summary>
         /// Returns list of guards created from guard nodes in myDoc
         /// </summary>
         /// <param name="myDoc"></param>
         /// <returns></returns>
-        static public List<SneakingGuard> getGuards(XmlNode myDoc)
+        static List<SneakingGuard> getGuards(XmlNode myDoc)
         {
 
             XmlNodeList guardNodes = myDoc.SelectNodes("Character");
@@ -279,48 +334,7 @@ namespace SneakingCommon.Utility
 
         }
 
-        static SneakingGuard loadGuardFromNode(XmlNode guardNode)
-        {
-            XmlNode positionNode, positionXNode, positionYNode,
-               patrolNode, wpXNode, wpYNode;
-            XmlNodeList waypointNodes;
-            PatrolPath guardPatrolPath;
-
-            SneakingGuard guard = new SneakingGuard();
-            guardPatrolPath = new PatrolPath();
-
-            //Load guard stats
-            guard.MyCharacter.fromXml(guardNode);
-            //Read Position,then save it
-            positionNode = ((XmlElement)guardNode).SelectNodes("Position")[0];
-            positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
-            positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
-
-
-            guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
-                                              Int32.Parse(positionYNode.InnerText),
-                                              0);
-            //Read Patrol
-            //First, put guard position as first waypoint
-            guardPatrolPath.MyWaypoints.Add(guard.Position);
-
-            //Add rest of waypoints
-            patrolNode = ((XmlElement)guardNode).SelectNodes("Patrol")[0];
-            if (patrolNode != null)
-            {
-                waypointNodes = ((XmlElement)patrolNode).SelectNodes("Waypoint");
-                foreach (XmlElement wp in waypointNodes)
-                {
-                    wpXNode = wp.SelectNodes("X")[0];
-                    wpYNode = wp.SelectNodes("Y")[0];
-                    guardPatrolPath.MyWaypoints.Add(new pointObj(Int32.Parse(wpXNode.InnerText),
-                                                        Int32.Parse(wpYNode.InnerText),
-                                                        0));
-                }
-            }
-            guard.MyPatrol = guardPatrolPath;
-            return guard;
-        }
+        
 
         /// <summary>
         /// Saves a SneakingMap:map with geometry only (Tiles,Blocks,Walls) to filename
@@ -365,6 +379,12 @@ namespace SneakingCommon.Utility
             creator.Save(filename);
         }
 
+        /// <summary>
+        /// Loads wall and block from map and returns them their nodes
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="creator"></param>
+        /// <returns></returns>
         static List<XmlNode> getGeometryNodes(SneakingMap map,XmlDocument creator)
         {
             List<XmlNode> list = new List<XmlNode>();
@@ -420,6 +440,49 @@ namespace SneakingCommon.Utility
             #endregion
 
             return list;
+        }
+
+        static SneakingGuard loadGuardFromNode(XmlNode guardNode)
+        {
+            XmlNode positionNode, positionXNode, positionYNode,
+               patrolNode, wpXNode, wpYNode;
+            XmlNodeList waypointNodes;
+            PatrolPath guardPatrolPath;
+
+            SneakingGuard guard = new SneakingGuard();
+            guardPatrolPath = new PatrolPath();
+
+            //Load guard stats
+            guard.MyCharacter.fromXml(guardNode);
+            //Read Position,then save it
+            positionNode = ((XmlElement)guardNode).SelectNodes("Position")[0];
+            positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
+            positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
+
+
+            guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
+                                              Int32.Parse(positionYNode.InnerText),
+                                              0);
+            //Read Patrol
+            //First, put guard position as first waypoint
+            guardPatrolPath.MyWaypoints.Add(guard.Position);
+
+            //Add rest of waypoints
+            patrolNode = ((XmlElement)guardNode).SelectNodes("Patrol")[0];
+            if (patrolNode != null)
+            {
+                waypointNodes = ((XmlElement)patrolNode).SelectNodes("Waypoint");
+                foreach (XmlElement wp in waypointNodes)
+                {
+                    wpXNode = wp.SelectNodes("X")[0];
+                    wpYNode = wp.SelectNodes("Y")[0];
+                    guardPatrolPath.MyWaypoints.Add(new pointObj(Int32.Parse(wpXNode.InnerText),
+                                                        Int32.Parse(wpYNode.InnerText),
+                                                        0));
+                }
+            }
+            guard.MyPatrol = guardPatrolPath;
+            return guard;
         }
 
         /// <summary>

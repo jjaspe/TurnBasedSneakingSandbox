@@ -1,0 +1,20 @@
+<Root>
+  <Guard_List>
+    <Character>
+      <Name> </Name>
+      <Attributes />
+      <Skills />
+      <Stats>
+        <Stat>
+          <Name>Strength</Name>
+          <BaseValue>20</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+      </Stats>
+      <Id>0</Id>
+      <Position>30,-20</Position>
+    </Character>
+  </Guard_List>
+</Root>

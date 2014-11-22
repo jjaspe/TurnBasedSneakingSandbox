@@ -23,7 +23,7 @@ namespace SneakingCommonTests
         XmlDocument fullMapDoc;
         XmlDocument bareMapDoc;
         
-        String saveFileName = (System.Reflection.Assembly.GetExecutingAssembly().Location).
+        String saveFilename = (System.Reflection.Assembly.GetExecutingAssembly().Location).
             Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll","TBSneaking Data\\Maps\\") + "saveTestMap.mgg";
 
         void openMapFileWithDialog(String title, ref XmlDocument doc)
@@ -70,13 +70,14 @@ namespace SneakingCommonTests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            openMapFileWithFilename(saveFileName.Replace("saveTestMap","Map"),ref fullMapDoc);
-            openMapFileWithFilename(saveFileName.Replace("saveTestMap", "MazeMap"),ref bareMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap","Map"),ref fullMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap", "MazeMap"),ref bareMapDoc);
 
             //openMapFileWithDialog("Open Full Map", ref fullMapDoc);
             //openMapFileWithDialog("Open Bare Map", ref bareMapDoc);
         }
 
+        #region MAP TESTING
         /// <summary>
         /// Creates a map and tests the following:
         /// Map isnt null
@@ -226,10 +227,10 @@ namespace SneakingCommonTests
             //Load map from a tested map file
             SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);
             //Save it to a new map file
-            XmlLoader.saveBareMap(saveFileName, map);
+            XmlLoader.saveBareMap(saveFilename, map);
             //Load the new map file
             XmlDocument target= null;
-            openMapFileWithFilename(saveFileName, ref target);
+            openMapFileWithFilename(saveFilename, ref target);
             SneakingMap actual = XmlLoader.loadBareMap(target);
         }
 
@@ -243,6 +244,8 @@ namespace SneakingCommonTests
             SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);
             XmlLoader.saveBareMap("", map);
         }
+        #endregion
+
 
 
 
