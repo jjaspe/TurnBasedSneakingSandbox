@@ -9,15 +9,42 @@ using System.Windows.Forms;
 using Canvas_Window_Template.Basic_Drawing_Functions;
 using Canvas_Window_Template.Interfaces;
 using Sneaking_Gameplay.Sneaking_Drawables;
+using SneakingCreationWithForms.MVP;
+using Canvas_Window_Template;
 
 
 namespace SneakingCreationWithForms
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form,IView
     {
         static int width = 20, height = 20;//width -> Z axis, length -> X axis,in number of tiles
         static int tileSize = 20;
         static Common myDrawer = new Common();
+
+        Presenter presenter;
+        simpleOpenGlView myView;
+        public Presenter MyPresenter
+        {
+            get
+            {
+                return presenter;
+            }
+            set
+            {
+                presenter=value;
+            }
+        }
+        public simpleOpenGlView MyOpenGlView
+        {
+            get
+            {
+                return myView;
+            }
+            set
+            {
+                return;
+            }
+        }
 
         public MainForm()
         {
@@ -52,13 +79,14 @@ namespace SneakingCreationWithForms
 
 
         /// <summary>
-        /// Starts Map Creation form with an empty map and waits for it to close
+        /// Starts Map Creation form, hookss up presenter and map's view
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void createMapButton_Click(object sender, EventArgs e)
         {
-            CreateMapForm mapWindow = new CreateMapForm() { Map = SneakingMap.createInstance(0, 0, 0, null) };
+            CreateMapForm mapWindow = new CreateMapForm() { MyPresenter=this.MyPresenter };
+            this.myView = mapWindow.MyView;
             mapWindow.ShowDialog(this);
         }
 
@@ -67,14 +95,39 @@ namespace SneakingCreationWithForms
            
         }
 
+        /// <summary>
+        /// Starts Guards Creation form, hookss up presenter and map's view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addGuardsButton_Click(object sender, EventArgs e)
         {
-            CreateGuardsForm guardsWindow = new CreateGuardsForm() { Map = SneakingMap.createInstance(0, 0, 0, null) };
+            CreateGuardsForm guardsWindow = new CreateGuardsForm() { MyPresenter=this.MyPresenter };
+            this.myView = guardsWindow.MyView;
             guardsWindow.ShowDialog(this);
         }
 
         private void createPlayer_Click(object sender, EventArgs e)
         {
+        }
+
+        
+
+        
+
+        public void start()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void startMapCreation()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void startGuardCreation()
+        {
+            throw new NotImplementedException();
         }
     }
 }

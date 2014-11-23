@@ -84,6 +84,10 @@
     <Compile Include="CreateMapForm.designer.cs">
       <DependentUpon>CreateMapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVP\ExampleModel.cs" />
+    <Compile Include="MVP\IView.cs" />
+    <Compile Include="MVP\IModel.cs" />
+    <Compile Include="MVP\Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreateGuardsForm.resx">

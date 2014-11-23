@@ -19,6 +19,7 @@ using OpenGlGameCommon.Interfaces;
 using Canvas_Window_Template;
 using Sneaking_Gameplay.Sneaking_Drawables;
 using SneakingCommon.Utility;
+using SneakingCreationWithForms.MVP;
 
 namespace SneakingCreationWithForms
 {
@@ -35,9 +36,16 @@ namespace SneakingCreationWithForms
         SneakingMap myMap;
         selectorObj mySelector;
         Tile selectedTile;
+        Presenter presenter;
+
+        
         private bool closing, drawing;
 
-
+        public Presenter MyPresenter
+        {
+            get { return presenter; }
+            set { presenter = value; }
+        }
         public simpleOpenGlView MyView
         {
             get { return myView; }

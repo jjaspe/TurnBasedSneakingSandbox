@@ -1,5 +1,17 @@
 ﻿namespace SneakingCommon.Enums
 {
+    /// <summary>
+    /// Types of geometry
+    /// </summary>
+    public enum Elements
+    {
+        LowBlock,
+        LowWall,
+        HighBlock,
+        HighWall
+    }
+
+
     public enum ArgNames
     {
         None,

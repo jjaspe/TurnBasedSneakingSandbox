@@ -86,14 +86,14 @@ namespace SneakingCreationWithForms
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -268,6 +268,7 @@ namespace SneakingCreationWithForms
             this.highWallButton.Tag = "3";
             this.highWallButton.Text = "Add High Wall";
             this.highWallButton.UseVisualStyleBackColor = true;
+            this.highWallButton.CheckedChanged += new System.EventHandler(this.highWallButton_CheckedChanged);
             // 
             // label4
             // 
@@ -291,6 +292,7 @@ namespace SneakingCreationWithForms
             this.lowWallButton.Tag = "2";
             this.lowWallButton.Text = "Add Low Wall\r\n";
             this.lowWallButton.UseVisualStyleBackColor = true;
+            this.lowWallButton.CheckedChanged += new System.EventHandler(this.lowWallButton_CheckedChanged);
             // 
             // highBlockButton
             // 
@@ -304,6 +306,7 @@ namespace SneakingCreationWithForms
             this.highBlockButton.Tag = "1";
             this.highBlockButton.Text = "Add High Block";
             this.highBlockButton.UseVisualStyleBackColor = true;
+            this.highBlockButton.CheckedChanged += new System.EventHandler(this.highBlockButton_CheckedChanged);
             // 
             // lowBlockButton
             // 
@@ -317,6 +320,7 @@ namespace SneakingCreationWithForms
             this.lowBlockButton.Tag = "0";
             this.lowBlockButton.Text = "Add Low Block";
             this.lowBlockButton.UseVisualStyleBackColor = true;
+            this.lowBlockButton.CheckedChanged += new System.EventHandler(this.lowBlockButton_CheckedChanged);
             // 
             // label5
             // 

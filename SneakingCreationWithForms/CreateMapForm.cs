@@ -18,6 +18,8 @@ using Sneaking_Gameplay.Sneaking_Drawables;
 using SneakingCommon.Utility;
 using SneakingCommon.Exceptions;
 using System.Xml;
+using SneakingCreationWithForms.MVP;
+using SneakingCommon.Enums;
 
 namespace SneakingCreationWithForms
 {
@@ -34,6 +36,19 @@ namespace SneakingCreationWithForms
         }
         String filepath= (System.Reflection.Assembly.GetExecutingAssembly().Location).
             Replace("SneakingCreationWithForms\\bin\\Debug","TBSneaking Data\\Maps\\");
+        Presenter presenter;
+
+        public Presenter MyPresenter
+        {
+            get
+            {
+               return presenter;
+            }
+            set
+            {
+                presenter=value;
+            }
+        }
 
         public int clickX { get; set; }
         public int clickY { get; set; }
@@ -66,7 +81,7 @@ namespace SneakingCreationWithForms
             {
                 MyView.setupScene();
                 //DRAW SCENE HERE
-                myDrawer.drawWorld(Map);
+                myDrawer.drawWorld(MyPresenter.Model.Map);
                 //END DRAW SCENE HERE
                 MyView.flushScene();
                 window.refresh();
@@ -131,59 +146,8 @@ namespace SneakingCreationWithForms
         }
         void mClick(object sender, MouseEventArgs e)
         {
-            //Check all objects, see if any was selected
-            int id = mySelector.getSelectedObjectId(new int[] {e.X,e.Y},Map);
-            Tile tile;
-            LowBlock lBlock; HighBlock hBlock; LowWall lWall; HighWall hWall;
-            //Check type
-            if (id > -1)
-            {
-                switch (id %GameObjects.objectTypes)
-                {
-                    case Tile.idType://Tile
-                        tile = Map.getTile(id);
-                        if (tile != null)
-                        {
-                            if (e.Button == MouseButtons.Left)
-                                tileLeftClick(tile);
-                            else if (e.Button == MouseButtons.Right)
-                                tileRightClick(tile);
-                        }
-                        break;
-                    case LowBlock.idType://Low Block
-                        lBlock = Map.getLowBlock(id);
-                        if (e.Button == MouseButtons.Left)
-                            lowBlockLeftClick(lBlock);
-                        else if (e.Button == MouseButtons.Right)
-                            lowBlockRightClick(lBlock);
-                        break;
-                    case HighBlock.idType://High block
-                         hBlock = Map.getHighBlock(id);
-                        if (e.Button == MouseButtons.Left)
-                            highBlockLeftClick(hBlock);
-                        else if (e.Button == MouseButtons.Right)
-                            highBlockRightClick(hBlock);
-                        break;
-                    case LowWall.idType://Low wall
-                        lWall = Map.getLowWall(id);
-                        if (e.Button == MouseButtons.Left)
-                            lowWallLeftClick(lWall);
-                        else if (e.Button == MouseButtons.Right)
-                            lowWallRightClick(lWall);
-                        break;
-                    case HighWall.idType://High wall
-                        hWall = Map.getHighWall(id);
-                        if (e.Button == MouseButtons.Left)
-                            highWallLeftClick(hWall);
-                        else if (e.Button == MouseButtons.Right)
-                            highWallRightClick(hWall);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            
-            
+            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y, }, MyPresenter.Model.Map);
+            MyPresenter.viewClicked(id,e.Button);
         }
         void mMove(object sender, MouseEventArgs e)
         {
@@ -191,169 +155,33 @@ namespace SneakingCreationWithForms
             clickY = e.Y;
         }
 
-        bool hasWall(IPoint origin,int tileSize)
-        {
-            double[] originA = origin.toArray();
-            foreach (IDrawable obj in (Map as IWorld).getEntities())
-            {
-                if (obj.getId() % GameObjects.objectTypes == 3)//low walls
-                {
-                    if ( (new PointObj(obj.getPosition())).equals(origin)   && 
-                        ((LowWall)obj).MyTiles[0,0].MyEnd.X==origin.X+tileSize ) 
-                        return true;
-                }
-                if (obj.getId() % GameObjects.objectTypes == 4)//high walls
-                {
-                    if ((new PointObj(obj.getPosition())).equals(origin) && 
-                        ((HighWall)obj).MyTiles[0,0].MyEnd.X==origin.X+tileSize)
-                        return true;
-                }
-            }
-            return false;
-        }
-
-        void tileLeftClick(Tile tile)
-        {
-            foreach(Control ctr in addGroup.Controls)
-            {
-                if (ctr.GetType() != typeof(RadioButton))
-                    continue;
-                if (((RadioButton)ctr).Checked)
-                {
-                    switch(Int32.Parse(ctr.Tag.ToString()))
-                    {
-                        case 0: // Add low block                            
-                                Map.Drawables.Add(
-                                    new LowBlock(tile.MyOrigin,Map.TileSize,Common.colorRed,Common.colorBlack));
-                            break;
-                        case 1: // Add high block
-                            Map.Drawables.Add(
-                                    new HighBlock(tile.MyOrigin, Map.TileSize, Common.colorRed, Common.colorBlack));
-                            break;
-                        case 2: // Add low wall
-                            if (!hasWall(tile.MyOrigin, Map.TileSize))
-                            Map.Drawables.Add(
-                                new LowWall(tile.origin.Y, tile.origin.X, 
-                                    tile.origin.X + Map.TileSize, Map.TileSize));
-                            break;
-                        case 3: // Add high wall
-                            if (!hasWall(tile.MyOrigin, Map.TileSize))
-                            Map.Drawables.Add(
-                                new HighWall(tile.origin.Y, tile.origin.X,
-                                    tile.origin.X + Map.TileSize, Map.TileSize));
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-        void tileRightClick(Tile tile)
-        {
-        }
-        void lowBlockLeftClick(LowBlock block)
-        {
-        }
-        void lowBlockRightClick(LowBlock block)
-        {
-            Map.Drawables.Remove(block);
-        }
-        void highBlockLeftClick(HighBlock block)
-        {
-        }
-        void highBlockRightClick(HighBlock block)
-        {
-            Map.Drawables.Remove(block);
-        }
-        void lowWallRightClick(LowWall lWall)
-        {
-            Map.Drawables.Remove(lWall);
-        }
-        void lowWallLeftClick(LowWall lWall)
-        {
-            //Check bounds, if dest is outside, only remove source
-            if (lWall.MyTiles[0, 0].MyOrigin.Y >= Map.MyHeight * Map.TileSize / 2)
-            {
-                Map.Drawables.Remove(lWall);
-                return;
-            }
-
-            //Check destination
-            foreach (IDrawable obj in (Map as IWorld).getEntities())
-            {
-                if (obj.getId() %GameObjects.objectTypes == 3 )//low walls
-                {
-                    //Check that there isn't a tile in destination, if so remove source
-                    if (((LowWall)obj).MyTiles[0, 0].MyOrigin.equals(lWall.MyTiles[0, 0].MyOrigin)
-                        && ((LowWall)obj).MyTiles[0, 0].MyEnd.Y - Map.TileSize == lWall.MyTiles[0, 0].MyEnd.Y)
-                    {
-                        Map.Drawables.Remove(lWall);
-                        return;
-                    }
-                }
-                if (obj.getId() %GameObjects.objectTypes == 4)//high walls
-                {
-                    //Check that there isn't a tile in destination, if so remove source
-                    if (((HighWall)obj).MyTiles[0, 0].MyOrigin.equals(lWall.MyTiles[0, 0].MyOrigin)
-                        && ((HighWall)obj).MyTiles[0, 0].MyEnd.Y - Map.TileSize == lWall.MyTiles[0, 0].MyEnd.Y)
-                    {
-                        Map.Drawables.Remove(lWall);
-                        return;
-                    }
-                }
-            }
-
-            //Change Orientation
-            lWall.MyTiles[0, 0].MyEnd.Y += Map.TileSize;
-            lWall.MyTiles[0, 0].MyEnd.X -= Map.TileSize;
-        }
-        void highWallRightClick(HighWall hWall)
-        {
-            Map.Drawables.Remove(hWall);
-        }
-        void highWallLeftClick(HighWall hWall)
-        {
-            //Check bounds, if dest is outside, only remove source
-            if (hWall.MyTiles[0, 0].MyOrigin.Y >= Map.MyHeight * Map.TileSize / 2)
-            {
-                Map.Drawables.Remove(hWall);
-                return;
-            }
-
-            //Check destination
-            foreach (IDrawable obj in (Map as IWorld).getEntities())
-            {
-                if (obj.getId() %GameObjects.objectTypes == 3)//low walls
-                {
-                    //Check that there isn't a tile in destination, if so remove source
-                    if (((LowWall)obj).MyTiles[0, 0].MyOrigin.equals(hWall.MyTiles[0, 0].MyOrigin)
-                        && ((LowWall)obj).MyTiles[0, 0].MyEnd.Y - Map.TileSize == hWall.MyTiles[0, 0].MyEnd.Y)
-                    {
-                        Map.Drawables.Remove(hWall);
-                        return;
-                    }
-                }
-                if (obj.getId() %GameObjects.objectTypes == 4)//high walls
-                {
-                    //Check that there isn't a tile in destination, if so remove source
-                    if (((HighWall)obj).MyTiles[0, 0].MyOrigin.equals(hWall.MyTiles[0, 0].MyOrigin)
-                        && ((HighWall)obj).MyTiles[0, 0].MyEnd.Y - Map.TileSize == hWall.MyTiles[0, 0].MyEnd.Y)
-                    {
-                        Map.Drawables.Remove(hWall);
-                        return;
-                    }
-                }
-            }
-
-            //Change Orientation
-            hWall.MyTiles[0, 0].MyEnd.Y += Map.TileSize;
-            hWall.MyTiles[0, 0].MyEnd.X -= Map.TileSize;
-
-            hWall.MyTiles[1, 0].MyEnd.Y += Map.TileSize;
-            hWall.MyTiles[1, 0].MyEnd.X -= Map.TileSize;
-        }
 
         #region HANDLERS
+
+        private void MapCreation_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            closing = true;
+        }
+
+        private void lowBlockButton_CheckedChanged(object sender, EventArgs e)
+        {
+            MyPresenter.geometryElementSelected(Elements.LowBlock);
+        }
+
+        private void highBlockButton_CheckedChanged(object sender, EventArgs e)
+        {
+            MyPresenter.geometryElementSelected(Elements.HighBlock);
+        }
+
+        private void lowWallButton_CheckedChanged(object sender, EventArgs e)
+        {
+            MyPresenter.geometryElementSelected(Elements.LowWall);
+        }
+
+        private void highWallButton_CheckedChanged(object sender, EventArgs e)
+        {
+            MyPresenter.geometryElementSelected(Elements.HighWall);
+        }
 
         private void applySizeButton_Click(object sender, EventArgs e)
         {
@@ -485,10 +313,6 @@ namespace SneakingCreationWithForms
         #endregion 
 
 
-        private void MapCreation_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            closing = true;
-        }
 
         
     }
