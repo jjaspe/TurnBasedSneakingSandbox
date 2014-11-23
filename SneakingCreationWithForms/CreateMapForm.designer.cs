@@ -2,7 +2,7 @@
 using Canvas_Window_Template;
 namespace Sneaking
 {
-    partial class MapCreation
+    partial class CreateMapForm
     {
         /// <summary>
         /// Required designer variable.

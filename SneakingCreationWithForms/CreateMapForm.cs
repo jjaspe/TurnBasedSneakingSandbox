@@ -21,7 +21,7 @@ using System.Xml;
 
 namespace Sneaking
 {
-    public partial class MapCreation : BasicOpenGlTemplate,ICanvasWindow
+    public partial class CreateMapForm : BasicOpenGlTemplate,ICanvasWindow
     {
         public static int TILE_SIZE = 20;
         bool closing = false,drawing=false;
@@ -38,7 +38,7 @@ namespace Sneaking
         public int clickX { get; set; }
         public int clickY { get; set; }
 
-        public MapCreation()
+        public CreateMapForm()
         {
             InitializeComponent();
             MyView.InitializeContexts();

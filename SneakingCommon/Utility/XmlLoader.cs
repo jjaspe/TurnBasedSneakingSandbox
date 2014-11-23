@@ -12,6 +12,7 @@ using OpenGlGameCommon.Data_Classes;
 using SneakingCommon.Exceptions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
+using SneakingCommon.System_Classes;
 
 namespace SneakingCommon.Utility
 {
@@ -491,7 +492,7 @@ namespace SneakingCommon.Utility
         /// </summary>
         /// <param name="map"></param>
         /// <returns></returns>
-        public char[] mapToCharArray(SneakingMap map)
+        static public char[] mapToCharArray(SneakingMap map)
         {
             //e:empty tile
             //b:low block
@@ -582,6 +583,147 @@ namespace SneakingCommon.Utility
 
 
             return cA;
+        }
+
+        static public OpenGlMap loadMap(char[] charMap, int w, int h, int size)
+        {
+            //Create temp Lists
+            char[,] tiles = new char[w, h];
+            char[,] walls = new char[2 * w, h];
+            int xOffset = -w * size / 2, yOffset = -h * size / 2;
+            List<Tile> dTiles = new List<Tile>();
+            List<LowBlock> dLBlocks = new List<LowBlock>();
+            List<HighBlock> dHBlocks = new List<HighBlock>();
+            List<LowWall> dLWall = new List<LowWall>();
+            List<HighWall> dHWall = new List<HighWall>();
+
+            List<IDrawable> drawables = new List<IDrawable>();
+
+
+            //Fill temp lists from charMap
+            for (int j = 0; j < 2 * h; j++)
+            {
+                for (int i = 0; i < 2 * w; i++)
+                {
+                    if (j % 2 == 0)//wall row
+                    {
+                        if (i % 2 == 1)// horizontal wall,
+                            walls[i, j / 2] = charMap[j * (2 * w + 1) + i];
+                    }
+                    else if (j % 2 == 1)//Tile row
+                    {
+                        if (i % 2 == 0)//vertical wall, get value from walls at previous row
+                            walls[i, (j - 1) / 2] = charMap[j * (2 * w + 1) + i];
+                        if (i % 2 == 1)//tile or block, get value from tiles
+                            tiles[(i - 1) / 2, (j - 1) / 2] = charMap[j * (2 * w + 1) + i];
+                    }
+                }
+            }
+
+            //Create objArrays from tempLists
+            IPoint or;
+            LowWall tempLWall;
+            HighWall tempHWall;
+            for (int j = 0; j < h; j++)
+            {
+                for (int i = 0; i < 2 * w; i++)
+                {
+                    if (i % 2 == 0) //Only add tiles once every two values of i
+                    {
+                        if (tiles[i / 2, j] == 'b')//add low block, use i,j for origin coords
+                        {
+                            or = new PointObj(i / 2 * size + xOffset, j * size + yOffset, 0);
+                            drawables.Add(new LowBlock(or, size, blockColor, outlineColor));
+                        }
+                        else if (tiles[i / 2, j] == 'h')// add High Block
+                        {
+                            or = new PointObj(i / 2 * size + xOffset, j * size + yOffset, 0);
+                            drawables.Add(new HighBlock(or, size, blockColor, outlineColor));
+                        }
+                        else if (walls[i, j] == 'l')// add low wall
+                        {
+                            //Horizontal wall
+                            tempLWall = new LowWall(j * size + yOffset, i / 2 * size + xOffset,
+                                (i / 2 + 1) * size + xOffset, size);
+                            tempLWall.turn();
+                            drawables.Add(tempLWall);
+                        }
+                        else if (walls[i, j] == 'L')// add low wall
+                        {
+                            //Horizontal wall
+                            tempHWall = new HighWall(j * size + yOffset, i / 2 * size + xOffset,
+                               (i / 2 + 1) * size + xOffset, size);
+                            tempHWall.turn();
+                            drawables.Add(tempHWall);
+                        }
+                    }
+                    else if (i % 2 == 1) //Only add walls
+                    {
+                        if (walls[i, j] == 'l')// add low wall
+                        {
+                            //Vertical wall
+                            drawables.Add(new LowWall(j * size + yOffset, (i - 1) / 2 * size + xOffset,
+                                ((i - 1) / 2 + 1) * size + xOffset, size));
+                        }
+                        else if (walls[i, j] == 'L')// add low wall
+                        {
+                            //Vertical wall
+                            drawables.Add(new HighWall(j * size + yOffset, (i - 1) / 2 * size + xOffset,
+                                ((i - 1) / 2 + 1) * size + xOffset, size));
+                        }
+                    }
+
+                }
+            }
+
+            //Now create map and add drawables loaded
+            SneakingMap newMap = SneakingMap.createInstance(w,h,size,null);
+            newMap.addDrawables(drawables);
+
+            return newMap;
+
+        }
+
+        static public GameSystem loadSystem(string filename = null)
+        {
+            //Get factors
+            string factorFilename = "C:/TBSneaking/StatToSkill Factors.txt";
+            XmlDocument myXml = new XmlDocument();
+            XmlTextReader xReader = new XmlTextReader(factorFilename);
+            xReader.Close();
+            myXml.Load(factorFilename);
+            GameSystem system = GameSystem.getInstance();
+            try
+            {
+                #region READ_NODES
+                XmlNode APFactorNode = myXml.GetElementsByTagName("APFactor")[0],
+                    FoVFactorNode = myXml.GetElementsByTagName("FoVFactor")[0],
+                    FoHFactorNode = myXml.GetElementsByTagName("FoHFactor")[0],
+                    SPFactorNode = myXml.GetElementsByTagName("SPFactor")[0],
+                    APConstantNode = myXml.GetElementsByTagName("APConstant")[0],
+                    FoVConstantNode = myXml.GetElementsByTagName("FoVConstant")[0],
+                    SPConstantNode = myXml.GetElementsByTagName("SPConstant")[0],
+                    FoHConstantNode = myXml.GetElementsByTagName("FoHConstant")[0],
+                    HealthConstantNode = myXml.GetElementsByTagName("HealthConstant")[0],
+                    HealthFactorNode = myXml.GetElementsByTagName("HealthFactor")[0];
+
+                system.APFactor = double.Parse(APFactorNode.InnerText);
+                system.FoVFactor = double.Parse(FoVFactorNode.InnerText);
+                system.FoHFactor = double.Parse(FoHFactorNode.InnerText);
+                system.SPFactor = double.Parse(SPFactorNode.InnerText);
+                system.APConstant = double.Parse(APConstantNode.InnerText);
+                system.FoVConstant = double.Parse(FoVConstantNode.InnerText);
+                system.FoHConstant = double.Parse(FoHConstantNode.InnerText);
+                system.SPConstant = double.Parse(SPConstantNode.InnerText);
+                system.HealthConstant = double.Parse(HealthConstantNode.InnerText);
+                system.HealthFactor = double.Parse(HealthFactorNode.InnerText);
+                #endregion
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Couldn't find node:" + e.Message);
+            }
+            return system;
         }
     }
 }

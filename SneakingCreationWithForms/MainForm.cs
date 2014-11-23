@@ -58,7 +58,7 @@ namespace Sneaking
         /// <param name="e"></param>
         private void createMapButton_Click(object sender, EventArgs e)
         {
-            MapCreation mapWnd = new MapCreation() { Map = SneakingMap.createInstance(0, 0, 0, null) };
+            CreateMapForm mapWnd = new CreateMapForm() { Map = SneakingMap.createInstance(0, 0, 0, null) };
             mapWnd.ShowDialog(this);
         }
 
