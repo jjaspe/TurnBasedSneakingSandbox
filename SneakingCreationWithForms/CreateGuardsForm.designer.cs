@@ -1,4 +1,5 @@
-﻿namespace SneakingCreationWithForms
+﻿using Canvas_Window_Template;
+namespace SneakingCreationWithForms
 {
     partial class CreateGuardsForm
     {
@@ -54,15 +55,12 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameText = new System.Windows.Forms.TextBox();
             this.guardListBox = new System.Windows.Forms.ListBox();
-            this.zoomOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomInButton = new System.Windows.Forms.Button();
             this.myView = new Canvas_Window_Template.simpleOpenGlView();
-            this.rotateCW = new System.Windows.Forms.Button();
-            this.rotateCCW = new System.Windows.Forms.Button();
+            this.myNavigator = new Canvas_Window_Template.Navigator();
             this.guardCreationGroup.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +92,7 @@
             this.guardCreationGroup.Controls.Add(this.nameLabel);
             this.guardCreationGroup.Controls.Add(this.nameText);
             this.guardCreationGroup.Controls.Add(this.guardListBox);
-            this.guardCreationGroup.Location = new System.Drawing.Point(588, 26);
+            this.guardCreationGroup.Location = new System.Drawing.Point(977, 41);
             this.guardCreationGroup.Margin = new System.Windows.Forms.Padding(2);
             this.guardCreationGroup.Name = "guardCreationGroup";
             this.guardCreationGroup.Padding = new System.Windows.Forms.Padding(2);
@@ -352,17 +350,6 @@
             this.guardListBox.TabIndex = 24;
             this.guardListBox.SelectedIndexChanged += new System.EventHandler(this.guardListBox_SelectedIndexChanged);
             // 
-            // zoomOutButton
-            // 
-            this.zoomOutButton.Location = new System.Drawing.Point(511, 96);
-            this.zoomOutButton.Margin = new System.Windows.Forms.Padding(2);
-            this.zoomOutButton.Name = "zoomOutButton";
-            this.zoomOutButton.Size = new System.Drawing.Size(37, 24);
-            this.zoomOutButton.TabIndex = 17;
-            this.zoomOutButton.Text = "-";
-            this.zoomOutButton.UseVisualStyleBackColor = true;
-            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -370,7 +357,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(956, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
             this.menuStrip1.TabIndex = 41;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -398,17 +385,6 @@
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
-            // zoomInButton
-            // 
-            this.zoomInButton.Location = new System.Drawing.Point(456, 96);
-            this.zoomInButton.Margin = new System.Windows.Forms.Padding(2);
-            this.zoomInButton.Name = "zoomInButton";
-            this.zoomInButton.Size = new System.Drawing.Size(38, 24);
-            this.zoomInButton.TabIndex = 18;
-            this.zoomInButton.Text = "+";
-            this.zoomInButton.UseVisualStyleBackColor = true;
-            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
-            // 
             // myView
             // 
             this.myView.AccumBits = ((byte)(0));
@@ -420,58 +396,43 @@
             this.myView.ColorBits = ((byte)(32));
             this.myView.DepthBits = ((byte)(16));
             this.myView.EyeCustom = new double[] {
+        -300D,
         0D,
-        0D,
-        0D};
-            this.myView.Location = new System.Drawing.Point(14, 41);
+        -0.00010000000000000002D};
+            this.myView.Location = new System.Drawing.Point(14, 50);
             this.myView.Name = "myView";
             this.myView.PerspectiveEye = new double[] {
         300D,
         0D,
         0.0001D};
-            this.myView.Size = new System.Drawing.Size(556, 545);
+            this.myView.Size = new System.Drawing.Size(958, 536);
             this.myView.StencilBits = ((byte)(0));
             this.myView.TabIndex = 42;
             this.myView.ViewDistance = 300D;
             this.myView.ViewPhi = 0D;
             this.myView.ViewTheta = 0D;
             // 
-            // rotateCW
+            // myNavigator
             // 
-            this.rotateCW.Location = new System.Drawing.Point(511, 58);
-            this.rotateCW.Margin = new System.Windows.Forms.Padding(2);
-            this.rotateCW.Name = "rotateCW";
-            this.rotateCW.Size = new System.Drawing.Size(37, 24);
-            this.rotateCW.TabIndex = 43;
-            this.rotateCW.Text = "-->";
-            this.rotateCW.UseVisualStyleBackColor = true;
-            this.rotateCW.Click += new System.EventHandler(this.rotateCW_Click);
+            this.myNavigator.Location = new System.Drawing.Point(618, 65);
+            this.myNavigator.MyView = null;
+            this.myNavigator.MyWindowOwner = null;
+            this.myNavigator.Name = "myNavigator";
+            this.myNavigator.Orientation = Canvas_Window_Template.Basic_Drawing_Functions.Common.planeOrientation.None;
+            this.myNavigator.Size = new System.Drawing.Size(190, 95);
+            this.myNavigator.TabIndex = 43;
             // 
-            // rotateCCW
-            // 
-            this.rotateCCW.Location = new System.Drawing.Point(456, 58);
-            this.rotateCCW.Margin = new System.Windows.Forms.Padding(2);
-            this.rotateCCW.Name = "rotateCCW";
-            this.rotateCCW.Size = new System.Drawing.Size(38, 24);
-            this.rotateCCW.TabIndex = 44;
-            this.rotateCCW.Text = "<--";
-            this.rotateCCW.UseVisualStyleBackColor = true;
-            this.rotateCCW.Click += new System.EventHandler(this.rotateCCW_Click);
-            // 
-            // GuardCreation
+            // CreateGuardsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(956, 597);
-            this.Controls.Add(this.rotateCW);
-            this.Controls.Add(this.rotateCCW);
+            this.ClientSize = new System.Drawing.Size(1301, 750);
+            this.Controls.Add(this.myNavigator);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.zoomInButton);
-            this.Controls.Add(this.zoomOutButton);
             this.Controls.Add(this.guardCreationGroup);
             this.Controls.Add(this.myView);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "GuardCreation";
+            this.Name = "CreateGuardsForm";
             this.Text = "GuardForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GuardCreation_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GuardCreation_FormClosed);
@@ -487,7 +448,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox guardCreationGroup;
-        private System.Windows.Forms.Button zoomOutButton;
         private System.Windows.Forms.ListBox guardListBox;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameText;
@@ -517,9 +477,7 @@
         private System.Windows.Forms.TextBox armorText;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox knowsMap;
-        private System.Windows.Forms.Button zoomInButton;
         private Canvas_Window_Template.simpleOpenGlView myView;
-        private System.Windows.Forms.Button rotateCW;
-        private System.Windows.Forms.Button rotateCCW;
+        private Navigator myNavigator;
     }
 }

@@ -19,14 +19,14 @@ using SneakingCommon.Utility;
 using SneakingCommon.Exceptions;
 using System.Xml;
 
-namespace Sneaking
+namespace SneakingCreationWithForms
 {
     public partial class CreateMapForm : BasicOpenGlTemplate,ICanvasWindow
     {
         public static int TILE_SIZE = 20;
         bool closing = false,drawing=false;
         public SneakingMap Map;
-        public selectorObj mySl;
+        public selectorObj mySelector;
         public simpleOpenGlView MyView
         {
             get { return myView; }
@@ -42,14 +42,15 @@ namespace Sneaking
         {
             InitializeComponent();
             MyView.InitializeContexts();
+
             myNavigator.Orientation = Common.planeOrientation.Z;
             myNavigator.MyWindowOwner = this;
             myNavigator.MyView = this.MyView;
+
             this.WindowState = FormWindowState.Maximized;
 
-            //myNavigator.Orientation = this.myMap.Orientation;
             this.MyView.MouseClick += new MouseEventHandler(mClick);
-            mySl = new selectorObj(MyView);
+            mySelector = new selectorObj(MyView);
             this.MyView.Dock = DockStyle.None;
         }
 
@@ -131,7 +132,7 @@ namespace Sneaking
         void mClick(object sender, MouseEventArgs e)
         {
             //Check all objects, see if any was selected
-            int id = mySl.getSelectedObjectId(new int[] {e.X,e.Y},Map);
+            int id = mySelector.getSelectedObjectId(new int[] {e.X,e.Y},Map);
             Tile tile;
             LowBlock lBlock; HighBlock hBlock; LowWall lWall; HighWall hWall;
             //Check type
@@ -398,7 +399,7 @@ namespace Sneaking
             myView.PerspectiveEye = this.MyView.eyeIso;
         }
 
-        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {            
             SaveFileDialog mapDialog = new SaveFileDialog();
             mapDialog.Filter = "map Files (*.map)|*.map";
@@ -423,7 +424,7 @@ namespace Sneaking
 
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog mapDialog = new OpenFileDialog();
             mapDialog.Filter = "map Files (*.map)|*.map";

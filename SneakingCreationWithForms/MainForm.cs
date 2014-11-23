@@ -11,7 +11,7 @@ using Canvas_Window_Template.Interfaces;
 using Sneaking_Gameplay.Sneaking_Drawables;
 
 
-namespace Sneaking
+namespace SneakingCreationWithForms
 {
     public partial class MainForm : Form
     {
@@ -58,8 +58,8 @@ namespace Sneaking
         /// <param name="e"></param>
         private void createMapButton_Click(object sender, EventArgs e)
         {
-            CreateMapForm mapWnd = new CreateMapForm() { Map = SneakingMap.createInstance(0, 0, 0, null) };
-            mapWnd.ShowDialog(this);
+            CreateMapForm mapWindow = new CreateMapForm() { Map = SneakingMap.createInstance(0, 0, 0, null) };
+            mapWindow.ShowDialog(this);
         }
 
         private void createPatrolButton_Click(object sender, EventArgs e)
@@ -69,6 +69,8 @@ namespace Sneaking
 
         private void addGuardsButton_Click(object sender, EventArgs e)
         {
+            CreateGuardsForm guardsWindow = new CreateGuardsForm() { Map = SneakingMap.createInstance(0, 0, 0, null) };
+            guardsWindow.ShowDialog(this);
         }
 
         private void createPlayer_Click(object sender, EventArgs e)

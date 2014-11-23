@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="Canvas Window Template, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
+      <HintPath>..\..\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
     </Reference>
     <Reference Include="CharacterSystemLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
+      <HintPath>..\..\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,6 +54,7 @@
     <Compile Include="Drawables\SneakingTile.cs" />
     <Compile Include="Exceptions\CharacterIsNullException.cs" />
     <Compile Include="Exceptions\InvalidMapException.cs" />
+    <Compile Include="Exceptions\InvalidSystemException.cs" />
     <Compile Include="Interfaces\Behavior Interfaces\IGuardActionBehavior.cs" />
     <Compile Include="Interfaces\Model Interfaces\ISneakingGameMaster.cs" />
     <Compile Include="Interfaces\Model Interfaces\ISneakingGuard.cs" />

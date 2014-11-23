@@ -13,6 +13,7 @@ using SneakingCommon.Exceptions;
 using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
+using System.IO;
 
 namespace SneakingCommon.Utility
 {
@@ -333,9 +334,7 @@ namespace SneakingCommon.Utility
 
             return map;
 
-        }
-
-        
+        }        
 
         /// <summary>
         /// Saves a SneakingMap:map with geometry only (Tiles,Blocks,Walls) to filename
@@ -487,6 +486,60 @@ namespace SneakingCommon.Utility
         }
 
         /// <summary>
+        /// Loads stat to skill factors data to create a game system from file at filename
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        static public GameSystem loadSystem(string filename)
+        {
+            XmlDocument myXml = new XmlDocument();
+            try
+            {
+                myXml.Load(filename);
+            }
+            catch (Exception e)
+            {
+                throw new BadFileNameException("", "loadSystem" + e.Message);
+            }
+
+
+
+            GameSystem system = GameSystem.getInstance();
+            //Get factors
+            try
+            {
+                #region READ_NODES
+                XmlNode APFactorNode = myXml.GetElementsByTagName("APFactor")[0],
+                    FoVFactorNode = myXml.GetElementsByTagName("FoVFactor")[0],
+                    FoHFactorNode = myXml.GetElementsByTagName("FoHFactor")[0],
+                    SPFactorNode = myXml.GetElementsByTagName("SPFactor")[0],
+                    APConstantNode = myXml.GetElementsByTagName("APConstant")[0],
+                    FoVConstantNode = myXml.GetElementsByTagName("FoVConstant")[0],
+                    SPConstantNode = myXml.GetElementsByTagName("SPConstant")[0],
+                    FoHConstantNode = myXml.GetElementsByTagName("FoHConstant")[0],
+                    HealthConstantNode = myXml.GetElementsByTagName("HealthConstant")[0],
+                    HealthFactorNode = myXml.GetElementsByTagName("HealthFactor")[0];
+
+                system.APFactor = double.Parse(APFactorNode.InnerText);
+                system.FoVFactor = double.Parse(FoVFactorNode.InnerText);
+                system.FoHFactor = double.Parse(FoHFactorNode.InnerText);
+                system.SPFactor = double.Parse(SPFactorNode.InnerText);
+                system.APConstant = double.Parse(APConstantNode.InnerText);
+                system.FoVConstant = double.Parse(FoVConstantNode.InnerText);
+                system.FoHConstant = double.Parse(FoHConstantNode.InnerText);
+                system.SPConstant = double.Parse(SPConstantNode.InnerText);
+                system.HealthConstant = double.Parse(HealthConstantNode.InnerText);
+                system.HealthFactor = double.Parse(HealthFactorNode.InnerText);
+                #endregion
+            }
+            catch (Exception e)
+            {
+                throw new InvalidSystemException("XmlLoader:loadSystem");
+            }
+            return system;
+        }
+
+        /// <summary>
         /// Obsolote method that turns SneakingMap into a character array
         /// with different characters for each geometry object. Abandoned for xml methods.
         /// </summary>
@@ -585,9 +638,22 @@ namespace SneakingCommon.Utility
             return cA;
         }
 
-        static public OpenGlMap loadMap(char[] charMap, int w, int h, int size)
+        static public OpenGlMap loadMap(string filename)
         {
+            int w, h, size;
+            StreamReader sr = new StreamReader(filename);
+            //First read map dimensions and tile size
+            string data = sr.ReadLine();
+            int firstComa = data.IndexOf(','), secondComa = data.Substring(firstComa + 1).IndexOf(',') + firstComa;
+            w = Int32.Parse(data.Substring(0, firstComa));
+            h = Int32.Parse(data.Substring(firstComa + 1, secondComa - firstComa));
+            size = Int32.Parse(data.Substring(secondComa + 2, data.Length - secondComa - 2));
+            //Now read map
+            data = sr.ReadToEnd();
+            
+
             //Create temp Lists
+            char[] charMap = data.ToCharArray();
             char[,] tiles = new char[w, h];
             char[,] walls = new char[2 * w, h];
             int xOffset = -w * size / 2, yOffset = -h * size / 2;
@@ -633,12 +699,12 @@ namespace SneakingCommon.Utility
                         if (tiles[i / 2, j] == 'b')//add low block, use i,j for origin coords
                         {
                             or = new PointObj(i / 2 * size + xOffset, j * size + yOffset, 0);
-                            drawables.Add(new LowBlock(or, size, blockColor, outlineColor));
+                            drawables.Add(new LowBlock(or, size, Common.colorRed, Common.colorRed));
                         }
                         else if (tiles[i / 2, j] == 'h')// add High Block
                         {
                             or = new PointObj(i / 2 * size + xOffset, j * size + yOffset, 0);
-                            drawables.Add(new HighBlock(or, size, blockColor, outlineColor));
+                            drawables.Add(new HighBlock(or, size, Common.colorRed, Common.colorRed));
                         }
                         else if (walls[i, j] == 'l')// add low wall
                         {
@@ -684,46 +750,6 @@ namespace SneakingCommon.Utility
 
         }
 
-        static public GameSystem loadSystem(string filename = null)
-        {
-            //Get factors
-            string factorFilename = "C:/TBSneaking/StatToSkill Factors.txt";
-            XmlDocument myXml = new XmlDocument();
-            XmlTextReader xReader = new XmlTextReader(factorFilename);
-            xReader.Close();
-            myXml.Load(factorFilename);
-            GameSystem system = GameSystem.getInstance();
-            try
-            {
-                #region READ_NODES
-                XmlNode APFactorNode = myXml.GetElementsByTagName("APFactor")[0],
-                    FoVFactorNode = myXml.GetElementsByTagName("FoVFactor")[0],
-                    FoHFactorNode = myXml.GetElementsByTagName("FoHFactor")[0],
-                    SPFactorNode = myXml.GetElementsByTagName("SPFactor")[0],
-                    APConstantNode = myXml.GetElementsByTagName("APConstant")[0],
-                    FoVConstantNode = myXml.GetElementsByTagName("FoVConstant")[0],
-                    SPConstantNode = myXml.GetElementsByTagName("SPConstant")[0],
-                    FoHConstantNode = myXml.GetElementsByTagName("FoHConstant")[0],
-                    HealthConstantNode = myXml.GetElementsByTagName("HealthConstant")[0],
-                    HealthFactorNode = myXml.GetElementsByTagName("HealthFactor")[0];
-
-                system.APFactor = double.Parse(APFactorNode.InnerText);
-                system.FoVFactor = double.Parse(FoVFactorNode.InnerText);
-                system.FoHFactor = double.Parse(FoHFactorNode.InnerText);
-                system.SPFactor = double.Parse(SPFactorNode.InnerText);
-                system.APConstant = double.Parse(APConstantNode.InnerText);
-                system.FoVConstant = double.Parse(FoVConstantNode.InnerText);
-                system.FoHConstant = double.Parse(FoHConstantNode.InnerText);
-                system.SPConstant = double.Parse(SPConstantNode.InnerText);
-                system.HealthConstant = double.Parse(HealthConstantNode.InnerText);
-                system.HealthFactor = double.Parse(HealthFactorNode.InnerText);
-                #endregion
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Couldn't find node:" + e.Message);
-            }
-            return system;
-        }
+        
     }
 }

@@ -9,3 +9,6 @@ C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debu
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlGameCommon.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlGameCommon.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\ISE.FreeType.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.OpenGl.dll
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Canvas Window Template.pdb

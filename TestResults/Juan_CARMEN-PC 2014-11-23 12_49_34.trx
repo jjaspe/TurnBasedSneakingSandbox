@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="5c77acb9-bee4-466b-a4d6-013f215c6313" name="Juan@CARMEN-PC 2014-11-23 12:49:34" runUser="Carmen-PC\Juan" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Juan_CARMEN-PC 2014-11-23 12_49_34">
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.dll" />
+      <DeploymentItem filename="C:\Users\Juan\Documents\GitHub\Canvas Window Template\bin\Debug\Canvas Window Template.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-11-23T12:49:34.7065077-05:00" queuing="2014-11-23T12:49:37.8686886-05:00" start="2014-11-23T12:49:38.1867068-05:00" finish="2014-11-23T12:49:53.4125777-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="2" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="1" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="CARMEN-PC" outcome="Error" timestamp="2014-11-23T12:49:53.4085774-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="loadSystemFailTest" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="e60e6cc9-8957-d681-e984-3cd42fdb6948">
+      <Execution id="11f4ab49-b37d-4a1d-a203-6883b1aa6427" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.GameSystemTest, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadSystemFailTest" />
+    </UnitTest>
+    <UnitTest name="loadSystemFailTest2" storage="c:\users\juan\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="c06f86fb-85e4-d0ce-ea52-4d80ec6335ec">
+      <Execution id="d1014339-e947-4868-87b7-e494e697186e" />
+      <TestMethod codeBase="C:/Users/Juan/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.GameSystemTest, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadSystemFailTest2" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="c06f86fb-85e4-d0ce-ea52-4d80ec6335ec" executionId="d1014339-e947-4868-87b7-e494e697186e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e60e6cc9-8957-d681-e984-3cd42fdb6948" executionId="11f4ab49-b37d-4a1d-a203-6883b1aa6427" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="d1014339-e947-4868-87b7-e494e697186e" testId="c06f86fb-85e4-d0ce-ea52-4d80ec6335ec" testName="loadSystemFailTest2" computerName="CARMEN-PC" duration="00:00:15.0108586" startTime="2014-11-23T12:49:38.4017191-05:00" endTime="2014-11-23T12:49:53.4125777-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d1014339-e947-4868-87b7-e494e697186e">
+    </UnitTestResult>
+    <UnitTestResult executionId="11f4ab49-b37d-4a1d-a203-6883b1aa6427" testId="e60e6cc9-8957-d681-e984-3cd42fdb6948" testName="loadSystemFailTest" computerName="CARMEN-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="11f4ab49-b37d-4a1d-a203-6883b1aa6427">
+    </UnitTestResult>
+  </Results>
+</TestRun>

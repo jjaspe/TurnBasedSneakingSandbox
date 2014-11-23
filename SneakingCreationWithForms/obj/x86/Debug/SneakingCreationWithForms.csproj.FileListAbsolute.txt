@@ -1,5 +1,3 @@
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\Sneaking.MainForm.resources
-C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\Sneaking.MapCreation.resources
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.Properties.Resources.resources
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csproj.GenerateResource.Cache
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csprojResolveAssemblyReference.cache
@@ -19,3 +17,6 @@ C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForm
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCommon.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCommon.pdb
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreateGuardsForm.resources
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.MainForm.resources
+C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreateMapForm.resources

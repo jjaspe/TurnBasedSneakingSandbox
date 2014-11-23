@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using OpenGlGameCommon.Exceptions;
 
-namespace SneakingCommon.Utility
+namespace SneakingCommon.Exceptions
 {
     class GuardsInvalidException : GeneralException
     {

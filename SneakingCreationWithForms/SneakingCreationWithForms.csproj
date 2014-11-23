@@ -34,8 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Canvas Window Template">
-      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
+    <Reference Include="Canvas Window Template, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
+    </Reference>
+    <Reference Include="CharacterSystemLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
     </Reference>
     <Reference Include="ISE.FreeType">
       <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\ISE.FreeType.dll</HintPath>
@@ -61,25 +66,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateGuardsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateGuardsForm.designer.cs">
+      <DependentUpon>CreateGuardsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Map Creation.cs">
+    <Compile Include="CreateMapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Map Creation.designer.cs">
-      <DependentUpon>Map Creation.cs</DependentUpon>
+    <Compile Include="CreateMapForm.designer.cs">
+      <DependentUpon>CreateMapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CreateGuardsForm.resx">
+      <DependentUpon>CreateGuardsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Map Creation.resx">
-      <DependentUpon>Map Creation.cs</DependentUpon>
+    <EmbeddedResource Include="CreateMapForm.resx">
+      <DependentUpon>CreateMapForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

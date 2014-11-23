@@ -25,19 +25,28 @@ namespace SneakingCreationWithForms
     public partial class CreateGuardsForm : BasicOpenGlTemplate, ICanvasWindow
     {
         String filepath = (System.Reflection.Assembly.GetExecutingAssembly().Location).
-            Replace("SneakingCreationWithForms\\bin\\Debug", "TBSneaking Data\\");
+            Replace("SneakingCreationWithForms\\bin\\Debug\\SneakingCreationWithForms.exe", "TBSneaking Data\\"),
+            statToSkillsFilename="Stat To Skill Factors.txt",
+            guardsFilename="Guards\\saveGuardsTest.txt";
+
         List<SneakingGuard> myGuards;
         GameSystem myGameSystem;
         SneakingGuard mySelectedGuard;
-        List<IFormObserver> myObservers;
-        public OpenGlMap myMap;
+        SneakingMap myMap;
         selectorObj mySelector;
         Tile selectedTile;
         private bool closing, drawing;
+
+
         public simpleOpenGlView MyView
         {
             get { return myView; }
             set { myView = value; }
+        }
+        public SneakingMap Map
+        {
+            get { return myMap; }
+            set { myMap = value; }
         }
 
         public static float[] tileColor = Common.colorGreen;
@@ -48,17 +57,23 @@ namespace SneakingCreationWithForms
 
         public CreateGuardsForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
+
             myGuards = new List<SneakingGuard>();
-            myGameSystem = XmlLoader.loadSystem("");
-            myObservers = new List<IFormObserver>();
-            myView = new simpleOpenGlView();
-            
+            myGameSystem = XmlLoader.loadSystem(filepath+statToSkillsFilename);
             mySelector = new selectorObj(this.myView);
+            
             MyView.InitializeContexts();
             this.MyView.MouseClick += new MouseEventHandler(myView_Click);
             this.MyView.Dock = DockStyle.None;
-            this.Show();
+
+            myNavigator.Orientation = Common.planeOrientation.Z;
+            myNavigator.MyWindowOwner = this;
+            myNavigator.MyView = this.MyView;
+            myNavigator.Parent = MyView;
+            myNavigator.Dock = DockStyle.Right;
+
+            this.WindowState = FormWindowState.Maximized;
         }
        
 
@@ -75,9 +90,34 @@ namespace SneakingCreationWithForms
 
         public IWorld getMap()
         {
-            return myMap;
+            return Map;
+        }
+
+        public void refresh()
+        {
+            this.Refresh();
         }
         #endregion
+
+        public void drawingLoop()
+        {
+            Common myDrawer = new Common();
+            myView.setCameraView(simpleOpenGlView.VIEWS.Iso);
+            //myWindow.MinimizeBox = true;
+            //myWindow.MaximizeBox = true;
+            drawing = true;
+            while (!myView.isDisposed() && !closing)
+            {
+                MyView.setupScene();
+                //DRAW SCENE HERE
+                myDrawer.drawWorld(Map);
+                //END DRAW SCENE HERE
+                MyView.flushScene();
+                this.Refresh();
+                Application.DoEvents();
+            }
+            drawing = false;
+        }
 
        
         private void update()
@@ -117,9 +157,9 @@ namespace SneakingCreationWithForms
                 //If found remove from list;
                 myGuards.Remove(guard);
                 //remove from drawables
-                myMap.Drawables.Remove(guard);
+                Map.Drawables.Remove(guard);
                 //remove from list box
-                guardListBox.Items.Remove(new KeyValuePair<int, string>(guard.getId(), guard.Name));
+                guardListBox.Items.Remove(new KeyValuePair<int, string>(guard.getId(), guard.MyCharacter.Name));
             }
         }
 
@@ -141,19 +181,10 @@ namespace SneakingCreationWithForms
 
         #region EVENTS
 
-        private void rotateCW_Click(object sender, EventArgs e)
-        {
-            MyView.rotateCW();
-        }
-        private void rotateCCW_Click(object sender, EventArgs e)
-        {
-            MyView.rotateCCW();
-        }
-
         private void myView_Click(object sender, MouseEventArgs e)
         {
             //Check all objects, see if any was selected
-            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y }, myMap);
+            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y }, Map);
             Tile tile;
             //Check type
             if (id > -1)
@@ -163,7 +194,7 @@ namespace SneakingCreationWithForms
                     case 0://Tile
                         if (e.Button == MouseButtons.Left)
                         {
-                            tile = myMap.getTile(id);
+                            tile = Map.getTile(id);
                             if (tile != null)
                                 selectedTile = tile;
                         }
@@ -172,7 +203,7 @@ namespace SneakingCreationWithForms
                     case 5: //Guard 
                          if (e.Button == MouseButtons.Right)
                         {
-                            if (myMap.getGuard(id) != null)
+                            if (Map.getGuard(id) != null)
                                 removeGuard(id);
                         }
                         update();
@@ -190,24 +221,24 @@ namespace SneakingCreationWithForms
             SneakingGuard newGuard = new SneakingGuard();
             if (nameText.Text != "" && selectedTile!=null && !tileOcuppied(selectedTile))
             {
-                newGuard.Name = nameText.Text;
-                newGuard.MyPosition = selectedTile.MyOrigin;
+                newGuard.MyCharacter.Name = nameText.Text;
+                newGuard.Position = selectedTile.MyOrigin;
                 newGuard.MySize =(int) selectedTile.TileSize / 2;
-                //newGuard.MyCurrentTile = selectedTile;
+                //newGuard.MyCharacter.MyCurrentTile = selectedTile;
                 
-                newGuard.setStat("Strength", Int32.Parse(strText.Text));
-                newGuard.setStat("Perception", Int32.Parse(perText.Text));
-                newGuard.setStat("Intelligence", Int32.Parse(intText.Text));
-                newGuard.setStat("Dexterity", Int32.Parse(dexText.Text));
-                newGuard.setStat("Armor", Int32.Parse(armorText.Text));
-                newGuard.setStat("Weapon Skill", Int32.Parse(weapText.Text));
-                newGuard.setStat("Field of View", Int32.Parse(FoVText.Text));
-                newGuard.setStat("AP", Int32.Parse(APText.Text));
-                newGuard.setStat("Suspicion Propensity", Int32.Parse(SPText.Text));
-                newGuard.setStat("Knows Map", knowsMap.Checked ? 1 : 0);
+                newGuard.MyCharacter.setStat("Strength", Int32.Parse(strText.Text));
+                newGuard.MyCharacter.setStat("Perception", Int32.Parse(perText.Text));
+                newGuard.MyCharacter.setStat("Intelligence", Int32.Parse(intText.Text));
+                newGuard.MyCharacter.setStat("Dexterity", Int32.Parse(dexText.Text));
+                newGuard.MyCharacter.setStat("Armor", Int32.Parse(armorText.Text));
+                newGuard.MyCharacter.setStat("Weapon Skill", Int32.Parse(weapText.Text));
+                newGuard.MyCharacter.setStat("Field of View", Int32.Parse(FoVText.Text));
+                newGuard.MyCharacter.setStat("AP", Int32.Parse(APText.Text));
+                newGuard.MyCharacter.setStat("Suspicion Propensity", Int32.Parse(SPText.Text));
+                newGuard.MyCharacter.setStat("Knows Map", knowsMap.Checked ? 1 : 0);
                 newGuard.Visible = true;
                 myGuards.Add(newGuard);
-                guardListBox.Items.Add(new KeyValuePair<int, string>(newGuard.getId(), newGuard.Name));
+                guardListBox.Items.Add(new KeyValuePair<int, string>(newGuard.getId(), newGuard.MyCharacter.Name));
                 guardListBox.SelectedIndex = guardListBox.Items.Count - 1;
                 mySelectedGuard = newGuard;
             }
@@ -217,7 +248,8 @@ namespace SneakingCreationWithForms
 
         private void GuardCreation_FormClosed(object sender, FormClosedEventArgs e)
         {
-            notifyObservers("Closed");
+            if (!MyView.IsDisposed)
+                MyView.Dispose();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,30 +257,40 @@ namespace SneakingCreationWithForms
             OpenFileDialog MapDialog = new OpenFileDialog();
             MapDialog.Filter = "Map Files (*.map)|*.map";
             MapDialog.DefaultExt = ".map";
-            MapDialog.InitialDirectory = "C:/TBSneaking/Maps/";
+            MapDialog.InitialDirectory = filepath;
 
-            string fileName = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
+            string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
 
-            if (fileName == null)
+            if (filename == null)
             {
                 MessageBox.Show("Couldnt' Load Map");
                 return;
             }
 
-            using (StreamReader sr = new StreamReader(fileName))
+            FileStream mapFileReader;
+            try
             {
-                //First read map dimensions and tile size
-                string data = sr.ReadLine();
-                int firstComa = data.IndexOf(','), secondComa = data.Substring(firstComa + 1).IndexOf(',') + firstComa,
-                w = Int32.Parse(data.Substring(0, firstComa)), h = Int32.Parse(data.Substring(firstComa + 1, secondComa - firstComa)),
-                size = Int32.Parse(data.Substring(secondComa + 2, data.Length - secondComa - 2));
-                //Now read map
-                data = sr.ReadToEnd();
-
-                //Now make map
-
-                myMap = loadMap(data.ToCharArray(), w, h, size);
+                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Open Map");
+                return;
+            }
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(mapFileReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Create XmlDocument");
+                return;
+            }
+            this.Map = XmlLoader.loadBareMap(doc);
+            if (!drawing)
+                this.drawingLoop();
 
         }
 
@@ -257,7 +299,7 @@ namespace SneakingCreationWithForms
             SaveFileDialog guardDialog = new SaveFileDialog();
             guardDialog.Filter = "Guard Files (*.grd)|*.grd";
             guardDialog.DefaultExt=".grd";
-            guardDialog.InitialDirectory="C:/TBSneaking/Guards/";
+            guardDialog.InitialDirectory=filepath;
             
             string fileName = guardDialog.ShowDialog()==DialogResult.OK?guardDialog.FileName:null;
 
@@ -267,33 +309,7 @@ namespace SneakingCreationWithForms
                 return;
             }
 
-                XmlDocument myXml = new XmlDocument();
-                XmlWriter xWriter = new XmlTextWriter(fileName, null);
-                xWriter.WriteStartElement("Root");
-                xWriter.Close();
-                myXml.Load(fileName);
-
-                //get root
-                XmlNode root = myXml.DocumentElement;
-
-                //Get nodes
-                XmlElement idNode = myXml.CreateElement("Id"),
-                    positionNode = myXml.CreateElement("Position");
-                XmlNode currentGuard, guardList = myXml.CreateElement("Guard_List");
-                foreach (SneakingGuard g in myGuards)
-                {
-                    currentGuard = g.toXml(myXml);
-                    idNode.InnerText = g.getId().ToString();
-                    positionNode.InnerText = g.getPosition()[0].ToString() + "," + g.getPosition()[1].ToString();
-                    currentGuard.AppendChild(idNode);
-                    currentGuard.AppendChild(positionNode);
-                    guardList.AppendChild(currentGuard.Clone());
-                }
-
-                //Save
-                root.AppendChild(guardList);
-                myXml.Save(fileName);
-           
+            XmlLoader.saveGuards(guardsFilename, myGuards);           
 
         }
 
@@ -321,14 +337,13 @@ namespace SneakingCreationWithForms
                 {
                     //Clear old guard from map, if there was one
                     if (mySelectedGuard != null)
-                        myMap.Drawables.Remove(mySelectedGuard);
+                        Map.Drawables.Remove(mySelectedGuard);
                     //Set new selected guard and add guard to map objects
                     mySelectedGuard = temp;
-                    myMap.Drawables.Add(mySelectedGuard);
+                    Map.Drawables.Add(mySelectedGuard);
                 }
             }
         }
-        #endregion
 
         private void intText_TextChanged(object sender, EventArgs e)
         {
@@ -337,7 +352,7 @@ namespace SneakingCreationWithForms
 
         private void perText_TextChanged(object sender, EventArgs e)
         {
-            FoVText.Text = myGameSystem.getFoV(Int32.Parse(perText.Text)).ToString();           
+            FoVText.Text = myGameSystem.getFoV(Int32.Parse(perText.Text)).ToString();
         }
 
         private void dexText_TextChanged(object sender, EventArgs e)
@@ -356,12 +371,18 @@ namespace SneakingCreationWithForms
                 MyView.Dispose();
             closing = true;
         }
+        #endregion
+
+
+
+
+
+
+
+
+
+
 
         
-
-        
-
-       
-
     }
 }

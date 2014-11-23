@@ -12,7 +12,6 @@ using System.IO;
 using SneakingCommon.Utility;
 using SneakingCommon.Exceptions;
 using Canvas_Window_Template.Drawables;
-using EnvDTE;
 using SneakingCommon.Drawables;
 
 namespace SneakingCommonTests

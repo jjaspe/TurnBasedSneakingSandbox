@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="Canvas Window Template, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Class Libraries\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
+      <HintPath>..\..\Canvas Window Template\bin\Debug\Canvas Window Template.dll</HintPath>
     </Reference>
     <Reference Include="CharacterSystemLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
+      <HintPath>..\..\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Tao.Platform.Windows, Version=1.0.0.4, Culture=neutral, PublicKeyToken=701104b2da67a104, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Documents\Programming\VS2010 Projects\working projects\Drawing\Canvas Window Template\bin\Debug\Tao.Platform.Windows.dll</HintPath>
+      <HintPath>..\..\Canvas Window Template\bin\Debug\Tao.Platform.Windows.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

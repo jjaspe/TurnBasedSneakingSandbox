@@ -1,4 +1,4 @@
-﻿namespace Sneaking
+﻿namespace SneakingCreationWithForms
 {
     partial class MainForm
     {

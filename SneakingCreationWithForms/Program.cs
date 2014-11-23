@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Sneaking;
+using SneakingCreationWithForms;
 
 namespace SneakingCreationWithForms
 {

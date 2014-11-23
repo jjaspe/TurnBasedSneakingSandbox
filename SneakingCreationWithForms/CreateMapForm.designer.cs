@@ -1,6 +1,6 @@
 ﻿using Canvas_Window_Template.Basic_Drawing_Functions;using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template;
-namespace Sneaking
+namespace SneakingCreationWithForms
 {
     partial class CreateMapForm
     {
@@ -32,8 +32,8 @@ namespace Sneaking
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eyeFrontMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eyeTopMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,10 +50,10 @@ namespace Sneaking
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.addGroup = new System.Windows.Forms.GroupBox();
             this.highWallButton = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
             this.lowWallButton = new System.Windows.Forms.RadioButton();
             this.highBlockButton = new System.Windows.Forms.RadioButton();
             this.lowBlockButton = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.grpMap = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
@@ -76,26 +76,26 @@ namespace Sneaking
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem,
-            this.saveToolStripMenuItem1});
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "Open";
+            this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // saveToolStripMenuItem1
-            // 
-            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
-            this.saveToolStripMenuItem1.Text = "Save";
-            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // cameraMenuItem
             // 
@@ -269,6 +269,16 @@ namespace Sneaking
             this.highWallButton.Text = "Add High Wall";
             this.highWallButton.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 15);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 26);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Select one then click \r\non tile";
+            // 
             // lowWallButton
             // 
             this.lowWallButton.AutoSize = true;
@@ -308,16 +318,6 @@ namespace Sneaking
             this.lowBlockButton.Text = "Add Low Block";
             this.lowBlockButton.UseVisualStyleBackColor = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 15);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 26);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Select one then click \r\non tile";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -343,7 +343,7 @@ namespace Sneaking
             this.grpMap.TabStop = false;
             this.grpMap.Text = "Map";
             // 
-            // MapCreation
+            // CreateMapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -356,7 +356,7 @@ namespace Sneaking
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.myView);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "MapCreation";
+            this.Name = "CreateMapForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MapCreation_FormClosing);
             this.Shown += new System.EventHandler(this.myView_Load);
@@ -381,8 +381,8 @@ namespace Sneaking
         private System.Windows.Forms.ToolStripMenuItem cornerMenuItem;
         private System.Windows.Forms.ToolStripMenuItem isometricMenuItem;
         private simpleOpenGlView myView;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
         private Navigator myNavigator;
         private System.Windows.Forms.Button applySizeButton;
         private System.Windows.Forms.Label label3;
