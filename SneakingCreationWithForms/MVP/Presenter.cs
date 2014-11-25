@@ -10,6 +10,7 @@ using Canvas_Window_Template.Basic_Drawing_Functions;
 using Sneaking_Gameplay.Sneaking_Drawables;
 using System.Xml;
 using SneakingCommon.Utility;
+using CharacterSystemLibrary.Classes;
 
 namespace SneakingCreationWithForms.MVP
 {
@@ -36,10 +37,13 @@ namespace SneakingCreationWithForms.MVP
         #region MAIN MENU STUFF
         public void createMapWindowStart()
         {
+            Model.Map = null;
             View.startMapCreation();
         }
         public void createGuardWindowStart()
         {
+            Model.Guards = new List<SneakingGuard>();
+            Model.Map = null;
             View.startGuardCreation();
         }
         #endregion
@@ -287,6 +291,103 @@ namespace SneakingCreationWithForms.MVP
 
             hWall.MyTiles[1, 0].MyEnd.Y += model.Map.TileSize;
             hWall.MyTiles[1, 0].MyEnd.X -= model.Map.TileSize;
+        }
+        #endregion
+
+
+        #region GUARD CREATION STUFF
+        /// <summary>
+        /// Returns the guard with given id, null if there isn't one
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public SneakingGuard findGuard(int id)
+        {
+            foreach (SneakingGuard guard in Model.Guards)
+                if (guard.getId() == id)
+                    return guard;
+            return null;
+        }
+
+        /// <summary>
+        /// Removes a guard with id:id from the list of drawables in the map. Returns removed guard, null if not found
+        /// </summary>
+        /// <param name="id"></param>
+        public SneakingGuard removeGuard(int id)
+        {
+            //Find guard
+            SneakingGuard guard = null;
+            foreach (SneakingGuard g in Model.Guards)
+            {
+                if (g.getId() == id)
+                {
+                    guard = g;
+                    break;
+                }
+            }
+
+            if (guard != null)
+            {
+                //If found remove from list;
+                Model.Guards.Remove(guard);
+                //remove from drawables
+                Model.Map.Drawables.Remove(guard);
+            }
+            return guard;
+        }
+
+        /// <summary>
+        /// Returns whether a tile has a guard on top
+        /// </summary>
+        /// <param name="tile"></param>
+        /// <returns></returns>
+        bool tileOcuppied(Tile tile)
+        {
+            foreach (SneakingGuard g in Model.Guards)
+            {
+                if (tile.MyOrigin.equals(g.Position))
+                    return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Creates a guard with name:name, at position:positionTile, and with all the stats:stats
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="positionTile"></param>
+        /// <param name="stats"></param>
+        /// <returns></returns>
+        public SneakingGuard createGuard(String name,Tile positionTile,List<Stat> stats)
+        {
+            SneakingGuard newGuard = new SneakingGuard();
+            if (name != "" && positionTile != null && !tileOcuppied(positionTile))
+            {
+                newGuard.MyCharacter.Name = name;
+                newGuard.Position = positionTile.MyOrigin;
+                newGuard.MySize = (int)positionTile.TileSize / 2;
+
+                foreach (Stat s in stats)
+                    newGuard.MyCharacter.addStat(s);
+                
+                newGuard.Visible = true;
+                Model.Guards.Add(newGuard);
+                return newGuard;                
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Saves guards to file with path:filename
+        /// </summary>
+        /// <param name="filename"></param>
+        public void saveGuards(String filename)
+        {
+            XmlLoader.saveGuards(filename, Model.Guards);
+        }
+
+        public void loadSystem(string filename)
+        {
+            Model.System = XmlLoader.loadSystem(filename);
         }
         #endregion
 

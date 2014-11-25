@@ -183,21 +183,22 @@ namespace SneakingCreationWithForms
 
         private void applySizeButton_Click(object sender, EventArgs e)
         {
-            int width = MyPresenter.Model.Map.MyWidth, length = MyPresenter.Model.Map.MyHeight;
+            int width=0, length=0;
             //Check textboxes have integers
             try
             {
                 width = Int32.Parse(this.XTextBox.Text);
                 length = Int32.Parse(this.YTextBox.Text);
+                MyPresenter.createMapSelected(width, length);
+
+                if (!drawing)
+                    drawingLoop(this);
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Invalid integer:" +ex.Message);
             }
-
-            MyPresenter.createMapSelected(width, length);
             
-            if(!drawing)
-                drawingLoop(this);
         }
 
         private void myView_Load(object sender, EventArgs e)
@@ -269,7 +270,7 @@ namespace SneakingCreationWithForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't Open Map");
+                MessageBox.Show("Couldn't Open Map:"+ex.Message);
                 return;
             }
 
@@ -280,7 +281,7 @@ namespace SneakingCreationWithForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't Create XmlDocument");
+                MessageBox.Show("Couldn't Create XmlDocument:"+ex.Message);
                 return;
             }
 

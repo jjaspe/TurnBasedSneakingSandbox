@@ -12,7 +12,6 @@ using Canvas_Window_Template.Interfaces;
 using System.IO;
 using System.Xml;
 using OpenGlGameCommon.Classes;
-using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using OpenGlGameCommon.Interfaces;
@@ -20,6 +19,7 @@ using Canvas_Window_Template;
 using Sneaking_Gameplay.Sneaking_Drawables;
 using SneakingCommon.Utility;
 using SneakingCreationWithForms.MVP;
+using CharacterSystemLibrary.Classes;
 
 namespace SneakingCreationWithForms
 {
@@ -30,10 +30,7 @@ namespace SneakingCreationWithForms
             statToSkillsFilename="Stat To Skill Factors.txt",
             guardsFilename="Guards\\saveGuardsTest.txt";
 
-        List<SneakingGuard> myGuards;
-        GameSystem myGameSystem;
         SneakingGuard mySelectedGuard;
-        SneakingMap myMap;
         selectorObj mySelector;
         Tile selectedTile;
         Presenter presenter;
@@ -51,24 +48,24 @@ namespace SneakingCreationWithForms
             get { return myView; }
             set { myView = value; }
         }
-        public SneakingMap Map
-        {
-            get { return myMap; }
-            set { myMap = value; }
-        }
+
+
 
         public static float[] tileColor = Common.colorGreen;
         public static float[] outlineColor = Common.colorBlack;
         public static float[] blockColor = Common.colorRed;
         public static float[] wallColor = Common.colorGreen;
         
-
-        public CreateGuardsForm()
+        /// <summary>
+        /// Stats up game system too
+        /// </summary>
+        public CreateGuardsForm(Presenter presenter)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            MyPresenter = presenter;
 
-            myGuards = new List<SneakingGuard>();
-            myGameSystem = XmlLoader.loadSystem(filepath+statToSkillsFilename);
+            MyPresenter.loadSystem(filepath+statToSkillsFilename);
+
             mySelector = new selectorObj(this.myView);
             
             MyView.InitializeContexts();
@@ -91,14 +88,9 @@ namespace SneakingCreationWithForms
             return MyView;
         }
 
-        public void setMap(IWorld newMap, int width, int height, int tileSize, IPoint origin)
-        {
-            throw new NotImplementedException();
-        }
-
         public IWorld getMap()
         {
-            return Map;
+            return MyPresenter.Model.Map;
         }
 
         public void refresh()
@@ -118,7 +110,7 @@ namespace SneakingCreationWithForms
             {
                 MyView.setupScene();
                 //DRAW SCENE HERE
-                myDrawer.drawWorld(Map);
+                myDrawer.drawWorld(MyPresenter.Model.Map);
                 //END DRAW SCENE HERE
                 MyView.flushScene();
                 this.Refresh();
@@ -126,7 +118,6 @@ namespace SneakingCreationWithForms
             }
             drawing = false;
         }
-
        
         private void update()
         {
@@ -136,63 +127,17 @@ namespace SneakingCreationWithForms
                     selectedTile.MyOrigin.Y.ToString();
             }
         }
-        SneakingGuard findGuard(int id)
-        {
-            foreach (SneakingGuard guard in myGuards)
-                if (guard.getId() == id)
-                    return guard;
-            return null;
-        }
-        void setGuardPosition(Tile tile)
-        {
-            
-        }
-        void removeGuard(int id)
-        {
-            //Find guard
-            SneakingGuard guard = null;
-            foreach (SneakingGuard g in myGuards)
-            {
-                if (g.getId() == id)
-                {
-                    guard = g;
-                    break;
-                }
-            }
-
-            if (guard != null)
-            {
-                //If found remove from list;
-                myGuards.Remove(guard);
-                //remove from drawables
-                Map.Drawables.Remove(guard);
-                //remove from list box
-                guardListBox.Items.Remove(new KeyValuePair<int, string>(guard.getId(), guard.MyCharacter.Name));
-            }
-        }
-
-        /// <summary>
-        /// Returns whether a tile has a guard on top
-        /// </summary>
-        /// <param name="tile"></param>
-        /// <returns></returns>
-        bool tileOcuppied(Tile tile)
-        {
-            foreach (SneakingGuard g in myGuards)
-            {
-                if (tile.MyOrigin.equals(g.Position))
-                    return true;
-            }
-            return false;
-        }
-     
 
         #region EVENTS
-
+        /// <summary>
+        /// Hadler for clicks on view. Right clicking a guard will remove it, left clicking a tile will select it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void myView_Click(object sender, MouseEventArgs e)
         {
             //Check all objects, see if any was selected
-            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y }, Map);
+            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y }, MyPresenter.Model.Map);
             Tile tile;
             //Check type
             if (id > -1)
@@ -200,19 +145,24 @@ namespace SneakingCreationWithForms
                 switch (id % GameObjects.objectTypes)
                 {
                     case 0://Tile
-                        if (e.Button == MouseButtons.Left)
+                        if (e.Button == MouseButtons.Left)//Select tile
                         {
-                            tile = Map.getTile(id);
+                            tile = MyPresenter.Model.Map.getTile(id);
                             if (tile != null)
                                 selectedTile = tile;
                         }
                         update();
                         break;
                     case 5: //Guard 
-                         if (e.Button == MouseButtons.Right)
+                         if (e.Button == MouseButtons.Right)//Remove
                         {
-                            if (Map.getGuard(id) != null)
-                                removeGuard(id);
+                            if (MyPresenter.Model.Map.getGuard(id) != null)
+                            {
+                                SneakingGuard guard=MyPresenter.removeGuard(id);
+                                //remove from list box
+                                if(guard!=null)
+                                    guardListBox.Items.Remove(new KeyValuePair<int, string>(guard.getId(), guard.MyCharacter.Name));
+                            }
                         }
                         update();
                         break;
@@ -226,26 +176,22 @@ namespace SneakingCreationWithForms
 
         private void addGuardButton_Click(object sender, EventArgs e)
         {
-            SneakingGuard newGuard = new SneakingGuard();
-            if (nameText.Text != "" && selectedTile!=null && !tileOcuppied(selectedTile))
+            List<Stat> guardStats = new List<Stat>();            
+            guardStats.Add(new Stat("Strength", Int32.Parse(strText.Text)));
+            guardStats.Add(new Stat("Perception", Int32.Parse(perText.Text)));
+            guardStats.Add(new Stat("Intelligence", Int32.Parse(intText.Text)));
+            guardStats.Add(new Stat("Dexterity", Int32.Parse(dexText.Text)));
+            guardStats.Add(new Stat("Armor", Int32.Parse(armorText.Text)));
+            guardStats.Add(new Stat("Weapon Skill", Int32.Parse(weapText.Text)));
+            guardStats.Add(new Stat("Field of View", Int32.Parse(FoVText.Text)));
+            guardStats.Add(new Stat("AP", Int32.Parse(APText.Text)));
+            guardStats.Add(new Stat("Suspicion Propensity", Int32.Parse(SPText.Text)));
+            guardStats.Add(new Stat("Knows MyPresenter.Model.Map", knowsMap.Checked ? 1 : 0));
+
+            SneakingGuard newGuard = MyPresenter.createGuard(txtName.Text, selectedTile, guardStats);
+
+            if (newGuard != null)
             {
-                newGuard.MyCharacter.Name = nameText.Text;
-                newGuard.Position = selectedTile.MyOrigin;
-                newGuard.MySize =(int) selectedTile.TileSize / 2;
-                //newGuard.MyCharacter.MyCurrentTile = selectedTile;
-                
-                newGuard.MyCharacter.setStat("Strength", Int32.Parse(strText.Text));
-                newGuard.MyCharacter.setStat("Perception", Int32.Parse(perText.Text));
-                newGuard.MyCharacter.setStat("Intelligence", Int32.Parse(intText.Text));
-                newGuard.MyCharacter.setStat("Dexterity", Int32.Parse(dexText.Text));
-                newGuard.MyCharacter.setStat("Armor", Int32.Parse(armorText.Text));
-                newGuard.MyCharacter.setStat("Weapon Skill", Int32.Parse(weapText.Text));
-                newGuard.MyCharacter.setStat("Field of View", Int32.Parse(FoVText.Text));
-                newGuard.MyCharacter.setStat("AP", Int32.Parse(APText.Text));
-                newGuard.MyCharacter.setStat("Suspicion Propensity", Int32.Parse(SPText.Text));
-                newGuard.MyCharacter.setStat("Knows Map", knowsMap.Checked ? 1 : 0);
-                newGuard.Visible = true;
-                myGuards.Add(newGuard);
                 guardListBox.Items.Add(new KeyValuePair<int, string>(newGuard.getId(), newGuard.MyCharacter.Name));
                 guardListBox.SelectedIndex = guardListBox.Items.Count - 1;
                 mySelectedGuard = newGuard;
@@ -264,7 +210,7 @@ namespace SneakingCreationWithForms
         {
             OpenFileDialog MapDialog = new OpenFileDialog();
             MapDialog.Filter = "Map Files (*.map)|*.map";
-            MapDialog.DefaultExt = ".map";
+            MapDialog.DefaultExt = "Map";
             MapDialog.InitialDirectory = filepath;
 
             string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
@@ -282,7 +228,7 @@ namespace SneakingCreationWithForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't Open Map");
+                MessageBox.Show("Couldn't Open Map:" + ex.Message);
                 return;
             }
 
@@ -293,10 +239,10 @@ namespace SneakingCreationWithForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Couldn't Create XmlDocument");
+                MessageBox.Show("Couldn't Create XmlDocument:"+ex.Message);
                 return;
             }
-            this.Map = XmlLoader.loadBareMap(doc);
+            this.MyPresenter.loadMap(doc);
             if (!drawing)
                 this.drawingLoop();
 
@@ -317,7 +263,7 @@ namespace SneakingCreationWithForms
                 return;
             }
 
-            XmlLoader.saveGuards(guardsFilename, myGuards);           
+            MyPresenter.saveGuards(guardsFilename);           
 
         }
 
@@ -339,33 +285,33 @@ namespace SneakingCreationWithForms
             if (guardListBox.SelectedItem != null)
             {
                 id = ((KeyValuePair<int, string>)guardListBox.SelectedItem).Key;
-                temp = findGuard(id); // Get new guard
+                temp = MyPresenter.findGuard(id); // Get new guard
 
                 if (temp != null)//Dont do anything if guard not found
                 {
-                    //Clear old guard from map, if there was one
+                    //Clear old guard from MyPresenter.Model.Map, if there was one
                     if (mySelectedGuard != null)
-                        Map.Drawables.Remove(mySelectedGuard);
-                    //Set new selected guard and add guard to map objects
+                        MyPresenter.Model.Map.Drawables.Remove(mySelectedGuard);
+                    //Set new selected guard and add guard to MyPresenter.Model.Map objects
                     mySelectedGuard = temp;
-                    Map.Drawables.Add(mySelectedGuard);
+                    MyPresenter.Model.Map.Drawables.Add(mySelectedGuard);
                 }
             }
         }
 
         private void intText_TextChanged(object sender, EventArgs e)
         {
-            SPText.Text = ((int)myGameSystem.getSP(Int32.Parse(intText.Text))).ToString();
+            SPText.Text = ((int)MyPresenter.Model.System.getSP(Int32.Parse(intText.Text))).ToString();
         }
 
         private void perText_TextChanged(object sender, EventArgs e)
         {
-            FoVText.Text = myGameSystem.getFoV(Int32.Parse(perText.Text)).ToString();
+            FoVText.Text = MyPresenter.Model.System.getFoV(Int32.Parse(perText.Text)).ToString();
         }
 
         private void dexText_TextChanged(object sender, EventArgs e)
         {
-            APText.Text = myGameSystem.getAP(Int32.Parse(dexText.Text)).ToString();
+            APText.Text = MyPresenter.Model.System.getAP(Int32.Parse(dexText.Text)).ToString();
         }
 
         private void armorText_TextChanged(object sender, EventArgs e)
@@ -381,16 +327,5 @@ namespace SneakingCreationWithForms
         }
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-        
     }
 }

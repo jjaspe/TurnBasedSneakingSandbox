@@ -53,7 +53,7 @@ namespace SneakingCreationWithForms
             this.label3 = new System.Windows.Forms.Label();
             this.persuasionLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.nameText = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.guardListBox = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +90,7 @@ namespace SneakingCreationWithForms
             this.guardCreationGroup.Controls.Add(this.label3);
             this.guardCreationGroup.Controls.Add(this.persuasionLabel);
             this.guardCreationGroup.Controls.Add(this.nameLabel);
-            this.guardCreationGroup.Controls.Add(this.nameText);
+            this.guardCreationGroup.Controls.Add(this.txtName);
             this.guardCreationGroup.Controls.Add(this.guardListBox);
             this.guardCreationGroup.Location = new System.Drawing.Point(977, 41);
             this.guardCreationGroup.Margin = new System.Windows.Forms.Padding(2);
@@ -333,12 +333,12 @@ namespace SneakingCreationWithForms
             // 
             // nameText
             // 
-            this.nameText.Location = new System.Drawing.Point(108, 32);
-            this.nameText.Margin = new System.Windows.Forms.Padding(2);
-            this.nameText.Name = "nameText";
-            this.nameText.Size = new System.Drawing.Size(103, 20);
-            this.nameText.TabIndex = 1;
-            this.nameText.Text = "Guard";
+            this.txtName.Location = new System.Drawing.Point(108, 32);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtName.Name = "nameText";
+            this.txtName.Size = new System.Drawing.Size(103, 20);
+            this.txtName.TabIndex = 1;
+            this.txtName.Text = "Guard";
             // 
             // guardListBox
             // 
@@ -450,7 +450,7 @@ namespace SneakingCreationWithForms
         private System.Windows.Forms.GroupBox guardCreationGroup;
         private System.Windows.Forms.ListBox guardListBox;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.TextBox nameText;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label persuasionLabel;

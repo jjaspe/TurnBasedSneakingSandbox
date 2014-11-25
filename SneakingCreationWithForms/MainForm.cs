@@ -17,9 +17,6 @@ namespace SneakingCreationWithForms
 {
     public partial class MainForm : Form,IView
     {
-        static int width = 20, height = 20;//width -> Z axis, length -> X axis,in number of tiles
-        static int tileSize = 20;
-
         Presenter presenter;
         simpleOpenGlView myView;
         public Presenter MyPresenter
@@ -120,7 +117,7 @@ namespace SneakingCreationWithForms
         /// </summary>
         public void startGuardCreation()
         {
-            CreateGuardsForm guardsWindow = new CreateGuardsForm() { MyPresenter = this.MyPresenter };
+            CreateGuardsForm guardsWindow = new CreateGuardsForm(this.MyPresenter );
             this.myView = guardsWindow.MyView;
             guardsWindow.ShowDialog(this);
         }
