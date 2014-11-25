@@ -11,6 +11,7 @@ using Sneaking_Gameplay.Sneaking_Drawables;
 using System.Xml;
 using SneakingCommon.Utility;
 using CharacterSystemLibrary.Classes;
+using OpenGlGameCommon.Enums;
 
 namespace SneakingCreationWithForms.MVP
 {
@@ -351,7 +352,8 @@ namespace SneakingCreationWithForms.MVP
             return false;
         }
         /// <summary>
-        /// Creates a guard with name:name, at position:positionTile, and with all the stats:stats
+        /// Creates a guard with name:name, at position:positionTile, and with all the stats:stats. It initializes guard's orientation to left by default.
+        /// IF there is a guard with the same name dont' add  and return null
         /// </summary>
         /// <param name="name"></param>
         /// <param name="positionTile"></param>
@@ -360,17 +362,27 @@ namespace SneakingCreationWithForms.MVP
         public SneakingGuard createGuard(String name,Tile positionTile,List<Stat> stats)
         {
             SneakingGuard newGuard = new SneakingGuard();
+
+            //Check with same name
+            var g = from guard in Model.Guards
+                    where guard.MyName.Equals(name)
+                    select guard;
+            if (g.Count() > 0)
+                return null;
+
             if (name != "" && positionTile != null && !tileOcuppied(positionTile))
             {
                 newGuard.MyCharacter.Name = name;
                 newGuard.Position = positionTile.MyOrigin;
                 newGuard.MySize = (int)positionTile.TileSize / 2;
+                newGuard.MyOrientation = GuardOrientation.left;
 
                 foreach (Stat s in stats)
                     newGuard.MyCharacter.addStat(s);
                 
                 newGuard.Visible = true;
                 Model.Guards.Add(newGuard);
+                Model.Map.Drawables.Add(newGuard);
                 return newGuard;                
             }
             return null;

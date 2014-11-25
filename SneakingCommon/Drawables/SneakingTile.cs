@@ -9,7 +9,6 @@ namespace SneakingCommon.Drawables
 {
     public class SneakingTile:Tile
     {
-        static int tileIds = 0;
         
         public float[] ShadeColor { get; set; }
 

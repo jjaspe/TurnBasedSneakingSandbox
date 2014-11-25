@@ -41,8 +41,20 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         NoiseMap myNoiseMap;
         NoiseMap myKnownNoiseMap;
 
-
-
+        /// <summary>
+        /// Hides original to call setImage after changing value;
+        /// </summary>
+        public new GuardOrientation MyOrientation
+        {
+            set
+            {
+                base.MyOrientation = value; setImage();
+            }
+            get
+            {
+                return base.MyOrientation;
+            }
+        }
         public ISneakingNPCBehavior SneakingNPCBehavior
         {
             get;
@@ -63,6 +75,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             get;
             set;
         }
+        
         
         public string MyName
         {
@@ -105,7 +118,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         {
             myId = guardIds;
             size = 10;
-            //setImage();
+            setImage();
             guardIds += GameObjects.objectTypes;
             MyNoiseMap = new NoiseMap();
             rememberedPoints = new List<IPoint>();
@@ -220,6 +233,19 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             MyNoiseMap.initialize(0);
             SneakingNPCBehavior.reset();
             base.reset();
+        }
+
+        /// <summary>
+        /// Override to use child setImage instead of parent's
+        /// </summary>
+        public override void draw()
+        {
+            if (Visible)
+            {
+                drawPatrol();
+                setImage();
+                myImage.draw();
+            }
         }
       
 

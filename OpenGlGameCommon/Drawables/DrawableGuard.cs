@@ -264,27 +264,30 @@ namespace OpenGlGameCommon.Drawables
         /// <summary>
         /// Draws patrol lines and guard image
         /// </summary>
-        public void draw()
+        public virtual void draw()
         {
-            int tileSize = MySize * 2;
             if (Visible)
             {
-                if (MyPatrol != null && MyPatrol.DirectionLines != null && MyPatrol.MyWaypoints.Count > 0)
-                {
-                    //First, line from guard to first tile
-                    IPoint start = new PointObj(Position.X + tileSize / 2,
-                        Position.Y + tileSize / 2, Position.Z),
-                        end = new PointObj(MyPatrol.MyWaypoints.First().X + tileSize / 2,
-                            MyPatrol.MyWaypoints.First().Y + tileSize / 2, MyPatrol.MyWaypoints.First().Z);
-                    (new DirectionLine(start, end)).draw();
-
-                    //Then path lines
-                    foreach (DirectionLine d in MyPatrol.DirectionLines)
-                        d.draw();
-                }
-
+                drawPatrol();
                 setImage();
                 myImage.draw();
+            }
+        }
+        public void drawPatrol()
+        {
+            int tileSize = MySize * 2;            
+            if (MyPatrol != null && MyPatrol.DirectionLines != null && MyPatrol.MyWaypoints.Count > 0)
+            {
+                //First, line from guard to first tile
+                IPoint start = new PointObj(Position.X + tileSize / 2,
+                    Position.Y + tileSize / 2, Position.Z),
+                    end = new PointObj(MyPatrol.MyWaypoints.First().X + tileSize / 2,
+                        MyPatrol.MyWaypoints.First().Y + tileSize / 2, MyPatrol.MyWaypoints.First().Z);
+                (new DirectionLine(start, end)).draw();
+
+                //Then path lines
+                foreach (DirectionLine d in MyPatrol.DirectionLines)
+                    d.draw();
             }
         }
         #endregion

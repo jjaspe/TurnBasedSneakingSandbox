@@ -277,6 +277,11 @@ namespace SneakingCreationWithForms
             this.MyView.zoomOut();
         }
 
+        /// <summary>
+        /// Makes previously selected not visible, makes newly selected visible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void guardListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Get selected guard 
@@ -289,12 +294,12 @@ namespace SneakingCreationWithForms
 
                 if (temp != null)//Dont do anything if guard not found
                 {
-                    //Clear old guard from MyPresenter.Model.Map, if there was one
+                    //Make old selected not visible
                     if (mySelectedGuard != null)
-                        MyPresenter.Model.Map.Drawables.Remove(mySelectedGuard);
-                    //Set new selected guard and add guard to MyPresenter.Model.Map objects
+                        mySelectedGuard.Visible = false;
+                    //Set new selected guard as visible
                     mySelectedGuard = temp;
-                    MyPresenter.Model.Map.Drawables.Add(mySelectedGuard);
+                    mySelectedGuard.Visible = true; ;
                 }
             }
         }

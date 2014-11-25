@@ -1,0 +1,6 @@
+﻿Issues- First guard doens't go not visible when a second is selected
+	- Visible attribute inside drawables not being set to false
+
+
+TODO
+Add other two forms
