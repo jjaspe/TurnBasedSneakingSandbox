@@ -7,11 +7,17 @@ using Canvas_Window_Template.Drawables;
 using Canvas_Window_Template.Interfaces;
 using SneakingCommon.Enums;
 using Canvas_Window_Template.Basic_Drawing_Functions;
+using Sneaking_Gameplay.Sneaking_Drawables;
+using System.Xml;
+using SneakingCommon.Utility;
 
 namespace SneakingCreationWithForms.MVP
 {
     public class Presenter
     {
+
+        public static int TILE_SIZE = 20;
+
         IView view;
         IModel model;
         public selectorObj mySelector;
@@ -27,8 +33,47 @@ namespace SneakingCreationWithForms.MVP
             set { view = value; }
         }
 
-        #region model.Map CREATION STUFF
+        #region MAIN MENU STUFF
+        public void createMapWindowStart()
+        {
+            View.startMapCreation();
+        }
+        public void createGuardWindowStart()
+        {
+            View.startGuardCreation();
+        }
+        #endregion
+
+
+        #region MAP CREATION STUFF
         Elements selectedElement;
+        /// <summary>
+        /// Loads a map from XmlDocument.
+        /// </summary>
+        /// <param name="filename"></param>
+        public void loadMap(XmlDocument doc)
+        {
+            this.model.Map = XmlLoader.loadBareMap(doc);
+        }
+
+        /// <summary>
+        /// Tries to save the model's map to filename
+        /// </summary>
+        /// <param name="filename"></param>
+        public void saveMap(string filename)
+        {
+            XmlLoader.saveBareMap(filename, model.Map);
+        }
+
+        public void createMapSelected(int width, int length, Int32 originX=Int32.MaxValue, Int32 originY=Int32.MaxValue)
+        {
+            IPoint origin;
+            if (originX == Int32.MaxValue || originY == Int32.MaxValue)
+                origin = new pointObj(-width * TILE_SIZE / 2, -length * TILE_SIZE / 2, 0);
+            else
+                origin = new pointObj(originX, originY, 0);
+            model.Map = SneakingMap.createInstance(width, length, TILE_SIZE, origin);
+        }
         public void viewClicked(int objectId, MouseButtons button)
         {
             //Check all objects, see if any was selected

@@ -264,7 +264,6 @@ namespace SneakingCreationWithForms
             this.highWallButton.Name = "highWallButton";
             this.highWallButton.Size = new System.Drawing.Size(93, 17);
             this.highWallButton.TabIndex = 3;
-            this.highWallButton.TabStop = true;
             this.highWallButton.Tag = "3";
             this.highWallButton.Text = "Add High Wall";
             this.highWallButton.UseVisualStyleBackColor = true;
@@ -288,7 +287,6 @@ namespace SneakingCreationWithForms
             this.lowWallButton.Name = "lowWallButton";
             this.lowWallButton.Size = new System.Drawing.Size(91, 17);
             this.lowWallButton.TabIndex = 2;
-            this.lowWallButton.TabStop = true;
             this.lowWallButton.Tag = "2";
             this.lowWallButton.Text = "Add Low Wall\r\n";
             this.lowWallButton.UseVisualStyleBackColor = true;
@@ -302,7 +300,6 @@ namespace SneakingCreationWithForms
             this.highBlockButton.Name = "highBlockButton";
             this.highBlockButton.Size = new System.Drawing.Size(99, 17);
             this.highBlockButton.TabIndex = 1;
-            this.highBlockButton.TabStop = true;
             this.highBlockButton.Tag = "1";
             this.highBlockButton.Text = "Add High Block";
             this.highBlockButton.UseVisualStyleBackColor = true;
@@ -311,6 +308,7 @@ namespace SneakingCreationWithForms
             // lowBlockButton
             // 
             this.lowBlockButton.AutoSize = true;
+            this.lowBlockButton.Checked = true;
             this.lowBlockButton.Location = new System.Drawing.Point(17, 53);
             this.lowBlockButton.Margin = new System.Windows.Forms.Padding(2);
             this.lowBlockButton.Name = "lowBlockButton";

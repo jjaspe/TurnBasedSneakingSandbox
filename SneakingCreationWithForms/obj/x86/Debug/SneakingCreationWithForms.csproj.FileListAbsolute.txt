@@ -20,3 +20,25 @@ C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForm
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreateGuardsForm.resources
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.MainForm.resources
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreateMapForm.resources
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.exe
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCreationWithForms.exe
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCreationWithForms.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Canvas Window Template.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\ISE.FreeType.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\OpenGlGameCommon.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCommon.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Tao.FreeGlut.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Tao.OpenGl.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\OpenGlGameCommon.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCommon.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Canvas Window Template.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csprojResolveAssemblyReference.cache
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreateGuardsForm.resources
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.MainForm.resources
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreateMapForm.resources
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.Properties.Resources.resources
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csproj.GenerateResource.Cache

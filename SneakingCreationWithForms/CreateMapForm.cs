@@ -25,9 +25,7 @@ namespace SneakingCreationWithForms
 {
     public partial class CreateMapForm : BasicOpenGlTemplate,ICanvasWindow
     {
-        public static int TILE_SIZE = 20;
         bool closing = false,drawing=false;
-        public SneakingMap Map;
         public selectorObj mySelector;
         public simpleOpenGlView MyView
         {
@@ -185,7 +183,7 @@ namespace SneakingCreationWithForms
 
         private void applySizeButton_Click(object sender, EventArgs e)
         {
-            int width=Map.MyWidth,length=Map.MyHeight;
+            int width = MyPresenter.Model.Map.MyWidth, length = MyPresenter.Model.Map.MyHeight;
             //Check textboxes have integers
             try
             {
@@ -195,16 +193,16 @@ namespace SneakingCreationWithForms
             catch (Exception ex)
             {
             }
+
+            MyPresenter.createMapSelected(width, length);
             
-            IPoint origin = new pointObj(-width * TILE_SIZE/ 2, -length * TILE_SIZE / 2, 0);
-            Map = SneakingMap.createInstance(width, length, TILE_SIZE, origin);
-            
-            drawingLoop(this);
+            if(!drawing)
+                drawingLoop(this);
         }
 
         private void myView_Load(object sender, EventArgs e)
         {
-
+            MyPresenter.geometryElementSelected(Elements.LowBlock);
         }
 
         private void eyeFrontMenuItem_Click(object sender, EventArgs e)
@@ -243,7 +241,7 @@ namespace SneakingCreationWithForms
 
             try
             {
-                XmlLoader.saveBareMap(filename, Map);
+                MyPresenter.saveMap(filename);
             }
             catch (InvalidMapException exc)
             {
@@ -285,7 +283,8 @@ namespace SneakingCreationWithForms
                 MessageBox.Show("Couldn't Create XmlDocument");
                 return;
             }
-            this.Map = XmlLoader.loadBareMap(doc);
+
+            MyPresenter.loadMap(doc);
             if (!drawing)
                 drawingLoop(this);
 
@@ -308,7 +307,7 @@ namespace SneakingCreationWithForms
 
         public IWorld getMap()
         {
-            return Map;
+            return MyPresenter.Model.Map;
         }
         #endregion 
 

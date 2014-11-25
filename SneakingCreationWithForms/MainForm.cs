@@ -19,7 +19,6 @@ namespace SneakingCreationWithForms
     {
         static int width = 20, height = 20;//width -> Z axis, length -> X axis,in number of tiles
         static int tileSize = 20;
-        static Common myDrawer = new Common();
 
         Presenter presenter;
         simpleOpenGlView myView;
@@ -49,7 +48,6 @@ namespace SneakingCreationWithForms
         public MainForm()
         {
             InitializeComponent();
-            this.Show();
         }
 
         
@@ -78,33 +76,20 @@ namespace SneakingCreationWithForms
         }*/
 
 
-        /// <summary>
-        /// Starts Map Creation form, hookss up presenter and map's view
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
         private void createMapButton_Click(object sender, EventArgs e)
         {
-            CreateMapForm mapWindow = new CreateMapForm() { MyPresenter=this.MyPresenter };
-            this.myView = mapWindow.MyView;
-            mapWindow.ShowDialog(this);
+            MyPresenter.createMapWindowStart();
         }
 
         private void createPatrolButton_Click(object sender, EventArgs e)
         {
-           
+            presenter.createMapWindowStart();
         }
-
-        /// <summary>
-        /// Starts Guards Creation form, hookss up presenter and map's view
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
         private void addGuardsButton_Click(object sender, EventArgs e)
         {
-            CreateGuardsForm guardsWindow = new CreateGuardsForm() { MyPresenter=this.MyPresenter };
-            this.myView = guardsWindow.MyView;
-            guardsWindow.ShowDialog(this);
+            presenter.createGuardWindowStart();
         }
 
         private void createPlayer_Click(object sender, EventArgs e)
@@ -117,17 +102,27 @@ namespace SneakingCreationWithForms
 
         public void start()
         {
-            throw new NotImplementedException();
+            this.Show();
         }
 
+        /// <summary>
+        /// Starts map window, hooks up presenter with window's openGl view
+        /// </summary>
         public void startMapCreation()
         {
-            throw new NotImplementedException();
+            CreateMapForm mapWindow = new CreateMapForm() { MyPresenter = this.MyPresenter };
+            this.myView = mapWindow.MyView;
+            mapWindow.ShowDialog(this);
         }
 
+        /// <summary>
+        /// Starts guard window, hooks up presenter with window's openGl view
+        /// </summary>
         public void startGuardCreation()
         {
-            throw new NotImplementedException();
+            CreateGuardsForm guardsWindow = new CreateGuardsForm() { MyPresenter = this.MyPresenter };
+            this.myView = guardsWindow.MyView;
+            guardsWindow.ShowDialog(this);
         }
     }
 }

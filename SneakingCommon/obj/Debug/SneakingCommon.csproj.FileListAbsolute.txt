@@ -26,3 +26,17 @@ C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.pdb
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingCommon.dll
 C:\Users\Juan\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingCommon.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Canvas Window Template.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\CharacterSystemLibrary.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\OpenGlGameCommon.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Tao.Platform.Windows.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\ISE.FreeType.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Tao.OpenGl.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\OpenGlGameCommon.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\Canvas Window Template.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\CharacterSystemLibrary.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingCommon.csprojResolveAssemblyReference.cache
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingCommon.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\obj\Debug\SneakingCommon.pdb
