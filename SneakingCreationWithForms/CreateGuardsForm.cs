@@ -186,7 +186,7 @@ namespace SneakingCreationWithForms
             guardStats.Add(new Stat("Field of View", Int32.Parse(FoVText.Text)));
             guardStats.Add(new Stat("AP", Int32.Parse(APText.Text)));
             guardStats.Add(new Stat("Suspicion Propensity", Int32.Parse(SPText.Text)));
-            guardStats.Add(new Stat("Knows MyPresenter.Model.Map", knowsMap.Checked ? 1 : 0));
+            guardStats.Add(new Stat("Knows Map", knowsMap.Checked ? 1 : 0));
 
             SneakingGuard newGuard = MyPresenter.createGuard(txtName.Text, selectedTile, guardStats);
 

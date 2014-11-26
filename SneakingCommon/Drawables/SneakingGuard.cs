@@ -25,8 +25,6 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
     /// </summary>
     public class SneakingGuard:DrawableGuard
     {
-        static int guardIds=5;
-
         //OpenGLStuff
         /// <summary>
         /// When changed, redraws image
@@ -36,7 +34,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             get { return size; }
             set { size = value; setImage(); }
         }        
-        int myId, size;
+        int  size;
         public List<IPoint> rememberedPoints = new List<IPoint>();
         NoiseMap myNoiseMap;
         NoiseMap myKnownNoiseMap;
@@ -116,10 +114,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// </summary>
         new private void  initialize()
         {
-            myId = guardIds;
             size = 10;
             setImage();
-            guardIds += GameObjects.objectTypes;
             MyNoiseMap = new NoiseMap();
             rememberedPoints = new List<IPoint>();
 

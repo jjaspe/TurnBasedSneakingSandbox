@@ -18,7 +18,13 @@ namespace OpenGlGameCommon.Drawables
     {
         #region IDRAWABLE atts
         IPoint myPosition;
+        /// <summary>
+        /// Id for next guard created
+        /// </summary>
         static int guardIds = 5;
+        /// <summary>
+        /// idType tells you the modulo class of guards ids (i.e. all guards will have id ==5mod(objectTypes))
+        /// </summary>
         public const int idType = 5;
         public bool Visible = false;        
         int myId, size;
@@ -109,14 +115,19 @@ namespace OpenGlGameCommon.Drawables
             get { return myCharacter; }
             set { myCharacter = value; }
         }
+
+
+
         public DrawableGuard()
         {
             MyCharacter = new Character();
+            initialize();
         }
         protected void initialize()
         {            
             FOV = new List<IPoint>();
             myId = guardIds;
+            guardIds += GameObjects.objectTypes;
         }
 
         /// <summary>

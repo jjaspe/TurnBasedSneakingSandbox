@@ -361,14 +361,14 @@ namespace SneakingCreationWithForms.MVP
         /// <returns></returns>
         public SneakingGuard createGuard(String name,Tile positionTile,List<Stat> stats)
         {
-            SneakingGuard newGuard = new SneakingGuard();
-
             //Check with same name
             var g = from guard in Model.Guards
                     where guard.MyName.Equals(name)
                     select guard;
             if (g.Count() > 0)
                 return null;
+
+            SneakingGuard newGuard = new SneakingGuard();
 
             if (name != "" && positionTile != null && !tileOcuppied(positionTile))
             {

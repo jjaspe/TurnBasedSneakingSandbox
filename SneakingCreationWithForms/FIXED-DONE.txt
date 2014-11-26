@@ -1,0 +1,15 @@
+﻿FIXED
+-First guard doens't go not visible when a second is selected
+	- Visible attribute inside drawables not being set to false
+	Solution: SneakingGuard was hiding guardIds from DrawableGuard, which werent being assigned,
+	 so ids read from Drawables were incorrect.
+
+
+
+
+
+
+
+
+
+DONE
