@@ -229,7 +229,7 @@ namespace SneakingCommon.Utility
             else
             {
                 List<SneakingGuard> guards=getGuardsFromNode(guardListNode);
-                newMap.addDrawables(guards);
+                newMap.addDrawables<SneakingGuard>(ref guards);
             }
             return newMap;
         }

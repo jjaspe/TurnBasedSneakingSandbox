@@ -24,7 +24,7 @@ namespace OpenGlGameCommon.Classes
         public static OpenGlMap myInstance;
         public static OpenGlMap getInstance() { return myInstance; }
 
-        protected List<IDrawable> tiles;
+        protected List<IDrawable> drawables;
         /// <summary>
         /// This list contains all distance maps, with the key being their origins, and value the actual map.
         /// </summary>
@@ -46,8 +46,8 @@ namespace OpenGlGameCommon.Classes
 
         public List<IDrawable> Drawables
         {
-            get { return tiles; }
-            set { tiles = value; }
+            get { return drawables; }
+            set { drawables = value; }
         }
 
         /// <summary>
@@ -84,11 +84,11 @@ namespace OpenGlGameCommon.Classes
             Orientation = Common.planeOrientation.Z;
             defaultColor = new float[] { Color.Green.R / 256.0f, Color.GreenYellow.G / 256.0f, Color.Green.B / 256.0f };
             defaultOutlineColor = new float[] { Color.Black.R / 256, Color.Black.G / 256, Color.Black.B / 256 };
-            tiles = new List<IDrawable>();
+            drawables = new List<IDrawable>();
         }
         public void reset()
         {
-            tiles = new List<IDrawable>();
+            drawables = new List<IDrawable>();
             MyTiles = null;
         }
         public Tile getTile(int tileId)
@@ -182,7 +182,7 @@ namespace OpenGlGameCommon.Classes
         public List<HighBlock> getHighBlocks()
         {
             List<HighBlock> blocks = new List<HighBlock>();
-            foreach (IDrawable drw in tiles)
+            foreach (IDrawable drw in drawables)
             {
                 if (drw.getId() % GameObjects.objectTypes == HighBlock.idType)
                     blocks.Add((HighBlock)drw);
@@ -192,7 +192,7 @@ namespace OpenGlGameCommon.Classes
         public List<HighWall> getHighWalls()
         {
             List<HighWall> walls = new List<HighWall>();
-            foreach (IDrawable drw in tiles)
+            foreach (IDrawable drw in drawables)
             {
                 if (drw.getId() % GameObjects.objectTypes == HighWall.idType)
                     walls.Add((HighWall)drw);
@@ -202,7 +202,7 @@ namespace OpenGlGameCommon.Classes
         public List<LowWall> getLowWalls()
         {
             List<LowWall> walls = new List<LowWall>();
-            foreach (IDrawable drw in tiles)
+            foreach (IDrawable drw in drawables)
             {
                 if (drw.getId() % GameObjects.objectTypes == LowWall.idType)
                     walls.Add((LowWall)drw);
@@ -223,10 +223,12 @@ namespace OpenGlGameCommon.Classes
         public List<IDrawableGuard> getGuards()
         {
             List<IDrawableGuard> guards = new List<IDrawableGuard>();
-            foreach (IDrawable drw in tiles)
+            IDrawableGuard drawable;
+            foreach (IDrawable drw in drawables)
             {
-                if(drw.GetType().Equals(typeof(IDrawableGuard)))
-                    guards.Add((IDrawableGuard)drw);
+                drawable = drw as IDrawableGuard;
+                if(drawable !=null)
+                    guards.Add(drawable);
             }
             return guards;
         }
@@ -248,10 +250,28 @@ namespace OpenGlGameCommon.Classes
                 }
             }
         }
+        /// <summary>
+        /// Adds all elements of toAdd to Drawables
+        /// </summary>
+        /// <param name="toAdd"></param>
         public void addDrawables(List<IDrawable> toAdd)
         {
             foreach (IDrawable d in toAdd)
-                tiles.Add(d);
+                Drawables.Add(d);
+        }
+        /// <summary>
+        /// Tries to add all elements of the list to drawables. THe ones that aren't IDrawables wont be added
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="toAdd"></param>
+        public void addDrawables<T>(ref List<T> toAdd)
+        {
+            foreach(T d in toAdd)
+            {
+                IDrawable drawable = d as IDrawable;
+                if (drawable != null)
+                    Drawables.Add(drawable);
+            }
         }
 
         #region DISTANCE MAP STUFF
@@ -374,7 +394,7 @@ namespace OpenGlGameCommon.Classes
                
         public bool isFree(IPoint src)
         {
-            foreach (IDrawable drw in tiles)
+            foreach (IDrawable drw in drawables)
             {
                 if (drw.getId() % GameObjects.objectTypes == LowBlock.idType ||
                     drw.getId() % GameObjects.objectTypes == HighBlock.idType)

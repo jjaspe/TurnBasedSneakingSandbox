@@ -109,7 +109,7 @@ namespace SneakingCommonTests
         {
             XmlDocument myDoc = new XmlDocument(); 
             loadGuardsFileWithFilename(saveFilename,ref myDoc);
-            List<SneakingGuard> guards= XmlLoader.loadGuards(myDoc);
+            List<SneakingGuard> guards= XmlLoader.loadGuardsFromDocument(myDoc);
             Assert.IsNotNull(guards);
             Assert.IsTrue(guards.Count > 0);
         }
@@ -143,7 +143,7 @@ namespace SneakingCommonTests
             //Load
             XmlDocument doc = new XmlDocument();
             loadGuardsFileWithFilename(saveFilename, ref doc);
-            SneakingGuard actual = XmlLoader.loadGuards(doc)[0];
+            SneakingGuard actual = XmlLoader.loadGuardsFromDocument(doc)[0];
 
             Assert.IsNotNull(actual);
             Assert.AreEqual(expected.MyCharacter.Stats.Count, actual.MyCharacter.Stats.Count);
