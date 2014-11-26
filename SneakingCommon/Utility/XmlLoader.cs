@@ -438,6 +438,40 @@ namespace SneakingCommon.Utility
             creator.Load(filename); 
             
             XmlNode root = creator.DocumentElement;
+            
+
+            root.AppendChild(getBareMapNode(map,creator));
+
+            creator.Save(filename);
+        }
+
+        static public void saveGuardMap(String filename, SneakingMap map, List<SneakingGuard> guards)
+        {
+            XmlDocument creator = new XmlDocument();
+
+            XmlWriter xWriter;
+            try
+            {
+                xWriter = new XmlTextWriter(filename, null);
+            }
+            catch (Exception e)
+            {
+                throw new BadFileNameException("map filename:" + filename, "Save Guard Map");
+            }
+            xWriter.WriteStartElement("Root");
+            xWriter.Close();
+            creator.Load(filename);
+
+            XmlNode root = creator.DocumentElement;
+
+            root.AppendChild(getGuardsNode(guards, creator));
+            root.AppendChild(getBareMapNode(map, creator));
+            creator.Save(filename);
+           
+        }
+
+        static XmlNode getBareMapNode(SneakingMap map,XmlDocument creator)
+        {
             XmlNode mapNode = creator.CreateElement("Map"),widthNode=creator.CreateElement("Width"),lengthNode=
                 creator.CreateElement("Length"),tileSizeNode=creator.CreateElement("Tile_Size");
 
@@ -453,15 +487,8 @@ namespace SneakingCommon.Utility
             foreach (XmlNode node in geometryNodes)
                 mapNode.AppendChild(node.Clone());
 
-            root.AppendChild(mapNode);
-
-            creator.Save(filename);
+            return mapNode;
         }
-
-        static public void saveGuardMap(String filename, SneakingMap map, List<SneakingGuard> guards)
-        {
-        }
-
         static XmlNode getGuardsNode(List<SneakingGuard> guards,XmlDocument creator)
         {
             XmlNode guardsNode = creator.CreateElement("Guard_List"), currentGuardNode;
