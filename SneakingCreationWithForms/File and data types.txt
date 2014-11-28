@@ -1,0 +1,5 @@
+﻿Geometry maps without guards : .map
+Maps with guards without patrols:.mgp
+Guards : .grd
+Map with Guards and patrols: .mpt
+Map with patrols and/or goals : .mgg

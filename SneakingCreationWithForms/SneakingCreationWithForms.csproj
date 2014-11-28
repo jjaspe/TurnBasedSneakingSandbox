@@ -129,6 +129,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="File and data types.txt" />
     <Content Include="FIXED-DONE.txt" />
     <Content Include="TODO.txt" />
   </ItemGroup>

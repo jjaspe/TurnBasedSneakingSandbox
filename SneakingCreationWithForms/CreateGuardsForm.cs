@@ -128,6 +128,16 @@ namespace SneakingCreationWithForms
             }
         }
 
+        private void addGuardToList(SneakingGuard guard)
+        {
+            if (guard != null)
+            {
+                guardListBox.Items.Add(new KeyValuePair<int, string>(guard.getId(), guard.MyCharacter.Name));
+                guardListBox.SelectedIndex = guardListBox.Items.Count - 1;
+                mySelectedGuard = guard;
+            }
+        }
+
         #region EVENTS
         /// <summary>
         /// Hadler for clicks on view. Right clicking a guard will remove it, left clicking a tile will select it.
@@ -190,12 +200,7 @@ namespace SneakingCreationWithForms
 
             SneakingGuard newGuard = MyPresenter.createGuard(txtName.Text, selectedTile, guardStats);
 
-            if (newGuard != null)
-            {
-                guardListBox.Items.Add(new KeyValuePair<int, string>(newGuard.getId(), newGuard.MyCharacter.Name));
-                guardListBox.SelectedIndex = guardListBox.Items.Count - 1;
-                mySelectedGuard = newGuard;
-            }
+            addGuardToList(newGuard);
 
             update();
         }
@@ -242,7 +247,7 @@ namespace SneakingCreationWithForms
                 MessageBox.Show("Couldn't Create XmlDocument:"+ex.Message);
                 return;
             }
-            this.MyPresenter.loadMap(doc);
+            this.MyPresenter.loadBareMap(doc);
             if (!drawing)
                 this.drawingLoop();
 
@@ -251,19 +256,19 @@ namespace SneakingCreationWithForms
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SaveFileDialog guardDialog = new SaveFileDialog();
-            guardDialog.Filter = "Guard Files (*.grd)|*.grd";
-            guardDialog.DefaultExt=".grd";
+            guardDialog.Filter = "Guard Files (*.mgp)|*.mgp";
+            guardDialog.DefaultExt=".mgp";
             guardDialog.InitialDirectory=filepath;
             
-            string fileName = guardDialog.ShowDialog()==DialogResult.OK?guardDialog.FileName:null;
+            string filename = guardDialog.ShowDialog()==DialogResult.OK?guardDialog.FileName:null;
 
-            if (fileName == null)
+            if (filename == null)
             {
-                MessageBox.Show("Couldnt save Guards");
+                MessageBox.Show("Couldnt save Guards Map");
                 return;
             }
 
-            MyPresenter.saveGuards(guardsFilename);           
+            MyPresenter.saveGuardsMap(filename);           
 
         }
 
@@ -331,6 +336,54 @@ namespace SneakingCreationWithForms
             closing = true;
         }
         #endregion
+
+        private void loadMapWithGuardsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog MapDialog = new OpenFileDialog();
+            MapDialog.Filter = "Map Files (*.mgp)|*.mgp";
+            MapDialog.DefaultExt = "Map";
+            MapDialog.InitialDirectory = filepath;
+
+            string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
+
+            if (filename == null)
+            {
+                MessageBox.Show("Couldnt' Load Map");
+                return;
+            }
+
+            FileStream mapFileReader;
+            try
+            {
+                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Open Map:" + ex.Message);
+                return;
+            }
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(mapFileReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Create XmlDocument:" + ex.Message);
+                return;
+            }
+            MyPresenter.loadGuardsMap(doc);
+
+            //Put guards in list
+            guardListBox.Items.Clear();
+            mySelectedGuard = null;
+            foreach (SneakingGuard g in MyPresenter.Model.Guards)
+                addGuardToList(g);
+
+            if (!drawing)
+                this.drawingLoop();
+        }
 
     }
 }

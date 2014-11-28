@@ -56,7 +56,7 @@ namespace SneakingCreationWithForms.MVP
         /// Loads a map from XmlDocument.
         /// </summary>
         /// <param name="filename"></param>
-        public void loadMap(XmlDocument doc)
+        public void loadBareMap(XmlDocument doc)
         {
             this.model.Map = XmlLoader.loadBareMap(doc);
         }
@@ -392,9 +392,20 @@ namespace SneakingCreationWithForms.MVP
         /// Saves guards to file with path:filename
         /// </summary>
         /// <param name="filename"></param>
-        public void saveGuards(String filename)
+        public void saveGuardsMap(String filename)
         {
-            XmlLoader.saveGuards(filename, Model.Guards);
+            XmlLoader.saveGuardMap(filename, Model.Map);
+        }
+
+        /// <summary>
+        /// Loads a map with guards from XmlDocument.
+        /// </summary>
+        /// <param name="filename"></param>
+        public void loadGuardsMap(XmlDocument doc)
+        {
+            this.model.Map = XmlLoader.loadGuardsMap(doc);
+            this.model.Guards = this.model.Map.getGuards();
+            
         }
 
         public void loadSystem(string filename)

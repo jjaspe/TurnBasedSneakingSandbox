@@ -61,6 +61,7 @@ namespace SneakingCreationWithForms
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.myView = new Canvas_Window_Template.simpleOpenGlView();
             this.myNavigator = new Canvas_Window_Template.Navigator();
+            this.loadMapWithGuardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardCreationGroup.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -331,11 +332,11 @@ namespace SneakingCreationWithForms
             this.nameLabel.TabIndex = 26;
             this.nameLabel.Text = "Guard Name";
             // 
-            // nameText
+            // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(108, 32);
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtName.Name = "nameText";
+            this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(103, 20);
             this.txtName.TabIndex = 1;
             this.txtName.Text = "Guard";
@@ -365,6 +366,7 @@ namespace SneakingCreationWithForms
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.loadMapWithGuardsToolStripMenuItem,
             this.saveToolStripMenuItem1});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
@@ -374,14 +376,14 @@ namespace SneakingCreationWithForms
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openToolStripMenuItem.Text = "Load Bare Map";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(195, 22);
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
@@ -421,6 +423,13 @@ namespace SneakingCreationWithForms
             this.myNavigator.Orientation = Canvas_Window_Template.Basic_Drawing_Functions.Common.planeOrientation.None;
             this.myNavigator.Size = new System.Drawing.Size(190, 95);
             this.myNavigator.TabIndex = 43;
+            // 
+            // loadMapWithGuardsToolStripMenuItem
+            // 
+            this.loadMapWithGuardsToolStripMenuItem.Name = "loadMapWithGuardsToolStripMenuItem";
+            this.loadMapWithGuardsToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.loadMapWithGuardsToolStripMenuItem.Text = "Load Map With Guards";
+            this.loadMapWithGuardsToolStripMenuItem.Click += new System.EventHandler(this.loadMapWithGuardsToolStripMenuItem_Click);
             // 
             // CreateGuardsForm
             // 
@@ -479,5 +488,6 @@ namespace SneakingCreationWithForms
         private System.Windows.Forms.CheckBox knowsMap;
         private Canvas_Window_Template.simpleOpenGlView myView;
         private Navigator myNavigator;
+        private System.Windows.Forms.ToolStripMenuItem loadMapWithGuardsToolStripMenuItem;
     }
 }

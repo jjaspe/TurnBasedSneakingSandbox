@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="12b67c54-6ab2-47c1-a483-0e273d4a6ab0" name="Wichito@BERTA-PC 2014-11-28 10:18:01" runUser="Berta-PC\Wichito" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Wichito_BERTA-PC 2014-11-28 10_18_01">
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\Canvas Window Template\bin\Debug\Canvas Window Template.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-11-28T10:18:01.7154517-08:00" queuing="2014-11-28T10:18:01.7344528-08:00" start="2014-11-28T10:18:01.8714606-08:00" finish="2014-11-28T10:18:03.6075599-08:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="saveGuardMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="bfe3e8d6-e929-6d40-e5e1-d0ebbbd06a55">
+      <Execution id="ddff0f44-9a00-49cb-b6e7-1aaba989adce" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.SneakingGuardTests, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveGuardMapTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="bfe3e8d6-e929-6d40-e5e1-d0ebbbd06a55" executionId="ddff0f44-9a00-49cb-b6e7-1aaba989adce" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ddff0f44-9a00-49cb-b6e7-1aaba989adce" testId="bfe3e8d6-e929-6d40-e5e1-d0ebbbd06a55" testName="saveGuardMapTest" computerName="BERTA-PC" duration="00:00:00.7407854" startTime="2014-11-28T10:18:02.1644774-08:00" endTime="2014-11-28T10:18:03.4085485-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ddff0f44-9a00-49cb-b6e7-1aaba989adce">
+    </UnitTestResult>
+  </Results>
+</TestRun>

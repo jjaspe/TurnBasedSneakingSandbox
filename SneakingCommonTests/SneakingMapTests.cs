@@ -178,7 +178,7 @@ namespace SneakingCommonTests
         [ExpectedException(typeof(InvalidMapException))]
         public void loadMapWithGuardsFailTest()
         {
-            SneakingMap map = XmlLoader.loadMapWithGuards(bareMapDoc);
+            SneakingMap map = XmlLoader.loadGuardsMap(bareMapDoc);
             Assert.IsNotNull(map.getGuards());
             Assert.IsTrue(map.getGuards().Count == 0);            
         }
@@ -190,7 +190,7 @@ namespace SneakingCommonTests
         [TestMethod]
         public void loadMapWithGuardsTest()
         {
-            SneakingMap map = XmlLoader.loadMapWithGuards(fullMapDoc);
+            SneakingMap map = XmlLoader.loadGuardsMap(fullMapDoc);
             Assert.IsNotNull(map.getGuards());
             Assert.IsTrue(map.getGuards().Count > 0);
         }
@@ -221,7 +221,7 @@ namespace SneakingCommonTests
         /// Tests whether bare maps are saved correctly, and it has all the nodes
         /// </summary>
         [TestMethod]
-        public void saveBareTest()
+        public void saveBareMapTest()
         {
             //Load map from a tested map file
             SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);

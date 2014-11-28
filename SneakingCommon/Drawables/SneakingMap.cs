@@ -82,6 +82,12 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             return locations;
         }
 
+        new public List<SneakingGuard> getGuards()
+        {
+            return (from g in base.getGuards()
+                    select g as SneakingGuard).ToList<SneakingGuard>();
+        }
+
         #region WALL STUFF
         /// <summary>
         /// Override to create sneaking tiles instead of regular tiles

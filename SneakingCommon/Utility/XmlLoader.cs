@@ -14,6 +14,7 @@ using Canvas_Window_Template.Interfaces;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using System.IO;
+using OpenGlGameCommon.Interfaces.Model;
 
 namespace SneakingCommon.Utility
 {
@@ -22,18 +23,128 @@ namespace SneakingCommon.Utility
     /// </summary>
     public class XmlLoader
     {
-       
+        /// <summary>
+        /// Creates a map node from map parameter
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="creator"></param>
+        /// <returns></returns>
+        static XmlNode getBareMapNode(SneakingMap map, XmlDocument creator)
+        {
+            XmlNode mapNode = creator.CreateElement("Map"), widthNode = creator.CreateElement("Width"), lengthNode =
+                creator.CreateElement("Length"), tileSizeNode = creator.CreateElement("Tile_Size");
+
+            widthNode.InnerText = map.MyWidth.ToString();
+            lengthNode.InnerText = map.MyLength.ToString();
+            tileSizeNode.InnerText = map.TileSize.ToString();
+
+            mapNode.AppendChild(widthNode.Clone());
+            mapNode.AppendChild(lengthNode.Clone());
+            mapNode.AppendChild(tileSizeNode.Clone());
+
+            List<XmlNode> geometryNodes = getGeometryNodes(map, creator);
+            foreach (XmlNode node in geometryNodes)
+                mapNode.AppendChild(node.Clone());
+
+            return mapNode;
+        }
 
         /// <summary>
-        /// Loads guards from xml and puts them in list
+        /// Returns a node with all guards nodes as children, where guard nodes are created from guards parameter
         /// </summary>
-        /// <param name="myDoc"></param>
+        /// <param name="guards">Guards to create nodes from</param>
+        /// <param name="creator">Needed to create nodes</param>
         /// <returns></returns>
-        static public List<SneakingGuard> loadGuardsFromDocument(XmlDocument myDoc)
+        static XmlNode getGuardsNode(List<SneakingGuard> guards, XmlDocument creator)
         {
-            XmlNode guardListNode = myDoc.DocumentElement.GetElementsByTagName("Guard_List")[0];
-            return getGuardsFromNode(guardListNode);
+            XmlNode guardsNode = creator.CreateElement("Guard_List"), currentGuardNode;
+
+            //Get nodes
+            XmlElement idNode = creator.CreateElement("Id"),
+                positionNode = creator.CreateElement("Position"),
+                positionXNode = creator.CreateElement("X"),
+                positionYNode = creator.CreateElement("Y");
+
+            //Get guard data, add it to guard node, add guard node to list node
+            foreach (SneakingGuard g in guards)
+            {
+                currentGuardNode = g.MyCharacter.toXml(creator);
+                idNode.InnerText = g.getId().ToString();
+                positionXNode.InnerText = g.getPosition()[0].ToString();
+                positionYNode.InnerText = g.getPosition()[1].ToString();
+                positionNode.AppendChild(positionXNode.Clone());
+                positionNode.AppendChild(positionYNode.Clone());
+                currentGuardNode.AppendChild(idNode);
+                currentGuardNode.AppendChild(positionNode);
+                guardsNode.AppendChild(currentGuardNode.Clone());
+            }
+
+            return guardsNode;
+
         }
+        /// <summary>
+        /// Loads wall and block from map and returns them their nodes
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="creator"></param>
+        /// <returns></returns>
+        static List<XmlNode> getGeometryNodes(SneakingMap map, XmlDocument creator)
+        {
+            List<XmlNode> list = new List<XmlNode>();
+            XmlElement current, cPositionNode, cOrientationNode, cPositionXNode, cPositionYNode;
+            double[] cPosition;
+
+            #region COMPONENT NODES CREATION
+            foreach (IDrawable drw in map.Drawables)
+            {
+                cPositionNode = creator.CreateElement("Position");
+                cOrientationNode = creator.CreateElement("Orientation");
+                cPositionXNode = creator.CreateElement("X");
+                cPositionYNode = creator.CreateElement("Y");
+
+                cPosition = drw.getPosition();
+                cPositionXNode.InnerText = cPosition[0].ToString();
+                cPositionYNode.InnerText = cPosition[1].ToString();
+                cPositionNode.AppendChild(cPositionXNode.Clone());
+                cPositionNode.AppendChild(cPositionYNode.Clone());
+
+                switch (drw.getId() % GameObjects.objectTypes)
+                {
+                    case Tile.idType:
+                        current = creator.CreateElement("Tile");
+                        break;
+                    case LowBlock.idType:
+                        current = creator.CreateElement("LowBlock");
+                        break;
+                    case HighBlock.idType:
+                        current = creator.CreateElement("HighBlock");
+                        break;
+                    case HighWall.idType:
+                        current = creator.CreateElement("HighWall");
+                        cOrientationNode.InnerText = ((int)((HighWall)drw).Orientation).ToString();
+                        current.AppendChild(cOrientationNode.Clone());
+                        break;
+                    case LowWall.idType:
+                        current = creator.CreateElement("LowWall");
+                        cOrientationNode.InnerText = ((int)((LowWall)drw).Orientation).ToString();
+                        current.AppendChild(cOrientationNode.Clone());
+                        break;
+                    default:
+                        current = creator.CreateElement("null");
+                        break;
+                }
+
+                if (!current.Name.Equals("null"))//Dont add drawn guards, already added
+                {
+                    current.AppendChild(cPositionNode.Clone());
+                    list.Add(current.Clone());
+                }
+            }
+            #endregion
+
+            return list;
+        }
+
         /// <summary>
         /// Returns list of guards created from guard nodes in myDoc
         /// </summary>
@@ -48,7 +159,7 @@ namespace SneakingCommon.Utility
             {
                 foreach (XmlNode guardNode in guardNodes)
                 {
-                    currentGuard = loadGuardFromNode(guardNode); 
+                    currentGuard = loadGuardFromNode(guardNode);
 
                     //Add guard to list
                     guards.Add(currentGuard);
@@ -158,6 +269,69 @@ namespace SneakingCommon.Utility
         }
 
         /// <summary>
+        /// Creates a guard object from given xml node
+        /// </summary>
+        /// <param name="guardNode"></param>
+        /// <returns></returns>
+        static SneakingGuard loadGuardFromNode(XmlNode guardNode)
+        {
+            XmlNode positionNode, positionXNode, positionYNode,
+               patrolNode, wpXNode, wpYNode;
+            XmlNodeList waypointNodes;
+            PatrolPath guardPatrolPath;
+
+            SneakingGuard guard = new SneakingGuard();
+            guardPatrolPath = new PatrolPath();
+
+            //Load guard stats
+            guard.MyCharacter.fromXml(guardNode);
+            //Read Position,then save it
+            positionNode = ((XmlElement)guardNode).SelectNodes("Position")[0];
+            positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
+            positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
+
+
+            guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
+                                              Int32.Parse(positionYNode.InnerText),
+                                              0);
+            //Read Patrol
+            //First, put guard position as first waypoint
+            guardPatrolPath.MyWaypoints.Add(guard.Position);
+
+            //Add rest of waypoints
+            patrolNode = ((XmlElement)guardNode).SelectNodes("Patrol")[0];
+            if (patrolNode != null)
+            {
+                waypointNodes = ((XmlElement)patrolNode).SelectNodes("Waypoint");
+                foreach (XmlElement wp in waypointNodes)
+                {
+                    wpXNode = wp.SelectNodes("X")[0];
+                    wpYNode = wp.SelectNodes("Y")[0];
+                    guardPatrolPath.MyWaypoints.Add(new pointObj(Int32.Parse(wpXNode.InnerText),
+                                                        Int32.Parse(wpYNode.InnerText),
+                                                        0));
+                }
+            }
+            guard.MyPatrol = guardPatrolPath;
+            return guard;
+        }
+
+
+
+
+
+        /// <summary>
+        /// Loads guards from xml and puts them in list
+        /// </summary>
+        /// <param name="myDoc"></param>
+        /// <returns></returns>
+        static public List<SneakingGuard> loadGuardsFromDocument(XmlDocument myDoc)
+        {
+            XmlNode guardListNode = myDoc.DocumentElement.GetElementsByTagName("Guard_List")[0];
+            return getGuardsFromNode(guardListNode);
+        }        
+
+        /// <summary>
         /// Loads a map with geometry (blocks, walls,etc), but without guards or distance maps
         /// </summary>
         /// <param name="myDoc"></param>
@@ -219,7 +393,7 @@ namespace SneakingCommon.Utility
         /// </summary>
         /// <param name="myDoc"></param>
         /// <returns></returns>
-        static public SneakingMap loadMapWithGuards(XmlDocument myDoc)
+        static public SneakingMap loadGuardsMap(XmlDocument myDoc)
         {
             SneakingMap newMap=loadBareMap(myDoc);
             XmlNode guardListNode = myDoc.GetElementsByTagName("Guard_List").Count==0?null:myDoc.GetElementsByTagName("Guard_List")[0];
@@ -241,7 +415,7 @@ namespace SneakingCommon.Utility
         /// <returns></returns>
         static public SneakingMap loadFullMap(XmlDocument myDoc)
         {
-            SneakingMap map = loadMapWithGuards(myDoc);
+            SneakingMap map = loadGuardsMap(myDoc);
             XmlNode distanceList = myDoc.GetElementsByTagName("Distance_Maps").Count==0?null:
             myDoc.GetElementsByTagName("Distance_Maps")[0];
             if (distanceList == null)
@@ -290,50 +464,7 @@ namespace SneakingCommon.Utility
 
             return map;
 
-        }
-
-        static SneakingGuard loadGuardFromNode(XmlNode guardNode)
-        {
-            XmlNode positionNode, positionXNode, positionYNode,
-               patrolNode, wpXNode, wpYNode;
-            XmlNodeList waypointNodes;
-            PatrolPath guardPatrolPath;
-
-            SneakingGuard guard = new SneakingGuard();
-            guardPatrolPath = new PatrolPath();
-
-            //Load guard stats
-            guard.MyCharacter.fromXml(guardNode);
-            //Read Position,then save it
-            positionNode = ((XmlElement)guardNode).SelectNodes("Position")[0];
-            positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
-            positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
-
-
-            guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
-                                              Int32.Parse(positionYNode.InnerText),
-                                              0);
-            //Read Patrol
-            //First, put guard position as first waypoint
-            guardPatrolPath.MyWaypoints.Add(guard.Position);
-
-            //Add rest of waypoints
-            patrolNode = ((XmlElement)guardNode).SelectNodes("Patrol")[0];
-            if (patrolNode != null)
-            {
-                waypointNodes = ((XmlElement)patrolNode).SelectNodes("Waypoint");
-                foreach (XmlElement wp in waypointNodes)
-                {
-                    wpXNode = wp.SelectNodes("X")[0];
-                    wpYNode = wp.SelectNodes("Y")[0];
-                    guardPatrolPath.MyWaypoints.Add(new pointObj(Int32.Parse(wpXNode.InnerText),
-                                                        Int32.Parse(wpYNode.InnerText),
-                                                        0));
-                }
-            }
-            guard.MyPatrol = guardPatrolPath;
-            return guard;
-        }
+        }       
 
         /// <summary>
         /// Loads stat to skill factors data to create a game system from file at filename
@@ -445,7 +576,13 @@ namespace SneakingCommon.Utility
             creator.Save(filename);
         }
 
-        static public void saveGuardMap(String filename, SneakingMap map, List<SneakingGuard> guards)
+        /// <summary>
+        /// Saves a SneakingMap:map with geometry and guards to filename, but the guards don't have patrol paths
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="map"></param>
+        /// <param name="guards"></param>
+        static public void saveGuardMap(String filename, SneakingMap map)
         {
             XmlDocument creator = new XmlDocument();
 
@@ -464,120 +601,13 @@ namespace SneakingCommon.Utility
 
             XmlNode root = creator.DocumentElement;
 
-            root.AppendChild(getGuardsNode(guards, creator));
+            root.AppendChild(getGuardsNode(map.getGuards(), creator));
             root.AppendChild(getBareMapNode(map, creator));
             creator.Save(filename);
            
         }
 
-        static XmlNode getBareMapNode(SneakingMap map,XmlDocument creator)
-        {
-            XmlNode mapNode = creator.CreateElement("Map"),widthNode=creator.CreateElement("Width"),lengthNode=
-                creator.CreateElement("Length"),tileSizeNode=creator.CreateElement("Tile_Size");
-
-            widthNode.InnerText = map.MyWidth.ToString();
-            lengthNode.InnerText = map.MyLength.ToString();
-            tileSizeNode.InnerText = map.TileSize.ToString();
-
-            mapNode.AppendChild(widthNode.Clone());
-            mapNode.AppendChild(lengthNode.Clone());
-            mapNode.AppendChild(tileSizeNode.Clone());
-
-            List<XmlNode> geometryNodes = getGeometryNodes(map, creator);
-            foreach (XmlNode node in geometryNodes)
-                mapNode.AppendChild(node.Clone());
-
-            return mapNode;
-        }
-        static XmlNode getGuardsNode(List<SneakingGuard> guards,XmlDocument creator)
-        {
-            XmlNode guardsNode = creator.CreateElement("Guard_List"), currentGuardNode;
-
-            //Get nodes
-            XmlElement idNode = creator.CreateElement("Id"),
-                positionNode = creator.CreateElement("Position"),
-                positionXNode = creator.CreateElement("X"),
-                positionYNode = creator.CreateElement("Y");
-
-            //Get guard data, add it to guard node, add guard node to list node
-            foreach (SneakingGuard g in guards)
-            {
-                currentGuardNode = g.MyCharacter.toXml(creator);
-                idNode.InnerText = g.getId().ToString();
-                positionXNode.InnerText = g.getPosition()[0].ToString();
-                positionYNode.InnerText = g.getPosition()[1].ToString();
-                positionNode.AppendChild(positionXNode.Clone());
-                positionNode.AppendChild(positionYNode.Clone());
-                currentGuardNode.AppendChild(idNode);
-                currentGuardNode.AppendChild(positionNode);
-                guardsNode.AppendChild(currentGuardNode.Clone());
-            }
-
-            return guardsNode;
-
-        }
-        /// <summary>
-        /// Loads wall and block from map and returns them their nodes
-        /// </summary>
-        /// <param name="map"></param>
-        /// <param name="creator"></param>
-        /// <returns></returns>
-        static List<XmlNode> getGeometryNodes(SneakingMap map,XmlDocument creator)
-        {
-            List<XmlNode> list = new List<XmlNode>();
-            XmlElement current, cPositionNode, cOrientationNode, cPositionXNode, cPositionYNode;
-            double[] cPosition;
-
-            #region COMPONENT NODES CREATION
-            foreach (IDrawable drw in map.Drawables)
-            {
-                cPositionNode = creator.CreateElement("Position");
-                cOrientationNode = creator.CreateElement("Orientation");
-                cPositionXNode = creator.CreateElement("X");
-                cPositionYNode = creator.CreateElement("Y");
-
-                cPosition = drw.getPosition();
-                cPositionXNode.InnerText = cPosition[0].ToString();
-                cPositionYNode.InnerText = cPosition[1].ToString();
-                cPositionNode.AppendChild(cPositionXNode.Clone());
-                cPositionNode.AppendChild(cPositionYNode.Clone());
-
-                switch (drw.getId() % GameObjects.objectTypes)
-                {
-                    case Tile.idType:
-                        current = creator.CreateElement("Tile");
-                        break;
-                    case LowBlock.idType:
-                        current = creator.CreateElement("LowBlock");
-                        break;
-                    case HighBlock.idType:
-                        current = creator.CreateElement("HighBlock");
-                        break;
-                    case HighWall.idType:
-                        current = creator.CreateElement("HighWall");
-                        cOrientationNode.InnerText = ((int)((HighWall)drw).Orientation).ToString();
-                        current.AppendChild(cOrientationNode.Clone());
-                        break;
-                    case LowWall.idType:
-                        current = creator.CreateElement("LowWall");
-                        cOrientationNode.InnerText = ((int)((LowWall)drw).Orientation).ToString();
-                        current.AppendChild(cOrientationNode.Clone());
-                        break;
-                    default:
-                        current = creator.CreateElement("null");
-                        break;
-                }
-
-                if (!current.Name.Equals("null"))//Dont add drawn guards, already added
-                {
-                    current.AppendChild(cPositionNode.Clone());
-                    list.Add(current.Clone());
-                }
-            }
-            #endregion
-
-            return list;
-        }
+        
 
         
 

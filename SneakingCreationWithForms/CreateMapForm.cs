@@ -285,7 +285,7 @@ namespace SneakingCreationWithForms
                 return;
             }
 
-            MyPresenter.loadMap(doc);
+            MyPresenter.loadBareMap(doc);
             if (!drawing)
                 drawingLoop(this);
 
