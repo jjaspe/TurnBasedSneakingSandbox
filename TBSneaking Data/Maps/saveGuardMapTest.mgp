@@ -18,6 +18,12 @@
         <X>30</X>
         <Y>20</Y>
       </Position>
+      <Orientation>none</Orientation>
+      <Color>
+        <Red>0</Red>
+        <Green>0</Green>
+        <Blue>1</Blue>
+      </Color>
     </Character>
     <Character>
       <Name> </Name>
@@ -111,11 +117,15 @@
       </Stats>
       <Id>55</Id>
       <Position>
-        <X>30</X>
-        <Y>20</Y>
         <X>40</X>
         <Y>20</Y>
       </Position>
+      <Orientation>none</Orientation>
+      <Color>
+        <Red>0</Red>
+        <Green>0</Green>
+        <Blue>1</Blue>
+      </Color>
     </Character>
   </Guard_List>
   <Map>

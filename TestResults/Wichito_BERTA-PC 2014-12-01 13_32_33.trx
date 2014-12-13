@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="8f953074-75b3-4a19-9247-f6506812c29d" name="Wichito@BERTA-PC 2014-12-01 13:32:33" runUser="Berta-PC\Wichito" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Wichito_BERTA-PC 2014-12-01 13_32_33">
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\Canvas Window Template\bin\Debug\Canvas Window Template.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-12-01T13:32:33.8589124-08:00" queuing="2014-12-01T13:32:33.8859140-08:00" start="2014-12-01T13:32:33.9119155-08:00" finish="2014-12-01T13:33:00.7324495-08:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="12" executed="6" error="0" failed="4" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="1" notRunnable="0" notExecuted="6" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="saveBareMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="bb9dcbc4-7ae9-0970-ed88-6a9e4fcfacf3">
+      <Execution id="6358667e-8997-4dff-993a-c32a50abaf10" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveBareMapTest" />
+    </UnitTest>
+    <UnitTest name="saveBareFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="53a49d14-54cd-36e1-bd3d-c53d8899d35c">
+      <Execution id="edc5506d-5a7e-4a35-87e6-ca323337d50d" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveBareFailTest" />
+    </UnitTest>
+    <UnitTest name="loadFullMapFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="360bc28a-1f79-48ae-8ab1-9779ad8b28f6">
+      <Execution id="5f71a2a1-45e0-485c-be30-7113d61ceae0" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadFullMapFailTest" />
+    </UnitTest>
+    <UnitTest name="loadFullMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="cd566601-757a-4bb7-8efc-5bacc9a950e6">
+      <Execution id="1037394d-7d93-4402-a22a-000de6b4968b" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadFullMapTest" />
+    </UnitTest>
+    <UnitTest name="bareMapTileIdsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="10976cc2-a6bd-7e3a-8b9f-c78ea6b0c02b">
+      <Execution id="370da4cf-b6bb-44c0-b7f6-f92aee954aeb" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="bareMapTileIdsTest" />
+    </UnitTest>
+    <UnitTest name="MapCreationTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="14156c61-3103-b678-f152-a80541626c88">
+      <Execution id="906e9255-8e3f-4346-8212-60a6e988ae5c" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MapCreationTest" />
+    </UnitTest>
+    <UnitTest name="loadBareMapFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="da623405-5b58-a3e8-bbe4-66cc37964fa3">
+      <Execution id="e1953d59-362f-4c7a-bad2-bf61667278bb" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadBareMapFailTest" />
+    </UnitTest>
+    <UnitTest name="loadBareMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="c9182415-4410-3796-9514-99dbf275de21">
+      <Execution id="ad186189-b908-49be-b061-091b85fb6779" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadBareMapTest" />
+    </UnitTest>
+    <UnitTest name="loadMapWithGuardsFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="632043fe-6a37-088b-546a-dffd7e19abac">
+      <Execution id="87dd70f7-aaa2-4c52-8d2b-e6eea9c41802" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadMapWithGuardsFailTest" />
+    </UnitTest>
+    <UnitTest name="loadMapWithGuardsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="5e6e334d-2cca-c346-a25d-291eef8683ac">
+      <Execution id="bb5da387-0527-450d-b18e-c3805b7db045" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadMapWithGuardsTest" />
+    </UnitTest>
+    <UnitTest name="bareMapTileIdsTest2" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="f69816a6-bf65-5fab-f80a-b3ffa700438b">
+      <Execution id="a484edbd-886d-4f0a-9ebb-8df5cf350254" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="bareMapTileIdsTest2" />
+    </UnitTest>
+    <UnitTest name="createdMapIdTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="c3b37413-95b8-6019-d361-13970e15d51e">
+      <Execution id="233a2a24-8e7d-46c3-8c7f-dc74b249279a" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="createdMapIdTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="cd566601-757a-4bb7-8efc-5bacc9a950e6" executionId="1037394d-7d93-4402-a22a-000de6b4968b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="632043fe-6a37-088b-546a-dffd7e19abac" executionId="87dd70f7-aaa2-4c52-8d2b-e6eea9c41802" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="14156c61-3103-b678-f152-a80541626c88" executionId="906e9255-8e3f-4346-8212-60a6e988ae5c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="360bc28a-1f79-48ae-8ab1-9779ad8b28f6" executionId="5f71a2a1-45e0-485c-be30-7113d61ceae0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="10976cc2-a6bd-7e3a-8b9f-c78ea6b0c02b" executionId="370da4cf-b6bb-44c0-b7f6-f92aee954aeb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bb9dcbc4-7ae9-0970-ed88-6a9e4fcfacf3" executionId="6358667e-8997-4dff-993a-c32a50abaf10" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5e6e334d-2cca-c346-a25d-291eef8683ac" executionId="bb5da387-0527-450d-b18e-c3805b7db045" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3b37413-95b8-6019-d361-13970e15d51e" executionId="233a2a24-8e7d-46c3-8c7f-dc74b249279a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="53a49d14-54cd-36e1-bd3d-c53d8899d35c" executionId="edc5506d-5a7e-4a35-87e6-ca323337d50d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="da623405-5b58-a3e8-bbe4-66cc37964fa3" executionId="e1953d59-362f-4c7a-bad2-bf61667278bb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c9182415-4410-3796-9514-99dbf275de21" executionId="ad186189-b908-49be-b061-091b85fb6779" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f69816a6-bf65-5fab-f80a-b3ffa700438b" executionId="a484edbd-886d-4f0a-9ebb-8df5cf350254" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="1037394d-7d93-4402-a22a-000de6b4968b" testId="cd566601-757a-4bb7-8efc-5bacc9a950e6" testName="loadFullMapTest" computerName="BERTA-PC" duration="00:00:03.0625352" startTime="2014-12-01T13:32:33.9529178-08:00" endTime="2014-12-01T13:32:37.2631072-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1037394d-7d93-4402-a22a-000de6b4968b">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method SneakingCommonTests.UnitTest1.loadFullMapTest threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at SneakingCommon.Utility.XmlLoader.loadBareMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 378
+   at SneakingCommon.Utility.XmlLoader.loadGuardsMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 433
+   at SneakingCommon.Utility.XmlLoader.loadFullMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 453
+   at SneakingCommonTests.UnitTest1.loadFullMapTest() in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\SneakingMapTests.cs:line 215
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="87dd70f7-aaa2-4c52-8d2b-e6eea9c41802" testId="632043fe-6a37-088b-546a-dffd7e19abac" testName="loadMapWithGuardsFailTest" computerName="BERTA-PC" duration="00:00:01.9545958" startTime="2014-12-01T13:32:37.2661073-08:00" endTime="2014-12-01T13:32:39.2332198-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="87dd70f7-aaa2-4c52-8d2b-e6eea9c41802">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method SneakingCommonTests.UnitTest1.loadMapWithGuardsFailTest threw exception System.NullReferenceException, but exception SneakingCommon.Exceptions.InvalidMapException was expected. Exception message: System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at SneakingCommon.Utility.XmlLoader.loadBareMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 378
+   at SneakingCommon.Utility.XmlLoader.loadGuardsMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 433
+   at SneakingCommonTests.UnitTest1.loadMapWithGuardsFailTest() in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\SneakingMapTests.cs:line 181
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="906e9255-8e3f-4346-8212-60a6e988ae5c" testId="14156c61-3103-b678-f152-a80541626c88" testName="MapCreationTest" computerName="BERTA-PC" duration="00:00:01.1780881" startTime="2014-12-01T13:32:39.2402202-08:00" endTime="2014-12-01T13:32:40.4402889-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="PassedButRunAborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="906e9255-8e3f-4346-8212-60a6e988ae5c">
+    </UnitTestResult>
+    <UnitTestResult executionId="5f71a2a1-45e0-485c-be30-7113d61ceae0" testId="360bc28a-1f79-48ae-8ab1-9779ad8b28f6" testName="loadFullMapFailTest" computerName="BERTA-PC" duration="00:00:01.0056878" startTime="2014-12-01T13:32:40.4502894-08:00" endTime="2014-12-01T13:32:41.4763481-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f71a2a1-45e0-485c-be30-7113d61ceae0">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method SneakingCommonTests.UnitTest1.loadFullMapFailTest threw exception System.NullReferenceException, but exception SneakingCommon.Exceptions.InvalidMapException was expected. Exception message: System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at SneakingCommon.Utility.XmlLoader.loadBareMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 378
+   at SneakingCommon.Utility.XmlLoader.loadGuardsMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 433
+   at SneakingCommon.Utility.XmlLoader.loadFullMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 453
+   at SneakingCommonTests.UnitTest1.loadFullMapFailTest() in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\SneakingMapTests.cs:line 205
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="370da4cf-b6bb-44c0-b7f6-f92aee954aeb" testId="10976cc2-a6bd-7e3a-8b9f-c78ea6b0c02b" testName="bareMapTileIdsTest" computerName="BERTA-PC" duration="00:00:00.9844804" startTime="2014-12-01T13:32:41.4913490-08:00" endTime="2014-12-01T13:32:42.4964065-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="370da4cf-b6bb-44c0-b7f6-f92aee954aeb">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method SneakingCommonTests.UnitTest1.bareMapTileIdsTest threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at SneakingCommon.Utility.XmlLoader.loadBareMap(XmlDocument myDoc) in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\Utility\XmlLoader.cs:line 378
+   at SneakingCommonTests.UnitTest1.bareMapTileIdsTest() in C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\SneakingMapTests.cs:line 139
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6358667e-8997-4dff-993a-c32a50abaf10" testId="bb9dcbc4-7ae9-0970-ed88-6a9e4fcfacf3" testName="saveBareMapTest" computerName="BERTA-PC" duration="00:00:02.0731186" startTime="2014-12-01T13:32:42.5044069-08:00" endTime="2014-12-01T13:32:44.5775255-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6358667e-8997-4dff-993a-c32a50abaf10">
+      <Output>
+        <ErrorInfo>
+          <Message>User aborted test run.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="bb5da387-0527-450d-b18e-c3805b7db045" testId="5e6e334d-2cca-c346-a25d-291eef8683ac" testName="loadMapWithGuardsTest" computerName="BERTA-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bb5da387-0527-450d-b18e-c3805b7db045">
+    </UnitTestResult>
+    <UnitTestResult executionId="233a2a24-8e7d-46c3-8c7f-dc74b249279a" testId="c3b37413-95b8-6019-d361-13970e15d51e" testName="createdMapIdTest" computerName="BERTA-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="233a2a24-8e7d-46c3-8c7f-dc74b249279a">
+    </UnitTestResult>
+    <UnitTestResult executionId="edc5506d-5a7e-4a35-87e6-ca323337d50d" testId="53a49d14-54cd-36e1-bd3d-c53d8899d35c" testName="saveBareFailTest" computerName="BERTA-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="edc5506d-5a7e-4a35-87e6-ca323337d50d">
+    </UnitTestResult>
+    <UnitTestResult executionId="e1953d59-362f-4c7a-bad2-bf61667278bb" testId="da623405-5b58-a3e8-bbe4-66cc37964fa3" testName="loadBareMapFailTest" computerName="BERTA-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1953d59-362f-4c7a-bad2-bf61667278bb">
+    </UnitTestResult>
+    <UnitTestResult executionId="ad186189-b908-49be-b061-091b85fb6779" testId="c9182415-4410-3796-9514-99dbf275de21" testName="loadBareMapTest" computerName="BERTA-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad186189-b908-49be-b061-091b85fb6779">
+    </UnitTestResult>
+    <UnitTestResult executionId="a484edbd-886d-4f0a-9ebb-8df5cf350254" testId="f69816a6-bf65-5fab-f80a-b3ffa700438b" testName="bareMapTileIdsTest2" computerName="BERTA-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a484edbd-886d-4f0a-9ebb-8df5cf350254">
+    </UnitTestResult>
+  </Results>
+</TestRun>

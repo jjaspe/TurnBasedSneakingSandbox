@@ -248,9 +248,58 @@ namespace SneakingCreationWithForms
                 return;
             }
             this.MyPresenter.loadBareMap(doc);
+            guardListBox.Items.Clear();
             if (!drawing)
                 this.drawingLoop();
 
+        }
+
+        private void loadMapWithGuardsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog MapDialog = new OpenFileDialog();
+            MapDialog.Filter = "Map Files (*.mgp)|*.mgp";
+            MapDialog.DefaultExt = "Map";
+            MapDialog.InitialDirectory = filepath;
+
+            string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
+
+            if (filename == null)
+            {
+                MessageBox.Show("Couldnt' Load Map");
+                return;
+            }
+
+            FileStream mapFileReader;
+            try
+            {
+                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Open Map:" + ex.Message);
+                return;
+            }
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(mapFileReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Create XmlDocument:" + ex.Message);
+                return;
+            }
+            MyPresenter.loadGuardsMap(doc);
+
+            //Put guards in list
+            guardListBox.Items.Clear();
+            mySelectedGuard = null;
+            foreach (SneakingGuard g in MyPresenter.Model.Guards)
+                addGuardToList(g);
+
+            if (!drawing)
+                this.drawingLoop();
         }
 
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -337,53 +386,7 @@ namespace SneakingCreationWithForms
         }
         #endregion
 
-        private void loadMapWithGuardsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog MapDialog = new OpenFileDialog();
-            MapDialog.Filter = "Map Files (*.mgp)|*.mgp";
-            MapDialog.DefaultExt = "Map";
-            MapDialog.InitialDirectory = filepath;
-
-            string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
-
-            if (filename == null)
-            {
-                MessageBox.Show("Couldnt' Load Map");
-                return;
-            }
-
-            FileStream mapFileReader;
-            try
-            {
-                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Couldn't Open Map:" + ex.Message);
-                return;
-            }
-
-            XmlDocument doc = new XmlDocument();
-            try
-            {
-                doc.Load(mapFileReader);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Couldn't Create XmlDocument:" + ex.Message);
-                return;
-            }
-            MyPresenter.loadGuardsMap(doc);
-
-            //Put guards in list
-            guardListBox.Items.Clear();
-            mySelectedGuard = null;
-            foreach (SneakingGuard g in MyPresenter.Model.Guards)
-                addGuardToList(g);
-
-            if (!drawing)
-                this.drawingLoop();
-        }
+        
 
     }
 }

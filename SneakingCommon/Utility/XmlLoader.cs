@@ -15,6 +15,7 @@ using Canvas_Window_Template.Drawables;
 using SneakingCommon.System_Classes;
 using System.IO;
 using OpenGlGameCommon.Interfaces.Model;
+using OpenGlGameCommon.Enums;
 
 namespace SneakingCommon.Utility
 {
@@ -63,20 +64,43 @@ namespace SneakingCommon.Utility
             XmlElement idNode = creator.CreateElement("Id"),
                 positionNode = creator.CreateElement("Position"),
                 positionXNode = creator.CreateElement("X"),
-                positionYNode = creator.CreateElement("Y");
+                positionYNode = creator.CreateElement("Y"),
+                colorNode=creator.CreateElement("Color"),
+                redNode=creator.CreateElement("Red"),
+                greenNode=creator.CreateElement("Green"),
+                blueNode=creator.CreateElement("Blue"),
+                orientationNode=creator.CreateElement("Orientation");
 
             //Get guard data, add it to guard node, add guard node to list node
             foreach (SneakingGuard g in guards)
             {
                 currentGuardNode = g.MyCharacter.toXml(creator);
                 idNode.InnerText = g.getId().ToString();
+                
                 positionXNode.InnerText = g.getPosition()[0].ToString();
                 positionYNode.InnerText = g.getPosition()[1].ToString();
                 positionNode.AppendChild(positionXNode.Clone());
                 positionNode.AppendChild(positionYNode.Clone());
+                
+                redNode.InnerText = g.Color[0].ToString();
+                greenNode.InnerText = g.Color[1].ToString();
+                blueNode.InnerText = g.Color[2].ToString();
+                colorNode.AppendChild(redNode.Clone());
+                colorNode.AppendChild(greenNode.Clone());
+                colorNode.AppendChild(blueNode.Clone());
+
+                orientationNode.InnerText = g.MyOrientation.ToString();
+
+                
                 currentGuardNode.AppendChild(idNode);
                 currentGuardNode.AppendChild(positionNode);
+                currentGuardNode.AppendChild(orientationNode);
+                currentGuardNode.AppendChild(colorNode);
                 guardsNode.AppendChild(currentGuardNode.Clone());
+
+                //clear nodes for next guard
+                positionNode.RemoveAll();
+                colorNode.RemoveAll();
             }
 
             return guardsNode;
@@ -276,7 +300,7 @@ namespace SneakingCommon.Utility
         static SneakingGuard loadGuardFromNode(XmlNode guardNode)
         {
             XmlNode positionNode, positionXNode, positionYNode,
-               patrolNode, wpXNode, wpYNode;
+               patrolNode, wpXNode, wpYNode,colorNode,redNode,greenNode,blueNode,orientationNode;
             XmlNodeList waypointNodes;
             PatrolPath guardPatrolPath;
 
@@ -290,10 +314,21 @@ namespace SneakingCommon.Utility
             positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
             positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
 
-
             guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
                                               Int32.Parse(positionYNode.InnerText),
                                               0);
+
+            //Read orientation and save
+            orientationNode = ((XmlElement)guardNode).SelectNodes("Orientation")[0];
+            guard.MyOrientation = (GuardOrientation)(Enum.Parse(typeof(GuardOrientation), orientationNode.InnerText));
+
+            //Read color and save
+            colorNode =((XmlElement)guardNode).SelectNodes("Color")[0];
+            redNode=((XmlElement)colorNode).SelectNodes("Red")[0];
+            greenNode=((XmlElement)colorNode).SelectNodes("Green")[0];
+            blueNode=((XmlElement)colorNode).SelectNodes("Blue")[0];
+            guard.Color = new float[] { float.Parse(redNode.InnerText), float.Parse(greenNode.InnerText), float.Parse(blueNode.InnerText) };
+
             //Read Patrol
             //First, put guard position as first waypoint
             guardPatrolPath.MyWaypoints.Add(guard.Position);

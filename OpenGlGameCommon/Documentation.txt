@@ -9,7 +9,7 @@ Base classes
 
 	 Use: To build one just give it a width,length,size for the tiles, point of origin(bottom-left corner),
 	 and orientation (defaults to perpendicular to Z axis). To add things to draw just create IDrawables and
-	 add them to Drawables property, then call draw on the whole list.
+	 add them to Drawables property, then call draw on the whole all of Drawables.
 
  - DrawableGuard: Basic character unit, but it can also be drawn. Its Character property holds character data
  and it's behavior properties are used to tell it how to do things.

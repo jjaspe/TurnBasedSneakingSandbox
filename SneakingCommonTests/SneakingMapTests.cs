@@ -20,10 +20,11 @@ namespace SneakingCommonTests
     public class UnitTest1
     {
         XmlDocument fullMapDoc;
+        XmlDocument guardMapDoc;
         XmlDocument bareMapDoc;
         
         String saveFilename = (System.Reflection.Assembly.GetExecutingAssembly().Location).
-            Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll","TBSneaking Data\\Maps\\") + "saveTestMap.mgg";
+            Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll","TBSneaking Data\\Maps\\") + "saveTestMap.mgp";
 
         void openMapFileWithDialog(String title, ref XmlDocument doc)
         {
@@ -69,8 +70,8 @@ namespace SneakingCommonTests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            openMapFileWithFilename(saveFilename.Replace("saveTestMap","Map"),ref fullMapDoc);
-            openMapFileWithFilename(saveFilename.Replace("saveTestMap", "MazeMap"),ref bareMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","Map.mpt"),ref fullMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp", "Empty.map"),ref bareMapDoc);
 
             //openMapFileWithDialog("Open Full Map", ref fullMapDoc);
             //openMapFileWithDialog("Open Bare Map", ref bareMapDoc);
@@ -136,7 +137,7 @@ namespace SneakingCommonTests
         [TestMethod]
         public void bareMapTileIdsTest()
         {
-            SneakingMap map = XmlLoader.loadBareMap(fullMapDoc);
+            SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);
             int lastId = (map.MyWidth * map.MyLength-1) * GameObjects.objectTypes;
             Tile lastTile=(Tile)map.MyTiles[map.MyLength - 1, map.MyWidth - 1],firstTile=(Tile)map.MyTiles[0,0];
             Assert.AreEqual(lastId, lastTile.getId()-firstTile.getId());

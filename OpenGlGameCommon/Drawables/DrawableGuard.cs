@@ -75,6 +75,8 @@ namespace OpenGlGameCommon.Drawables
         PatrolPath patrol;
         IPoint target;
         PatrolPath targetPath;
+        float[] color;
+        float[] outlineColor;
 
         public GuardOrientation MyOrientation
         {
@@ -115,6 +117,16 @@ namespace OpenGlGameCommon.Drawables
             get { return myCharacter; }
             set { myCharacter = value; }
         }
+        public float[] Color
+        {
+            get { return color; }
+            set { color = value; }
+        }
+        public float[] OutlineColor
+        {
+            get { return outlineColor; }
+            set { outlineColor = value; }
+        }
 
 
 
@@ -128,6 +140,8 @@ namespace OpenGlGameCommon.Drawables
             FOV = new List<IPoint>();
             myId = guardIds;
             guardIds += GameObjects.objectTypes;
+            Color = Common.colorBlue;
+            OutlineColor = Common.colorBlack;
         }
 
         /// <summary>

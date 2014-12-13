@@ -18,6 +18,12 @@
         <X>30</X>
         <Y>-20</Y>
       </Position>
+      <Orientation>none</Orientation>
+      <Color>
+        <Red>0</Red>
+        <Green>0</Green>
+        <Blue>1</Blue>
+      </Color>
     </Character>
   </Guard_List>
 </Root>
