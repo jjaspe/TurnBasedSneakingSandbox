@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Sneaking_Gameplay.Sneaking_Drawables;
 using SneakingCommon.System_Classes;
+using Canvas_Window_Template.Interfaces;
 
 namespace SneakingCreationWithForms.MVP
 {
@@ -20,6 +21,11 @@ namespace SneakingCreationWithForms.MVP
             set;
         }
         GameSystem System
+        {
+            get;
+            set;
+        }
+        List<IPoinst> EntryPoints
         {
             get;
             set;

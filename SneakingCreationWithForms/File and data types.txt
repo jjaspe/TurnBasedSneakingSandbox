@@ -1,4 +1,4 @@
-﻿Geometry maps without guards : .map
+﻿Geometry maps without guards (bare map) : .map
 Maps with guards without patrols:.mgp
 Guards : .grd
 Map with Guards and patrols: .mpt

@@ -121,5 +121,12 @@ namespace SneakingCreationWithForms
             this.myView = guardsWindow.MyView;
             guardsWindow.ShowDialog(this);
         }
+
+        public void startPatrolCreation()
+        {
+            CreatePatrolForm patrolView = new CreatePatrolForm(this.MyPresenter);
+            this.myView = patrolView.MyView;
+            patrolView.ShowDialog(this);
+        }
     }
 }

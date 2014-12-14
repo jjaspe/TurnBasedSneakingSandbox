@@ -70,7 +70,8 @@ namespace SneakingCommonTests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","Map.mpt"),ref fullMapDoc);
+            //openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","MapWithPatrols.mpt"),ref fullMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","MazeMap.mgp"),ref guardMapDoc);
             openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp", "Empty.map"),ref bareMapDoc);
 
             //openMapFileWithDialog("Open Full Map", ref fullMapDoc);
@@ -149,7 +150,7 @@ namespace SneakingCommonTests
         [TestMethod]
         public void bareMapTileIdsTest2()
         {
-            SneakingMap map = XmlLoader.loadBareMap(fullMapDoc);
+            SneakingMap map = XmlLoader.loadBareMap(bareMapDoc);
 
             //Get the id of some random tile and see if it exists in drawables
             int target = ((Tile)map.MyTiles[0,0]).getId()+(new Random()).Next(map.MyWidth * map.MyLength - 1)*10;
@@ -191,7 +192,7 @@ namespace SneakingCommonTests
         [TestMethod]
         public void loadMapWithGuardsTest()
         {
-            SneakingMap map = XmlLoader.loadGuardsMap(fullMapDoc);
+            SneakingMap map = XmlLoader.loadGuardsMap(guardMapDoc);
             Assert.IsNotNull(map.getGuards());
             Assert.IsTrue(map.getGuards().Count > 0);
         }

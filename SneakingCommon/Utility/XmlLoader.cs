@@ -170,6 +170,89 @@ namespace SneakingCommon.Utility
         }
 
         /// <summary>
+        /// Create distance maps using tiles of given map.
+        /// Maps are generated in map class, this method just reads their data and 
+        /// saves it to xml node.
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="creator"></param>
+        /// <returns></returns>
+        private static XmlNode getDistanceMapNode(SneakingMap map, XmlDocument creator)
+        {
+            XmlElement distanceMaps = creator.CreateElement("Distance_Maps"), vpPosition,
+                vpPositionX, vpPositionY, vpValue, currentMapNode, currentPointNode, currentSourceNode,
+                currentSourcePositionXNode, currentSourcePositionYNode;
+
+            map.generateDistanceMaps();
+            DistanceMap currentMap;
+            foreach (IPoint currentSource in map.getAllTileOrigins())
+            {
+                currentMap = map.getDistanceMap(currentSource);
+
+                //Create source node
+                currentSourceNode = creator.CreateElement("Source_Point");
+                currentSourcePositionXNode = creator.CreateElement("Position_X");
+                currentSourcePositionYNode = creator.CreateElement("Position_Y");
+                currentSourcePositionXNode.InnerText = currentSource.X.ToString();
+                currentSourcePositionYNode.InnerText = currentSource.Y.ToString();
+                currentSourceNode.AppendChild(currentSourcePositionXNode.Clone());
+                currentSourceNode.AppendChild(currentSourcePositionYNode.Clone());
+
+                currentMapNode = creator.CreateElement("Distance_Map");
+                currentMapNode.AppendChild(currentSourceNode.Clone());
+
+                //Create and add distance map points to map
+                foreach (valuePoint vp in currentMap.MyPoints)
+                {
+                    //Create point element
+                    currentPointNode = creator.CreateElement("Distance_Point");
+                    vpPosition = creator.CreateElement("Position");
+                    vpPositionX = creator.CreateElement("Position_X");
+                    vpPositionY = creator.CreateElement("Position_Y");
+                    vpValue = creator.CreateElement("Value");
+                    vpPositionX.InnerText = vp.p.X.ToString();
+                    vpPositionY.InnerText = vp.p.Y.ToString();
+                    vpValue.InnerText = vp.value.ToString();
+                    vpPosition.AppendChild(vpPositionX.Clone());
+                    vpPosition.AppendChild(vpPositionY.Clone());
+                    currentPointNode.AppendChild(vpPosition.Clone());
+                    currentPointNode.AppendChild(vpValue.Clone());
+
+                    //add to map element
+                    currentMapNode.AppendChild(currentPointNode.Clone());
+                }
+
+                //Add map to maps
+                distanceMaps.AppendChild(currentMapNode.Clone());
+            }
+            return distanceMaps;
+        }
+
+        private static XmlNode getEntryPointsNode(List<IPoint> entryPoints, XmlDocument creator)
+        {
+            XmlElement entryPointsNode = creator.CreateElement("Entry_Points");
+            List<XmlElement> cNodes = new List<XmlElement>();
+            XmlElement current, cPositionNode,cPositionXNode, cPositionYNode;
+
+            List<XmlElement> entries = new List<XmlElement>();
+            foreach (IPoint entry in entryPoints)
+            {
+                current = creator.CreateElement("Entry_Point");
+                cPositionNode = creator.CreateElement("Position");
+                cPositionXNode = creator.CreateElement("X");
+                cPositionYNode = creator.CreateElement("Y");
+                cPositionXNode.InnerText = entry.X.ToString();
+                cPositionYNode.InnerText = entry.Y.ToString();
+                cPositionNode.AppendChild(cPositionXNode.Clone());
+                cPositionNode.AppendChild(cPositionYNode.Clone());
+                current.AppendChild(cPositionNode.Clone());
+                entryPointsNode.AppendChild(current.Clone());
+            }
+
+            return entryPointsNode;
+        }
+
+        /// <summary>
         /// Returns list of guards created from guard nodes in myDoc
         /// </summary>
         /// <param name="myDoc"></param>
@@ -642,7 +725,38 @@ namespace SneakingCommon.Utility
            
         }
 
-        
+        static public void saveFullMap(String filename, SneakingMap map,List<IPoint> entryPoints)
+        {
+            XmlDocument creator = new XmlDocument();
+
+            XmlWriter xWriter;
+            try
+            {
+                xWriter = new XmlTextWriter(filename, null);
+            }
+            catch (Exception e)
+            {
+                throw new BadFileNameException("map filename:" + filename, "Save Guard Map");
+            }
+            xWriter.WriteStartElement("Root");
+            xWriter.Close();
+            creator.Load(filename);
+
+            XmlNode root = creator.DocumentElement;
+
+            XmlNode bareMapNode = getBareMapNode(map, creator),
+                    guardsNode = getGuardsNode(map.getGuards(), creator),
+                    entryPointsNode = getEntryPointsNode(entryPoints, creator),
+                    distanceMaps = getDistanceMapNode(map, creator);
+
+            bareMapNode.AppendChild(distanceMaps);
+            root.AppendChild(guardsNode);
+            root.AppendChild(bareMapNode);
+            root.AppendChild(entryPointsNode);
+            creator.Save(filename);
+        }
+
+       
 
         
 

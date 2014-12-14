@@ -29,5 +29,9 @@ namespace SneakingCreationWithForms.MVP
         #region GUARD CREATION STUFF
         void startGuardCreation();
         #endregion
+
+        #region PATROL CREATION STUFF
+        void startPatrolCreation();
+        #endregion
     }
 }

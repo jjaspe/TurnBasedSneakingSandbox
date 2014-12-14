@@ -12,6 +12,7 @@ using System.Xml;
 using SneakingCommon.Utility;
 using CharacterSystemLibrary.Classes;
 using OpenGlGameCommon.Enums;
+using OpenGlGameCommon.Data_Classes;
 
 namespace SneakingCreationWithForms.MVP
 {
@@ -46,6 +47,12 @@ namespace SneakingCreationWithForms.MVP
             Model.Guards = new List<SneakingGuard>();
             Model.Map = null;
             View.startGuardCreation();
+        }
+        public void createPatrolsWindowStart()
+        {
+            Model.Guards = new List<SneakingGuard>();
+            Model.Map = null;
+            View.startPatrolCreation();
         }
         #endregion
 
@@ -414,5 +421,74 @@ namespace SneakingCreationWithForms.MVP
         }
         #endregion
 
+        #region PATROL CREATION STUFF
+        Tile findTile(int id)
+        {
+            foreach(tileObj t in Model.Map.MyTiles)
+            {
+                Tile tile=t as Tile;
+                if(tile != null && tile.myId==id)
+                    return tile;
+            }
+            return null;
+        }
+        public void selectTile(Tile t)
+        {
+            t.Shaded++;
+        }
+        public void deselectTile(Tile t)
+        {
+            t.Shaded--;
+        }
+        public void selectTile(int id)
+        {
+            Tile tile=findTile(id);
+            if(tile!=null)
+                tile.Shaded++;
+        }
+        public void deselectTile(int id)
+        {
+            Tile tile=findTile(id);
+                tile.Shaded--;
+        }
+        public void selectPath(PatrolPath path)
+        {
+            
+            if (path == null)
+                return;
+            if (path.MyWaypoints == null)
+                return;
+
+            foreach(Tile t in Model.Map.getTiles(path.MyWaypoints))
+                t.Shaded++;
+        }
+        public void deselectPath(PatrolPath path)
+        {            
+            if (path == null)
+                return;
+            if (path.MyWaypoints == null)
+                return;
+
+            foreach(Tile t in Model.Map.getTiles(path.MyWaypoints))
+                t.Shaded--;
+        }
+        public string getPathString(PatrolPath path)
+        {
+            string sPath = "";
+            if (path.MyWaypoints != null)
+            {
+                sPath = "";
+                foreach (IPoint point in path.MyWaypoints)
+                    sPath += "(" + point.X.ToString() + "," + point.Y.ToString() + ")";
+            }
+            return sPath == "" ? null : sPath;
+        }
+        #endregion
+
+
+        internal void saveFullMap(string filename)
+        {
+            XmlLoader.saveFullMap(filename, Model.Map, null);
+        }
     }
 }
