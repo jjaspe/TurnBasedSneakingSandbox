@@ -47,33 +47,6 @@ namespace SneakingCreationWithForms
             InitializeComponent();
         }
 
-        
-
-        /*
-        public void startPatrol()
-        {
-            patrolWnd = new PatrolForm();
-            patrolWnd.Name = "Patrol Creation Form";
-            patrolWnd.registerObserver(this);
-            myForms.Add(patrolWnd);
-        }
-        public void startGuard()
-        {
-            guardWnd = new GuardCreation();
-            guardWnd.Name = "Guard Creation Form";
-            guardWnd.registerObserver(this);
-            myForms.Add(guardWnd);
-        }
-        public void startPlayer()
-        {
-            playerWnd = new PC_Form();
-            playerWnd.Name = "Player Creation Form";
-            playerWnd.registerObserver(this);
-            myForms.Add(playerWnd);
-        }*/
-
-
-        
         private void createMapButton_Click(object sender, EventArgs e)
         {
             MyPresenter.createMapWindowStart();
@@ -81,7 +54,7 @@ namespace SneakingCreationWithForms
 
         private void createPatrolButton_Click(object sender, EventArgs e)
         {
-            presenter.createMapWindowStart();
+            presenter.createPatrolsWindowStart();
         }
         
         private void addGuardsButton_Click(object sender, EventArgs e)
@@ -91,11 +64,8 @@ namespace SneakingCreationWithForms
 
         private void createPlayer_Click(object sender, EventArgs e)
         {
+            presenter.createPCWindowStart();
         }
-
-        
-
-        
 
         public void start()
         {
@@ -127,6 +97,12 @@ namespace SneakingCreationWithForms
             CreatePatrolForm patrolView = new CreatePatrolForm(this.MyPresenter);
             this.myView = patrolView.MyView;
             patrolView.ShowDialog(this);
+        }
+
+        public void startPCCreation()
+        {
+            CreatePCForm pcView = new CreatePCForm(this.MyPresenter);
+            pcView.ShowDialog(this);
         }
     }
 }

@@ -94,6 +94,12 @@
     <Compile Include="CreatePatrolForm.designer.cs">
       <DependentUpon>CreatePatrolForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PC Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PC Form.designer.cs">
+      <DependentUpon>PC Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreateGuardsForm.resx">
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreatePatrolForm.resx">
       <DependentUpon>CreatePatrolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PC Form.resx">
+      <DependentUpon>PC Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

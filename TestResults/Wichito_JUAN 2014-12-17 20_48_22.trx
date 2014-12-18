@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="4c17f4d2-5737-42ee-913e-ca4b1db5f83c" name="Wichito@JUAN 2014-12-17 20:48:22" runUser="JUAN\Wichito" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Wichito_JUAN 2014-12-17 20_48_22">
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\ISE.FreeType.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.Platform.Windows.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCreationWithForms.exe" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Canvas Window Template.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.FreeGlut.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.OpenGl.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-12-17T20:48:22.2055418-05:00" queuing="2014-12-17T20:48:22.2211683-05:00" start="2014-12-17T20:48:22.2367910-05:00" finish="2014-12-17T20:48:22.6410080-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="distanceMapsLoadedCorrectly" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\presentertests\bin\debug\presentertests.dll" id="a7a8a006-cf04-bfa6-86c0-fe4b24bd76ef">
+      <Execution id="ce0d0558-ce37-4c22-ae59-f4986a6a3e61" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/PresenterTests/bin/Debug/PresenterTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="PresenterTests.PresenterTest, PresenterTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="distanceMapsLoadedCorrectly" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="a7a8a006-cf04-bfa6-86c0-fe4b24bd76ef" executionId="ce0d0558-ce37-4c22-ae59-f4986a6a3e61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ce0d0558-ce37-4c22-ae59-f4986a6a3e61" testId="a7a8a006-cf04-bfa6-86c0-fe4b24bd76ef" testName="distanceMapsLoadedCorrectly" computerName="JUAN" duration="00:00:00.2447512" startTime="2014-12-17T20:48:22.2367910-05:00" endTime="2014-12-17T20:48:22.6253815-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce0d0558-ce37-4c22-ae59-f4986a6a3e61">
+    </UnitTestResult>
+  </Results>
+</TestRun>

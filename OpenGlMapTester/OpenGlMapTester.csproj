@@ -41,6 +41,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CharacterSystemLibrary\CharacterSystemLibrary\bin\Debug\CharacterSystemLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="ISE.FreeType, Version=1.0.2935.1754, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -49,10 +50,15 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Tao.FreeGlut">
+      <HintPath>..\..\..\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.FreeGlut.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.OpenGl, Version=2.1.0.4, Culture=neutral, PublicKeyToken=1ca010269a4501ef, processorArchitecture=MSIL" />
     <Reference Include="Tao.Platform.Windows">
       <HintPath>..\OpenGlGameCommon\bin\Debug\Tao.Platform.Windows.dll</HintPath>
     </Reference>
@@ -70,6 +76,14 @@
     <ProjectReference Include="..\OpenGlGameCommon\OpenGlGameCommon.csproj">
       <Project>{42610CB5-8B1B-4860-86DF-55232334EADC}</Project>
       <Name>OpenGlGameCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SneakingCommon\SneakingCommon.csproj">
+      <Project>{1524DD8E-F1DB-47C0-9ED5-3335433578F9}</Project>
+      <Name>SneakingCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SneakingCreationWithForms\SneakingCreationWithForms.csproj">
+      <Project>{352E73F3-E51C-48FD-B77C-3BCC9995B017}</Project>
+      <Name>SneakingCreationWithForms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

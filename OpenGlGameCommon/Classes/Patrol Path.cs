@@ -46,12 +46,17 @@ namespace OpenGlGameCommon.Data_Classes
             return top;
         }
 
+        /// <summary>
+        /// Creates lines between the waypoints in the path, except for the last waypoint, so we know where
+        /// the path starts.
+        /// </summary>
+        /// <param name="tileSize"></param>
         public new void createDirectionLines(int tileSize)
         {
             directionLines = new List<DirectionLine>();
             int offset = tileSize / 2;
             IPoint current, next;
-            for (int i = 0; i < myWaypoints.Count - 1; i++)//Dont draw lines starting from last point
+            for (int i = 0; i < myWaypoints.Count - 2; i++)//Dont draw lines to last point, so we know where it starts
             {
                 current = myWaypoints[i];
                 next = myWaypoints[i + 1];

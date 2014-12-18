@@ -6,6 +6,14 @@ using System.Xml;
 
 namespace SneakingCommon.System_Classes
 {
+    /// <summary>
+    /// A class used to hold data that tells the game how to convert from some stats into
+    /// other by using a linear system. 
+    /// Example Field Of View depends on perception, so to get value of field of view
+    /// FoV=Perception*FoVFactor+FoVConstant.
+    /// The factors and constants are initialized to 1 and 0 resp., but we can define other values
+    /// in an xml file and load them using loadSystem in XmlLoader class
+    /// </summary>
     public class GameSystem
     {
         static GameSystem GameSystemInstance = new GameSystem();
@@ -42,6 +50,7 @@ namespace SneakingCommon.System_Classes
         {
             return strength*HealthFactor + HealthConstant;
         }
+
 
         
     }

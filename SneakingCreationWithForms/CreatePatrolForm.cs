@@ -39,24 +39,28 @@ namespace SneakingCreationWithForms
             statToSkillsFilename = "Stat To Skill Factors.txt";
 
         Presenter MyPresenter;
-        List<IFormObserver> myObservers;
-        OpenGlMap myMap;
         selectorObj mySelector;
-        PatrolPath currentPath;
-        SneakingGuard mySelectedGuard;
-        List<IPoint> entryPoints;
-        int selectedEntryPoint=-1;
+        PatrolPath selectedPatrol;
+        SneakingGuard selectedGuard;
         bool patrolEditing = true,drawing=false,closing=false;
 
         
         
-        public OpenGlMap Map
+        public SneakingMap Map
         {
-          get { return myMap; }
-          set { myMap = value; }
+            get { return MyPresenter.Model.Map; }
         }
-        public List<PatrolPath> paths;
-        public List<SneakingGuard> guards;
+        public List<PatrolPath> patrols
+        {
+            get{return MyPresenter.Patrols;}
+        }
+        public List<IPoint> EntryPoints
+        {
+            get
+            {
+                return MyPresenter.Model.Map.EntryPoints;
+            }
+        }
         private Tile selectedTile;
         public simpleOpenGlView MyView
         {
@@ -94,9 +98,6 @@ namespace SneakingCreationWithForms
             this.MyView.Dock = DockStyle.None;
             this.MyView.MouseClick += new MouseEventHandler(viewClick); 
             mySelector = new selectorObj(myView);
-            paths = new List<PatrolPath>();
-            guards = new List<SneakingGuard>();
-            entryPoints = new List<IPoint>();
             this.Show();
         }
         public void end()
@@ -126,254 +127,302 @@ namespace SneakingCreationWithForms
             drawing = false;
         }
 
-        private void update()
+        void update()
         {
             if (selectedTile != null)
             {
                 positionText.Text = selectedTile.MyOrigin.X.ToString() + "," +
                     selectedTile.MyOrigin.Y.ToString();
             }
-            #region GUARD STUFF
-            if (guardListBox.Items.Count > 0)
-            {
-                SneakingGuard tempGuard = guardListBox.SelectedItem != null ?
-                    MyPresenter.findGuard(((KeyValuePair<int, string>)guardListBox.SelectedItem).Key) : null;
-                if (tempGuard != null)
-                {
-                    //Deselect old guard if there was one
-                    if (mySelectedGuard != null)
-                        deselectGuard(mySelectedGuard);
-
-                    //Select guard
-                    selectGuard(tempGuard.getId());
-
-                    //Update guard stuff
-                    updateGuardControls();
-                }
-            }
-            #endregion
-            #region PATROL STUFF
-            //Fill patrol list
-            KeyValuePair<int, string> currentItem;
-            PatrolPath lastPath,
-                tempPath = patrolListBox.SelectedItem != null ?
-                findPath(((KeyValuePair<int, string>)patrolListBox.SelectedItem).Key) : null;
-
-            #region CHANGE PATHS
-            //Set current path
-            if (tempPath != null)
-            {
-                //deselect old currentPath if there was one
-                if (currentPath != null)
-                    deselectPath(currentPath);
-
-                currentPath = tempPath;
-                //select new currentPath
-                selectPath(currentPath);
-            }
-
-
-            if (paths != null)
-            {
-                if (paths.Count > patrolListBox.Items.Count)//Add last path to list
-                {
-                    lastPath = paths[paths.Count - 1];
-                    if (lastPath != null)
-                    {
-                        currentItem = new KeyValuePair<int, string>(lastPath.MyId, lastPath.name);
-                        patrolListBox.Items.Add(currentItem);
-                    }
-                }
-            }
-            #endregion
+      
+            updateGuardControls();
 
             //Fill waypoint box
             waypointTextBox.Text = "";
-            if (currentPath != null)
+            if (selectedPatrol != null)
             {
-                foreach (IPoint point in currentPath.MyWaypoints)
+                foreach (IPoint point in selectedPatrol.MyWaypoints)
                 {
                     waypointTextBox.Text = waypointTextBox.Text + "(" + point.X.ToString() +
                         "," + point.Y.ToString() + ")";
                 }
             }
-            #endregion
         }
 
-        private void addGuardToList(SneakingGuard guard)
+        void addGuardToList(SneakingGuard guard)
         {
             if (guard != null)
             {
-                guardListBox.Items.Add(new KeyValuePair<int, string>(guard.getId(), guard.MyCharacter.Name));
-                guardListBox.SelectedIndex = guardListBox.Items.Count - 1;
-                mySelectedGuard = guard;
+                guardListBox.Items.Add(guard);
             }
         }
 
-        private void updateGuardControls()
+         void updateGuardControls()
         {
+            if (selectedGuard == null)
+                return;
             //Update position and name boxes
-            positionText.Text = mySelectedGuard.Position.X.ToString() + "," + mySelectedGuard.Position.Y.ToString();
-            nameText.Text = mySelectedGuard.MyCharacter.Name;
+            positionText.Text = selectedGuard.Position.X.ToString() + "," + selectedGuard.Position.Y.ToString();
+            nameText.Text = selectedGuard.MyCharacter.Name;
 
             //Update stat boxes
-            strText.Text = mySelectedGuard.MyCharacter.getStat("Strength").Value.ToString();
-            intText.Text = mySelectedGuard.MyCharacter.getStat("Intelligence").Value.ToString();
-            perText.Text = mySelectedGuard.MyCharacter.getStat("Perception").Value.ToString();
-            dexText.Text = mySelectedGuard.MyCharacter.getStat("Dexterity").Value.ToString();
-            armorText.Text = mySelectedGuard.MyCharacter.getStat("Armor").Value.ToString();
-            weapText.Text = mySelectedGuard.MyCharacter.getStat("Weapon Skill").Value.ToString();
-            FoVText.Text = mySelectedGuard.MyCharacter.getStat("Field of View").Value.ToString();
-            APText.Text = mySelectedGuard.MyCharacter.getStat("AP").Value.ToString();
-            SPText.Text = mySelectedGuard.MyCharacter.getStat("Suspicion Propensity").Value.ToString();
+            strText.Text = selectedGuard.MyCharacter.getStat("Strength").Value.ToString();
+            intText.Text = selectedGuard.MyCharacter.getStat("Intelligence").Value.ToString();
+            perText.Text = selectedGuard.MyCharacter.getStat("Perception").Value.ToString();
+            dexText.Text = selectedGuard.MyCharacter.getStat("Dexterity").Value.ToString();
+            armorText.Text = selectedGuard.MyCharacter.getStat("Armor").Value.ToString();
+            weapText.Text = selectedGuard.MyCharacter.getStat("Weapon Skill").Value.ToString();
+            FoVText.Text = selectedGuard.MyCharacter.getStat("Field of View").Value.ToString();
+            APText.Text = selectedGuard.MyCharacter.getStat("AP").Value.ToString();
+            SPText.Text = selectedGuard.MyCharacter.getStat("Suspicion Propensity").Value.ToString();
         }
 
-
-        private void selectPath(PatrolPath path)
+         void selectPath(PatrolPath path)
         {
             MyPresenter.selectPath(path);
         }
 
-        private void deselectPath(PatrolPath path)
+         void deselectPath(PatrolPath path)
         {
             MyPresenter.deselectPath(path);
         }
 
-        private void deselectTile(Tile tile)
+         void deselectTile(Tile tile)
         {
             MyPresenter.deselectTile(tile);
         }
 
+        int findPathIndexInList(PatrolPath path)
+        {
+            foreach (KeyValuePair<int, string> _path in patrolListBox.Items)
+            {
+                if (_path.Key == path.MyId)//Found it, return index
+                    return patrolListBox.Items.IndexOf(_path);
+            }
+            return 0;
+        }
+
         private void selectGuard(int id)
         {
-
             SneakingGuard guard = MyPresenter.findGuard(id); // Get new guard                
 
             if (guard != null)//Dont do anything if guard not found
             {
-                //If guard has a patrol assigned, find it in the list, and set it in the listbox
-                //If not, enable patrol list so one can be assigned
+                //If guard has a patrol assigned, find it in the list, and set it as active in the patrol listbox
+                //If not, enable patrol listbox so a patrol can be assigned to the guard
                 PatrolPath patrol = null;
                 if (guard.MyPatrol != null)
                 {
-                    patrol = findPath(guard.MyPatrol.MyId);
-                    patrolListBox.SelectedIndex = findIndexInList(patrol);
+                    patrol = MyPresenter.findPatrol(guard.MyPatrol.MyId);
+                    patrolListBox.SelectedIndex = findPathIndexInList(patrol);
                     patrolListBox.Enabled = false;
-                    update();
                 }
                 else
                 {
                     patrolListBox.Enabled = true;
-                    update();
                 }
 
-                //Make old selected not visible
-                if (mySelectedGuard != null)
-                    mySelectedGuard.Visible = false;
-                //Set new selected guard as visible
-                mySelectedGuard = guard;
-                mySelectedGuard.Visible = true; ;
+                //Deselect previous selected
+                if (selectedGuard != null)
+                {
+                    MyPresenter.deselectGuard(selectedGuard);
+                }
+
+                //Change selected guard
+                selectedGuard = guard;
+                MyPresenter.selectGuard(selectedGuard);
             }
         }
+        
 
-        private void deselectGuard(SneakingGuard guard)
+        private void resetAllEntryTiles()
         {
-            guard.Visible = false;
+            foreach (IPoint entry in EntryPoints)
+            {
+                MyPresenter.resetEntryPointTile(entry);                    
+            }
         }
 
         #region EVENT HANDLERS
         void viewClick(object sender, MouseEventArgs e)
         {
             //Check all objects, see if any was selected
-            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y }, myMap);
-            Tile tile;
-            //Check type
+            int id = mySelector.getSelectedObjectId(new int[] { e.X, e.Y }, Map);
+
+            //Check type of selected object
             if (id > -1)
             {
                 switch (id % GameObjects.objectTypes)
-                {
-                    
+                {                    
                     case Tile.idType://Tile
                         if (e.Button == MouseButtons.Left)
                         {
+                            selectedTile = Map.getTile(id);
                             if (patrolEditing)
                             {
-                                if (currentPath != null && currentPath.GuardOwners == 0)
-                                    addTileToCurrentPath(myMap.getTile(id));
+                                if (selectedPatrol != null && selectedPatrol.GuardOwners == 0)
+                                    MyPresenter.addTileToPatrol(Map.getTile(id),selectedPatrol);
                             }
                             else
                             {
                                 //Put coordinates in position boxes
-                                entryXText.Text = myMap.getTile(id).MyOrigin.X.ToString();
-                                entryYText.Text = myMap.getTile(id).MyOrigin.Y.ToString();
+                                entryXText.Text = Map.getTile(id).MyOrigin.X.ToString();
+                                entryYText.Text = Map.getTile(id).MyOrigin.Y.ToString();
                             }
                         }
                         else if (e.Button == MouseButtons.Right)
                         {
                             if (patrolEditing)
                             {
-                                if (currentPath != null && currentPath.GuardOwners == 0)
-                                    deleteTileFromCurrentPath(myMap.getTile(id));
+                                if (selectedPatrol != null && selectedPatrol.GuardOwners == 0)
+                                    MyPresenter.removeTileFromPatrol(Map.getTile(id),selectedPatrol);
                             }
                         }
                         update();
                         break;
-                    /*        
-                    case 1://Low Block
-                        lBlock = myMap.getLowBlock(id);
-                        if (e.Button == MouseButtons.Left)
-                            lowBlockLeftClick(lBlock);
-                        else if (e.Button == MouseButtons.Right)
-                            lowBlockRightClick(lBlock);
-                        break;
-                    case 2://High block
-                        hBlock = myMap.getHighBlock(id);
-                        if (e.Button == MouseButtons.Left)
-                            highBlockLeftClick(hBlock);
-                        else if (e.Button == MouseButtons.Right)
-                            highBlockRightClick(hBlock);
-                        break;
-                    case 3://Low wall
-                        lWall = myMap.getLowWall(id);
-                        if (e.Button == MouseButtons.Left)
-                            lowWallLeftClick(lWall);
-                        else if (e.Button == MouseButtons.Right)
-                            lowWallRightClick(lWall);
-                        break;
-                    case 4://High wall
-                        hWall = myMap.getHighWall(id);
-                        if (e.Button == MouseButtons.Left)
-                            highWallLeftClick(hWall);
-                        else if (e.Button == MouseButtons.Right)
-                            highWallRightClick(hWall);
-                        break;*/
                     default:
                         break;
                 }
             }
 
 
-        }       
-        private void createPatrol_Click(object sender, EventArgs e)
+        }
+        private void guardListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (paths != null)
+            //Get selected guard
+            if (guardListBox.SelectedItem != null)
             {
-                paths.Add(new PatrolPath("Patrol #" + paths.Count.ToString()));
-                update();
+                MyPresenter.deselectAllGuards();
+                selectedGuard = (SneakingGuard)guardListBox.SelectedItem;
+                MyPresenter.selectGuard(selectedGuard);
+                
+                //Allow patrol editing if guard doesnt' have a patrol
+                patrolListBox.Enabled = selectedGuard.MyPatrol==null;
+            }
+        }
+
+        /// <summary>
+        /// Changes from patrol editing to entry point editing by enabling and disabling corresponding
+        /// group boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            patrolEditing = patrolRadioButton.Checked;
+            if (patrolEditing)
+            {
+                //Disable entry point editing controls
+                //resetAllEntryTiles();
+                entryPointGroup.Enabled = false;
+                patrolCreationGroup.Enabled = true;
+                guardCreationGroup.Enabled = true;
+            }
+            else
+            {
+                //Disable entry point editing controls
+                entryPointGroup.Enabled = true;
+                patrolCreationGroup.Enabled = false;
+                guardCreationGroup.Enabled = false;
             }
 
         }
+
+        #region PATROL EVENTS
+        private void createPatrol_Click(object sender, EventArgs e)
+        {
+            if (Map == null)
+                return;
+            PatrolPath newPatrol=MyPresenter.createPath();
+            if(newPatrol!=null)
+                this.patrolListBox.Items.Add(newPatrol);
+            update();
+        }
         private void patrolListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(patrolListBox.SelectedIndex>-1)
+            {
+                MyPresenter.deselectAllPaths();
+                selectedPatrol=(PatrolPath)patrolListBox.SelectedItem;
+                MyPresenter.selectPath(selectedPatrol);                
+            }
+            update();
+        }    
+        
+        /// <summary>
+        /// Tells presenter to assigne a patrol to selected guard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void assignPatrolButton_Click(object sender, EventArgs e)
+        {
+            if (selectedGuard == null || selectedPatrol == null)
+            {
+                MessageBox.Show("Make sure you have a patrol and a guard selected");
+                return;
+            }
+            if (!MyPresenter.assignPatrolToGuard(selectedGuard, selectedPatrol))
+                MessageBox.Show("Invalid path. Make sure the start and end tiles are adjecent to guard, and patrol " +
+                    "hasn't been assigned to another guard");
+            else
+            {
+                //Disable Patrol List while path is assigned
+                patrolListBox.Enabled = false;
+            }
+        }
+        /// <summary>
+        /// Tells Presenter to unasssign patrol from selected guard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void unnassignPatrolButton_Click(object sender, EventArgs e)
+        {
+            if(MyPresenter.unassignePatrolToGuard(selectedGuard))//If carried out enable patrol list for adding more
+                patrolListBox.Enabled = true;
             update();
         }
         
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+        
+        #region ENTRY POINTS EVENTS
+        private void addEntryPointButton_Click(object sender, EventArgs e)
+        {
+            if (entryXText.Text != "" && entryYText.Text != "")
+            {
+                IPoint point=MyPresenter.addEntryPoint(Int32.Parse(entryXText.Text), Int32.Parse(entryYText.Text));
+                entryPointsListBox.Items.Add(point.X.ToString() + "," + point.Y.ToString());
+            }
+        }
+        private void removeEntryPointButton_Click(object sender, EventArgs e)
+        {
+            if (entryPointsListBox.SelectedIndex != -1)
+            {
+                IPoint point=MyPresenter.removeEntryPoint(entryPointsListBox.SelectedIndex);
+                entryPointsListBox.Items.RemoveAt(entryPointsListBox.SelectedIndex);
+                
+            }
+        }
+
+        private void entryPointsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (entryPointsListBox.SelectedIndex != -1)
+            {
+                //Resets previous
+                MyPresenter.resetAllEntryPoints();
+
+                //Color tile of selected entry point
+                MyPresenter.selectEntryPoint(entryPointsListBox.SelectedIndex);
+            }
+        }
+        #endregion
+
+        #region SAVE AND LOAD
+        private void loadGuardMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog MapDialog = new OpenFileDialog();
             MapDialog.Filter = "Map Files (*.mgp)|*.mgp";
             MapDialog.DefaultExt = "Map";
-            MapDialog.InitialDirectory = filepath;
+            MapDialog.InitialDirectory = filepath+"Maps\\";
 
             string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
 
@@ -408,16 +457,65 @@ namespace SneakingCreationWithForms
 
             //Put guards in list
             guardListBox.Items.Clear();
-            mySelectedGuard = null;
+            selectedGuard = null;
             foreach (SneakingGuard g in MyPresenter.Model.Guards)
                 addGuardToList(g);
 
             if (!drawing)
                 this.drawingLoop();
         }
-        private void patrolListBox_Leave(object sender, EventArgs e)
+        private void loadPatrolMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenFileDialog MapDialog = new OpenFileDialog();
+            MapDialog.Filter = "Patrol Map Files (*.mpt)|*.mpt";
+            MapDialog.DefaultExt = "Map";
+            MapDialog.InitialDirectory = filepath + "Maps\\";
 
+            string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
+
+            if (filename == null)
+            {
+                MessageBox.Show("Couldnt' Load Map");
+                return;
+            }
+
+            FileStream mapFileReader;
+            try
+            {
+                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Open Map:" + ex.Message);
+                return;
+            }
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(mapFileReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Create XmlDocument:" + ex.Message);
+                return;
+            }
+            MyPresenter.loadPatrolMap(doc);
+
+            //Put guards in list
+            guardListBox.Items.Clear();
+            selectedGuard = null;
+            foreach (SneakingGuard g in MyPresenter.Model.Guards)
+                addGuardToList(g);
+
+            //Put patrols in list
+            patrolListBox.Items.Clear();
+            selectedPatrol = null;
+            foreach (PatrolPath p in MyPresenter.Patrols)
+                patrolListBox.Items.Add(p);
+
+            if (!drawing)
+                this.drawingLoop();
         }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -433,349 +531,12 @@ namespace SneakingCreationWithForms
                 return;
             }
 
-            MyPresenter.saveFullMap(filename);
-        }
-        private void loadGuardsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (myMap == null)
-            {
-                MessageBox.Show("Load a map first");
-                return;
-            }
-
-            OpenFileDialog grdDialog = new OpenFileDialog();
-            grdDialog.Filter = "grd Files (*.grd)|*.grd";
-            grdDialog.DefaultExt = ".grd";
-            grdDialog.InitialDirectory = "C:/TBSneaking/Guards/";
-
-            string fileName = grdDialog.ShowDialog() == DialogResult.OK ? grdDialog.FileName : null;
-            if (fileName == null)
-            {
-                MessageBox.Show("Couldn't Load Guards");
-                return;
-            }
-
-            XmlDocument myDoc=new XmlDocument();
-            try
-            {
-                myDoc.Load(fileName);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-            loadGuards(myDoc);
-        }
-        private void guardListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Get selected guard 
-            int id = 0;
-            if (guardListBox.SelectedItem != null)
-            {
-                id = ((KeyValuePair<int, string>)guardListBox.SelectedItem).Key;
-                selectGuard(id);
-            }
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            myView.rotateCW();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            myView.rotateCCW();
-        }
-        private void assignPatrolButton_Click(object sender, EventArgs e)
-        {
-            if (mySelectedGuard == null || currentPath == null)
-            {
-                MessageBox.Show("Make sure you have a path and a guard selected");
-                return;
-            }
-            if (!assignPatrolToGuard(mySelectedGuard, currentPath))
-                MessageBox.Show("Invalid path. Make sure the start and end tiles are adjecent to guard");
-            else
-            {
-                currentPath.createDirectionLines(myMap.TileSize);
-
-                //Disable Patrol List while path is assigned
-                patrolListBox.Enabled = false;
-            }
-        }
-        private void unnassignPatrolButton_Click(object sender, EventArgs e)
-        {
-            if (mySelectedGuard != null && mySelectedGuard.MyPatrol!=null)
-            {
-                mySelectedGuard.MyPatrol.GuardOwners--;
-                mySelectedGuard.MyPatrol = null;
-                patrolListBox.Enabled = true;
-            }
-            update();
-        }
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            patrolEditing = patrolRadioButton.Checked;
-            if (patrolEditing)
-            {
-                //Disable entry point editing controls
-                //resetAllEntryTiles();
-                entryPointGroup.Enabled = false;
-                patrolCreationGroup.Enabled = true;
-                guardCreationGroup.Enabled = true;
-            }
-            else
-            {
-                //Disable entry point editing controls
-                entryPointGroup.Enabled = true;
-                patrolCreationGroup.Enabled = false;
-                guardCreationGroup.Enabled = false;
-            }
-
-        }
-
-        private void addEntryPointButton_Click(object sender, EventArgs e)
-        {
-            if (entryXText.Text != "" && entryYText.Text != "")
-            {
-                entryPoints.Add(new PointObj(Int32.Parse(entryXText.Text), Int32.Parse(entryYText.Text), 0));
-            }
-            updateEntryPointList();
-        }
-
-        void updateEntryPointList()
-        {
-            entryPointsListBox.Items.Clear();
-            foreach (IPoint p in entryPoints)
-                entryPointsListBox.Items.Add(new KeyValuePair<int, string>(entryPoints.IndexOf(p),
-                    p.X.ToString() + "," + p.Y.ToString()));
-        }
-
-        private void removeEntryPointButton_Click(object sender, EventArgs e)
-        {
-            if (entryPointsListBox.SelectedIndex != -1)
-            {
-                //Clear point
-                Tile entry = myMap.getTile(entryPoints[selectedEntryPoint]);
-                if (entry != null)
-                    entry.MyColor = entry.OriginalColor;
-                entryPoints.RemoveAt(selectedEntryPoint);
-
-                updateEntryPointList();
-                selectedEntryPoint = -1;
-            }
-        }
-
-        private void entryPointsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (entryPointsListBox.SelectedIndex != -1)
-            {
-                Tile entry;
-                //Reset previous, if any
-                if (selectedEntryPoint != -1)
-                {
-                    entry = myMap.getTile(entryPoints[selectedEntryPoint]);
-                    if (entry != null)
-                        entry.MyColor = entry.OriginalColor;
-                }
-
-                //Color tile of selected entry point
-                selectedEntryPoint = ((KeyValuePair<int, string>)entryPointsListBox.SelectedItem).Key;
-                entry = myMap.getTile(entryPoints[selectedEntryPoint]);
-                if (entry != null)
-                    entry.MyColor = Common.colorOrange;
-
-            }
-        }
-
-        private void resetAllEntryTiles()
-        {
-            Tile current;
-            foreach (IPoint entry in entryPoints)
-            {
-                current = myMap.getTile(entry);
-                if (current != null)
-                    current.MyColor = current.OriginalColor;
-            }
+            MyPresenter.savePatrolMap(filename);
         }
         #endregion
 
-        #region Patrol stuff
-        private bool allowDestination(OpenGlMap map,IPoint source,Tile dest)
-        {
-            List<IDrawable> dr=(map as IWorld).getEntities();
-            int direction=0;//0:up,2:right,3:down,4:left Clockwise
-            double dX,dY;
-            double[] dPos;
-            bool isWall;
-            IPoint endPos=new PointObj();
-
-            #region Checker Loop
-            foreach(IDrawable d in dr)
-            {
-                isWall=false;
-
-                // Same tiles?
-                if(source.equals(dest.origin))
-                    return false;
-
-                //Check if empty
-                if((dest.origin.equals(d.getPosition()) && (d.getId() % GameObjects.objectTypes==1 /* LowBlock */
-                    || GameObjects.objectTypes==2) /*High Block*/ )) // Is there a block in dest position
-                    return false;
-
-                //Check distance
-                dX=dest.origin.X-source.X;
-                dY=dest.origin.Y-source.Y;
-                if(Math.Abs(dX)>map.TileSize || Math.Abs(dY)>map.TileSize)//Not next to each other
-                    return false;
-
-                //Check corners
-                if(Math.Abs(dX)==map.TileSize&&Math.Abs(dY)==map.TileSize)
-                    return false;
-
-                //Get direction
-                switch((int)dX/map.TileSize)
-                {
-                    case 0://Up or down
-                        if(dY<0)
-                            direction=3;//down
-                        if(dY>0)
-                            direction=1;//up
-                        break;
-                    case 1://Right
-                        direction=2;
-                        break;
-                    case -1:
-                        direction=4;//Left
-                        break;
-                    default:
-                        return false;
-                }
-                
-                dPos=d.getPosition();
-                //Check walls
-                if(d.getId() % GameObjects.objectTypes==3)/* LowWall */
-                {
-                    isWall=true;
-                    endPos = ((LowWall)d).MyTiles[0,0].MyEnd;
-                }else if(d.getId() % GameObjects.objectTypes==4) /*HighWall*/ 
-                {
-                    isWall=true;
-                    endPos = ((HighWall)d).MyTiles[0,0].MyEnd;
-                }
-                if(isWall)
-                {
-                    switch(direction)
-                    {
-                        case 1://up so wall must be horizontal, with origin x,y
-                            if(dPos[0]==dest.origin.X && dPos[1]==dest.origin.Y && 
-                                endPos.Y==dPos[1])
-                                return false;
-                            break;
-                        case 2://right, so wall must be vertical, with origin x,y
-                            if(dPos[0]==dest.origin.X&& dPos[1]==dest.origin.Y &&
-                                endPos.X==dPos[0])
-                                return false;
-                            break;
-                        case 3://down, so wall must be horizontal, with origin x,y+tilesize
-                            if(dPos[0]==dest.origin.X && dPos[1]==dest.origin.Y+map.TileSize &&
-                                endPos.Y==dPos[1])
-                                return false;
-                            break;
-                        case 4://left, so wall must be vertical, with origin x+tile,y
-                            if(dPos[0]==dest.origin.X+map.TileSize && dPos[1]==dest.origin.Y &&
-                                endPos.X==dPos[0])
-                                return false;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-
-                    
-
-            }
-#endregion
-
-            return true;//If no return false in checker loop, then it must be valid dest
-        }
-        private bool allowEnd(PatrolPath pPath)
-        {
-            return ((IPoint)pPath.MyWaypoints.ElementAt(0)).
-                equals((IPoint)pPath.MyWaypoints.ElementAt(pPath.MyWaypoints.Count - 1));
-        }
-        PatrolPath findPath(int id)
-        {
-            foreach (PatrolPath path in paths)
-                if (path.MyId == id)
-                    return path;
-            return null;
-        }
-        int findIndexInList(PatrolPath path)
-        {
-            foreach(KeyValuePair<int,string> _path in patrolListBox.Items)
-            {
-                if(_path.Key==path.MyId)//Found it, return index
-                    return patrolListBox.Items.IndexOf(_path);
-            }
-            return 0;
-        }
-
-        public void addTileToCurrentPath(Tile tile)
-        {
-            if (tile != null && currentPath != null)
-            {
-                if (currentPath.Last() == null)//first point?
-                    currentPath.MyWaypoints.Add(tile.origin);
-                else if (allowDestination(myMap, currentPath.Last(), tile))
-                    currentPath.MyWaypoints.Add(tile.origin);
-            }
-        }
-        private void deleteTileFromCurrentPath(Tile tile)
-        {
-            //if tile is last, delete it from path
-            if (tile != null && currentPath != null)
-            {
-                if (currentPath.Last().equals(tile.MyOrigin))
-                {
-                    currentPath.MyWaypoints.RemoveAt(currentPath.MyWaypoints.Count - 1);
-                    deselectTile(tile);
-                }
-            }
-        }
-
-        public bool assignPatrolToGuard(SneakingGuard guard, PatrolPath path)
-        {
-            //Check start
-            if(path!=null&&path.MyWaypoints!=null&&path.MyWaypoints.Count>0)
-            {
-                if (areAdjacent(path.MyWaypoints.First(), guard.MyPosition) &&
-                    areAdjacent(path.MyWaypoints.Last(), guard.MyPosition))
-                {
-                    guard.MyPatrol = path;
-                    path.GuardOwners++;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        //Returns whether the flat tiles with origins at p1,p2 are adjacent
-        public bool areAdjacent(IPoint p1,IPoint p2)
-        {
-            if(p1.X==p2.X)
-            {
-                if(p1.Y==p2.Y-myMap.TileSize||p1.Y==p2.Y+myMap.TileSize)
-                    return true;
-            }else if(p2.Y==p1.Y)
-            {
-                if(p1.X==p2.X-myMap.TileSize||p1.X==p2.X+myMap.TileSize)
-                    return true;
-            }
-            return false;
-        }
         #endregion
-
+        
 
         #region ICanvas Stuff
         public simpleOpenGlView getView()
@@ -794,11 +555,26 @@ namespace SneakingCreationWithForms
         }
         #endregion 
 
-       
+        private void CreatePatrolForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            closing = true;
+        }
 
-        
+        private void deletePatrol_Click(object sender, EventArgs e)
+        {
+            if (patrolListBox.Enabled == false)
+                MessageBox.Show("Can't delete assigned patrol, unassign first");
+            else
+            {
+                if (MyPresenter.removePatrol(selectedPatrol))
+                {
+                    patrolListBox.Items.Remove(selectedPatrol);
+                    MyPresenter.deselectPath(selectedPatrol);
+                    selectedPatrol = null;
+                }
+            }
 
-
+        }
 
         
     }

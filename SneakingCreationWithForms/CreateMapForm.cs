@@ -242,7 +242,7 @@ namespace SneakingCreationWithForms
 
             try
             {
-                MyPresenter.saveMap(filename);
+                MyPresenter.saveBareMap(filename);
             }
             catch (InvalidMapException exc)
             {

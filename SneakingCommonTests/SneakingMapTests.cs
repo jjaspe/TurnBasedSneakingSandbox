@@ -13,6 +13,7 @@ using SneakingCommon.Utility;
 using SneakingCommon.Exceptions;
 using Canvas_Window_Template.Drawables;
 using SneakingCommon.Drawables;
+using OpenGLGameCommon.Classes;
 
 namespace SneakingCommonTests
 {
@@ -22,9 +23,12 @@ namespace SneakingCommonTests
         XmlDocument fullMapDoc;
         XmlDocument guardMapDoc;
         XmlDocument bareMapDoc;
+        XmlDocument smallGuardMapDoc;
         
         String saveFilename = (System.Reflection.Assembly.GetExecutingAssembly().Location).
-            Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll","TBSneaking Data\\Maps\\") + "saveTestMap.mgp";
+            Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll","TBSneaking Data\\Maps\\") + "saveTestMap.mgp",
+            smallTestFullMapFilename = (System.Reflection.Assembly.GetExecutingAssembly().Location).
+            Replace("SneakingCommonTests\\bin\\Debug\\SneakingCommonTests.dll", "TBSneaking Data\\Maps\\") + "smallTestFullMap.mpt";
 
         void openMapFileWithDialog(String title, ref XmlDocument doc)
         {
@@ -70,9 +74,10 @@ namespace SneakingCommonTests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            //openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","MapWithPatrols.mpt"),ref fullMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","smallTestFullMap.mpt"),ref fullMapDoc);
             openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","MazeMap.mgp"),ref guardMapDoc);
             openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp", "Empty.map"),ref bareMapDoc);
+            openMapFileWithFilename(saveFilename.Replace("saveTestMap.mgp","smallTestMap.mgp"),ref smallGuardMapDoc);
 
             //openMapFileWithDialog("Open Full Map", ref fullMapDoc);
             //openMapFileWithDialog("Open Bare Map", ref bareMapDoc);
@@ -197,6 +202,13 @@ namespace SneakingCommonTests
             Assert.IsTrue(map.getGuards().Count > 0);
         }
 
+        [TestMethod]
+        public void loadedGuardsCorrectSizeTest()
+        {
+            SneakingMap map = XmlLoader.loadGuardsMap(guardMapDoc);
+            Assert.IsTrue(map.getGuards()[0].MySize > 0);
+        }
+
         /// <summary>
         /// Makes sure loadFullMapTest is working by loading a bare map without guards or distance maps
         /// </summary>
@@ -204,7 +216,7 @@ namespace SneakingCommonTests
         [ExpectedException(typeof(InvalidMapException))]
         public void loadFullMapFailTest()
         {
-            SneakingMap map = XmlLoader.loadFullMap(bareMapDoc);            
+            SneakingMap map = XmlLoader.loadPatrolMap(bareMapDoc);            
         }
 
 
@@ -214,10 +226,71 @@ namespace SneakingCommonTests
         [TestMethod]
         public void loadFullMapTest()
         {
-            SneakingMap map = XmlLoader.loadFullMap(fullMapDoc);
+            SneakingMap map = XmlLoader.loadPatrolMap(fullMapDoc);
             Assert.IsTrue(map.DistanceMaps.Count>0);
         }
 
+        /// <summary>
+        /// Test that full maps are saved without exceptions
+        /// </summary>
+        [TestMethod]
+        public void saveFullMapTest()
+        {
+            //Load map from a tested guard map file
+            SneakingMap map = XmlLoader.loadGuardsMap(smallGuardMapDoc);
+            //Create empty lists for entry points and distance points
+            List<IPoint> entryPoints = new List<IPoint>();
+
+            //Save it to a new map file
+            XmlLoader.savePatrolMap(smallTestFullMapFilename, map);
+            ////Load the new map file
+            //XmlDocument target = null;
+            //openMapFileWithFilename(saveFilename, ref target);
+            //SneakingMap actual = XmlLoader.loadBareMap(target);
+        }
+
+        /// <summary>
+        /// Test that guards dont have patrols when loaded
+        /// </summary>
+        [TestMethod]
+        public void saveFullMapEntryNoPatrolsTest()
+        {
+            //Load map from a tested guard map file
+            SneakingMap map = XmlLoader.loadGuardsMap(smallGuardMapDoc);
+            //Create empty lists for entry points and distance points
+            List<IPoint> entryPoints = new List<IPoint>();
+
+            //Save it to a new map file
+            XmlLoader.savePatrolMap(smallTestFullMapFilename, map);
+
+            //Load the new map file
+            XmlDocument target = null;
+            openMapFileWithFilename(smallTestFullMapFilename, ref target);
+            SneakingMap actual = XmlLoader.loadPatrolMap(target);
+            foreach (SneakingGuard guard in actual.getGuards())
+                Assert.IsNull(guard.MyPatrol);
+        }
+
+        /// <summary>
+        /// Test that entry points are being saved and loaded correctly
+        /// </summary>
+        [TestMethod]
+        public void saveFullMapEntryPointTest()
+        {
+            //Load map from a tested guard map file
+            SneakingMap map = XmlLoader.loadGuardsMap(smallGuardMapDoc);
+            //Create empty lists for entry points and distance points
+            List<IPoint> entryPoints = new List<IPoint>();
+
+            //Save it to a new map file
+            XmlLoader.savePatrolMap(smallTestFullMapFilename, map);
+            
+            //Load the new map file
+            XmlDocument target = null;
+            openMapFileWithFilename(smallTestFullMapFilename, ref target);
+            //SneakingMap actual = XmlLoader.loadBareMap(target);
+        }
+        
 
         /// <summary>
         /// Tests whether bare maps are saved correctly, and it has all the nodes

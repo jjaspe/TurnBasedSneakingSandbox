@@ -27,14 +27,13 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
     {
         //OpenGLStuff
         /// <summary>
-        /// When changed, redraws image
+        /// When changed, resets image. We need to hide DrawableGuard's MySize so that we call setImage() from SneakingGuard
         /// </summary>
-        public new int MySize
-        {
-            get { return size; }
-            set { size = value; setImage(); }
-        }        
-        int  size;
+        //public new int MySize
+        //{
+        //    get { return base.MySize; }
+        //    set { base.MySize = value; setImage(); }
+        //} 
         public List<IPoint> rememberedPoints = new List<IPoint>();
         NoiseMap myNoiseMap;
         NoiseMap myKnownNoiseMap;
@@ -114,7 +113,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// </summary>
         new private void  initialize()
         {
-            size = 10;
+            if(MySize==0)
+                MySize = 10;
             setImage();
             MyNoiseMap = new NoiseMap();
             rememberedPoints = new List<IPoint>();
@@ -138,14 +138,14 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         /// <summary>
         /// Creates guard image, using IDrawableGuard's position and orientation
         /// </summary>
-        public new void setImage()
+        public override void setImage()
         {
             int tileSize = MySize * 2;
             //Create a blue rectangle, that extends to edge of tile only on orientation direction
             // The other sides will be shortened by tileSize/4
             if(Position==null)
                 return;
-            int sizeDiff=tileSize-size;
+            int sizeDiff=tileSize-MySize;
             IPoint _bLeft=new PointObj(),_bRight=new PointObj(),
                 _tLeft=new PointObj(),_tRight=new PointObj(),_tO=Position;
             GuardRectangle rect = new GuardRectangle();
@@ -156,27 +156,27 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             {
                 case GuardOrientation.left://Make distances from {_bLeft,_bRight}{_tLeft,_tRight} Long
                     _bLeft = new PointObj(_tO.X, _tO.Y + sizeDiff / 2, _tO.Z + 1);
-                    _tLeft = new PointObj(_tO.X, _tO.Y + size + sizeDiff / 2, _tO.Z + 1);
-                    _bRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
-                    _tRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2 + size, _tO.Z + 1);
+                    _tLeft = new PointObj(_tO.X, _tO.Y + MySize + sizeDiff / 2, _tO.Z + 1);
+                    _bRight = new PointObj(_tO.X + MySize + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
+                    _tRight = new PointObj(_tO.X + MySize + sizeDiff / 2, _tO.Y + sizeDiff / 2 + MySize, _tO.Z + 1);
                     break;
                 case GuardOrientation.right://Make distances from {_bLeft,_bRight}{_tLeft,_tRight} Long
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
-                    _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + size + sizeDiff / 2, _tO.Z + 1);
-                    _bRight = new PointObj(_tO.X + size + sizeDiff, _tO.Y + sizeDiff / 2, _tO.Z + 1);
-                    _tRight = new PointObj(_tO.X + size + sizeDiff, _tO.Y + sizeDiff / 2 + size, _tO.Z + 1);
+                    _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + MySize + sizeDiff / 2, _tO.Z + 1);
+                    _bRight = new PointObj(_tO.X + MySize + sizeDiff, _tO.Y + sizeDiff / 2, _tO.Z + 1);
+                    _tRight = new PointObj(_tO.X + MySize + sizeDiff, _tO.Y + sizeDiff / 2 + MySize, _tO.Z + 1);
                     break;
                 case GuardOrientation.up://Make distances from {_bLeft,_tLeft}{_tRight,_bRight} Long
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
-                    _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + size + sizeDiff, _tO.Z + 1);
-                    _bRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
-                    _tRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff + size, _tO.Z + 1);
+                    _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + MySize + sizeDiff, _tO.Z + 1);
+                    _bRight = new PointObj(_tO.X + MySize + sizeDiff / 2, _tO.Y + sizeDiff / 2, _tO.Z + 1);
+                    _tRight = new PointObj(_tO.X + MySize + sizeDiff / 2, _tO.Y + sizeDiff + MySize, _tO.Z + 1);
                     break;
                 case GuardOrientation.down://Make distances from {_bLeft,_tLeft}{_tRight,_bRight} Long                   
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y, _tO.Z + 1);
-                    _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + size + sizeDiff / 2, _tO.Z + 1);
-                    _bRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y, _tO.Z + 1);
-                    _tRight = new PointObj(_tO.X + size + sizeDiff / 2, _tO.Y + sizeDiff / 2 + size, _tO.Z + 1);
+                    _tLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y + MySize + sizeDiff / 2, _tO.Z + 1);
+                    _bRight = new PointObj(_tO.X + MySize + sizeDiff / 2, _tO.Y, _tO.Z + 1);
+                    _tRight = new PointObj(_tO.X + MySize + sizeDiff / 2, _tO.Y + sizeDiff / 2 + MySize, _tO.Z + 1);
                     break;
                 case GuardOrientation.none://Make tile
                     _bLeft = new PointObj(_tO.X + sizeDiff / 2, _tO.Y+sizeDiff/2, _tO.Z + 1);
@@ -188,7 +188,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
 
             //If orientation is none, create a square else create rectangle
             if (MyOrientation == GuardOrientation.none)
-                myImage=((IDrawable)new Tile(_bLeft.toArray(), size));
+                myImage=((IDrawable)new Tile(_bLeft.toArray(), MySize));
             else
             {
                 rect.MyRectangle = new rectangleObj(_bLeft, _tLeft, _bRight, _tRight,

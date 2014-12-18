@@ -635,6 +635,7 @@ namespace OpenGlGameCommon.Classes
         public DistanceMap calculateDistanceMap(IPoint src)
         {
             DistanceMap distMap=new DistanceMap();
+            distMap.MyOrigin = src;
             initializeValueMap(distMap.MyPoints,-1);
             List<IPoint> currentPoints=new List<IPoint>(),adjacents=new List<IPoint>(),tempAdjacents;
             currentPoints.Add(src);
