@@ -5,6 +5,7 @@ using System.Text;
 using Sneaking_Gameplay.Sneaking_Drawables;
 using SneakingCommon.System_Classes;
 using Canvas_Window_Template.Interfaces;
+using OpenGlGameCommon.Data_Classes;
 
 namespace SneakingCreationWithForms.MVP
 {
@@ -25,7 +26,7 @@ namespace SneakingCreationWithForms.MVP
             get;
             set;
         }
-        List<IPoinst> EntryPoints
+        List<PatrolPath> Paths
         {
             get;
             set;

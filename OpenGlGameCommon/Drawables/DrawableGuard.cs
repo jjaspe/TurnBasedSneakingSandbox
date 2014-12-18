@@ -158,7 +158,7 @@ namespace OpenGlGameCommon.Drawables
         /// <summary>
         /// Creates an image for the guard using a blue rombus
         /// </summary>
-        public void setImage()
+        public virtual void setImage()
         {
             int tileSize = MySize * 2;
             //Create a blue rectangle, that extends to edge of tile only on orientation direction

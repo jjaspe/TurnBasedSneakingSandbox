@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="d681bd36-92fc-4268-8ddf-513457c33b46" name="Wichito@JUAN 2014-12-17 19:35:03" runUser="JUAN\Wichito" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="4dca26ae-3d80-4afb-bc2f-15cdbf18ba12">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Wichito_JUAN 2014-12-17 19_35_03">
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\Tao.Platform.Windows.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.OpenGl.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Canvas Window Template.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.FreeGlut.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\CharacterSystemLibrary.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\ISE.FreeType.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\SneakingCreationWithForms.exe" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.OpenGl.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlGameCommon\bin\Debug\OpenGlGameCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommon\bin\Debug\SneakingCommon.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\ISE.FreeType.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\Visual Studio 2010\Projects\Class Libraries\Canvas Window Template\bin\Debug\Tao.Platform.Windows.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCommonTests\bin\Debug\Canvas Window Template.dll" />
+      <DeploymentItem filename="C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\bin\Debug\Canvas Window Template.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-12-17T19:35:03.9153851-05:00" queuing="2014-12-17T19:35:05.8060205-05:00" start="2014-12-17T19:35:05.9310202-05:00" finish="2014-12-17T19:35:16.2905498-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="29" executed="4" passed="3" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="25" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="JUAN" outcome="Error" timestamp="2014-12-17T19:35:16.2905498-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="getGuardsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="8b9cd9c4-e179-c2c6-e8c2-67229d4d437f">
+      <Execution id="e742dca3-0111-4d4e-a5d9-3b1b8d90e56f" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.SneakingGuardTests, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="getGuardsTest" />
+    </UnitTest>
+    <UnitTest name="saveLoadGuardsIntegrityTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="4c1d3225-7cc8-9a55-9926-f0882a5278ba">
+      <Execution id="7e3c1088-4355-4740-99d3-20c9c6ae5828" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.SneakingGuardTests, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveLoadGuardsIntegrityTest" />
+    </UnitTest>
+    <UnitTest name="saveFullMapEntryPointTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="127eb183-5ae4-e3c1-f83c-d44bd6bfa165">
+      <Execution id="aef98419-eb36-4704-9823-2d178e5cc935" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveFullMapEntryPointTest" />
+    </UnitTest>
+    <UnitTest name="saveBareFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="53a49d14-54cd-36e1-bd3d-c53d8899d35c">
+      <Execution id="dd527907-6006-41f8-b47f-bbade97f5e51" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveBareFailTest" />
+    </UnitTest>
+    <UnitTest name="saveGuardMapFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="81e3f198-1f8f-67e4-cd6f-a28f71239547">
+      <Execution id="364221ff-0282-484c-8087-e4e7a5d17e54" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.SneakingGuardTests, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveGuardMapFailTest" />
+    </UnitTest>
+    <UnitTest name="MyTilesRightSizeTestOne" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="bc0830c6-69b3-412e-add7-868f1c5339d2">
+      <Execution id="3acb877d-89db-48c2-bdec-0a720cd2f5e5" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MyTilesRightSizeTestOne" />
+    </UnitTest>
+    <UnitTest name="createdMapIdTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="c3b37413-95b8-6019-d361-13970e15d51e">
+      <Execution id="72c4be8c-e7b9-41c5-b245-51cb44f189d7" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="createdMapIdTest" />
+    </UnitTest>
+    <UnitTest name="loadSystemFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="e60e6cc9-8957-d681-e984-3cd42fdb6948">
+      <Execution id="d34b9eae-ab8e-4752-8e5f-12e3c973e80a" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.GameSystemTest, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadSystemFailTest" />
+    </UnitTest>
+    <UnitTest name="loadedGuardsCorrectSizeTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="f48307c6-1392-0fc9-012b-d4d532fc5734">
+      <Execution id="764cc48a-24d3-4580-b45c-4cdbed66baad" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadedGuardsCorrectSizeTest" />
+    </UnitTest>
+    <UnitTest name="loadBareMapFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="da623405-5b58-a3e8-bbe4-66cc37964fa3">
+      <Execution id="29c326f3-1392-4491-964e-d7fc2a87d7b1" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadBareMapFailTest" />
+    </UnitTest>
+    <UnitTest name="saveGuardMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="bfe3e8d6-e929-6d40-e5e1-d0ebbbd06a55">
+      <Execution id="5fc3c087-09ec-451f-996b-86fe4391fc96" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.SneakingGuardTests, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveGuardMapTest" />
+    </UnitTest>
+    <UnitTest name="bareMapTileIdsTest2" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="f69816a6-bf65-5fab-f80a-b3ffa700438b">
+      <Execution id="5afcae13-041d-4d37-ab43-067b0bd89648" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="bareMapTileIdsTest2" />
+    </UnitTest>
+    <UnitTest name="DrawablesRightSizeTestOne" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="910d89e7-16af-cc19-2644-17ffcf0bfacf">
+      <Execution id="5e8c76d6-7526-4602-98d3-1cea1afc4e18" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DrawablesRightSizeTestOne" />
+    </UnitTest>
+    <UnitTest name="loadFullMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="cd566601-757a-4bb7-8efc-5bacc9a950e6">
+      <Execution id="27c48294-115d-4c40-9231-ab10fab5bc31" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadFullMapTest" />
+    </UnitTest>
+    <UnitTest name="loadedGuardsCorrectSizeTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\presentertests\bin\debug\presentertests.dll" id="4d8f7c3a-0d5c-32a1-8564-7ae9169c6507">
+      <Execution id="4ada003a-39f6-4289-a1ba-bc8132363100" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/PresenterTests/bin/Debug/PresenterTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="PresenterTests.PresenterTest, PresenterTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadedGuardsCorrectSizeTest" />
+    </UnitTest>
+    <UnitTest name="saveGuardsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="640ca10c-f004-a888-a489-564efa3a2718">
+      <Execution id="8fbddb54-6ea4-4469-a793-7a5e7698e44a" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.SneakingGuardTests, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveGuardsTest" />
+    </UnitTest>
+    <UnitTest name="saveBareMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="bb9dcbc4-7ae9-0970-ed88-6a9e4fcfacf3">
+      <Execution id="ec228568-3195-4ea8-ad82-88c7011824ae" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveBareMapTest" />
+    </UnitTest>
+    <UnitTest name="MyTilesNotNullTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="3ff41078-1d68-18d2-c63b-c9fe18a74982">
+      <Execution id="44301363-636d-41b9-a2fa-b66416937a2a" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MyTilesNotNullTest" />
+    </UnitTest>
+    <UnitTest name="ConstructorTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\openglmaptester\bin\debug\openglmaptester.dll" id="b6e02e22-2be4-a889-a89c-52f31f8451f9">
+      <Execution id="0aa2f040-532b-495d-b54e-3c46d2ba7d54" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/OpenGlMapTester/bin/Debug/OpenGlMapTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OpenGlMapTester.OpenGlMapTest, OpenGlMapTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ConstructorTest" />
+    </UnitTest>
+    <UnitTest name="bareMapTileIdsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="10976cc2-a6bd-7e3a-8b9f-c78ea6b0c02b">
+      <Execution id="1533b0ff-01ec-4b1e-83ec-a97b8e17ceed" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="bareMapTileIdsTest" />
+    </UnitTest>
+    <UnitTest name="loadMapWithGuardsFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="632043fe-6a37-088b-546a-dffd7e19abac">
+      <Execution id="fdf5a6eb-57ac-4cb2-a763-70341ce05fdf" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadMapWithGuardsFailTest" />
+    </UnitTest>
+    <UnitTest name="loadFullMapFailTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="360bc28a-1f79-48ae-8ab1-9779ad8b28f6">
+      <Execution id="394ccccc-5698-4193-990c-66e07d9859bc" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadFullMapFailTest" />
+    </UnitTest>
+    <UnitTest name="loadMapWithGuardsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="5e6e334d-2cca-c346-a25d-291eef8683ac">
+      <Execution id="1c1cd4c3-299f-40b0-a173-9831a5d74895" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadMapWithGuardsTest" />
+    </UnitTest>
+    <UnitTest name="loadBareMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="c9182415-4410-3796-9514-99dbf275de21">
+      <Execution id="dbd27cc7-05ea-4e54-b32a-7d3c7b919795" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadBareMapTest" />
+    </UnitTest>
+    <UnitTest name="MapCreationTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="14156c61-3103-b678-f152-a80541626c88">
+      <Execution id="96bc8b4d-429c-446c-a50b-c4f1d0f3da6b" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="MapCreationTest" />
+    </UnitTest>
+    <UnitTest name="loadSystemTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="ce887018-052d-2c8f-e351-2fb49d3dc50f">
+      <Execution id="b996a2aa-c66e-40ef-9242-c2f2b4667447" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.GameSystemTest, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadSystemTest" />
+    </UnitTest>
+    <UnitTest name="loadSystemFailTest2" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="c06f86fb-85e4-d0ce-ea52-4d80ec6335ec">
+      <Execution id="c50c6be0-501c-4532-942f-e795b151eed1" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.GameSystemTest, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="loadSystemFailTest2" />
+    </UnitTest>
+    <UnitTest name="saveFullMapTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="3d2a762d-422c-fac4-253c-306a29b7d0d5">
+      <Execution id="18687a3a-4a7b-4cef-bc94-aee3725898aa" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveFullMapTest" />
+    </UnitTest>
+    <UnitTest name="saveFullMapEntryNoPatrolsTest" storage="c:\users\wichito\documents\github\turnbasedsneakingsandbox\sneakingcommontests\bin\debug\sneakingcommontests.dll" id="f77221e3-09d6-178c-2210-d09de0119cfb">
+      <Execution id="36278a68-dc8c-424e-b368-1bc81e500825" />
+      <TestMethod codeBase="C:/Users/Wichito/Documents/GitHub/TurnBasedSneakingSandbox/SneakingCommonTests/bin/Debug/SneakingCommonTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="SneakingCommonTests.UnitTest1, SneakingCommonTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="saveFullMapEntryNoPatrolsTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="10976cc2-a6bd-7e3a-8b9f-c78ea6b0c02b" executionId="1533b0ff-01ec-4b1e-83ec-a97b8e17ceed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="127eb183-5ae4-e3c1-f83c-d44bd6bfa165" executionId="aef98419-eb36-4704-9823-2d178e5cc935" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="14156c61-3103-b678-f152-a80541626c88" executionId="96bc8b4d-429c-446c-a50b-c4f1d0f3da6b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="360bc28a-1f79-48ae-8ab1-9779ad8b28f6" executionId="394ccccc-5698-4193-990c-66e07d9859bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d2a762d-422c-fac4-253c-306a29b7d0d5" executionId="18687a3a-4a7b-4cef-bc94-aee3725898aa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3ff41078-1d68-18d2-c63b-c9fe18a74982" executionId="44301363-636d-41b9-a2fa-b66416937a2a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c1d3225-7cc8-9a55-9926-f0882a5278ba" executionId="7e3c1088-4355-4740-99d3-20c9c6ae5828" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4d8f7c3a-0d5c-32a1-8564-7ae9169c6507" executionId="4ada003a-39f6-4289-a1ba-bc8132363100" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="53a49d14-54cd-36e1-bd3d-c53d8899d35c" executionId="dd527907-6006-41f8-b47f-bbade97f5e51" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5e6e334d-2cca-c346-a25d-291eef8683ac" executionId="1c1cd4c3-299f-40b0-a173-9831a5d74895" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="632043fe-6a37-088b-546a-dffd7e19abac" executionId="fdf5a6eb-57ac-4cb2-a763-70341ce05fdf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="640ca10c-f004-a888-a489-564efa3a2718" executionId="8fbddb54-6ea4-4469-a793-7a5e7698e44a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="81e3f198-1f8f-67e4-cd6f-a28f71239547" executionId="364221ff-0282-484c-8087-e4e7a5d17e54" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8b9cd9c4-e179-c2c6-e8c2-67229d4d437f" executionId="e742dca3-0111-4d4e-a5d9-3b1b8d90e56f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="910d89e7-16af-cc19-2644-17ffcf0bfacf" executionId="5e8c76d6-7526-4602-98d3-1cea1afc4e18" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6e02e22-2be4-a889-a89c-52f31f8451f9" executionId="0aa2f040-532b-495d-b54e-3c46d2ba7d54" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bb9dcbc4-7ae9-0970-ed88-6a9e4fcfacf3" executionId="ec228568-3195-4ea8-ad82-88c7011824ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bc0830c6-69b3-412e-add7-868f1c5339d2" executionId="3acb877d-89db-48c2-bdec-0a720cd2f5e5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bfe3e8d6-e929-6d40-e5e1-d0ebbbd06a55" executionId="5fc3c087-09ec-451f-996b-86fe4391fc96" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c06f86fb-85e4-d0ce-ea52-4d80ec6335ec" executionId="c50c6be0-501c-4532-942f-e795b151eed1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3b37413-95b8-6019-d361-13970e15d51e" executionId="72c4be8c-e7b9-41c5-b245-51cb44f189d7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c9182415-4410-3796-9514-99dbf275de21" executionId="dbd27cc7-05ea-4e54-b32a-7d3c7b919795" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cd566601-757a-4bb7-8efc-5bacc9a950e6" executionId="27c48294-115d-4c40-9231-ab10fab5bc31" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce887018-052d-2c8f-e351-2fb49d3dc50f" executionId="b996a2aa-c66e-40ef-9242-c2f2b4667447" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="da623405-5b58-a3e8-bbe4-66cc37964fa3" executionId="29c326f3-1392-4491-964e-d7fc2a87d7b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e60e6cc9-8957-d681-e984-3cd42fdb6948" executionId="d34b9eae-ab8e-4752-8e5f-12e3c973e80a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f48307c6-1392-0fc9-012b-d4d532fc5734" executionId="764cc48a-24d3-4580-b45c-4cdbed66baad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f69816a6-bf65-5fab-f80a-b3ffa700438b" executionId="5afcae13-041d-4d37-ab43-067b0bd89648" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f77221e3-09d6-178c-2210-d09de0119cfb" executionId="36278a68-dc8c-424e-b368-1bc81e500825" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="1533b0ff-01ec-4b1e-83ec-a97b8e17ceed" testId="10976cc2-a6bd-7e3a-8b9f-c78ea6b0c02b" testName="bareMapTileIdsTest" computerName="JUAN" duration="00:00:00.1084259" startTime="2014-12-17T19:35:06.0560229-05:00" endTime="2014-12-17T19:35:06.6810301-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1533b0ff-01ec-4b1e-83ec-a97b8e17ceed">
+    </UnitTestResult>
+    <UnitTestResult executionId="aef98419-eb36-4704-9823-2d178e5cc935" testId="127eb183-5ae4-e3c1-f83c-d44bd6bfa165" testName="saveFullMapEntryPointTest" computerName="JUAN" duration="00:00:00.3080972" startTime="2014-12-17T19:35:06.6966554-05:00" endTime="2014-12-17T19:35:07.0091626-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aef98419-eb36-4704-9823-2d178e5cc935">
+    </UnitTestResult>
+    <UnitTestResult executionId="96bc8b4d-429c-446c-a50b-c4f1d0f3da6b" testId="14156c61-3103-b678-f152-a80541626c88" testName="MapCreationTest" computerName="JUAN" duration="00:00:00.0078431" startTime="2014-12-17T19:35:07.0091626-05:00" endTime="2014-12-17T19:35:07.0248015-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="96bc8b4d-429c-446c-a50b-c4f1d0f3da6b">
+    </UnitTestResult>
+    <UnitTestResult executionId="394ccccc-5698-4193-990c-66e07d9859bc" testId="360bc28a-1f79-48ae-8ab1-9779ad8b28f6" testName="loadFullMapFailTest" computerName="JUAN" duration="00:00:09.2657483" startTime="2014-12-17T19:35:07.0248015-05:00" endTime="2014-12-17T19:35:16.2905498-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="394ccccc-5698-4193-990c-66e07d9859bc">
+    </UnitTestResult>
+    <UnitTestResult executionId="18687a3a-4a7b-4cef-bc94-aee3725898aa" testId="3d2a762d-422c-fac4-253c-306a29b7d0d5" testName="saveFullMapTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="18687a3a-4a7b-4cef-bc94-aee3725898aa">
+    </UnitTestResult>
+    <UnitTestResult executionId="44301363-636d-41b9-a2fa-b66416937a2a" testId="3ff41078-1d68-18d2-c63b-c9fe18a74982" testName="MyTilesNotNullTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="44301363-636d-41b9-a2fa-b66416937a2a">
+    </UnitTestResult>
+    <UnitTestResult executionId="7e3c1088-4355-4740-99d3-20c9c6ae5828" testId="4c1d3225-7cc8-9a55-9926-f0882a5278ba" testName="saveLoadGuardsIntegrityTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e3c1088-4355-4740-99d3-20c9c6ae5828">
+    </UnitTestResult>
+    <UnitTestResult executionId="4ada003a-39f6-4289-a1ba-bc8132363100" testId="4d8f7c3a-0d5c-32a1-8564-7ae9169c6507" testName="loadedGuardsCorrectSizeTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ada003a-39f6-4289-a1ba-bc8132363100">
+    </UnitTestResult>
+    <UnitTestResult executionId="dd527907-6006-41f8-b47f-bbade97f5e51" testId="53a49d14-54cd-36e1-bd3d-c53d8899d35c" testName="saveBareFailTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd527907-6006-41f8-b47f-bbade97f5e51">
+    </UnitTestResult>
+    <UnitTestResult executionId="1c1cd4c3-299f-40b0-a173-9831a5d74895" testId="5e6e334d-2cca-c346-a25d-291eef8683ac" testName="loadMapWithGuardsTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1c1cd4c3-299f-40b0-a173-9831a5d74895">
+    </UnitTestResult>
+    <UnitTestResult executionId="fdf5a6eb-57ac-4cb2-a763-70341ce05fdf" testId="632043fe-6a37-088b-546a-dffd7e19abac" testName="loadMapWithGuardsFailTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fdf5a6eb-57ac-4cb2-a763-70341ce05fdf">
+    </UnitTestResult>
+    <UnitTestResult executionId="8fbddb54-6ea4-4469-a793-7a5e7698e44a" testId="640ca10c-f004-a888-a489-564efa3a2718" testName="saveGuardsTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8fbddb54-6ea4-4469-a793-7a5e7698e44a">
+    </UnitTestResult>
+    <UnitTestResult executionId="364221ff-0282-484c-8087-e4e7a5d17e54" testId="81e3f198-1f8f-67e4-cd6f-a28f71239547" testName="saveGuardMapFailTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="364221ff-0282-484c-8087-e4e7a5d17e54">
+    </UnitTestResult>
+    <UnitTestResult executionId="e742dca3-0111-4d4e-a5d9-3b1b8d90e56f" testId="8b9cd9c4-e179-c2c6-e8c2-67229d4d437f" testName="getGuardsTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e742dca3-0111-4d4e-a5d9-3b1b8d90e56f">
+    </UnitTestResult>
+    <UnitTestResult executionId="5e8c76d6-7526-4602-98d3-1cea1afc4e18" testId="910d89e7-16af-cc19-2644-17ffcf0bfacf" testName="DrawablesRightSizeTestOne" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5e8c76d6-7526-4602-98d3-1cea1afc4e18">
+    </UnitTestResult>
+    <UnitTestResult executionId="0aa2f040-532b-495d-b54e-3c46d2ba7d54" testId="b6e02e22-2be4-a889-a89c-52f31f8451f9" testName="ConstructorTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0aa2f040-532b-495d-b54e-3c46d2ba7d54">
+    </UnitTestResult>
+    <UnitTestResult executionId="ec228568-3195-4ea8-ad82-88c7011824ae" testId="bb9dcbc4-7ae9-0970-ed88-6a9e4fcfacf3" testName="saveBareMapTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ec228568-3195-4ea8-ad82-88c7011824ae">
+    </UnitTestResult>
+    <UnitTestResult executionId="3acb877d-89db-48c2-bdec-0a720cd2f5e5" testId="bc0830c6-69b3-412e-add7-868f1c5339d2" testName="MyTilesRightSizeTestOne" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3acb877d-89db-48c2-bdec-0a720cd2f5e5">
+    </UnitTestResult>
+    <UnitTestResult executionId="5fc3c087-09ec-451f-996b-86fe4391fc96" testId="bfe3e8d6-e929-6d40-e5e1-d0ebbbd06a55" testName="saveGuardMapTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5fc3c087-09ec-451f-996b-86fe4391fc96">
+    </UnitTestResult>
+    <UnitTestResult executionId="c50c6be0-501c-4532-942f-e795b151eed1" testId="c06f86fb-85e4-d0ce-ea52-4d80ec6335ec" testName="loadSystemFailTest2" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c50c6be0-501c-4532-942f-e795b151eed1">
+    </UnitTestResult>
+    <UnitTestResult executionId="72c4be8c-e7b9-41c5-b245-51cb44f189d7" testId="c3b37413-95b8-6019-d361-13970e15d51e" testName="createdMapIdTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="72c4be8c-e7b9-41c5-b245-51cb44f189d7">
+    </UnitTestResult>
+    <UnitTestResult executionId="dbd27cc7-05ea-4e54-b32a-7d3c7b919795" testId="c9182415-4410-3796-9514-99dbf275de21" testName="loadBareMapTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dbd27cc7-05ea-4e54-b32a-7d3c7b919795">
+    </UnitTestResult>
+    <UnitTestResult executionId="27c48294-115d-4c40-9231-ab10fab5bc31" testId="cd566601-757a-4bb7-8efc-5bacc9a950e6" testName="loadFullMapTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27c48294-115d-4c40-9231-ab10fab5bc31">
+    </UnitTestResult>
+    <UnitTestResult executionId="b996a2aa-c66e-40ef-9242-c2f2b4667447" testId="ce887018-052d-2c8f-e351-2fb49d3dc50f" testName="loadSystemTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b996a2aa-c66e-40ef-9242-c2f2b4667447">
+    </UnitTestResult>
+    <UnitTestResult executionId="29c326f3-1392-4491-964e-d7fc2a87d7b1" testId="da623405-5b58-a3e8-bbe4-66cc37964fa3" testName="loadBareMapFailTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="29c326f3-1392-4491-964e-d7fc2a87d7b1">
+    </UnitTestResult>
+    <UnitTestResult executionId="d34b9eae-ab8e-4752-8e5f-12e3c973e80a" testId="e60e6cc9-8957-d681-e984-3cd42fdb6948" testName="loadSystemFailTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d34b9eae-ab8e-4752-8e5f-12e3c973e80a">
+    </UnitTestResult>
+    <UnitTestResult executionId="764cc48a-24d3-4580-b45c-4cdbed66baad" testId="f48307c6-1392-0fc9-012b-d4d532fc5734" testName="loadedGuardsCorrectSizeTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="764cc48a-24d3-4580-b45c-4cdbed66baad">
+    </UnitTestResult>
+    <UnitTestResult executionId="5afcae13-041d-4d37-ab43-067b0bd89648" testId="f69816a6-bf65-5fab-f80a-b3ffa700438b" testName="bareMapTileIdsTest2" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5afcae13-041d-4d37-ab43-067b0bd89648">
+    </UnitTestResult>
+    <UnitTestResult executionId="36278a68-dc8c-424e-b368-1bc81e500825" testId="f77221e3-09d6-178c-2210-d09de0119cfb" testName="saveFullMapEntryNoPatrolsTest" computerName="JUAN" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36278a68-dc8c-424e-b368-1bc81e500825">
+    </UnitTestResult>
+  </Results>
+</TestRun>

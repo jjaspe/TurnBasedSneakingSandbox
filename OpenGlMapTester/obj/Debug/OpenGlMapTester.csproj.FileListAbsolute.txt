@@ -16,11 +16,14 @@ C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\D
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlMapTester.pdb
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlGameCommon.dll
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.Platform.Windows.dll
-C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\ISE.FreeType.dll
-C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.OpenGl.dll
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\OpenGlGameCommon.pdb
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Canvas Window Template.pdb
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\CharacterSystemLibrary.pdb
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.csprojResolveAssemblyReference.cache
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.dll
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\obj\Debug\OpenGlMapTester.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\SneakingCommon.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\SneakingCreationWithForms.exe
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\Tao.FreeGlut.dll
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\SneakingCommon.pdb
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\OpenGlMapTester\bin\Debug\SneakingCreationWithForms.pdb

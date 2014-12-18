@@ -4,6 +4,10 @@
 	Solution: SneakingGuard was hiding guardIds from DrawableGuard, which werent being assigned,
 	 so ids read from Drawables were incorrect.
 
+- Update loop inside update() in CreatePatrolForm when changing SelectedItem in guard list
+	- Fixed: Moved actual selection actions to presenter, so selectGuard in form only calls appropriate
+	Presenter methods, but doesn't change anything. 
+
 
 
 

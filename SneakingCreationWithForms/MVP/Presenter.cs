@@ -20,10 +20,12 @@ namespace SneakingCreationWithForms.MVP
     {
 
         public static int TILE_SIZE = 20;
+        public static float[] selectedEntryTileColor = Common.colorOrange;
 
         IView view;
         IModel model;
         public selectorObj mySelector;
+        public List<PatrolPath> Patrols = new List<PatrolPath>();
 
         public IModel Model
         {
@@ -55,7 +57,6 @@ namespace SneakingCreationWithForms.MVP
             View.startPatrolCreation();
         }
         #endregion
-
 
         #region MAP CREATION STUFF
         Elements selectedElement;
@@ -302,7 +303,6 @@ namespace SneakingCreationWithForms.MVP
         }
         #endregion
 
-
         #region GUARD CREATION STUFF
         /// <summary>
         /// Returns the guard with given id, null if there isn't one
@@ -411,8 +411,7 @@ namespace SneakingCreationWithForms.MVP
         public void loadGuardsMap(XmlDocument doc)
         {
             this.model.Map = XmlLoader.loadGuardsMap(doc);
-            this.model.Guards = this.model.Map.getGuards();
-            
+            this.model.Guards = this.model.Map.getGuards();            
         }
 
         public void loadSystem(string filename)
@@ -422,6 +421,103 @@ namespace SneakingCreationWithForms.MVP
         #endregion
 
         #region PATROL CREATION STUFF
+        private bool allowDestination(SneakingMap map, IPoint source, Tile dest)
+        {
+            List<IDrawable> dr = (map as IWorld).getEntities();
+            int direction = 0;//0:up,2:right,3:down,4:left Clockwise
+            double dX, dY;
+            double[] dPos;
+            bool isWall;
+            IPoint endPos = new PointObj();
+
+            #region Checker Loop
+            foreach (IDrawable d in dr)
+            {
+                isWall = false;
+
+                // Same tiles?
+                if (source.equals(dest.origin))
+                    return false;
+
+                //Check if empty
+                if ((dest.origin.equals(d.getPosition()) && (d.getId() % GameObjects.objectTypes == 1 /* LowBlock */
+                    || GameObjects.objectTypes == 2) /*High Block*/ )) // Is there a block in dest position
+                    return false;
+
+                //Check distance
+                dX = dest.origin.X - source.X;
+                dY = dest.origin.Y - source.Y;
+                if (Math.Abs(dX) > map.TileSize || Math.Abs(dY) > map.TileSize)//Not next to each other
+                    return false;
+
+                //Check corners
+                if (Math.Abs(dX) == map.TileSize && Math.Abs(dY) == map.TileSize)
+                    return false;
+
+                //Get direction
+                switch ((int)dX / map.TileSize)
+                {
+                    case 0://Up or down
+                        if (dY < 0)
+                            direction = 3;//down
+                        if (dY > 0)
+                            direction = 1;//up
+                        break;
+                    case 1://Right
+                        direction = 2;
+                        break;
+                    case -1:
+                        direction = 4;//Left
+                        break;
+                    default:
+                        return false;
+                }
+
+                dPos = d.getPosition();
+                //Check walls
+                if (d.getId() % GameObjects.objectTypes == 3)/* LowWall */
+                {
+                    isWall = true;
+                    endPos = ((LowWall)d).MyTiles[0, 0].MyEnd;
+                }
+                else if (d.getId() % GameObjects.objectTypes == 4) /*HighWall*/
+                {
+                    isWall = true;
+                    endPos = ((HighWall)d).MyTiles[0, 0].MyEnd;
+                }
+                if (isWall)
+                {
+                    switch (direction)
+                    {
+                        case 1://up so wall must be horizontal, with origin x,y
+                            if (dPos[0] == dest.origin.X && dPos[1] == dest.origin.Y &&
+                                endPos.Y == dPos[1])
+                                return false;
+                            break;
+                        case 2://right, so wall must be vertical, with origin x,y
+                            if (dPos[0] == dest.origin.X && dPos[1] == dest.origin.Y &&
+                                endPos.X == dPos[0])
+                                return false;
+                            break;
+                        case 3://down, so wall must be horizontal, with origin x,y+tilesize
+                            if (dPos[0] == dest.origin.X && dPos[1] == dest.origin.Y + map.TileSize &&
+                                endPos.Y == dPos[1])
+                                return false;
+                            break;
+                        case 4://left, so wall must be vertical, with origin x+tile,y
+                            if (dPos[0] == dest.origin.X + map.TileSize && dPos[1] == dest.origin.Y &&
+                                endPos.X == dPos[0])
+                                return false;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            #endregion
+
+            return true;//If no return false in checker loop, then it must be valid dest
+        }
         Tile findTile(int id)
         {
             foreach(tileObj t in Model.Map.MyTiles)
@@ -432,10 +528,18 @@ namespace SneakingCreationWithForms.MVP
             }
             return null;
         }
+        /// <summary>
+        /// Selects the given tile by darkening its color
+        /// </summary>
+        /// <param name="t"></param>
         public void selectTile(Tile t)
         {
             t.Shaded++;
         }
+        /// <summary>
+        /// Deselects given tile by lightening its color
+        /// </summary>
+        /// <param name="t"></param>
         public void deselectTile(Tile t)
         {
             t.Shaded--;
@@ -451,9 +555,22 @@ namespace SneakingCreationWithForms.MVP
             Tile tile=findTile(id);
                 tile.Shaded--;
         }
-        public void selectPath(PatrolPath path)
+
+        /// <summary>
+        /// Returns patrol with given id, if it exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PatrolPath findPatrol(int id)
         {
-            
+            return Patrols.Find(n => n.MyId == id);
+        }
+        /// <summary>
+        /// Selects given path by darkening all its tiles
+        /// </summary>
+        /// <param name="path"></param>
+        public void selectPath(PatrolPath path)
+        {            
             if (path == null)
                 return;
             if (path.MyWaypoints == null)
@@ -462,6 +579,10 @@ namespace SneakingCreationWithForms.MVP
             foreach(Tile t in Model.Map.getTiles(path.MyWaypoints))
                 t.Shaded++;
         }
+        /// <summary>
+        /// Deselects given path by lightening all its tiles
+        /// </summary>
+        /// <param name="path"></param>
         public void deselectPath(PatrolPath path)
         {            
             if (path == null)
@@ -472,6 +593,65 @@ namespace SneakingCreationWithForms.MVP
             foreach(Tile t in Model.Map.getTiles(path.MyWaypoints))
                 t.Shaded--;
         }
+
+        public void deselectAllPaths()
+        {
+            foreach (PatrolPath p in Patrols)
+                deselectPath(p);
+        }
+
+        /// <summary>
+        /// Adds tile to end of patrol if possible
+        /// </summary>
+        /// <param name="tile"></param>
+        /// <param name="patrol"></param>
+        public void addTileToPatrol(Tile tile,PatrolPath patrol)
+        {
+            if (tile != null && patrol != null)
+            {
+                if (patrol.Last() == null || allowDestination(Model.Map, patrol.Last(), tile))//first point?
+                {
+                    patrol.MyWaypoints.Add(tile.origin);
+                    selectTile(tile);
+                }                
+            }
+        }
+
+        /// <summary>
+        /// Removes given tile from patrol if it is the last one
+        /// </summary>
+        /// <param name="tile"></param>
+        /// <param name="patrol"></param>
+        public void removeTileFromPatrol(Tile tile,PatrolPath patrol)
+        {
+            //if tile is last, delete it from path
+            if (tile != null && patrol != null)
+            {
+                if (patrol.Last().equals(tile.MyOrigin))
+                {
+                    patrol.MyWaypoints.RemoveAt(patrol.MyWaypoints.Count - 1);
+                    deselectTile(tile);
+                }
+            }
+        }
+        /// <summary>
+        /// Returns whether pPath can be closed.
+        /// Basically it checks whether the endpoints match
+        /// </summary>
+        /// <param name="pPath"></param>
+        /// <returns></returns>
+        public bool allowEnd(PatrolPath pPath)
+        {
+            return ((IPoint)pPath.MyWaypoints.ElementAt(0)).
+                equals((IPoint)pPath.MyWaypoints.ElementAt(pPath.MyWaypoints.Count - 1));
+        }
+       
+        /// <summary>
+        /// Returns a string with the coordinates of all of the given path's waypoints
+        /// (x1,y1)(x2,y2)...(xn,yn)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public string getPathString(PatrolPath path)
         {
             string sPath = "";
@@ -483,12 +663,162 @@ namespace SneakingCreationWithForms.MVP
             }
             return sPath == "" ? null : sPath;
         }
+        /// <summary>
+        /// Adds a new path to list of paths in model, with name given by it's position in the list,
+        /// and returns created path
+        /// </summary>
+        public PatrolPath createPath()
+        {
+            if (Patrols != null)
+            {
+                PatrolPath p = new PatrolPath("Patrol #" + Patrols.Count.ToString());
+                Patrols.Add(p);
+                return p;
+            }
+            return null;
+        }
+        /// <summary>
+        /// Assigns given patrol to given guard if all conditions pass (endpoints adjacent to guard's position, no pointers are null)
+        /// </summary>
+        /// <param name="guard"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool assignPatrolToGuard(SneakingGuard guard, PatrolPath path)
+        {
+            //Check pointers
+            if (path != null && path.MyWaypoints != null && path.MyWaypoints.Count > 0 && path.GuardOwners==0)
+            {
+                //Check endpoints of path are adjacent to guard's position
+                if (Model.Map.areAdjacent(path.MyWaypoints.First(), guard.Position) &&
+                    Model.Map.areAdjacent(path.MyWaypoints.Last(), guard.Position))
+                {
+                    guard.MyPatrol = path;
+                    path.GuardOwners++;
+                    path.createDirectionLines(Model.Map.TileSize);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Unassigns patrol from given guard, if no pointers are null
+        /// </summary>
+        /// <param name="guard"></param>
+        /// <param name="path"></param>
+        /// <returns>true if carried out, false if not carried out because a pointer was null</returns>
+        public bool unassignePatrolToGuard(SneakingGuard guard)
+        {
+            if (guard != null && guard.MyPatrol != null)
+            {
+                guard.MyPatrol.GuardOwners--;
+                guard.MyPatrol = null;
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region ENTRY POINT STUFF
+
+        /// <summary>
+        /// Resets all entry point tiles to their original color
+        /// </summary>
+        public void resetAllEntryPoints()
+        {
+            foreach (IPoint p in Model.Map.EntryPoints)
+                resetEntryPointTile(p);
+        }
+        /// <summary>
+        /// Resets color of tile at entryPoint
+        /// </summary>
+        /// <param name="entryPoint"></param>
+        public void resetEntryPointTile(IPoint entryPoint)
+        {
+           Tile tile= Model.Map.getTile(entryPoint);
+            if(tile!=null)
+                tile.MyColor = tile.OriginalColor;
+        }
+
+        /// <summary>
+        /// Adds entry point to map with coordinates X,Y,0,
+        ///  and returns it
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        public IPoint addEntryPoint(int X, int Y)
+        {
+            IPoint point=new PointObj(X,Y,0);
+            Model.Map.EntryPoints.Add(point);
+            return point;
+        }
+
+        /// <summary>
+        /// Removes entry point at index from list and resets color of tile
+        /// it was in. Returns removed entry point
+        /// </summary>
+        /// <param name="index"></param>
+        public IPoint removeEntryPoint(int index)
+        {
+            //Clear tile
+            resetEntryPointTile(Model.Map.EntryPoints[index]);
+            IPoint point = Model.Map.EntryPoints[index];
+            //Remove from list
+            Model.Map.EntryPoints.RemoveAt(index);
+            return point;
+        }
+
+        /// <summary>
+        /// Sets the color of the tile of entryPoint with index:index to selected color
+        /// </summary>
+        /// <param name="index"></param>
+        public void selectEntryPoint(int index)
+        {
+            if (index > -1)
+            {
+                Tile entryTile = Model.Map.getTile(Model.Map.EntryPoints[index]);
+                if (entryTile != null)
+                    entryTile.MyColor = selectedEntryTileColor;
+            }
+        }
         #endregion
 
 
-        internal void saveFullMap(string filename)
+        public void saveFullMap(string filename)
         {
-            XmlLoader.saveFullMap(filename, Model.Map, null);
+            XmlLoader.saveFullMap(filename, Model.Map);
+        }
+
+        public void deselectAllGuards()
+        {
+            foreach (SneakingGuard g in Model.Guards)
+                deselectGuard(g);
+        }
+        /// <summary>
+        /// Sets guard and it's patrol to visible
+        /// </summary>
+        /// <param name="guard"></param>
+        public void selectGuard(SneakingGuard guard)
+        {
+            guard.Visible = true;
+            selectPath(guard.MyPatrol);
+        }
+
+        /// <summary>
+        /// Makes guard invisible and lightens patrol tiles
+        /// </summary>
+        /// <param name="guard"></param>
+        public void deselectGuard(SneakingGuard guard)
+        {
+            guard.Visible = false;
+            deselectPath(guard.MyPatrol);
+        }
+
+        public bool removePatrol(PatrolPath selectedPatrol)
+        {
+            return Patrols.Remove(selectedPatrol);
         }
     }
 }

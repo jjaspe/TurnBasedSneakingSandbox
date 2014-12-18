@@ -49,6 +49,8 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             }
             set { MyHeight = value; }
         }
+        List<IPoint> entryPoints = new List<IPoint>();
+
 
         public ILandscapeBehavior LandscapeBehavior
         {
@@ -163,6 +165,13 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
         #endregion
 
+
+        public List<IPoint> EntryPoints
+        {
+            get { return entryPoints; }
+            set { entryPoints = value; }
+        }
+
         public List<IPoint> TileOrigins
         {
             get
@@ -173,8 +182,7 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
             {
                 return;
             }
-        }
-        
+        }        
 
         public List<IPoint> getReachablePoints(IPoint source)
         {

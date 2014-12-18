@@ -430,7 +430,14 @@ namespace SneakingCommon.Utility
                                                         0));
                 }
             }
-            guard.MyPatrol = guardPatrolPath;
+
+            //IF the only waypoint in the patrol is the first, it is not a patrol so make it null
+            if (guardPatrolPath.MyWaypoints.Count > 1)
+                guard.MyPatrol = guardPatrolPath;
+            else
+                guard.MyPatrol = null;
+
+
             return guard;
         }
 
@@ -521,6 +528,9 @@ namespace SneakingCommon.Utility
             else
             {
                 List<SneakingGuard> guards=getGuardsFromNode(guardListNode);
+                //Add size to guards
+                foreach (SneakingGuard g in guards)
+                    g.MySize = newMap.TileSize/2;
                 newMap.addDrawables<SneakingGuard>(ref guards);
             }
             return newMap;
@@ -725,7 +735,7 @@ namespace SneakingCommon.Utility
            
         }
 
-        static public void saveFullMap(String filename, SneakingMap map,List<IPoint> entryPoints)
+        static public void saveFullMap(String filename, SneakingMap map)
         {
             XmlDocument creator = new XmlDocument();
 
@@ -746,7 +756,7 @@ namespace SneakingCommon.Utility
 
             XmlNode bareMapNode = getBareMapNode(map, creator),
                     guardsNode = getGuardsNode(map.getGuards(), creator),
-                    entryPointsNode = getEntryPointsNode(entryPoints, creator),
+                    entryPointsNode = getEntryPointsNode(map.EntryPoints, creator),
                     distanceMaps = getDistanceMapNode(map, creator);
 
             bareMapNode.AppendChild(distanceMaps);

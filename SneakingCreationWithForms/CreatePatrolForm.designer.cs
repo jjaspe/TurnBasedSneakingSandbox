@@ -31,10 +31,9 @@
             this.myView = new Canvas_Window_Template.simpleOpenGlView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadGuardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smiLoadMap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.smiSavePatrolMap = new System.Windows.Forms.ToolStripMenuItem();
             this.guardCreationGroup = new System.Windows.Forms.GroupBox();
             this.weapText = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -102,15 +101,15 @@
             this.myView.EyeCustom = new double[] {
         -300D,
         0D,
-        0D};
-            this.myView.Location = new System.Drawing.Point(9, 42);
-            this.myView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+        -0.00010000000000000002D};
+            this.myView.Location = new System.Drawing.Point(4, 42);
+            this.myView.Margin = new System.Windows.Forms.Padding(2);
             this.myView.Name = "myView";
             this.myView.PerspectiveEye = new double[] {
         300D,
         0D,
         0.0001D};
-            this.myView.Size = new System.Drawing.Size(842, 545);
+            this.myView.Size = new System.Drawing.Size(847, 545);
             this.myView.StencilBits = ((byte)(0));
             this.myView.TabIndex = 0;
             this.myView.ViewDistance = 300D;
@@ -131,40 +130,32 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMapToolStripMenuItem,
-            this.loadGuardsToolStripMenuItem,
+            this.smiLoadMap,
             this.toolStripSeparator1,
-            this.saveToolStripMenuItem1});
+            this.smiSavePatrolMap});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // openMapToolStripMenuItem
+            // smiLoadMap
             // 
-            this.openMapToolStripMenuItem.Name = "openMapToolStripMenuItem";
-            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.openMapToolStripMenuItem.Text = "Load Map";
-            this.openMapToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // loadGuardsToolStripMenuItem
-            // 
-            this.loadGuardsToolStripMenuItem.Name = "loadGuardsToolStripMenuItem";
-            this.loadGuardsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.loadGuardsToolStripMenuItem.Text = "Load Guards";
-            this.loadGuardsToolStripMenuItem.Click += new System.EventHandler(this.loadGuardsToolStripMenuItem_Click);
+            this.smiLoadMap.Name = "smiLoadMap";
+            this.smiLoadMap.Size = new System.Drawing.Size(164, 22);
+            this.smiLoadMap.Text = "Load Map";
+            this.smiLoadMap.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
-            // saveToolStripMenuItem1
+            // smiSavePatrolMap
             // 
-            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(140, 22);
-            this.saveToolStripMenuItem1.Text = "Save Patrols";
-            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
+            this.smiSavePatrolMap.Name = "smiSavePatrolMap";
+            this.smiSavePatrolMap.Size = new System.Drawing.Size(164, 22);
+            this.smiSavePatrolMap.Text = "Save Patrols Map";
+            this.smiSavePatrolMap.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // guardCreationGroup
             // 
@@ -191,9 +182,9 @@
             this.guardCreationGroup.Controls.Add(this.nameLabel);
             this.guardCreationGroup.Controls.Add(this.nameText);
             this.guardCreationGroup.Location = new System.Drawing.Point(855, 42);
-            this.guardCreationGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guardCreationGroup.Margin = new System.Windows.Forms.Padding(2);
             this.guardCreationGroup.Name = "guardCreationGroup";
-            this.guardCreationGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guardCreationGroup.Padding = new System.Windows.Forms.Padding(2);
             this.guardCreationGroup.Size = new System.Drawing.Size(121, 406);
             this.guardCreationGroup.TabIndex = 24;
             this.guardCreationGroup.TabStop = false;
@@ -203,7 +194,7 @@
             // 
             this.weapText.Enabled = false;
             this.weapText.Location = new System.Drawing.Point(84, 247);
-            this.weapText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.weapText.Margin = new System.Windows.Forms.Padding(2);
             this.weapText.Name = "weapText";
             this.weapText.Size = new System.Drawing.Size(23, 20);
             this.weapText.TabIndex = 47;
@@ -223,7 +214,7 @@
             // 
             this.armorText.Enabled = false;
             this.armorText.Location = new System.Drawing.Point(84, 216);
-            this.armorText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.armorText.Margin = new System.Windows.Forms.Padding(2);
             this.armorText.Name = "armorText";
             this.armorText.Size = new System.Drawing.Size(23, 20);
             this.armorText.TabIndex = 45;
@@ -243,7 +234,7 @@
             // 
             this.strText.Enabled = false;
             this.strText.Location = new System.Drawing.Point(84, 107);
-            this.strText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.strText.Margin = new System.Windows.Forms.Padding(2);
             this.strText.Name = "strText";
             this.strText.Size = new System.Drawing.Size(23, 20);
             this.strText.TabIndex = 43;
@@ -263,7 +254,7 @@
             // 
             this.positionText.Enabled = false;
             this.positionText.Location = new System.Drawing.Point(15, 75);
-            this.positionText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.positionText.Margin = new System.Windows.Forms.Padding(2);
             this.positionText.Name = "positionText";
             this.positionText.Size = new System.Drawing.Size(50, 20);
             this.positionText.TabIndex = 41;
@@ -282,7 +273,7 @@
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Location = new System.Drawing.Point(14, 334);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -294,7 +285,7 @@
             // 
             this.SPText.Enabled = false;
             this.SPText.Location = new System.Drawing.Point(83, 341);
-            this.SPText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SPText.Margin = new System.Windows.Forms.Padding(2);
             this.SPText.Name = "SPText";
             this.SPText.Size = new System.Drawing.Size(24, 20);
             this.SPText.TabIndex = 38;
@@ -304,7 +295,7 @@
             // 
             this.FoVText.Enabled = false;
             this.FoVText.Location = new System.Drawing.Point(84, 313);
-            this.FoVText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FoVText.Margin = new System.Windows.Forms.Padding(2);
             this.FoVText.Name = "FoVText";
             this.FoVText.Size = new System.Drawing.Size(23, 20);
             this.FoVText.TabIndex = 37;
@@ -314,7 +305,7 @@
             // 
             this.APText.Enabled = false;
             this.APText.Location = new System.Drawing.Point(84, 289);
-            this.APText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.APText.Margin = new System.Windows.Forms.Padding(2);
             this.APText.Name = "APText";
             this.APText.Size = new System.Drawing.Size(23, 20);
             this.APText.TabIndex = 36;
@@ -344,7 +335,7 @@
             // 
             this.dexText.Enabled = false;
             this.dexText.Location = new System.Drawing.Point(84, 186);
-            this.dexText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dexText.Margin = new System.Windows.Forms.Padding(2);
             this.dexText.Name = "dexText";
             this.dexText.Size = new System.Drawing.Size(23, 20);
             this.dexText.TabIndex = 32;
@@ -354,7 +345,7 @@
             // 
             this.perText.Enabled = false;
             this.perText.Location = new System.Drawing.Point(84, 159);
-            this.perText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.perText.Margin = new System.Windows.Forms.Padding(2);
             this.perText.Name = "perText";
             this.perText.Size = new System.Drawing.Size(23, 20);
             this.perText.TabIndex = 31;
@@ -364,7 +355,7 @@
             // 
             this.intText.Enabled = false;
             this.intText.Location = new System.Drawing.Point(84, 134);
-            this.intText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.intText.Margin = new System.Windows.Forms.Padding(2);
             this.intText.Name = "intText";
             this.intText.Size = new System.Drawing.Size(23, 20);
             this.intText.TabIndex = 30;
@@ -414,7 +405,7 @@
             // 
             this.nameText.Enabled = false;
             this.nameText.Location = new System.Drawing.Point(13, 32);
-            this.nameText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nameText.Margin = new System.Windows.Forms.Padding(2);
             this.nameText.Name = "nameText";
             this.nameText.Size = new System.Drawing.Size(66, 20);
             this.nameText.TabIndex = 25;
@@ -441,7 +432,7 @@
             // removeEntryPointButton
             // 
             this.removeEntryPointButton.Location = new System.Drawing.Point(21, 130);
-            this.removeEntryPointButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removeEntryPointButton.Margin = new System.Windows.Forms.Padding(2);
             this.removeEntryPointButton.Name = "removeEntryPointButton";
             this.removeEntryPointButton.Size = new System.Drawing.Size(85, 24);
             this.removeEntryPointButton.TabIndex = 54;
@@ -452,7 +443,7 @@
             // addEntryPointButton
             // 
             this.addEntryPointButton.Location = new System.Drawing.Point(21, 89);
-            this.addEntryPointButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addEntryPointButton.Margin = new System.Windows.Forms.Padding(2);
             this.addEntryPointButton.Name = "addEntryPointButton";
             this.addEntryPointButton.Size = new System.Drawing.Size(85, 24);
             this.addEntryPointButton.TabIndex = 51;
@@ -484,7 +475,7 @@
             // 
             this.entryPointsListBox.FormattingEnabled = true;
             this.entryPointsListBox.Location = new System.Drawing.Point(171, 34);
-            this.entryPointsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.entryPointsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.entryPointsListBox.Name = "entryPointsListBox";
             this.entryPointsListBox.Size = new System.Drawing.Size(91, 160);
             this.entryPointsListBox.TabIndex = 32;
@@ -504,7 +495,7 @@
             // 
             this.entryXText.Enabled = false;
             this.entryXText.Location = new System.Drawing.Point(22, 47);
-            this.entryXText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.entryXText.Margin = new System.Windows.Forms.Padding(2);
             this.entryXText.Name = "entryXText";
             this.entryXText.Size = new System.Drawing.Size(23, 20);
             this.entryXText.TabIndex = 49;
@@ -514,7 +505,7 @@
             // 
             this.entryYText.Enabled = false;
             this.entryYText.Location = new System.Drawing.Point(60, 47);
-            this.entryYText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.entryYText.Margin = new System.Windows.Forms.Padding(2);
             this.entryYText.Name = "entryYText";
             this.entryYText.Size = new System.Drawing.Size(23, 20);
             this.entryYText.TabIndex = 50;
@@ -586,7 +577,7 @@
             // unnassignPatrolButton
             // 
             this.unnassignPatrolButton.Location = new System.Drawing.Point(112, 131);
-            this.unnassignPatrolButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.unnassignPatrolButton.Margin = new System.Windows.Forms.Padding(2);
             this.unnassignPatrolButton.Name = "unnassignPatrolButton";
             this.unnassignPatrolButton.Size = new System.Drawing.Size(87, 24);
             this.unnassignPatrolButton.TabIndex = 38;
@@ -597,7 +588,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(112, 92);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(87, 24);
             this.button3.TabIndex = 37;
@@ -617,9 +608,10 @@
             // 
             // patrolListBox
             // 
+            this.patrolListBox.DisplayMember = "MyId";
             this.patrolListBox.FormattingEnabled = true;
             this.patrolListBox.Location = new System.Drawing.Point(201, 43);
-            this.patrolListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.patrolListBox.Margin = new System.Windows.Forms.Padding(2);
             this.patrolListBox.Name = "patrolListBox";
             this.patrolListBox.Size = new System.Drawing.Size(91, 199);
             this.patrolListBox.TabIndex = 34;
@@ -628,7 +620,7 @@
             // waypointTextBox
             // 
             this.waypointTextBox.Location = new System.Drawing.Point(18, 257);
-            this.waypointTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.waypointTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.waypointTextBox.Multiline = true;
             this.waypointTextBox.Name = "waypointTextBox";
             this.waypointTextBox.Size = new System.Drawing.Size(277, 66);
@@ -637,17 +629,18 @@
             // deletePatrol
             // 
             this.deletePatrol.Location = new System.Drawing.Point(112, 170);
-            this.deletePatrol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deletePatrol.Margin = new System.Windows.Forms.Padding(2);
             this.deletePatrol.Name = "deletePatrol";
             this.deletePatrol.Size = new System.Drawing.Size(87, 24);
             this.deletePatrol.TabIndex = 32;
             this.deletePatrol.Text = "Delete Patrol";
             this.deletePatrol.UseVisualStyleBackColor = true;
+            this.deletePatrol.Click += new System.EventHandler(this.deletePatrol_Click);
             // 
             // finishPatrol
             // 
             this.finishPatrol.Location = new System.Drawing.Point(113, 207);
-            this.finishPatrol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.finishPatrol.Margin = new System.Windows.Forms.Padding(2);
             this.finishPatrol.Name = "finishPatrol";
             this.finishPatrol.Size = new System.Drawing.Size(62, 34);
             this.finishPatrol.TabIndex = 31;
@@ -657,7 +650,7 @@
             // createPatrol
             // 
             this.createPatrol.Location = new System.Drawing.Point(113, 43);
-            this.createPatrol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.createPatrol.Margin = new System.Windows.Forms.Padding(2);
             this.createPatrol.Name = "createPatrol";
             this.createPatrol.Size = new System.Drawing.Size(86, 34);
             this.createPatrol.TabIndex = 30;
@@ -667,9 +660,10 @@
             // 
             // guardListBox
             // 
+            this.guardListBox.DisplayMember = "MyName";
             this.guardListBox.FormattingEnabled = true;
             this.guardListBox.Location = new System.Drawing.Point(18, 42);
-            this.guardListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guardListBox.Margin = new System.Windows.Forms.Padding(2);
             this.guardListBox.Name = "guardListBox";
             this.guardListBox.Size = new System.Drawing.Size(91, 199);
             this.guardListBox.TabIndex = 36;
@@ -677,7 +671,7 @@
             // 
             // myNavigator
             // 
-            this.myNavigator.Location = new System.Drawing.Point(639, 57);
+            this.myNavigator.Location = new System.Drawing.Point(649, 57);
             this.myNavigator.MyView = null;
             this.myNavigator.MyWindowOwner = null;
             this.myNavigator.Name = "myNavigator";
@@ -697,9 +691,10 @@
             this.Controls.Add(this.guardCreationGroup);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.myView);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreatePatrolForm";
             this.Text = "Patrol Creation";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreatePatrolForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.guardCreationGroup.ResumeLayout(false);
@@ -722,8 +717,8 @@
         
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openMapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem smiLoadMap;
+        private System.Windows.Forms.ToolStripMenuItem smiSavePatrolMap;
         private System.Windows.Forms.GroupBox guardCreationGroup;
         private System.Windows.Forms.TextBox positionText;
         private System.Windows.Forms.Label label4;
@@ -741,7 +736,6 @@
         private System.Windows.Forms.Label persuasionLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameText;
-        private System.Windows.Forms.ToolStripMenuItem loadGuardsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TextBox strText;
         private System.Windows.Forms.Label label8;

@@ -81,7 +81,7 @@ namespace SneakingCreationWithForms
 
         private void createPatrolButton_Click(object sender, EventArgs e)
         {
-            presenter.createMapWindowStart();
+            presenter.createPatrolsWindowStart();
         }
         
         private void addGuardsButton_Click(object sender, EventArgs e)
@@ -92,10 +92,6 @@ namespace SneakingCreationWithForms
         private void createPlayer_Click(object sender, EventArgs e)
         {
         }
-
-        
-
-        
 
         public void start()
         {
