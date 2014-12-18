@@ -1,5 +1,3 @@
 ﻿Issues- 
 
 TODO
-- Finish Patrol Form View and Presenter parts
-- Add other two forms

@@ -460,12 +460,6 @@ namespace SneakingCommon.Utility
             return map;
         }
 
-        
-
-
-
-
-
         /// <summary>
         /// Loads guards from xml and puts them in list
         /// </summary>
@@ -669,6 +663,33 @@ namespace SneakingCommon.Utility
             return system;
         }
 
+        /// <summary>
+        /// Saves SneakingPC to filename. As of now all it does is save the pc's character property, and the image size.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="pc"></param>
+        static public void savePC(String filename, SneakingPC pc)
+        {
+            XmlDocument myXml = new XmlDocument();
+            XmlWriter xWriter = new XmlTextWriter(filename, null);
+            xWriter.WriteStartElement("Root");
+            xWriter.Close();
+            myXml.Load(filename);
+
+            //get root
+            XmlNode root = myXml.DocumentElement;
+
+            //Get nodes
+            XmlNode pcNode=myXml.CreateElement("Sneaking_PC"),
+                imageSizeNode=myXml.CreateElement("Image_Size"),
+                characterNode = pc.MyCharacter.toXml(myXml);
+            imageSizeNode.InnerText = pc.ImageSize.ToString();
+            //Save
+            pcNode.AppendChild(imageSizeNode);
+            pcNode.AppendChild(characterNode);
+            root.AppendChild(pcNode);
+            myXml.Save(filename);
+        }
         static public void saveGuards(String filename, List<SneakingGuard> guards)
         {
             XmlDocument creator = new XmlDocument();
@@ -756,6 +777,13 @@ namespace SneakingCommon.Utility
            
         }
 
+        /// <summary>
+        /// Saves a map with geometry, guards,patrols,entry points and distance maps to filename.
+        /// Map will be ready for gameplay.
+        /// Extension .mpt
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="map"></param>
         static public void savePatrolMap(String filename, SneakingMap map)
         {
             XmlDocument creator = new XmlDocument();
@@ -787,7 +815,7 @@ namespace SneakingCommon.Utility
             creator.Save(filename);
         }
 
-       
+        
 
         
 

@@ -17,5 +17,7 @@
 
 
 DONE
+- Move Player creation logic out of player form into Presenter (DONE)
+- Finish Patrol Form View and Presenter parts
 - Save map with guards
 	- Add orientation and color to guard files, load them and save them --DONE and TESTED

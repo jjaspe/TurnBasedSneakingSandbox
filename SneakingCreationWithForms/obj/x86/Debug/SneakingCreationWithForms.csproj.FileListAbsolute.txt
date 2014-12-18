@@ -41,3 +41,4 @@ C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithF
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.Properties.Resources.resources
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.csproj.GenerateResource.Cache
 C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreatePatrolForm.resources
+C:\Users\Wichito\Documents\GitHub\TurnBasedSneakingSandbox\SneakingCreationWithForms\obj\x86\Debug\SneakingCreationWithForms.CreatePCForm.resources

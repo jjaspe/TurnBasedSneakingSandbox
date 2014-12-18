@@ -1,179 +1,103 @@
 <Root>
-  <Character>
-    <Is_Empty>False</Is_Empty>
-    <Name>Player1</Name>
-    <Attributes />
-    <Skills />
-    <Stats>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Strength</Name>
-        <BaseValue>3</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Armor</Name>
-        <BaseValue>10</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Weapon Skill</Name>
-        <BaseValue>10</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Perception</Name>
-        <BaseValue>6</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Intelligence</Name>
-        <BaseValue>4</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Dexterity</Name>
-        <BaseValue>10</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Suspicion</Name>
-        <BaseValue>0</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Alert Status</Name>
-        <BaseValue>0</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Field of View</Name>
-        <BaseValue>6</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Field of Hearing</Name>
-        <BaseValue>6</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Suspicion Propensity</Name>
-        <BaseValue>4</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>AP</Name>
-        <BaseValue>12</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-      <Stat>
-        <Is_Empty>False</Is_Empty>
-        <Name>Knows Map</Name>
-        <BaseValue>0</BaseValue>
-        <Bonuses />
-        <Max>1000</Max>
-        <Min>0</Min>
-        <Is_Game_Ending>False</Is_Game_Ending>
-        <Is_Movement_Stopping>False</Is_Movement_Stopping>
-        <Is_Turn_Ending>False</Is_Turn_Ending>
-        <Is_Turn_Refilling>False</Is_Turn_Refilling>
-        <Refill_Value>0</Refill_Value>
-      </Stat>
-    </Stats>
-  </Character>
+  <Sneaking_PC>
+    <Image_Size>10</Image_Size>
+    <Character>
+      <Name>Player1</Name>
+      <Attributes />
+      <Skills />
+      <Stats>
+        <Stat>
+          <Name>Strength</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Armor</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Weapon Skill</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Perception</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Intelligence</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Dexterity</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Suspicion</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Alert Status</Name>
+          <BaseValue>0</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Field of View</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Field of Hearing</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Suspicion Propensity</Name>
+          <BaseValue>8</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>AP</Name>
+          <BaseValue>10</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+        <Stat>
+          <Name>Knows Map</Name>
+          <BaseValue>1</BaseValue>
+          <Bonuses />
+          <Max>1000</Max>
+          <Min>0</Min>
+        </Stat>
+      </Stats>
+    </Character>
+  </Sneaking_PC>
 </Root>

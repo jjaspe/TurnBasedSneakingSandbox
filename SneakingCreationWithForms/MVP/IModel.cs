@@ -31,6 +31,11 @@ namespace SneakingCreationWithForms.MVP
             get;
             set;
         }
+        SneakingPC PC
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// 

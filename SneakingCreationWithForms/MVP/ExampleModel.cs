@@ -16,6 +16,13 @@ namespace SneakingCreationWithForms.MVP
         GameSystem system;
         List<SneakingGuard> guards;
         List<PatrolPath> paths;
+        SneakingPC pc;
+
+        public SneakingPC PC
+        {
+            get { return pc; }
+            set { pc = value; }
+        }
 
         public List<PatrolPath> Paths
         {

@@ -38,7 +38,7 @@ namespace SneakingCreationWithForms.MVP
             set { view = value; }
         }
 
-        #region MAIN MENU STUFF
+        #region MAIN MENU 
         public void createMapWindowStart()
         {
             Model.Map = null;
@@ -56,9 +56,15 @@ namespace SneakingCreationWithForms.MVP
             Model.Map = null;
             View.startPatrolCreation();
         }
+        public void createPCWindowStart()
+        {
+            Model.PC = new SneakingPC();
+            Model.PC.MyCharacter = createPC();
+            View.startPCCreation();
+        }
         #endregion
 
-        #region MAP CREATION STUFF
+        #region MAP CREATION 
         Elements selectedElement;      
 
         public void createMapSelected(int width, int length, Int32 originX=Int32.MaxValue, Int32 originY=Int32.MaxValue)
@@ -286,7 +292,7 @@ namespace SneakingCreationWithForms.MVP
         }
         #endregion
 
-        #region GUARD CREATION STUFF
+        #region GUARD CREATION 
         /// <summary>
         /// Returns the guard with given id, null if there isn't one
         /// </summary>
@@ -381,7 +387,9 @@ namespace SneakingCreationWithForms.MVP
        
         #endregion
 
-        #region PATROL CREATION STUFF
+        #region PATROL CREATION 
+
+        #region GUARD 
         public void deselectAllGuards()
         {
             foreach (SneakingGuard g in Model.Guards)
@@ -406,6 +414,10 @@ namespace SneakingCreationWithForms.MVP
             guard.Visible = false;
             deselectPath(guard.MyPatrol);
         }
+
+        #endregion
+
+        #region PATROL 
         private bool allowDestination(SneakingMap map, IPoint source, Tile dest)
         {
             List<IDrawable> dr = (map as IWorld).getEntities();
@@ -712,10 +724,9 @@ namespace SneakingCreationWithForms.MVP
         {
             return Patrols.Remove(selectedPatrol);
         }
-        
         #endregion
 
-        #region ENTRY POINT STUFF
+        #region ENTRY POINT 
 
         /// <summary>
         /// Resets all entry point tiles to their original color
@@ -731,8 +742,8 @@ namespace SneakingCreationWithForms.MVP
         /// <param name="entryPoint"></param>
         public void resetEntryPointTile(IPoint entryPoint)
         {
-           Tile tile= Model.Map.getTile(entryPoint);
-            if(tile!=null)
+            Tile tile = Model.Map.getTile(entryPoint);
+            if (tile != null)
                 tile.MyColor = tile.OriginalColor;
         }
 
@@ -744,7 +755,7 @@ namespace SneakingCreationWithForms.MVP
         /// <param name="Y"></param>
         public IPoint addEntryPoint(int X, int Y)
         {
-            IPoint point=new PointObj(X,Y,0);
+            IPoint point = new PointObj(X, Y, 0);
             Model.Map.EntryPoints.Add(point);
             return point;
         }
@@ -778,8 +789,37 @@ namespace SneakingCreationWithForms.MVP
             }
         }
         #endregion
+        
+        #endregion        
 
-        #region SAVE AND LOAD STUFF
+        #region PC CREATION 
+        public Character createPC()
+        {
+            Model.PC = new SneakingPC();
+            Character character = new Character();
+            character.addStat(new Stat("Strength", 0));
+            character.addStat(new Stat("Armor", 0));
+            character.addStat(new Stat("Weapon Skill", 0));
+            character.addStat(new Stat("Perception", 0));
+            character.addStat(new Stat("Intelligence", 0));
+            character.addStat(new Stat("Dexterity", 0));
+            character.addStat(new Stat("Suspicion", 0));
+            character.addStat(new Stat("Alert Status", 0));
+            character.addStat(new Stat("Field of View", 0));
+            character.addStat(new Stat("Field of Hearing", 0));
+            character.addStat(new Stat("Suspicion Propensity", 0));
+            character.addStat(new Stat("AP", 0));
+            character.addStat(new Stat("Knows Map", 0));
+            Model.PC.MyCharacter = character;
+            return character;
+        }
+        public void editPC(Character character)
+        {
+            Model.PC.MyCharacter = character;
+        }
+        #endregion
+
+        #region SAVE AND LOAD 
         /// <summary>
         /// Loads a map from XmlDocument.
         /// </summary>
@@ -796,8 +836,7 @@ namespace SneakingCreationWithForms.MVP
         public void saveBareMap(string filename)
         {
             XmlLoader.saveBareMap(filename, model.Map);
-        }
-        
+        }        
 
         /// <summary>
         /// Saves guards to file with path:filename
@@ -818,6 +857,10 @@ namespace SneakingCreationWithForms.MVP
             this.model.Guards = this.model.Map.getGuards();
         }
 
+        /// <summary>
+        /// Saves map with patrols, entry points and distance maps. These maps will be ready for gameplay
+        /// </summary>
+        /// <param name="filename"></param>
         public void savePatrolMap(string filename)
         {
             XmlLoader.savePatrolMap(filename, Model.Map);
@@ -844,7 +887,19 @@ namespace SneakingCreationWithForms.MVP
             }
         }
 
+        /// <summary>
+        /// Saves Model's PC to xml file:filename 
+        /// </summary>
+        /// <param name="filename"></param>
+        public void savePC(string filename)
+        {
+            XmlLoader.savePC(filename, Model.PC);
+        }
 
+        /// <summary>
+        /// Loads game system that converts translates between stats and skills
+        /// </summary>
+        /// <param name="filename"></param>
         public void loadSystem(string filename)
         {
             Model.System = XmlLoader.loadSystem(filename);
