@@ -417,7 +417,7 @@ namespace SneakingCreationWithForms
         #endregion
 
         #region SAVE AND LOAD
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loadGuardMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog MapDialog = new OpenFileDialog();
             MapDialog.Filter = "Map Files (*.mgp)|*.mgp";
@@ -464,6 +464,59 @@ namespace SneakingCreationWithForms
             if (!drawing)
                 this.drawingLoop();
         }
+        private void loadPatrolMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog MapDialog = new OpenFileDialog();
+            MapDialog.Filter = "Patrol Map Files (*.mpt)|*.mpt";
+            MapDialog.DefaultExt = "Map";
+            MapDialog.InitialDirectory = filepath + "Maps\\";
+
+            string filename = MapDialog.ShowDialog() == DialogResult.OK ? MapDialog.FileName : null;
+
+            if (filename == null)
+            {
+                MessageBox.Show("Couldnt' Load Map");
+                return;
+            }
+
+            FileStream mapFileReader;
+            try
+            {
+                mapFileReader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Open Map:" + ex.Message);
+                return;
+            }
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(mapFileReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't Create XmlDocument:" + ex.Message);
+                return;
+            }
+            MyPresenter.loadPatrolMap(doc);
+
+            //Put guards in list
+            guardListBox.Items.Clear();
+            selectedGuard = null;
+            foreach (SneakingGuard g in MyPresenter.Model.Guards)
+                addGuardToList(g);
+
+            //Put patrols in list
+            patrolListBox.Items.Clear();
+            selectedPatrol = null;
+            foreach (PatrolPath p in MyPresenter.Patrols)
+                patrolListBox.Items.Add(p);
+
+            if (!drawing)
+                this.drawingLoop();
+        }
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SaveFileDialog mapDialog = new SaveFileDialog();
@@ -478,7 +531,7 @@ namespace SneakingCreationWithForms
                 return;
             }
 
-            MyPresenter.saveFullMap(filename);
+            MyPresenter.savePatrolMap(filename);
         }
         #endregion
 
@@ -522,5 +575,7 @@ namespace SneakingCreationWithForms
             }
 
         }
+
+        
     }
 }

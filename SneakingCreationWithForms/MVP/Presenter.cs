@@ -59,24 +59,7 @@ namespace SneakingCreationWithForms.MVP
         #endregion
 
         #region MAP CREATION STUFF
-        Elements selectedElement;
-        /// <summary>
-        /// Loads a map from XmlDocument.
-        /// </summary>
-        /// <param name="filename"></param>
-        public void loadBareMap(XmlDocument doc)
-        {
-            this.model.Map = XmlLoader.loadBareMap(doc);
-        }
-
-        /// <summary>
-        /// Tries to save the model's map to filename
-        /// </summary>
-        /// <param name="filename"></param>
-        public void saveMap(string filename)
-        {
-            XmlLoader.saveBareMap(filename, model.Map);
-        }
+        Elements selectedElement;      
 
         public void createMapSelected(int width, int length, Int32 originX=Int32.MaxValue, Int32 originY=Int32.MaxValue)
         {
@@ -395,32 +378,34 @@ namespace SneakingCreationWithForms.MVP
             return null;
         }
 
-        /// <summary>
-        /// Saves guards to file with path:filename
-        /// </summary>
-        /// <param name="filename"></param>
-        public void saveGuardsMap(String filename)
-        {
-            XmlLoader.saveGuardMap(filename, Model.Map);
-        }
-
-        /// <summary>
-        /// Loads a map with guards from XmlDocument.
-        /// </summary>
-        /// <param name="filename"></param>
-        public void loadGuardsMap(XmlDocument doc)
-        {
-            this.model.Map = XmlLoader.loadGuardsMap(doc);
-            this.model.Guards = this.model.Map.getGuards();            
-        }
-
-        public void loadSystem(string filename)
-        {
-            Model.System = XmlLoader.loadSystem(filename);
-        }
+       
         #endregion
 
         #region PATROL CREATION STUFF
+        public void deselectAllGuards()
+        {
+            foreach (SneakingGuard g in Model.Guards)
+                deselectGuard(g);
+        }
+        /// <summary>
+        /// Sets guard and it's patrol to visible
+        /// </summary>
+        /// <param name="guard"></param>
+        public void selectGuard(SneakingGuard guard)
+        {
+            guard.Visible = true;
+            selectPath(guard.MyPatrol);
+        }
+
+        /// <summary>
+        /// Makes guard invisible and lightens patrol tiles
+        /// </summary>
+        /// <param name="guard"></param>
+        public void deselectGuard(SneakingGuard guard)
+        {
+            guard.Visible = false;
+            deselectPath(guard.MyPatrol);
+        }
         private bool allowDestination(SneakingMap map, IPoint source, Tile dest)
         {
             List<IDrawable> dr = (map as IWorld).getEntities();
@@ -692,6 +677,9 @@ namespace SneakingCreationWithForms.MVP
                 if (Model.Map.areAdjacent(path.MyWaypoints.First(), guard.Position) &&
                     Model.Map.areAdjacent(path.MyWaypoints.Last(), guard.Position))
                 {
+                    //If guard's position is not in the path, add it at the end
+                    if (path.MyWaypoints.Find(n => n.X == guard.Position.X && n.Y == guard.Position.Y) == null)
+                        addTileToPatrol(model.Map.getTile(guard.Position), path);
                     guard.MyPatrol = path;
                     path.GuardOwners++;
                     path.createDirectionLines(Model.Map.TileSize);
@@ -719,6 +707,12 @@ namespace SneakingCreationWithForms.MVP
 
             return false;
         }
+
+        public bool removePatrol(PatrolPath selectedPatrol)
+        {
+            return Patrols.Remove(selectedPatrol);
+        }
+        
         #endregion
 
         #region ENTRY POINT STUFF
@@ -785,40 +779,81 @@ namespace SneakingCreationWithForms.MVP
         }
         #endregion
 
-
-        public void saveFullMap(string filename)
-        {
-            XmlLoader.saveFullMap(filename, Model.Map);
-        }
-
-        public void deselectAllGuards()
-        {
-            foreach (SneakingGuard g in Model.Guards)
-                deselectGuard(g);
-        }
+        #region SAVE AND LOAD STUFF
         /// <summary>
-        /// Sets guard and it's patrol to visible
+        /// Loads a map from XmlDocument.
         /// </summary>
-        /// <param name="guard"></param>
-        public void selectGuard(SneakingGuard guard)
+        /// <param name="filename"></param>
+        public void loadBareMap(XmlDocument doc)
         {
-            guard.Visible = true;
-            selectPath(guard.MyPatrol);
+            this.model.Map = XmlLoader.loadBareMap(doc);
         }
 
         /// <summary>
-        /// Makes guard invisible and lightens patrol tiles
+        /// Tries to save the model's map to filename
         /// </summary>
-        /// <param name="guard"></param>
-        public void deselectGuard(SneakingGuard guard)
+        /// <param name="filename"></param>
+        public void saveBareMap(string filename)
         {
-            guard.Visible = false;
-            deselectPath(guard.MyPatrol);
+            XmlLoader.saveBareMap(filename, model.Map);
+        }
+        
+
+        /// <summary>
+        /// Saves guards to file with path:filename
+        /// </summary>
+        /// <param name="filename"></param>
+        public void saveGuardsMap(String filename)
+        {
+            XmlLoader.saveGuardMap(filename, Model.Map);
         }
 
-        public bool removePatrol(PatrolPath selectedPatrol)
+        /// <summary>
+        /// Loads a map with guards from XmlDocument.
+        /// </summary>
+        /// <param name="filename"></param>
+        public void loadGuardsMap(XmlDocument doc)
         {
-            return Patrols.Remove(selectedPatrol);
+            this.model.Map = XmlLoader.loadGuardsMap(doc);
+            this.model.Guards = this.model.Map.getGuards();
         }
+
+        public void savePatrolMap(string filename)
+        {
+            XmlLoader.savePatrolMap(filename, Model.Map);
+        }
+
+        /// <summary>
+        /// Loads a map with guards and patrols using XmlLoader. Also reads
+        /// guard patrols and saves them to Patrols 
+        /// </summary>
+        /// <param name="doc"></param>
+        public void loadPatrolMap(XmlDocument doc)
+        {
+            this.model.Map = XmlLoader.loadPatrolMap(doc);
+            this.model.Guards = model.Map.getGuards();
+            this.Patrols = new List<PatrolPath>();
+            //Read Patrols from guards and save them
+            foreach (SneakingGuard g in this.model.Guards)
+            {
+                if (g.MyPatrol != null)
+                {
+                    g.MyPatrol.createDirectionLines(model.Map.TileSize);
+                    Patrols.Add(g.MyPatrol);
+                }
+            }
+        }
+
+
+        public void loadSystem(string filename)
+        {
+            Model.System = XmlLoader.loadSystem(filename);
+        }
+        #endregion
+
+
+
+
+
     }
 }

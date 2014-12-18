@@ -216,7 +216,7 @@ namespace SneakingCommonTests
         [ExpectedException(typeof(InvalidMapException))]
         public void loadFullMapFailTest()
         {
-            SneakingMap map = XmlLoader.loadFullMap(bareMapDoc);            
+            SneakingMap map = XmlLoader.loadPatrolMap(bareMapDoc);            
         }
 
 
@@ -226,7 +226,7 @@ namespace SneakingCommonTests
         [TestMethod]
         public void loadFullMapTest()
         {
-            SneakingMap map = XmlLoader.loadFullMap(fullMapDoc);
+            SneakingMap map = XmlLoader.loadPatrolMap(fullMapDoc);
             Assert.IsTrue(map.DistanceMaps.Count>0);
         }
 
@@ -242,7 +242,7 @@ namespace SneakingCommonTests
             List<IPoint> entryPoints = new List<IPoint>();
 
             //Save it to a new map file
-            XmlLoader.saveFullMap(smallTestFullMapFilename, map);
+            XmlLoader.savePatrolMap(smallTestFullMapFilename, map);
             ////Load the new map file
             //XmlDocument target = null;
             //openMapFileWithFilename(saveFilename, ref target);
@@ -261,12 +261,12 @@ namespace SneakingCommonTests
             List<IPoint> entryPoints = new List<IPoint>();
 
             //Save it to a new map file
-            XmlLoader.saveFullMap(smallTestFullMapFilename, map);
+            XmlLoader.savePatrolMap(smallTestFullMapFilename, map);
 
             //Load the new map file
             XmlDocument target = null;
             openMapFileWithFilename(smallTestFullMapFilename, ref target);
-            SneakingMap actual = XmlLoader.loadFullMap(target);
+            SneakingMap actual = XmlLoader.loadPatrolMap(target);
             foreach (SneakingGuard guard in actual.getGuards())
                 Assert.IsNull(guard.MyPatrol);
         }
@@ -283,7 +283,7 @@ namespace SneakingCommonTests
             List<IPoint> entryPoints = new List<IPoint>();
 
             //Save it to a new map file
-            XmlLoader.saveFullMap(smallTestFullMapFilename, map);
+            XmlLoader.savePatrolMap(smallTestFullMapFilename, map);
             
             //Load the new map file
             XmlDocument target = null;

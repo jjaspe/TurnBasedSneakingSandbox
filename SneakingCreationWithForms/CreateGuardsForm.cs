@@ -49,8 +49,6 @@ namespace SneakingCreationWithForms
             set { myView = value; }
         }
 
-
-
         public static float[] tileColor = Common.colorGreen;
         public static float[] outlineColor = Common.colorBlack;
         public static float[] blockColor = Common.colorRed;

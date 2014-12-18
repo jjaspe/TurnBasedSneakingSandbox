@@ -125,7 +125,6 @@ namespace Sneaking_Gameplay.Sneaking_Drawables
         }
         #endregion 
 
-
         #region PATHFINDING STUFF
         
         /// <summary>

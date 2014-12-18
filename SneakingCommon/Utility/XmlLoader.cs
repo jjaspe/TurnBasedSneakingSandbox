@@ -69,7 +69,9 @@ namespace SneakingCommon.Utility
                 redNode=creator.CreateElement("Red"),
                 greenNode=creator.CreateElement("Green"),
                 blueNode=creator.CreateElement("Blue"),
-                orientationNode=creator.CreateElement("Orientation");
+                orientationNode=creator.CreateElement("Orientation"),
+                patrolNode=creator.CreateElement("Patrol"),
+                waypointNode=creator.CreateElement("Waypoint");
 
             //Get guard data, add it to guard node, add guard node to list node
             foreach (SneakingGuard g in guards)
@@ -91,11 +93,25 @@ namespace SneakingCommon.Utility
 
                 orientationNode.InnerText = g.MyOrientation.ToString();
 
+                //If it has a patrol with some waypoints, save it
+                if (g.MyPatrol != null && g.MyPatrol.MyWaypoints.Count > 0)
+                {
+                    foreach (IPoint p in g.MyPatrol.MyWaypoints)
+                    {
+                        waypointNode = creator.CreateElement("Waypoint");
+                        positionXNode.InnerText = p.X.ToString();
+                        positionYNode.InnerText = p.Y.ToString();
+                        waypointNode.AppendChild(positionXNode.Clone());
+                        waypointNode.AppendChild(positionYNode.Clone());
+                        patrolNode.AppendChild(waypointNode.Clone());
+                    }
+                }
                 
                 currentGuardNode.AppendChild(idNode);
                 currentGuardNode.AppendChild(positionNode);
                 currentGuardNode.AppendChild(orientationNode);
                 currentGuardNode.AppendChild(colorNode);
+                currentGuardNode.AppendChild(patrolNode);
                 guardsNode.AppendChild(currentGuardNode.Clone());
 
                 //clear nodes for next guard
@@ -106,6 +122,94 @@ namespace SneakingCommon.Utility
             return guardsNode;
 
         }
+
+        /// <summary>
+        /// Creates a guard object from given xml node
+        /// </summary>
+        /// <param name="guardNode"></param>
+        /// <returns></returns>
+        static SneakingGuard loadGuardFromNode(XmlNode guardNode)
+        {
+            XmlNode positionNode, positionXNode, positionYNode,
+               patrolNode, wpXNode, wpYNode, colorNode, redNode, greenNode, blueNode, orientationNode;
+            XmlNodeList waypointNodes;
+            PatrolPath guardPatrolPath;
+
+            SneakingGuard guard = new SneakingGuard();
+            guardPatrolPath = new PatrolPath();
+
+            //Load guard stats
+            guard.MyCharacter.fromXml(guardNode);
+            //Read Position,then save it
+            positionNode = ((XmlElement)guardNode).SelectNodes("Position")[0];
+            positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
+            positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
+
+            guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
+                                              Int32.Parse(positionYNode.InnerText),
+                                              0);
+
+            //Read orientation and save
+            orientationNode = ((XmlElement)guardNode).SelectNodes("Orientation")[0];
+            guard.MyOrientation = (GuardOrientation)(Enum.Parse(typeof(GuardOrientation), orientationNode.InnerText));
+
+            //Read color and save
+            colorNode = ((XmlElement)guardNode).SelectNodes("Color")[0];
+            redNode = ((XmlElement)colorNode).SelectNodes("Red")[0];
+            greenNode = ((XmlElement)colorNode).SelectNodes("Green")[0];
+            blueNode = ((XmlElement)colorNode).SelectNodes("Blue")[0];
+            guard.Color = new float[] { float.Parse(redNode.InnerText), float.Parse(greenNode.InnerText), float.Parse(blueNode.InnerText) };
+
+            //Read Patrol
+            
+            //Add rest of waypoints
+            patrolNode = ((XmlElement)guardNode).SelectNodes("Patrol")[0];
+            if (patrolNode != null)
+            {
+                waypointNodes = ((XmlElement)patrolNode).SelectNodes("Waypoint");
+                foreach (XmlElement wp in waypointNodes)
+                {
+                    wpXNode = wp.SelectNodes("X")[0];
+                    wpYNode = wp.SelectNodes("Y")[0];
+                    guardPatrolPath.MyWaypoints.Add(new pointObj(Int32.Parse(wpXNode.InnerText),
+                                                        Int32.Parse(wpYNode.InnerText),
+                                                        0));
+                }
+            }
+
+            //IF the patrol has no waypoints it is not a patrol so make it null
+            if (guardPatrolPath.MyWaypoints.Count > 0)
+                guard.MyPatrol = guardPatrolPath;
+            else
+                guard.MyPatrol = null;
+
+
+            return guard;
+        }
+        /// <summary>
+        /// Returns list of guards created from guard nodes in myDoc
+        /// </summary>
+        /// <param name="myDoc"></param>
+        /// <returns></returns>
+        static List<SneakingGuard> getGuardsFromNode(XmlNode myDoc)
+        {
+            XmlNodeList guardNodes = myDoc.SelectNodes("Character");
+            List<SneakingGuard> guards = new List<SneakingGuard>();
+            SneakingGuard currentGuard;
+            if (guardNodes != null)
+            {
+                foreach (XmlNode guardNode in guardNodes)
+                {
+                    currentGuard = loadGuardFromNode(guardNode);
+
+                    //Add guard to list
+                    guards.Add(currentGuard);
+                }
+            }
+            return guards;
+        }
+
+
         /// <summary>
         /// Loads wall and block from map and returns them their nodes
         /// </summary>
@@ -171,7 +275,8 @@ namespace SneakingCommon.Utility
 
         /// <summary>
         /// Create distance maps using tiles of given map.
-        /// Maps are generated in map class, this method just reads their data and 
+        /// This method does not create the distance maps. If the map doesn't have them
+        /// already, it tells the map to generate them and reads their data and 
         /// saves it to xml node.
         /// </summary>
         /// <param name="map"></param>
@@ -183,7 +288,8 @@ namespace SneakingCommon.Utility
                 vpPositionX, vpPositionY, vpValue, currentMapNode, currentPointNode, currentSourceNode,
                 currentSourcePositionXNode, currentSourcePositionYNode;
 
-            map.generateDistanceMaps();
+            if(map.DistanceMaps==null || map.DistanceMaps.Count==0)
+                map.generateDistanceMaps();
             DistanceMap currentMap;
             foreach (IPoint currentSource in map.getAllTileOrigins())
             {
@@ -252,28 +358,7 @@ namespace SneakingCommon.Utility
             return entryPointsNode;
         }
 
-        /// <summary>
-        /// Returns list of guards created from guard nodes in myDoc
-        /// </summary>
-        /// <param name="myDoc"></param>
-        /// <returns></returns>
-        static List<SneakingGuard> getGuardsFromNode(XmlNode myDoc)
-        {
-            XmlNodeList guardNodes = myDoc.SelectNodes("Character");
-            List<SneakingGuard> guards = new List<SneakingGuard>();
-            SneakingGuard currentGuard;
-            if (guardNodes != null)
-            {
-                foreach (XmlNode guardNode in guardNodes)
-                {
-                    currentGuard = loadGuardFromNode(guardNode);
-
-                    //Add guard to list
-                    guards.Add(currentGuard);
-                }
-            }
-            return guards;
-        }
+       
 
         /// <summary>
         /// Takes a SneakingMap:map without geometry, and it loads geometry objects
@@ -375,71 +460,7 @@ namespace SneakingCommon.Utility
             return map;
         }
 
-        /// <summary>
-        /// Creates a guard object from given xml node
-        /// </summary>
-        /// <param name="guardNode"></param>
-        /// <returns></returns>
-        static SneakingGuard loadGuardFromNode(XmlNode guardNode)
-        {
-            XmlNode positionNode, positionXNode, positionYNode,
-               patrolNode, wpXNode, wpYNode,colorNode,redNode,greenNode,blueNode,orientationNode;
-            XmlNodeList waypointNodes;
-            PatrolPath guardPatrolPath;
-
-            SneakingGuard guard = new SneakingGuard();
-            guardPatrolPath = new PatrolPath();
-
-            //Load guard stats
-            guard.MyCharacter.fromXml(guardNode);
-            //Read Position,then save it
-            positionNode = ((XmlElement)guardNode).SelectNodes("Position")[0];
-            positionXNode = ((XmlElement)positionNode).SelectNodes("X")[0];
-            positionYNode = ((XmlElement)positionNode).SelectNodes("Y")[0];
-
-            guard.Position = new pointObj(Int32.Parse(positionXNode.InnerText),
-                                              Int32.Parse(positionYNode.InnerText),
-                                              0);
-
-            //Read orientation and save
-            orientationNode = ((XmlElement)guardNode).SelectNodes("Orientation")[0];
-            guard.MyOrientation = (GuardOrientation)(Enum.Parse(typeof(GuardOrientation), orientationNode.InnerText));
-
-            //Read color and save
-            colorNode =((XmlElement)guardNode).SelectNodes("Color")[0];
-            redNode=((XmlElement)colorNode).SelectNodes("Red")[0];
-            greenNode=((XmlElement)colorNode).SelectNodes("Green")[0];
-            blueNode=((XmlElement)colorNode).SelectNodes("Blue")[0];
-            guard.Color = new float[] { float.Parse(redNode.InnerText), float.Parse(greenNode.InnerText), float.Parse(blueNode.InnerText) };
-
-            //Read Patrol
-            //First, put guard position as first waypoint
-            guardPatrolPath.MyWaypoints.Add(guard.Position);
-
-            //Add rest of waypoints
-            patrolNode = ((XmlElement)guardNode).SelectNodes("Patrol")[0];
-            if (patrolNode != null)
-            {
-                waypointNodes = ((XmlElement)patrolNode).SelectNodes("Waypoint");
-                foreach (XmlElement wp in waypointNodes)
-                {
-                    wpXNode = wp.SelectNodes("X")[0];
-                    wpYNode = wp.SelectNodes("Y")[0];
-                    guardPatrolPath.MyWaypoints.Add(new pointObj(Int32.Parse(wpXNode.InnerText),
-                                                        Int32.Parse(wpYNode.InnerText),
-                                                        0));
-                }
-            }
-
-            //IF the only waypoint in the patrol is the first, it is not a patrol so make it null
-            if (guardPatrolPath.MyWaypoints.Count > 1)
-                guard.MyPatrol = guardPatrolPath;
-            else
-                guard.MyPatrol = null;
-
-
-            return guard;
-        }
+        
 
 
 
@@ -541,7 +562,7 @@ namespace SneakingCommon.Utility
         /// </summary>
         /// <param name="myDoc"></param>
         /// <returns></returns>
-        static public SneakingMap loadFullMap(XmlDocument myDoc)
+        static public SneakingMap loadPatrolMap(XmlDocument myDoc)
         {
             SneakingMap map = loadGuardsMap(myDoc);
             XmlNode distanceList = myDoc.GetElementsByTagName("Distance_Maps").Count==0?null:
@@ -735,7 +756,7 @@ namespace SneakingCommon.Utility
            
         }
 
-        static public void saveFullMap(String filename, SneakingMap map)
+        static public void savePatrolMap(String filename, SneakingMap map)
         {
             XmlDocument creator = new XmlDocument();
 

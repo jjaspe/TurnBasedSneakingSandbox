@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smiLoadMap = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadPatrolMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.smiSavePatrolMap = new System.Windows.Forms.ToolStripMenuItem();
             this.guardCreationGroup = new System.Windows.Forms.GroupBox();
@@ -131,6 +132,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.smiLoadMap,
+            this.loadPatrolMapToolStripMenuItem,
             this.toolStripSeparator1,
             this.smiSavePatrolMap});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -142,8 +144,15 @@
             // 
             this.smiLoadMap.Name = "smiLoadMap";
             this.smiLoadMap.Size = new System.Drawing.Size(164, 22);
-            this.smiLoadMap.Text = "Load Map";
-            this.smiLoadMap.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.smiLoadMap.Text = "Load Guard Map";
+            this.smiLoadMap.Click += new System.EventHandler(this.loadGuardMapToolStripMenuItem_Click);
+            // 
+            // loadPatrolMapToolStripMenuItem
+            // 
+            this.loadPatrolMapToolStripMenuItem.Name = "loadPatrolMapToolStripMenuItem";
+            this.loadPatrolMapToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.loadPatrolMapToolStripMenuItem.Text = "Load Patrol Map";
+            this.loadPatrolMapToolStripMenuItem.Click += new System.EventHandler(this.loadPatrolMapToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -767,5 +776,6 @@
         private System.Windows.Forms.Button createPatrol;
         private System.Windows.Forms.ListBox guardListBox;
         private Canvas_Window_Template.Navigator myNavigator;
+        private System.Windows.Forms.ToolStripMenuItem loadPatrolMapToolStripMenuItem;
     }
 }
