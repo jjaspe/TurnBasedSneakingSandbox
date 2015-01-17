@@ -1,4 +1,4 @@
 TurnBasedSneakingSandbox
 ========================
 
-Class library to create an OpenGL based turn based sneaking minigame
+OpenGL based class library to create prototypes of turn based sneaking minigames.
